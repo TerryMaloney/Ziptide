@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **746**
-- Scanner findings: **2721**
+- Scanned files: **747**
+- Scanner findings: **2727**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -862,17 +862,17 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:69` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:70` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:71` **RUNTIME_MATERIAL_CREATE** — `m = new Material(shader) { name = "CityMat_" + ColorUtility.ToHtmlStringRGB(c) };`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:80` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:223` **CREATE_PRIMITIVE** — `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:266` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:347` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:438` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:483` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:512` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:536` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:74` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:75` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:76` **RUNTIME_MATERIAL_CREATE** — `m = new Material(shader) { name = "CityMat_" + ColorUtility.ToHtmlStringRGB(c) };`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:85` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:228` **CREATE_PRIMITIVE** — `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:271` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:352` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:443` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:488` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:517` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:541` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — 4 signal(s)
 
@@ -962,6 +962,17 @@ None.
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ReactivePropAuthor.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ReactivePropAuthor.cs:149` **NEW_GAME_OBJECT** — `var proxyObject = new GameObject(HitProxyName);`
+
+### `Ziptide.Editor.Patching.RingCityBuilder` — 6 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:62` **NEW_GAME_OBJECT** — `var root = new GameObject(RootName).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:424` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:451` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(type);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:475` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:476` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:479` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader) { name = "RingCity_" + slot };`
 
 ### `Ziptide.Editor.Patching.ScenePatcherArena` — 11 signal(s)
 
@@ -4180,10 +4191,10 @@ None.
 
 - Codes: `RENDER_SETTINGS_MUTATION`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:106` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fog = kit.fogEnabled;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:109` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogMode = FogMode.ExponentialSquared;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:110` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogColor = kit.fogColor;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:111` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogDensity = kit.fogDensity;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:111` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fog = kit.fogEnabled;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:114` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogMode = FogMode.ExponentialSquared;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:115` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogColor = kit.fogColor;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:116` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogDensity = kit.fogDensity;`
 
 ### `Ziptide.Editor.Patching.ForgePhotoBooth` — 13 signal(s)
 
@@ -4521,7 +4532,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Content/Runtime/City/CityLayoutDefinition.cs`
-  - `Ziptide/Assets/Ziptide/Content/Runtime/City/CityLayoutDefinition.cs:479` **FALLBACK_MARKER** — `/// <summary>The shipyard berth + a static (non-flyable) ship placeholder.</summary>`
+  - `Ziptide/Assets/Ziptide/Content/Runtime/City/CityLayoutDefinition.cs:495` **FALLBACK_MARKER** — `/// <summary>The shipyard berth + a static (non-flyable) ship placeholder.</summary>`
 
 ### `Ziptide.Content.CosmeticKind` — 1 signal(s)
 

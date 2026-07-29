@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **746**
+- Scanned C# files: **747**
 - Focused references: **439**
 
 ## melee
@@ -392,8 +392,8 @@
 
 ### `ShipCastOffRuntime`
 
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:381` — `if (kit.sceneName == "W000_DriftIn" && ship.GetComponent<ShipCastOffRuntime>() == null)`
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:382` — `ship.gameObject.AddComponent<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:386` — `if (kit.sceneName == "W000_DriftIn" && ship.GetComponent<ShipCastOffRuntime>() == null)`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:387` — `ship.gameObject.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:36` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
 - **declaration** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:20` — `public class ShipCastOffRuntime : MonoBehaviour`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:10` — `/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.`
@@ -425,8 +425,8 @@
 
 ### `ShipCastOffRuntime`
 
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:381` — `if (kit.sceneName == "W000_DriftIn" && ship.GetComponent<ShipCastOffRuntime>() == null)`
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:382` — `ship.gameObject.AddComponent<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:386` — `if (kit.sceneName == "W000_DriftIn" && ship.GetComponent<ShipCastOffRuntime>() == null)`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:387` — `ship.gameObject.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:36` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
 - **declaration** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:20` — `public class ShipCastOffRuntime : MonoBehaviour`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:10` — `/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.`
@@ -475,8 +475,8 @@
 
 - **reference** · `Ziptide.Editor.Audit.FullSendPresentationAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:36` — `if (renderers.Length < ShipHullBuilder.MinimumHeroRenderers)`
 - **reference** · `Ziptide.Editor.Audit.FullSendPresentationAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:39` — `+ ShipHullBuilder.MinimumHeroRenderers + ".", path);`
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:372` — `// real ~19-part silhouette now (ShipHullBuilder), same bounding box, so the boarding`
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:377` — `ShipHullBuilder.Build(ship, s.shipSize, kit.palette);`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:377` — `// real ~19-part silhouette now (ShipHullBuilder), same bounding box, so the boarding`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:382` — `ShipHullBuilder.Build(ship, s.shipSize, kit.palette);`
 - **declaration** · `Ziptide.Editor.Patching.ShipHullBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:14` — `public static class ShipHullBuilder`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:11` — `/// · CHASSIS — reproportions the named ShipHullBuilder parts per ShipChassisPreset (fuselage`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:14` — `/// baked Forge meshes supersede this through the same parent later (ShipHullBuilder's own`
@@ -486,7 +486,7 @@
 
 ### `ShipHullBuilder.Build`
 
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:377` — `ShipHullBuilder.Build(ship, s.shipSize, kit.palette);`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:382` — `ShipHullBuilder.Build(ship, s.shipSize, kit.palette);`
 - **reference** · `Ziptide.Tests.EditMode.HeroShipHullBuilderTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs:19` — `ShipHullBuilder.Build(ship.transform, new Vector3(5f, 3f, 12f), new GlobalPalette());`
 
 ### `ShipLocker`
