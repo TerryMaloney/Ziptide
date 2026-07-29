@@ -75,6 +75,10 @@ FEATURES: tuple[tuple[str, str, str, str], ...] = (
     ("key-gated launch", "Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
      r"ConfigureKeyGate\(", r"keyRequired"),
     ("the throw", "Editor/Patching/CityBuilder.cs", r"BuildTheThrow\(", r"MuzzleGantry"),
+    ("bounds ladder", "Content/Runtime/Flight/FlightBoundsCore.cs",
+     r"FlightBoundsCore\.Evaluate\(", r"FlightBoundsVoiceCore\.ShouldSpeak\("),
+    ("tender tool arms", "Ship/Runtime/SpaceTargetRuntime.cs",
+     r'"AccessPanel"', r"PoseForMood\(mood"),
 )
 
 # Ids the city bake and the contract depend on. A spec that loses one of these strands a step.

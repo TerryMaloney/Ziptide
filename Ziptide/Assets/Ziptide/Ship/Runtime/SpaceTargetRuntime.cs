@@ -61,6 +61,33 @@ namespace Ziptide.Ship
                     _eyeBase = mat.HasProperty("_BaseColor") ? mat.GetColor("_BaseColor") : mat.color;
                 }
             }
+
+            // The tool arms and the access panel (measured spec §3). A tender that notices you and
+            // does not MOVE is a prop with a light on it; the arms coming out are the whole tell.
+            _armL = transform.Find("Arm_L");
+            _armR = transform.Find("Arm_R");
+            _panel = transform.Find("AccessPanel");
+            PoseForMood(_mood, false);
+        }
+
+        private Transform _armL, _armR, _panel;
+
+        /// <summary>Arms stow flat along the flanks; they swing outboard as the drone wakes.</summary>
+        private const float ArmStowedRoll = 0f;
+        private const float ArmDeployedRoll = 62f;
+
+        /// <summary>
+        /// Pose the moving parts for the current mood. Dormant stows everything; woken and evading
+        /// deploy the arms; disabled drops them slack and swings the access panel open on its hinge,
+        /// which is what tells the player this thing is now cargo rather than staff.
+        /// </summary>
+        private void PoseForMood(SpaceTargetMood mood, bool disabled)
+        {
+            float deploy = disabled ? 0.75f : (mood == SpaceTargetMood.Dormant ? 0f : 1f);
+            float roll = Mathf.Lerp(ArmStowedRoll, ArmDeployedRoll, deploy);
+            if (_armL != null) _armL.localRotation = Quaternion.Euler(disabled ? 24f : 0f, 0f, -roll);
+            if (_armR != null) _armR.localRotation = Quaternion.Euler(disabled ? 18f : 0f, 0f, roll);
+            if (_panel != null) _panel.localRotation = Quaternion.Euler(disabled ? -72f : 0f, 0f, 0f);
         }
 
         /// <summary>
@@ -100,6 +127,7 @@ namespace Ziptide.Ship
             _mood = mood;
             if (_eye != null)
                 Paint(_eye, _eyeBase * SpaceTargetReactionCore.EyeIntensity(mood));
+            PoseForMood(mood, _armor.Disabled);
             Debug.Log("ZIPTIDE: DRONE_MOOD target=" + name + " mood=" + mood
                 + " dist=" + (float.IsInfinity(_pilotDistance) ? "inf" : _pilotDistance.ToString("F0")));
         }
@@ -128,6 +156,10 @@ namespace Ziptide.Ship
                 ? new Color(0.25f, 0.25f, 0.28f)                        // powered down
                 : Color.Lerp(new Color(0.9f, 0.6f, 0.2f), new Color(0.85f, 0.25f, 0.15f),
                     1f - _armor.Armor / Mathf.Max(1f, maxArmor)));      // heat reads the armor
+            // Powering down drops the arms slack and swings the access panel open — the salvage read
+            // (measured spec §3). Re-posed here because a drone disabled while still Dormant would
+            // otherwise never see a mood change.
+            PoseForMood(_mood, _armor.Disabled);
             return _armor.Disabled;
         }
 

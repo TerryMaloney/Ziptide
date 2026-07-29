@@ -201,6 +201,88 @@ namespace Ziptide.Editor.Patching
             Cue("TUT_RETURN_HOME",      "That is the contract closed. The ship is where we left it.");
 
             // ═══════════════════════════════════════════════════════════════════════════════════════
+            // THE BOUNDS LADDER — what RILL says when you fly somewhere you should not.
+            //
+            // ⚖ Terry, 2026-07-29: "there should be a variety of responses from Rill so it doesn't
+            // get too repetitive and stale." So: FOUR lines per pool, and FlightBoundsVoiceCore
+            // WALKS each pool (a coprime stride) instead of rolling dice — every line is spent
+            // before any repeats. She also only speaks on a RISE, so holding station near a wreck
+            // is silent; getting worse is what earns a line.
+            //
+            // ADV = "you should know"; the ship still does exactly what you told it.
+            // COR = "I am taking some of it back"; the correction has already started as she speaks.
+            // Ids come from FlightBoundsVoiceCore.LineId, never from a literal — the pools and the
+            // picker cannot drift apart.
+            //
+            // Register: RILL does not scold and does not panic. She is a forty-thousand-year-old
+            // instrument reporting a fact she finds mildly disappointing.
+            // ═══════════════════════════════════════════════════════════════════════════════════════
+            void Bounds(FlightBoundKind kind, FlightBoundLevel level, params string[] texts)
+            {
+                for (int i = 0; i < texts.Length; i++)
+                    Cue(FlightBoundsVoiceCore.LineId(kind, level, i), texts[i]);
+            }
+
+            // CORRIDOR — off the swept lane. Advisory FOREVER by design: wandering is allowed, and
+            // she says so. There is no CORRIDOR_COR pool because nothing ever pushes you back.
+            Bounds(FlightBoundKind.Corridor, FlightBoundLevel.Advisory,
+                "You are outside the swept lane. Nothing wrong with that. Nothing swept out here either.",
+                "Off the corridor. The rings are behind your shoulder when you want them again.",
+                "Open water. The tenders do not clear this side, so whatever you hit, you found yourself.",
+                "Wander if you like. I will keep the line lit for when you are done.");
+
+            // STRUCTURE — a hull. This is the "too close to a building" case, in orbit's dialect.
+            Bounds(FlightBoundKind.Structure, FlightBoundLevel.Advisory,
+                "Close on the hull. It will not move for you — it stopped being able to some time ago.",
+                "That is somebody's cargo. Was. Give it a metre.",
+                "You are inside its tumble. Wait for the far side of the roll before you commit.",
+                "Traffic. Dead traffic, but it still has corners.");
+            Bounds(FlightBoundKind.Structure, FlightBoundLevel.Correcting,
+                "Too close. Taking a metre back — you can have it again in a moment.",
+                "I am walking us off that. Do not fight me for two seconds.",
+                "That was going to be paint. Correcting.",
+                "Easing us out. Whatever is on the other side of it will still be there.");
+
+            // GATE — inside a catch ring's slab but off its axis. The bore is 12 metres; the truss
+            // is not a suggestion.
+            Bounds(FlightBoundKind.Gate, FlightBoundLevel.Advisory,
+                "You are off centre in the bore. Twelve metres is generous until it is not.",
+                "Mind the rim. That coil housing is live even when the lamps are not.",
+                "Left of the throat. The ring does not care, but the truss will.",
+                "Centre it. A gate you clip is a gate that gets logged, and I get the letter.");
+            Bounds(FlightBoundKind.Gate, FlightBoundLevel.Correcting,
+                "Centring us. You were going to wear the rim.",
+                "Nudging to the throat — hold the stick where it is.",
+                "That line clips. Fixed. Fly the middle of the hole.",
+                "Taking the bore. This one I am not asking about.");
+
+            // GROUND — no floor exists in orbit, so these wait for the atmospheric legs. Authored
+            // now so the pool is never empty the first time a lane turns the Ground class on.
+            Bounds(FlightBoundKind.Ground, FlightBoundLevel.Advisory,
+                "You are low. The ground out here is mostly rust and it is not soft rust.",
+                "Losing height. I would like some of it back before the roofs start.",
+                "That is close to the deck. Anything down there that matters is already on my list.",
+                "Low. Not dangerous yet. Say the word and it will be.");
+            Bounds(FlightBoundKind.Ground, FlightBoundLevel.Correcting,
+                "Lifting us. Whatever you were looking at, look at it from higher.",
+                "Too low. Buying altitude with the throttle — you will feel it.",
+                "I am pulling us up. This is the part where you thank me later.",
+                "Deck alarm. Climbing. We can discuss it at height.");
+
+            // DEEP — the outer sphere. Past it there is genuinely nothing, so this is the one tier
+            // that ends in a hard hold.
+            Bounds(FlightBoundKind.Deep, FlightBoundLevel.Advisory,
+                "You are a long way out. There is nothing further — I mean that literally.",
+                "The charts stop about here. Not out of caution. Out of content.",
+                "Deep. Turn whenever you like; I will not say it twice for a while.",
+                "Far side of everything. The Moss is that way, behind you, still throwing.");
+            Bounds(FlightBoundKind.Deep, FlightBoundLevel.Correcting,
+                "That is the edge. Bringing us round — there is nothing out there to reach.",
+                "Turning us back. I would rather do it gently than have you find the wall.",
+                "Far enough. Coming about.",
+                "Holding here. Out is not a direction any more.");
+
+            // ═══════════════════════════════════════════════════════════════════════════════════════
             // THE ARTIFACT THREAD — "The Key That Knew You" (FIRST_HOUR_DIRECTORS_CUT §2).
             //
             // Direction, not final VO. Two contracts, two halves, one signer; the question gets

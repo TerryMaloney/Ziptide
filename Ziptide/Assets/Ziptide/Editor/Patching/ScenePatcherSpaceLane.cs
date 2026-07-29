@@ -39,7 +39,22 @@ namespace Ziptide.Editor.Patching
             new Vector3(0f, 10f, 380f),
         };
         private const float RingVisualRadius = 6f;
-        private const float RingPassRadius = 7f;
+        // The pass test IS the bore. It used to be 7 m against a 6 m opening, which meant a run
+        // could be credited on a line that also clips the truss — the ring saying "cleared" while
+        // the bounds ladder says "you wore the rim". One number, no argument.
+        private const float RingPassRadius = RingVisualRadius;
+
+        /// <summary>The swept corridor as a polyline: the pilot's seat, then every ring. Rings are
+        /// SQUARED to this path (FlightBoundsCore.PathAxis) — a line of rings only reads as a
+        /// trajectory if each hoop actually faces along it, and the bounds ladder measures the bore
+        /// with the same function so the hole you aim at is the hole the game checks.</summary>
+        private static Vector3[] CorridorPath()
+        {
+            var path = new Vector3[Rings.Length + 1];
+            path[0] = HelmPos + Vector3.up * 0.1f;
+            for (int i = 0; i < Rings.Length; i++) path[i + 1] = Rings[i];
+            return path;
+        }
 
         /// <summary>
         /// Ensure the space lane exists and ships. Called by BuildAndroid, exactly as ToxicCity is.
@@ -174,29 +189,203 @@ namespace Ziptide.Editor.Patching
             for (int i = 0; i < Drones.Length; i++)
                 BuildDroneTarget(lane, i, Drones[i]);
 
-            // Sparse drift rocks flanking the course — parallax so speed reads.
+            BuildDebrisField(lane);
+            return lane;
+        }
+
+        // ── The debris field (measured_specs/the_catch_measured_spec.md §4) ─────────────────────
+        //
+        // This used to be 28 grey rocks. Rocks were the single worst thing in the space leg: a
+        // MANUFACTURED graveyard is the entire reason the swept corridor is worth flying, and
+        // asteroids say the opposite — that this is empty nature you happen to be crossing.
+        //
+        // Every piece below is a broken part of something else in this pack, so the field reads as
+        // consequence: pods that missed the catch, rings that failed, drones that ran out.
+
+        private enum DebrisKind
+        {
+            TrussSection, ArrestorUnit, HullPlate, PodEndCap,
+            DroneArm, ConduitBundle, FreightContainer, RadiatorFin, CargoPod,
+        }
+
+        private static void BuildDebrisField(Transform lane)
+        {
             var rng = new System.Random(777);
-            var rocks = new GameObject("DriftRocks").transform;
-            rocks.SetParent(lane, false);
-            for (int i = 0; i < 28; i++)
+            var field = new GameObject("DebrisField").transform;
+            field.SetParent(lane, false);
+
+            for (int i = 0; i < 30; i++)
             {
                 float t = (float)rng.NextDouble();
                 Vector3 along = Vector3.Lerp(new Vector3(0f, 4f, 20f), new Vector3(-5f, 8f, 420f), t);
                 Vector3 off = new Vector3(((float)rng.NextDouble() - 0.5f) * 90f,
                     ((float)rng.NextDouble() - 0.5f) * 40f, ((float)rng.NextDouble() - 0.5f) * 30f);
-                if (Mathf.Abs(off.x) < 14f) off.x = Mathf.Sign(off.x == 0f ? 1f : off.x) * 14f; // keep the course clear
-                var rock = GameObject.CreatePrimitive(rng.Next(2) == 0 ? PrimitiveType.Cube : PrimitiveType.Sphere);
-                rock.name = "Rock_" + i;
-                rock.transform.SetParent(rocks, false);
-                rock.transform.localPosition = along + off;
-                rock.transform.localRotation = Quaternion.Euler(rng.Next(360), rng.Next(360), rng.Next(360));
-                rock.transform.localScale = Vector3.one * (1.5f + (float)rng.NextDouble() * 4f);
-                Object.DestroyImmediate(rock.GetComponent<Collider>()); // scenery only — nothing to hit in v1
-                Paint(rock, new Color(0.20f, 0.22f, 0.27f));
+                // Keep the swept lane clear — the corridor being CLEAN is the point of the corridor.
+                if (Mathf.Abs(off.x) < 14f) off.x = Mathf.Sign(off.x == 0f ? 1f : off.x) * 14f;
+
+                var kind = (DebrisKind)rng.Next(System.Enum.GetValues(typeof(DebrisKind)).Length);
+                var piece = new GameObject(kind + "_" + i).transform;
+                piece.SetParent(field, false);
+                piece.localPosition = along + off;
+                piece.localRotation = Quaternion.Euler(rng.Next(360), rng.Next(360), rng.Next(360));
+                BuildDebrisPiece(piece, kind, rng);
+                StripColliders(piece);
+                piece.gameObject.AddComponent<DriftTumbleRuntime>();
             }
-            return lane;
         }
 
+        private static readonly Color Alloy = new Color(0.42f, 0.40f, 0.36f);
+        private static readonly Color Galvanised = new Color(0.56f, 0.55f, 0.52f);
+        private static readonly Color Copper = new Color(0.62f, 0.36f, 0.18f);
+        private static readonly Color TornEdge = new Color(0.72f, 0.70f, 0.66f);
+
+        /// <summary>One typed junk piece. Torn faces get a bright raw-metal cap so every break reads
+        /// as failure rather than as a design choice.</summary>
+        private static void BuildDebrisPiece(Transform root, DebrisKind kind, System.Random rng)
+        {
+            switch (kind)
+            {
+                case DebrisKind.TrussSection:   // 1 — SECTION A-12
+                    for (int s = 0; s < 6; s++)
+                    {
+                        Cube(root, "Chord_" + s, new Vector3(0f, 0f, -2.5f + s), new Vector3(2.2f, 0.14f, 0.14f), Alloy);
+                        var diag = Cube(root, "Diag_" + s, new Vector3(0f, 0.5f, -2.5f + s), new Vector3(2.4f, 0.1f, 0.1f), Alloy * 0.85f);
+                        diag.transform.localRotation = Quaternion.Euler(0f, 0f, s % 2 == 0 ? 38f : -38f);
+                    }
+                    Cube(root, "TearCap", new Vector3(0f, 0f, 3.1f), new Vector3(2.2f, 0.3f, 0.12f), TornEdge);
+                    break;
+
+                case DebrisKind.ArrestorUnit:   // 2 — a coil housing torn off a ring, windings spilling
+                    Cube(root, "Casing", Vector3.zero, new Vector3(1.1f, 0.9f, 1.5f), new Color(0.33f, 0.34f, 0.36f));
+                    for (int r = 0; r < 4; r++)
+                        Cube(root, "Rib_" + r, new Vector3(0f, 0.5f, -0.5f + r * 0.35f), new Vector3(1.2f, 0.1f, 0.12f), Alloy);
+                    for (int w = 0; w < 5; w++)   // copper is the "torn open" tell
+                    {
+                        var wind = Cube(root, "Winding_" + w,
+                            new Vector3(-0.3f + w * 0.15f, -0.1f, 0.9f), new Vector3(0.07f, 0.07f, 0.7f), Copper);
+                        wind.transform.localRotation = Quaternion.Euler(rng.Next(-30, 30), rng.Next(-30, 30), 0f);
+                    }
+                    break;
+
+                case DebrisKind.HullPlate:      // 3 — HULL ZONE-3, split in two
+                    for (int h = 0; h < 2; h++)
+                    {
+                        var half = Cube(root, "Half_" + h, new Vector3(h == 0 ? -0.8f : 0.85f, 0f, 0f),
+                            new Vector3(1.4f, 0.08f, 3f), Galvanised);
+                        half.transform.localRotation = Quaternion.Euler(0f, 0f, h == 0 ? 6f : -9f);
+                    }
+                    Cube(root, "Chevrons", new Vector3(0.85f, 0.06f, 1.1f), new Vector3(0.5f, 0.02f, 0.6f),
+                        new Color(0.62f, 0.52f, 0.12f));
+                    break;
+
+                case DebrisKind.PodEndCap:      // 4 — crumpled dish
+                    Cube(root, "Dish", Vector3.zero, new Vector3(1.2f, 0.18f, 1.2f), Galvanised);
+                    Cube(root, "Hub", new Vector3(0f, 0.12f, 0f), new Vector3(0.5f, 0.14f, 0.5f), Alloy);
+                    Cube(root, "CrushLip", new Vector3(0.4f, 0.02f, 0.35f), new Vector3(0.5f, 0.1f, 0.4f), TornEdge);
+                    break;
+
+                case DebrisKind.DroneArm:       // 5 — M-DRONE S/N 40, severed
+                    Cube(root, "Upper", new Vector3(0f, 0f, 0f), new Vector3(0.18f, 0.18f, 0.9f), Alloy);
+                    var fore = Cube(root, "Fore", new Vector3(0f, 0.25f, 0.75f), new Vector3(0.15f, 0.15f, 0.8f), Alloy * 0.9f);
+                    fore.transform.localRotation = Quaternion.Euler(42f, 0f, 0f);
+                    Cube(root, "Clamp_L", new Vector3(-0.1f, 0.75f, 1.25f), new Vector3(0.06f, 0.3f, 0.1f), Alloy);
+                    Cube(root, "Clamp_R", new Vector3(0.1f, 0.75f, 1.25f), new Vector3(0.06f, 0.3f, 0.1f), Alloy);
+                    Cube(root, "Wires", new Vector3(0f, -0.05f, -0.6f), new Vector3(0.1f, 0.1f, 0.35f), Copper);
+                    break;
+
+                case DebrisKind.ConduitBundle:  // 6 — tangle
+                    for (int c = 0; c < 7; c++)
+                    {
+                        var tube = Cube(root, "Conduit_" + c, new Vector3(
+                                ((float)rng.NextDouble() - 0.5f) * 0.7f, ((float)rng.NextDouble() - 0.5f) * 0.7f, 0f),
+                            new Vector3(0.09f, 0.09f, 1.2f + (float)rng.NextDouble()),
+                            c % 3 == 0 ? Copper : Alloy);
+                        tube.transform.localRotation = Quaternion.Euler(rng.Next(360), rng.Next(360), rng.Next(360));
+                    }
+                    break;
+
+                case DebrisKind.FreightContainer: // 7 — MINERAL FREIGHT, burst, ore spilling
+                    Cube(root, "Box", Vector3.zero, new Vector3(2.4f, 2.4f, 6f), new Color(0.40f, 0.33f, 0.26f));
+                    for (int rIdx = 0; rIdx < 6; rIdx++)
+                        Cube(root, "Corrugation_" + rIdx, new Vector3(1.22f, 0f, -2.2f + rIdx * 0.9f),
+                            new Vector3(0.06f, 2.3f, 0.3f), new Color(0.36f, 0.30f, 0.24f));
+                    Cube(root, "Breach", new Vector3(-1.2f, -0.2f, 0.6f), new Vector3(0.2f, 1.4f, 1.8f), TornEdge);
+                    for (int o = 0; o < 8; o++)   // the ore it was carrying, still leaving
+                    {
+                        var ore = Cube(root, "Ore_" + o, new Vector3(
+                                -1.6f - (float)rng.NextDouble() * 1.8f,
+                                -0.4f + ((float)rng.NextDouble() - 0.5f) * 1.2f,
+                                0.2f + ((float)rng.NextDouble() - 0.5f) * 2f),
+                            Vector3.one * (0.18f + (float)rng.NextDouble() * 0.22f),
+                            new Color(0.13f, 0.12f, 0.11f));
+                        ore.transform.localRotation = Quaternion.Euler(rng.Next(360), rng.Next(360), rng.Next(360));
+                    }
+                    break;
+
+                case DebrisKind.RadiatorFin:    // 8 — buckled fin off a catch ring
+                    for (int f = 0; f < 5; f++)
+                    {
+                        var slat = Cube(root, "Slat_" + f, new Vector3(-0.6f + f * 0.3f, Mathf.Sin(f * 1.1f) * 0.15f, 0f),
+                            new Vector3(0.24f, 0.05f, 2.6f), new Color(0.38f, 0.36f, 0.34f));
+                        slat.transform.localRotation = Quaternion.Euler(0f, 0f, Mathf.Sin(f * 0.9f) * 14f);
+                    }
+                    Cube(root, "TearCap", new Vector3(0f, 0f, 1.4f), new Vector3(1.6f, 0.12f, 0.1f), TornEdge);
+                    break;
+
+                default:                        // 9 — a whole pod that never got caught
+                    BuildCargoPod(root, burst: rng.Next(3) == 0);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// CARGO POD — the object the whole Catch exists to stop, and therefore the object that
+        /// explains the corridor without a word of dialogue. Blunt double-tapered capsule with the
+        /// TWIN ferrous drive bands the launch track and the arrestor rings grip. No engines, no
+        /// windows: it is freight, it is thrown, it cannot fly.
+        /// </summary>
+        private static void BuildCargoPod(Transform root, bool burst)
+        {
+            Cube(root, "Nose", new Vector3(0f, 0f, 1.15f), new Vector3(0.72f, 0.72f, 0.5f), Galvanised * 0.94f);
+            Cube(root, "ForeBody", new Vector3(0f, 0f, 0.5f), new Vector3(0.95f, 0.95f, 0.9f), Galvanised);
+            // The twin drive bands — the keeper's signature and the tell that a machine grips this.
+            Cube(root, "DriveBand_A", new Vector3(0f, 0f, 0.03f), new Vector3(1.02f, 1.02f, 0.14f), new Color(0.12f, 0.12f, 0.13f));
+            Cube(root, "DriveBand_B", new Vector3(0f, 0f, -0.16f), new Vector3(1.02f, 1.02f, 0.14f), new Color(0.12f, 0.12f, 0.13f));
+            Cube(root, "Transponder", new Vector3(0.42f, 0.28f, 0.85f), new Vector3(0.1f, 0.1f, 0.14f),
+                new Color(0.95f, 0.62f, 0.2f));
+            Cube(root, "Chevrons", new Vector3(0f, 0.49f, 0.55f), new Vector3(0.5f, 0.02f, 0.3f),
+                new Color(0.62f, 0.52f, 0.12f));
+
+            if (!burst)
+            {
+                Cube(root, "AftBody", new Vector3(0f, 0f, -0.75f), new Vector3(0.95f, 0.95f, 1f), Galvanised);
+                Cube(root, "Tail", new Vector3(0f, 0f, -1.35f), new Vector3(0.7f, 0.7f, 0.4f), Galvanised * 0.94f);
+                return;
+            }
+
+            // Burst: the aft half tore off at the waist and is tumbling away with its load.
+            var aft = new GameObject("AftSection_Burst").transform;
+            aft.SetParent(root, false);
+            aft.localPosition = new Vector3(0.25f, -0.15f, -1.5f);
+            aft.localRotation = Quaternion.Euler(18f, 26f, 34f);
+            Cube(aft, "AftBody", Vector3.zero, new Vector3(0.9f, 0.9f, 1f), Galvanised * 0.9f);
+            Cube(aft, "TearLip", new Vector3(0f, 0f, 0.55f), new Vector3(0.98f, 0.98f, 0.1f), TornEdge);
+            for (int o = 0; o < 6; o++)
+                Cube(aft, "Ore_" + o, new Vector3(Mathf.Sin(o * 1.7f) * 0.6f, Mathf.Cos(o * 1.3f) * 0.5f, 0.9f + o * 0.28f),
+                    Vector3.one * 0.16f, new Color(0.13f, 0.12f, 0.11f));
+        }
+
+        /// <summary>
+        /// SERVICER-9 — the ring-tender (measured_specs/the_catch_measured_spec.md §3).
+        ///
+        /// The keeper corrected my prompt in the way that matters: this is a soft-cornered box with
+        /// ONE big eye and folded tool arms, not a hostile shape. It reads as issued equipment doing
+        /// a job for an employer that stopped existing, which is exactly why it pushes rather than
+        /// kills. The arms are TOOLS — clamps and a welder — and nothing on it is a weapon.
+        ///
+        /// Named parts matter downstream: SpaceTargetRuntime finds "Eye" to light on wake, and
+        /// "Arm_L"/"Arm_R" to deploy. Keep those names.
+        /// </summary>
         private static void BuildDroneTarget(Transform lane, int index, Vector3 center)
         {
             // Direct child of LaneContent — SpaceTargetRuntime's lane math assumes this frame.
@@ -204,32 +393,55 @@ namespace Ziptide.Editor.Patching
             drone.transform.SetParent(lane, false);
             drone.transform.localPosition = center;
 
-            var hull = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            hull.name = "Hull";
-            hull.transform.SetParent(drone.transform, false);
-            hull.transform.localScale = new Vector3(1.6f, 0.9f, 2.2f);
-            Object.DestroyImmediate(hull.GetComponent<Collider>()); // hits resolve in the aim cone, not physics
-            Paint(hull, new Color(0.9f, 0.6f, 0.2f));
+            var bone = new Color(0.62f, 0.60f, 0.55f);      // pale bone-grey body, per the keeper
+            var darkAlloy = new Color(0.30f, 0.29f, 0.28f);
 
+            // Rounded box body, built as a core plus chamfer slabs so the silhouette softens.
+            Cube(drone.transform, "Hull", Vector3.zero, new Vector3(1.5f, 1.5f, 1.15f), bone);
+            Cube(drone.transform, "Chamfer_V", Vector3.zero, new Vector3(1.62f, 1.25f, 1.05f), bone * 0.97f);
+            Cube(drone.transform, "Chamfer_H", Vector3.zero, new Vector3(1.25f, 1.62f, 1.05f), bone * 0.97f);
+            Cube(drone.transform, "PanelSeam", new Vector3(0f, 0.3f, -0.6f), new Vector3(1.3f, 0.04f, 0.05f), darkAlloy);
+
+            // Side pods — reaction mass, and the reason the silhouette reads wide at a distance.
             for (int s = -1; s <= 1; s += 2)
             {
-                var wing = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                wing.name = s < 0 ? "Wing_L" : "Wing_R";
-                wing.transform.SetParent(drone.transform, false);
-                wing.transform.localPosition = new Vector3(s * 1.5f, 0f, -0.3f);
-                wing.transform.localScale = new Vector3(1.4f, 0.12f, 1.1f);
-                Object.DestroyImmediate(wing.GetComponent<Collider>());
-                Paint(wing, new Color(0.55f, 0.35f, 0.15f));
+                Cube(drone.transform, s < 0 ? "Pod_L" : "Pod_R",
+                    new Vector3(s * 0.82f, 0.15f, 0f), new Vector3(0.34f, 0.62f, 0.62f), darkAlloy);
+                Cube(drone.transform, s < 0 ? "Nozzle_L" : "Nozzle_R",
+                    new Vector3(s * 0.98f, -0.3f, 0f), new Vector3(0.16f, 0.16f, 0.16f), darkAlloy * 0.8f);
             }
 
-            var eye = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            eye.name = "Eye";
-            eye.transform.SetParent(drone.transform, false);
-            eye.transform.localPosition = new Vector3(0f, 0.2f, 1.2f);
-            eye.transform.localScale = Vector3.one * 0.5f;
-            Object.DestroyImmediate(eye.GetComponent<Collider>());
-            Paint(eye, new Color(1f, 0.3f, 0.2f));
+            // THE EYE — one, large, centred. Dark until you are noticed.
+            var eye = Cube(drone.transform, "Eye", new Vector3(0f, 0.18f, 0.6f),
+                new Vector3(0.46f, 0.46f, 0.12f), new Color(0.55f, 0.16f, 0.10f));
+            Cube(eye.transform, "Bezel", new Vector3(0f, 0f, -0.3f), new Vector3(1.25f, 1.25f, 0.5f), darkAlloy);
+            for (int s = -1; s <= 1; s += 2)
+                Cube(drone.transform, s < 0 ? "Indicator_L" : "Indicator_R",
+                    new Vector3(s * 0.42f, 0.2f, 0.6f), new Vector3(0.1f, 0.06f, 0.08f),
+                    new Color(0.9f, 0.6f, 0.2f));
 
+            // Tool arms, stowed flat along the flanks. SpaceTargetRuntime swings them out on wake.
+            for (int s = -1; s <= 1; s += 2)
+            {
+                var arm = new GameObject(s < 0 ? "Arm_L" : "Arm_R").transform;
+                arm.SetParent(drone.transform, false);
+                arm.localPosition = new Vector3(s * 0.78f, -0.15f, 0.15f);
+                Cube(arm, "Upper", new Vector3(0f, -0.3f, 0f), new Vector3(0.13f, 0.62f, 0.13f), darkAlloy);
+                Cube(arm, "Fore", new Vector3(0f, -0.72f, 0.14f), new Vector3(0.11f, 0.5f, 0.11f), darkAlloy * 0.9f);
+                Cube(arm, "Clamp_A", new Vector3(-0.06f, -1.0f, 0.24f), new Vector3(0.05f, 0.22f, 0.06f), bone * 0.8f);
+                Cube(arm, "Clamp_B", new Vector3(0.06f, -1.0f, 0.24f), new Vector3(0.05f, 0.22f, 0.06f), bone * 0.8f);
+            }
+
+            // The access panel that hangs open when it is disabled — the salvage read.
+            var panel = new GameObject("AccessPanel").transform;
+            panel.SetParent(drone.transform, false);
+            panel.localPosition = new Vector3(0f, -0.2f, -0.62f);
+            Cube(panel, "Hatch", Vector3.zero, new Vector3(0.85f, 0.7f, 0.06f), bone * 0.9f);
+            Cube(panel, "Board", new Vector3(0f, 0f, 0.09f), new Vector3(0.55f, 0.4f, 0.03f),
+                new Color(0.16f, 0.38f, 0.20f));    // the green board, visible only once it opens
+            Cube(panel, "Loom", new Vector3(0.12f, -0.1f, 0.12f), new Vector3(0.3f, 0.06f, 0.05f), Copper);
+
+            StripColliders(drone.transform);   // hits resolve in the aim cone, never in physics
             drone.AddComponent<SpaceTargetRuntime>(); // serialized defaults: 6 armor, "scrap" ×6
         }
 
@@ -258,6 +470,8 @@ namespace Ziptide.Editor.Patching
             var ring = new GameObject("Ring_" + index).transform;
             ring.SetParent(lane, false);
             ring.localPosition = center;
+            ring.localRotation = Quaternion.LookRotation(
+                FlightBoundsCore.PathAxis(CorridorPath(), index + 1), Vector3.up);
             bool dead = index == DeadRingIndex;
 
             var structure = new GameObject("Truss").transform;
@@ -377,6 +591,11 @@ namespace Ziptide.Editor.Patching
             PatcherUtil.SetObjectRef(so, "laneContent", lane);
             PatcherUtil.SetString(so, "returnScene", "W000_DriftIn");
             PatcherUtil.SetFloat(so, "ringRadius", RingPassRadius);
+            PatcherUtil.SetFloat(so, "ringBoreRadius", RingVisualRadius);
+            // Orbit has no floor: the bounds ladder's Ground class stays off here, and the corridor,
+            // hulls, gates and the outer sphere do the talking instead.
+            PatcherUtil.SetBool(so, "boundsHasGround", false);
+            PatcherUtil.SetFloat(so, "boundsGroundY", 0f);
             var list = so.FindProperty("ringPositions");
             list.arraySize = Rings.Length;
             for (int i = 0; i < Rings.Length; i++)
@@ -514,13 +733,36 @@ namespace Ziptide.Editor.Patching
         }
 
         // ── Standard shell (same as every patcher) ──────────────────────────────────────────────────
+        /// <summary>
+        /// THE SUN IS AT YOUR BACK (⚖ Terry, 2026-07-29 — measured spec §6).
+        ///
+        /// *"whatever the sun direction is, that's the direction the lighting should come from…
+        /// the sun is essentially more or less at our back so the objects are lit up ahead of us,
+        /// at least to a degree, maybe a little bit of shadow."*
+        ///
+        /// This light used to be hand-authored at Euler(35, −30, 0) — a direction with no
+        /// relationship whatsoever to the sun drawn in the sky, which is how you end up flying a
+        /// corridor of silhouettes with a sun blazing somewhere it clearly isn't. The key light is
+        /// now DERIVED from the vista's sun bearing, so the two can never drift apart again: the
+        /// sun sits up and behind the pilot's shoulder, and every catch ring ahead of them is lit
+        /// on the face they are looking at.
+        /// </summary>
         private static void EnsureLighting()
         {
             var go = PatcherUtil.EnsureRootObject("Directional Light", new Vector3(0f, 10f, 0f));
             var light = PatcherUtil.EnsureComponent<Light>(go);
             light.type = LightType.Directional;
-            light.intensity = 0.7f; // dim — deep space
-            go.transform.rotation = Quaternion.Euler(35f, -30f, 0f);
+            light.color = new Color(1f, 0.95f, 0.86f);   // one warm star
+            light.intensity = 1.1f;                       // hard key — vacuum has no fill
+            light.shadows = LightShadows.Soft;            // "maybe a little bit of shadow"
+
+            // Light TRAVELS opposite the direction the sun sits in. SunBearing is the same constant
+            // the Moss-orbit vista uses, so sky and lighting are one decision.
+            go.transform.rotation = Quaternion.LookRotation(-SkyVistaLibrary.MossSunBearing.normalized);
+
+            // A dim cool ambient so unlit faces read as unlit MATERIAL rather than as holes.
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+            RenderSettings.ambientLight = new Color(0.06f, 0.07f, 0.10f);
         }
 
         private static void EnsureEventSystem()

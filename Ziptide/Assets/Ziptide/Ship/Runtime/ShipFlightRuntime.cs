@@ -36,6 +36,15 @@ namespace Ziptide.Ship
 
         [SerializeField] private float ringRadius = 7f;
 
+        [Tooltip("Clear inner opening of a catch ring (measured spec: 12 m bore = 6 m radius).")]
+        [SerializeField] private float ringBoreRadius = 6f;
+
+        [Tooltip("Does this lane have a floor? False in orbit; true for any atmospheric leg.")]
+        [SerializeField] private bool boundsHasGround;
+
+        [Tooltip("Height of that floor in lane space (ignored when boundsHasGround is off).")]
+        [SerializeField] private float boundsGroundY;
+
         [Tooltip("Scene TravelCoordinator returns to from the RETURN panel.")]
         [SerializeField] private string returnScene = "W000_DriftIn";
 
@@ -69,6 +78,15 @@ namespace Ziptide.Ship
 
         private SpaceTargetRuntime[] _targets = System.Array.Empty<SpaceTargetRuntime>();
         private float _lastFireTime = float.NegativeInfinity;
+
+        // THE BOUNDS LADDER (FlightBoundsCore): the corridor polyline the swept lane follows, the
+        // hulls worth not hitting, and RILL's memory of what she has already said about them.
+        private FlightBoundsParams _bounds;
+        private FlightBoundsVoiceState _boundsVoice;
+        private Vector3[] _corridorPath = System.Array.Empty<Vector3>();
+        private Transform[] _obstacles = System.Array.Empty<Transform>();
+        private float[] _obstacleRadii = System.Array.Empty<float>();
+        private const float ObstacleMinRadius = 1.5f; // scrap smaller than this is scenery, not traffic
 
         private TextMesh _statusText;
         private GameObject _returnPanel;
@@ -299,6 +317,7 @@ namespace Ziptide.Ship
             _fireAction.Enable();
             _targets = laneContent.GetComponentsInChildren<SpaceTargetRuntime>(true);
             _lastFireTime = float.NegativeInfinity;
+            BuildBounds();
             _flying = true;
             UpdateStatus();
             Debug.Log("ZIPTIDE: FLIGHT_MODE on scene=" + gameObject.scene.name +
@@ -363,6 +382,7 @@ namespace Ziptide.Ship
             }
             _state = FlightModel.Tick(_state, _params, frame.Throttle, frame.Pitch, frame.Strafe,
                 boost, Time.deltaTime);
+            TickBounds(Time.deltaTime);
 
             // The rig stays still; the WORLD wears the inverse of the ship's pose (incl. any roll).
             Quaternion inv = Quaternion.Inverse(FlightModel.Orientation(_state));
@@ -393,6 +413,108 @@ namespace Ziptide.Ship
             }
 
             TickCombat();
+        }
+
+        // ── The bounds ladder: warned, then nudged, then held ──────────────────────────────────────
+        //
+        // Terry, 2026-07-29: "if it gets too close to a building, too close to the ground… some sort
+        // of auto correction if you leave the zone and then some sort of message from Rill… there
+        // should be a variety of responses from Rill so it doesn't get too repetitive and stale."
+        //
+        // Before this, the ONLY answer the game had was FlightModel's silent 1.8 km sphere snap:
+        // no warning, no gradation, nobody said anything. Now the world objects in tiers, and the
+        // swept lane itself is advisory-only so wandering off it stays a choice.
+
+        private void BuildBounds()
+        {
+            _bounds = FlightBoundsParams.Default;
+            _bounds.laneRadius = _params.laneRadius;
+            _bounds.hasGround = boundsHasGround;
+            _bounds.groundY = boundsGroundY;
+            _boundsVoice = default;
+
+            // The swept corridor IS the ring line — the fiction (rings mark the trajectory) and the
+            // geometry are the same object, so there is nothing to keep in sync.
+            _corridorPath = new Vector3[ringPositions.Count + 1];
+            _corridorPath[0] = _seatWorldPos;
+            for (int i = 0; i < ringPositions.Count; i++) _corridorPath[i + 1] = ringPositions[i];
+
+            var bodies = new List<Transform>();
+            var radii = new List<float>();
+            foreach (var d in laneContent.GetComponentsInChildren<DriftTumbleRuntime>(true))
+                AddObstacle(bodies, radii, d.transform);
+            foreach (var t in _targets)
+                if (t != null) AddObstacle(bodies, radii, t.transform);
+            var wreck = laneContent.Find("__ARTIFACT_HALF_A/WreckFragment");
+            if (wreck != null) AddObstacle(bodies, radii, wreck);
+
+            _obstacles = bodies.ToArray();
+            _obstacleRadii = radii.ToArray();
+            Debug.Log("ZIPTIDE: FLIGHT_BOUNDS_READY hulls=" + _obstacles.Length
+                + " corridor=" + _corridorPath.Length + " ground=" + _bounds.hasGround);
+        }
+
+        /// <summary>Anything smaller than a ship's nose is scenery you fly THROUGH the middle of —
+        /// counting the Find's scrap shell as traffic would have RILL nagging over the discovery.</summary>
+        private static void AddObstacle(List<Transform> bodies, List<float> radii, Transform t)
+        {
+            if (t == null) return;
+            var renderers = t.GetComponentsInChildren<Renderer>();
+            if (renderers.Length == 0) return;
+            var b = renderers[0].bounds;
+            for (int i = 1; i < renderers.Length; i++) b.Encapsulate(renderers[i].bounds);
+            float radius = b.extents.magnitude;
+            if (radius < ObstacleMinRadius) return;
+            bodies.Add(t);
+            radii.Add(radius);
+        }
+
+        private void TickBounds(float dt)
+        {
+            var sample = SampleBounds();
+            var reading = FlightBoundsCore.Evaluate(_state.position, sample, _bounds);
+            _state = FlightBoundsCore.Apply(_state, reading, _bounds, dt);
+
+            if (!FlightBoundsVoiceCore.ShouldSpeak(ref _boundsVoice, reading, Time.time, out string lineId))
+                return;
+
+            Debug.Log("ZIPTIDE: FLIGHT_BOUNDS kind=" + reading.Kind + " level=" + reading.Level
+                + " sev=" + reading.Severity01.ToString("F2") + " line=" + lineId);
+            var rill = FindObjectOfType<Ziptide.Gameplay.RillCompanion>();
+            if (rill != null) rill.SayById(lineId);
+        }
+
+        private FlightBoundsSample SampleBounds()
+        {
+            var sample = FlightBoundsSample.Empty;
+            sample.CorridorDistance = FlightBoundsCore.CorridorDistance(_state.position, _corridorPath);
+
+            for (int i = 0; i < _obstacles.Length; i++)
+            {
+                var t = _obstacles[i];
+                if (t == null || !t.gameObject.activeInHierarchy) continue;
+                Vector3 lanePos = laneContent.InverseTransformPoint(t.position);
+                Vector3 away = _state.position - lanePos;
+                float clearance = away.magnitude - _obstacleRadii[i];
+                if (clearance >= sample.StructureClearance) continue;
+                sample.StructureClearance = clearance;
+                sample.StructureAway = away.sqrMagnitude > 1e-4f ? away.normalized : Vector3.up;
+            }
+
+            // Gates: only the ring whose slab we are actually inside can be clipped, and the ring's
+            // facing comes from the same PathAxis the patcher orients it with.
+            for (int i = 0; i < ringPositions.Count; i++)
+            {
+                Vector3 axis = FlightBoundsCore.PathAxis(_corridorPath, i + 1);
+                if (!FlightBoundsCore.TryGateFill(_state.position, ringPositions[i], axis,
+                        ringBoreRadius, _bounds.gateSlabHalfDepth, out float fill, out Vector3 outward))
+                    continue;
+                if (sample.GateFill01 >= 0f && fill <= sample.GateFill01) continue;
+                sample.GateFill01 = fill;
+                sample.GateOutward = outward;
+            }
+
+            return sample;
         }
 
         // ── Space combat 3.1: fire on RT, hits resolve in lane space, wrecks salvage on approach ──

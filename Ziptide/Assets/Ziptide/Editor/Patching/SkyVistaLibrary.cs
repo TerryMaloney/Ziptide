@@ -26,6 +26,17 @@ namespace Ziptide.Editor.Patching
         /// <summary>RILL's signature color (RillCompanion StirringColor) — canon-seeded in early skies.</summary>
         public static readonly Color RillCyan = new Color(0.30f, 0.80f, 0.95f);
 
+        /// <summary>
+        /// ⚖ THE SUN IS AT YOUR BACK (Terry, 2026-07-29). The Moss's star sits up and BEHIND the
+        /// pilot as they fly the Catch corridor (+Z), so the rings ahead are lit on the face the
+        /// player is looking at instead of being silhouettes against a glare.
+        ///
+        /// Shared deliberately: the vista draws the sun here and ScenePatcherSpaceLane derives the
+        /// scene's key light from the same vector, so the sky and the lighting are ONE decision and
+        /// cannot drift apart. Pinned by SkyVistaTests.
+        /// </summary>
+        public static readonly Vector3 MossSunBearing = new Vector3(0.18f, 0.62f, -0.76f);
+
         [MenuItem("Ziptide/Art/Author Sky Vistas (missing only)")]
         public static void AuthorFromMenu()
         {
@@ -91,8 +102,9 @@ namespace Ziptide.Editor.Patching
             // The sibling grey moon — a whole world you can see from here (the in-system hop tease).
             Body(d, SkyVistaDefinition.BodyType.Moon, 5f, new Vector3(-0.62f, 0.34f, 0.71f),
                 new Color(0.72f, 0.73f, 0.76f), new Color(0.48f, 0.50f, 0.55f), bands: 5, seed: 51, phase: 0.35f);
-            // One warm star, harsher without air to soften it.
-            Body(d, SkyVistaDefinition.BodyType.SunDisc, 3f, new Vector3(0.18f, 0.62f, -0.76f),
+            // One warm star, harsher without air to soften it — and deliberately BEHIND the pilot
+            // (MossSunBearing) so the corridor ahead is lit rather than silhouetted.
+            Body(d, SkyVistaDefinition.BodyType.SunDisc, 3f, MossSunBearing,
                 new Color(1f, 0.94f, 0.80f), new Color(1f, 0.80f, 0.52f), bands: 1, seed: 52, phase: 0f);
 
             // No air, no horizon: the whole starfield, all the way down.
