@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T11:08:44.885506+00:00",
+  "generatedAtUtc": "2026-07-29T11:14:35.503001+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9029,7 +9029,7 @@
       "code": "RENDER_SETTINGS_MUTATION",
       "description": "Global RenderSettings access",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 111,
+      "line": 112,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "RenderSettings.fog = kit.fogEnabled;"
     },
@@ -9038,7 +9038,7 @@
       "code": "RENDER_SETTINGS_MUTATION",
       "description": "Global RenderSettings access",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 114,
+      "line": 115,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "RenderSettings.fogMode = FogMode.ExponentialSquared;"
     },
@@ -9047,7 +9047,7 @@
       "code": "RENDER_SETTINGS_MUTATION",
       "description": "Global RenderSettings access",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 115,
+      "line": 116,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "RenderSettings.fogColor = kit.fogColor;"
     },
@@ -9056,7 +9056,7 @@
       "code": "RENDER_SETTINGS_MUTATION",
       "description": "Global RenderSettings access",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 116,
+      "line": 117,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "RenderSettings.fogDensity = kit.fogDensity;"
     },
@@ -11459,7 +11459,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 76,
+      "line": 77,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "m = new Material(shader) { name = \"CityMat_\" + ColorUtility.ToHtmlStringRGB(c) };"
     },
@@ -12350,7 +12350,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 74,
+      "line": 75,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -12359,7 +12359,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 75,
+      "line": 76,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -14159,7 +14159,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 85,
+      "line": 86,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14168,7 +14168,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 228,
+      "line": 229,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var w = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14177,7 +14177,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 352,
+      "line": 353,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14186,7 +14186,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 534,
+      "line": 535,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -16589,7 +16589,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 271,
+      "line": 272,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var marker = new GameObject(\"Marker_\" + hb.interiorMarkerId);"
     },
@@ -16598,7 +16598,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 460,
+      "line": 461,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -16607,7 +16607,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 505,
+      "line": 506,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
     },
@@ -16616,7 +16616,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 558,
+      "line": 559,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },

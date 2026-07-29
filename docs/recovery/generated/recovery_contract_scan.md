@@ -1030,10 +1030,10 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:221` · `Ziptide.Visuals.SkyAtmosphereRig` — Camera.main dependency. `var camera = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:100` · `Ziptide.Visuals.SkyVistaRig` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_POST_PROCESSING** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:104` · `Ziptide.Visuals.SkyVistaRig` — Camera post-processing mutation. `if (camData != null) camData.renderPostProcessing = true;`
-- **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:111` · `Ziptide.Editor.Patching.CityBuilder` — Global RenderSettings access. `RenderSettings.fog = kit.fogEnabled;`
-- **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:114` · `Ziptide.Editor.Patching.CityBuilder` — Global RenderSettings access. `RenderSettings.fogMode = FogMode.ExponentialSquared;`
-- **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:115` · `Ziptide.Editor.Patching.CityBuilder` — Global RenderSettings access. `RenderSettings.fogColor = kit.fogColor;`
-- **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:116` · `Ziptide.Editor.Patching.CityBuilder` — Global RenderSettings access. `RenderSettings.fogDensity = kit.fogDensity;`
+- **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:112` · `Ziptide.Editor.Patching.CityBuilder` — Global RenderSettings access. `RenderSettings.fog = kit.fogEnabled;`
+- **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:115` · `Ziptide.Editor.Patching.CityBuilder` — Global RenderSettings access. `RenderSettings.fogMode = FogMode.ExponentialSquared;`
+- **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:116` · `Ziptide.Editor.Patching.CityBuilder` — Global RenderSettings access. `RenderSettings.fogColor = kit.fogColor;`
+- **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:117` · `Ziptide.Editor.Patching.CityBuilder` — Global RenderSettings access. `RenderSettings.fogDensity = kit.fogDensity;`
 - **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:397` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Global RenderSettings access. `var prevSkybox = RenderSettings.skybox;`
 - **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:398` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Global RenderSettings access. `var prevAmbientMode = RenderSettings.ambientMode;`
 - **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:399` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Global RenderSettings access. `var prevAmbientLight = RenderSettings.ambientLight;`
@@ -1304,7 +1304,7 @@
 
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:51` · `Ziptide.Core.RuntimeMaterialFixer` — Runtime Material allocation. `Material fallback = new Material(urpLit);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Art/BuildingKitLibrary.cs:134` · `Ziptide.Editor.Art.BuildingKitLibrary` — Runtime Material allocation. `var mat = new Material(interior);`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:76` · `Ziptide.Editor.Patching.CityBuilder` — Runtime Material allocation. `m = new Material(shader) { name = "CityMat_" + ColorUtility.ToHtmlStringRGB(c) };`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:77` · `Ziptide.Editor.Patching.CityBuilder` — Runtime Material allocation. `m = new Material(shader) { name = "CityMat_" + ColorUtility.ToHtmlStringRGB(c) };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:72` · `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — Runtime Material allocation. `material = new Material(shader) { name = "CityStageA_" + slot };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:215` · `Ziptide.Editor.Patching.ForgeBaker` — Runtime Material allocation. `material = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:117` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime Material allocation. `var gm = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothGround" };`
@@ -1403,8 +1403,8 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Water/ZiptideWater.cs:113` · `Ziptide.Visuals.ZiptideWater` — Runtime Material allocation. `_foamMat = new Material(lit) { name = "ZiptideWaterFoam" };`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:19` · `Ziptide.Core.RuntimeMaterialFixer` — Runtime shader lookup. `Shader urpLit = Shader.Find(URPShaderName);`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Art/BuildingKitLibrary.cs:131` · `Ziptide.Editor.Art.BuildingKitLibrary` — Runtime shader lookup. `var interior = Shader.Find("Ziptide/InteriorMapping");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:74` · `Ziptide.Editor.Patching.CityBuilder` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:75` · `Ziptide.Editor.Patching.CityBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:75` · `Ziptide.Editor.Patching.CityBuilder` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:76` · `Ziptide.Editor.Patching.CityBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:70` · `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:71` · `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:211` · `Ziptide.Editor.Patching.ForgeBaker` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
@@ -1608,10 +1608,10 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:218` · `Ziptide.Editor.Patching.BuildingBuilder` — Runtime primitive construction. `var pane = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:230` · `Ziptide.Editor.Patching.BuildingBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CaveSpawnSafety.cs:39` · `Ziptide.Editor.Patching.CaveSpawnSafety` — Runtime primitive construction. `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:85` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:228` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:352` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:534` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:86` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:229` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:353` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:535` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:23` · `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:97` · `Ziptide.Editor.FirstHourSurfaceAuthor` — Runtime primitive construction. `var visual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:111` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime primitive construction. `var ground = GameObject.CreatePrimitive(PrimitiveType.Quad);`
@@ -1878,10 +1878,10 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:106` · `Ziptide.Editor.Patching.BuildingBuilder` — Runtime GameObject construction. `var bRoot = new GameObject("Building_" + lot.Bounds.x.ToString("F0") + "_" + lot.Bounds.y.ToString("F0"));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:198` · `Ziptide.Editor.Patching.BuildingBuilder` — Runtime GameObject construction. `var frame = new GameObject("DoorFrame");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:210` · `Ziptide.Editor.Patching.BuildingBuilder` — Runtime GameObject construction. `var marker = new GameObject("__DOOR");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:271` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:460` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:505` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject("Hazard_" + h.id);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:558` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:272` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:461` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:506` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject("Hazard_" + h.id);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:559` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:79` · `Ziptide.Editor.FirstHourSurfaceAuthor` — Runtime GameObject construction. `var marker = new GameObject(markerName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:164` · `Ziptide.Editor.Patching.ForgeBaker` — Runtime GameObject construction. `var go = new GameObject("ForgeBaked_" + recipe.recipeId);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:87` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime GameObject construction. `var root = new GameObject("Forge_" + spec.Key);`
