@@ -38,6 +38,55 @@
 > `docs/HANDOFF_HISTORY_THROUGH_RB24.md`.
 
 
+### 2026-07-29 (rb120) — LEVEL 1: four silent faults, then the missing middle
+
+- **Terry, verbatim:** *"we're building the whole f****** level… I want everything from level one
+  built all the way to level two. Everything down to the finest detail."* Protocols off, one goal.
+- **FOUR FAULTS, EACH INVISIBLE TO CI, EACH DISABLING PART OF LEVEL 1.** Every owner satisfied its
+  own contract; nothing asked whether a player could finish the level.
+  1. **The first level's contract could never complete.** `JobDirector.CheckGoToMarker` searched only
+     pack-declared markers. ToxicCity declares ONE (`player`) while three of its four steps point at
+     `dispatch_inside` / `relay_node` / `shipyard_office` — objects `CityBuilder` authors straight
+     into the scene. Step data right, scene right, lookup returned null. **W002 was therefore locked
+     forever**, since its gate needs `toxiccity_complete`, which only the finished contract grants.
+     Fixed: cached scene fallback + a loud `JOB_MARKER_MISSING` when an id cannot resolve at all.
+  2. **W000's exit door led to a test scene** (`MilestoneA_GrabCube`). Retargeted.
+  3. **One stale asset switched off half of W001.** `ToxicCityLayout.asset` predated `sceneName`,
+     `experience`, `pois`, `hazards`, `creatureZones` and the sky block — all defaulted off — and the
+     empty `sceneName` made ToxicCity list ITSELF as a ship destination.
+  4. **Silent and empty.** No audio profile on either world though the asset existed; ZERO creatures
+     placed though seven species ship; three RILL lines for both worlds combined.
+- **THE MISSING MIDDLE WAS A MENU ITEM.** `ScenePatcherSpaceLane` is 316 complete lines — dock,
+  cockpit frame, helm, five-ring course, three disable-and-salvage targets. It was reachable only
+  from a menu item whose header asked Terry to run it once by hand. Nobody ever did, so
+  `SpaceLane_Trial.unity` never existed and every plan calling the space leg "code-only" was
+  describing a world that could not exist. **A world only a human can generate is a world that does
+  not exist** — it now self-generates in the build like every other scene. Same class, same fix for
+  `FirstHourSurfaceAuthor` (W000's comfort console, bunk keepsake and curated helm were absent from
+  every APK while their code sat CI-green).
+- **FH-S05 + FH-S08 shipped.** `CreatureDisabled` once per down cycle; `FirstHourDirector` conducts
+  all 22 beats from the real owners' signals; `FirstHourW001Orchestrator` measures the safe
+  observation window from the tracked head pose at ≥3 m and completes the payoff ONLY when the decal
+  plate is on the hull. All 15 teaching lines authored on a new `Cue` trigger — they fire by id after
+  the beat's hesitation interval, so a player who just does the thing hears nothing.
+- **FH-A01 decided:** the Husk-Molter, because its counter is the only one that is a LESSON — swing
+  at the decoy and you learn to read a creature before acting. Passport committed.
+- **The ring city was UNEXPRESSIBLE, not unbuilt.** Rectangular districts and canals, and a landmark
+  of {name, pos, h, w}. `RingCityDef` + `RingCityBuilder` ship all six elements; ToxicCity takes the
+  tidal flat, canal ring, sea wall, harbour, outskirts and horizon pillars now. Tower island and
+  wedges wait for the district re-layout — turning them on today would stand a 78 m leaning tower
+  through the Dispatch plaza.
+- **Audio:** no volume control existed anywhere. `AudioMixCore` + `AudioMixSettings` — zero means
+  silent, stored in PlayerPrefs because a volume belongs to the room and not to a campaign.
+- **Process:** the CI gate now names the failing test AND prints compile errors; `ci.yml` got the
+  concurrency group it was missing. Both were open `FAST_LANE.md` §4 items, and both paid for
+  themselves inside this session.
+- **⚠ Heads-up:** `QuestDeviceCorrectionsRuntime` runs AFTER `ItemFactory` and overrides its grip.
+  That is why every factory-side sword fix appeared to regress. `PUNCH IT` is deliberately NOT
+  retargeted at the space leg yet — locked travel contract, and aiming the tutorial's one-way launch
+  at a leg nobody has flown could block the whole level on a device session.
+- **Next:** `docs/production/LEVEL1_MASTER_TRACKER.md` holds every remaining row and its proof.
+
 ### 2026-07-28 (rb119) — T-Dog lane: ⚡ FAST LANE — velocity fix after three trivial changes cost SIX HOURS
 
 - **Terry, verbatim:** *"it literally needed to do like two or three fixes… basically just change
