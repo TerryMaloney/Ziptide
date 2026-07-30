@@ -32,6 +32,62 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-30 (rb132) — 🔬 the last PlayMode red, DIAGNOSED: it is the Input System `ApplyProcessors` NRE, still alive
+
+**Correction to rb131 first:** I wrote "the PlayMode red is cleared". It was not, and I claimed it
+from an offline reproduction instead of the lane — the same part-for-whole error as MISS_LEDGER #20,
+one day later. What my registration actually did is narrower and still worth having.
+
+#### What the three runs actually say
+
+| Run | Result | Failing |
+|---|---|---|
+| `30f3ed84` (before) | 41/43 | `ActualBoot_SettingsSelectsThroughXri` · `RuntimeBootstrapDiscovery` |
+| `8355ca07` (my registration) | 40/43 | `ActualBoot_…` · `GoldenRoute_…` (timeout) · `NewGame_W000_ToxicCity_W000` |
+| `b4fb5ec8` (re-run, dispatch) | **42/43** | `NewGame_W000_ToxicCity_W000` only |
+
+- **`RuntimeBootstrapDiscovery` is gone in both post-fix runs — the catalog registration worked.**
+- **The other failures are ONE defect wearing different names.** `ActualBoot_…`, `NewGame_…` and the
+  `GoldenRoute_…` timeout all carry the same signature, and which test catches it moves run to run.
+  That is why the count wobbles 1–3 and why rb130 §4 saw only one of them.
+
+#### The defect, with its stack
+
+```
+InputActionState.ApplyProcessors        (com.unity.inputsystem@1.6.3 :2820)
+InputAction.ReadValue<TValue>()         (:992)
+ActionBasedContinuousTurnProvider.ReadInput()   (com.unity.xr.interaction.toolkit@2.4.3 :62)
+ContinuousTurnProviderBase.Update()     (:35)
+```
+
+**This is the exact failure rb36 called "ONE residual poll" and rb37 believed the 1.6.3/2.4.3 package
+matrix had resolved. It is still reproducing.** XRI's continuous-turn provider calls `ReadValue` on
+its turn action and the Input System throws inside the processor chain — the signature of an action
+read against state that was re-resolved underneath it (the travel/scene-load boundary).
+
+**⚠ Do not be misled by the adjacent log line.** The stack printed next to it is
+`HomeHubRuntime:LogAimProbe` (`HomeHubRuntime.cs:452`), which is only the `BOARD_PROBE` diagnostic's
+own `Debug.Log` stack landing beside the exception. `LogAimProbe` reads no input action. **The NRE is
+entirely inside the packages; no Ziptide frame appears in it.** I checked before writing this,
+because "our class is in the log" is exactly how a package bug becomes a week of chasing our code.
+
+#### Not fixed here, deliberately
+
+Input-session and locomotion are protected owners, `CLAUDE.md` puts input actions in the
+report-only/get-confirmation column, and Terry was mid-headset-session on a build already made —
+changing runtime input underneath a live test invalidates the evidence he is collecting. **Fix
+direction for whoever takes it:** the provider must not read its action across the window where the
+session guard re-consolidates the action asset — either the turn provider is disabled for that
+window, or the read is guarded on the action being enabled and bound. Reproduce by re-running the
+PlayMode lane a few times; it is intermittent, so a single green run is NOT proof.
+
+**On device it would look like:** smooth/continuous turning dying, or a burst of
+`NullReferenceException` right after boot or immediately after a travel.
+
+**Commits:** none (diagnosis only). Golden Android and CI patch+audit are green on `a198112e`, so
+this does not block the device session.
+
+
 ### 2026-07-29 (rb131) — 🚨 A LEVEL-LOCK FOUND AND FIXED before the headset, + the PlayMode red cleared + the hangar walk built
 
 **Read §1 first: the first level could not be completed, and the reason was not on anyone's list.**
