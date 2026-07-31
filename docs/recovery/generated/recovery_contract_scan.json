@@ -1,18 +1,18 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-31T11:33:44.881184+00:00",
+  "generatedAtUtc": "2026-07-31T12:26:28.730004+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 800,
-  "findingCount": 2895,
+  "scannedFiles": 805,
+  "findingCount": 2896,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 689,
+    "diagnostics": 690,
     "events": 71,
     "fallback_debt": 179,
     "global_render": 95,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 689
+    "ZIPTIDE_LOG_TAG": 690
   },
   "findings": [
     {
@@ -1784,7 +1784,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 46,
+      "line": 50,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_SOCKET_READY socket=\" + gameObject.name"
     },
@@ -1793,7 +1793,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 119,
+      "line": 123,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_TARGET item=\" + itemId + \" socket=\" + gameObject.name"
     },
@@ -1802,7 +1802,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 152,
+      "line": 160,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_CANDIDATE item=\""
     },
@@ -1811,7 +1811,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 178,
+      "line": 186,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOLSTER item=\" + itemId + \" socket=\" + gameObject.name);"
     },
@@ -1820,7 +1820,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 180,
+      "line": 188,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_SELECT_ENTER item=\" + itemId + \" socket=\" + gameObject.name"
     },
@@ -1829,7 +1829,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 195,
+      "line": 203,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log((owned ? \"ZIPTIDE: HOLSTER_POSE_APPLIED\" : \"ZIPTIDE: HOLSTER_OWNERSHIP_FAIL\")"
     },
@@ -1838,7 +1838,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 206,
+      "line": 214,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_SELECT_EXIT item=\""
     },
@@ -1958,6 +1958,15 @@
       "line": 69,
       "symbol": "Ziptide.Gameplay.QuickSwap",
       "snippet": "Debug.Log(\"ZIPTIDE: QUICK_SWAP action=draw item=\" + holstered.name);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/ShipArmouryRuntime.cs",
+      "line": 71,
+      "symbol": "Ziptide.Gameplay.ShipArmouryRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: ARMOURY_GATE verdict=\" + verdict + \" blocks=\" + blocks"
     },
     {
       "category": "diagnostics",
@@ -19091,7 +19100,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 88,
+      "line": 92,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "GameObject poseGo = new GameObject(\"HolsterPose_\" + item.Definition.itemId + \"_\" + key);"
     },
@@ -23141,7 +23150,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 173,
+      "line": 181,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -24194,7 +24203,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 173,
+      "line": 181,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },

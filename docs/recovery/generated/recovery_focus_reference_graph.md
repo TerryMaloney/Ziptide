@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **800**
+- Scanned C# files: **805**
 - Focused references: **466**
 
 ## melee
@@ -86,9 +86,9 @@
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD1` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD1.cs:691` — `var muzzle = new GameObject("Muzzle");`
 - **reference** · `Ziptide.Gameplay.BeltRig` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:149` — `/// item root axes are solved separately from the actual Muzzle socket by HolsterSocketInteractor.`
 - **reference** · `Ziptide.Gameplay.BeltRig` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:172` — `// Euler pose. New code should use ResolveDesiredAxis/ResolveDesiredUp plus the item's Muzzle axis.`
-- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:72` — `/// Muzzle/tip axis makes guns hang barrel-down and blades sheath tip-down without assuming model axes.`
-- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:127` — `Transform direct = root.Find("Muzzle");`
-- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:131` — `if (all[i] != null && all[i].name == "Muzzle") return all[i];`
+- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:76` — `/// Muzzle/tip axis makes guns hang barrel-down and blades sheath tip-down without assuming model axes.`
+- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:131` — `Transform direct = root.Find("Muzzle");`
+- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:135` — `if (all[i] != null && all[i].name == "Muzzle") return all[i];`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:49` — `// Every gun (anything with a Muzzle + grab) gets the aim line (CONTROL_SCHEME "Aim").`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:50` — `if (built != null && built.transform.Find("Muzzle") != null`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:208` — `var muzzle = new GameObject("Muzzle");`

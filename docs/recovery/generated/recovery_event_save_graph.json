@@ -1,6 +1,6 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 800,
+  "scannedFiles": 805,
   "evidenceCount": 837,
   "kindCounts": {
     "AUTOSAVE": 8,
@@ -3408,7 +3408,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-        "line": 214,
+        "line": 222,
         "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
         "target": "ItemHolstered",
         "detail": "",
@@ -4582,7 +4582,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-        "line": 173,
+        "line": 181,
         "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -10682,7 +10682,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 173,
+      "line": 181,
       "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -10691,7 +10691,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 214,
+      "line": 222,
       "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
       "target": "ItemHolstered",
       "detail": "",

@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 800,
-  "findingCount": 2895,
+  "scannedFiles": 805,
+  "findingCount": 2896,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -8989,7 +8989,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-            "line": 88,
+            "line": 92,
             "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
             "snippet": "GameObject poseGo = new GameObject(\"HolsterPose_\" + item.Definition.itemId + \"_\" + key);"
           }
@@ -17299,14 +17299,14 @@
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-            "line": 173,
+            "line": 181,
             "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
             "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-            "line": 173,
+            "line": 181,
             "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
             "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           }

@@ -1,6 +1,6 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 800,
+  "scannedFiles": 805,
   "referenceCount": 466,
   "summaries": {
     "melee": {
@@ -797,7 +797,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-          "line": 72,
+          "line": 76,
           "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
           "snippet": "/// Muzzle/tip axis makes guns hang barrel-down and blades sheath tip-down without assuming model axes.",
           "declaration_file": false
@@ -806,7 +806,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-          "line": 127,
+          "line": 131,
           "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
           "snippet": "Transform direct = root.Find(\"Muzzle\");",
           "declaration_file": false
@@ -815,7 +815,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-          "line": 131,
+          "line": 135,
           "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
           "snippet": "if (all[i] != null && all[i].name == \"Muzzle\") return all[i];",
           "declaration_file": false
@@ -5658,7 +5658,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 72,
+      "line": 76,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "/// Muzzle/tip axis makes guns hang barrel-down and blades sheath tip-down without assuming model axes.",
       "declaration_file": false
@@ -5667,7 +5667,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 127,
+      "line": 131,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Transform direct = root.Find(\"Muzzle\");",
       "declaration_file": false
@@ -5676,7 +5676,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 131,
+      "line": 135,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "if (all[i] != null && all[i].name == \"Muzzle\") return all[i];",
       "declaration_file": false

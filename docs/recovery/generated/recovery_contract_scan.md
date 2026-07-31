@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **800**
-- Findings: **2895**
+- Scanned files: **805**
+- Findings: **2896**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 46 |
-| `diagnostics` | 689 |
+| `diagnostics` | 690 |
 | `events` | 71 |
 | `fallback_debt` | 179 |
 | `global_render` | 95 |
@@ -219,13 +219,13 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/WardenBehavior.cs:92` · `Ziptide.Gameplay.WardenBehavior` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WARDEN_ARREST");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/FallRespawner.cs:55` · `Ziptide.Gameplay.FallRespawner` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: GAP_RECOVERY reason=" + decision.Reason`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:48` · `Ziptide.Gameplay.BeltRig` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BELT_READY sockets=3 camera="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:46` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_SOCKET_READY socket=" + gameObject.name`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:119` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_TARGET item=" + itemId + " socket=" + gameObject.name`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:152` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_CANDIDATE item="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:178` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FIRST_HOLSTER item=" + itemId + " socket=" + gameObject.name);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:180` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_SELECT_ENTER item=" + itemId + " socket=" + gameObject.name`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:195` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log((owned ? "ZIPTIDE: HOLSTER_POSE_APPLIED" : "ZIPTIDE: HOLSTER_OWNERSHIP_FAIL")`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:206` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_SELECT_EXIT item="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:50` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_SOCKET_READY socket=" + gameObject.name`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:123` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_TARGET item=" + itemId + " socket=" + gameObject.name`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:160` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_CANDIDATE item="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:186` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FIRST_HOLSTER item=" + itemId + " socket=" + gameObject.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:188` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_SELECT_ENTER item=" + itemId + " socket=" + gameObject.name`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:203` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log((owned ? "ZIPTIDE: HOLSTER_POSE_APPLIED" : "ZIPTIDE: HOLSTER_OWNERSHIP_FAIL")`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:214` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_SELECT_EXIT item="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs:28` · `Ziptide.Gameplay.InventoryState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INVENTORY_SAVE count=" + allItems.Length);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs:37` · `Ziptide.Gameplay.InventoryState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INVENTORY_SAVED item=" + item.Definition.itemId + " slot=" + slotId);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs:48` · `Ziptide.Gameplay.InventoryState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INVENTORY_RESTORE count=" + _saved.Count);`
@@ -239,6 +239,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:53` · `Ziptide.Gameplay.QuickSwap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUICK_SWAP action=swap in=" + holstered.name + " out=" + held.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:61` · `Ziptide.Gameplay.QuickSwap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUICK_SWAP action=holster item=" + held.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:69` · `Ziptide.Gameplay.QuickSwap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUICK_SWAP action=draw item=" + holstered.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/ShipArmouryRuntime.cs:71` · `Ziptide.Gameplay.ShipArmouryRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: ARMOURY_GATE verdict=" + verdict + " blocks=" + blocks`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:20` · `Ziptide.Gameplay.ItemFactory` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: ITEM_DEF_NOT_FOUND id=" + itemId + " known=[" + KnownIds() + "]");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:54` · `Ziptide.Gameplay.ItemFactory` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: ITEM_SPAWN id=" + itemId + " scale=" + built.transform.localScale.ToString("F3"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:103` · `Ziptide.Gameplay.ItemFactory` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: COSMETIC_APPLIED id=" + equippedId + " item=" + itemId);`
@@ -2156,7 +2157,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/TetherSwarmBehavior.cs:32` · `Ziptide.Gameplay.TetherSwarmBehavior` — Runtime GameObject construction. `_clusterB = new GameObject("ClusterB").transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:81` · `Ziptide.Gameplay.BeltRig` — Runtime GameObject construction. `GameObject go = new GameObject(holsterName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:99` · `Ziptide.Gameplay.BeltRig` — Runtime GameObject construction. `GameObject attachGo = new GameObject("HolsterAttach");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:88` · `Ziptide.Gameplay.HolsterSocketInteractor` — Runtime GameObject construction. `GameObject poseGo = new GameObject("HolsterPose_" + item.Definition.itemId + "_" + key);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:92` · `Ziptide.Gameplay.HolsterSocketInteractor` — Runtime GameObject construction. `GameObject poseGo = new GameObject("HolsterPose_" + item.Definition.itemId + "_" + key);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryPersistence.cs:15` · `Ziptide.Gameplay.InventoryPersistence` — Runtime GameObject construction. `var go = new GameObject("__InventoryRoot");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:196` · `Ziptide.Gameplay.ItemFactory` — Runtime GameObject construction. `var grip = new GameObject("Grip");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:208` · `Ziptide.Gameplay.ItemFactory` — Runtime GameObject construction. `var muzzle = new GameObject("Muzzle");`
@@ -2610,7 +2611,7 @@
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:47` · `Ziptide.Core.TransmissionProgress` — PlayerProfile reference. `public static int SyncClarityFlags(PlayerProfile profile)`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:60` · `Ziptide.Core.TransmissionProgress` — PlayerProfile reference. `private static int SetIfMissing(PlayerProfile profile, string flag)`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/FirstHourHolsterSignal.cs:15` · `Ziptide.Gameplay.FirstHourHolsterSignal` — PlayerProfile reference. `PlayerProfile profile,`
-- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:173` · `Ziptide.Gameplay.HolsterSocketInteractor` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:181` · `Ziptide.Gameplay.HolsterSocketInteractor` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:8` · `Ziptide.Gameplay.SaveSystem` — PlayerProfile reference. `/// Owns the live <see cref="PlayerProfile"/> and persists it to disk as JSON in`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:24` · `Ziptide.Gameplay.SaveSystem` — PlayerProfile reference. `public PlayerProfile Profile { get; private set; }`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:94` · `Ziptide.Gameplay.SaveSystem` — PlayerProfile reference. `public PlayerProfile StartNewProfile()`
@@ -2727,7 +2728,7 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:93` · `Ziptide.Gameplay.EcologyDirector` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:125` · `Ziptide.Gameplay.NestRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/WardenBehavior.cs:43` · `Ziptide.Gameplay.WardenBehavior` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:173` · `Ziptide.Gameplay.HolsterSocketInteractor` — SaveSystem reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:181` · `Ziptide.Gameplay.HolsterSocketInteractor` — SaveSystem reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:87` · `Ziptide.Gameplay.ItemFactory` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ReleaseFeel.cs:128` · `Ziptide.Gameplay.ReleaseFeel` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:44` · `Ziptide.Gameplay.JobDirector` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
