@@ -10,6 +10,15 @@ namespace Ziptide.Gameplay
     public class StunBolt : MonoBehaviour
     {
         private Vector3 _velocity;
+        /// <summary>
+        /// Armor drained per bolt, on the canonical integer scale (armor is 6). One means six bolts to
+        /// break you and a seventh to kill — a drone patrol becomes a real threat over a sustained
+        /// exchange without ever being a burst-down, which is the wrong feeling in a headset where you
+        /// cannot flick-aim your way out. ⚖ FIRST PASS: tune this on device, it is the number that
+        /// decides whether drones read as menacing or as mosquitoes.
+        /// </summary>
+        private const int BoltDamage = 1;
+
         private float _stunSeconds;
         private float _slowFactor;
         private float _life = 4f;
@@ -69,7 +78,7 @@ namespace Ziptide.Gameplay
             if (_receiver == null) _receiver = FindObjectOfType<PlayerStunReceiver>();
             if (_receiver != null && Vector3.Distance(transform.position, _receiver.HitPoint) <= HitRadius)
             {
-                _receiver.ApplyStun(_stunSeconds, _slowFactor, transform.position);
+                _receiver.ApplyHit(BoltDamage, _stunSeconds, _slowFactor, transform.position);
                 Destroy(gameObject);
             }
         }

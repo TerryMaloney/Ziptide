@@ -59,10 +59,9 @@ namespace Ziptide.Gameplay
             PlayerHitOutcome outcome = _state.ApplyDamage(amount, Time.timeAsDouble);
             if (outcome == PlayerHitOutcome.Ignored) return outcome;
 
-            // Reuse the shipped feedback rather than inventing a second one: the stun receiver
-            // already owns the screen flash and the damage-direction tracer.
-            if (_stun != null) _stun.ApplyStun(0.15f, 0.85f, sourcePos);
-
+            // NOTE: the stun/flash is NOT applied here. The caller owns it, because each attacker has
+            // its own stun duration and slow, and applying a second one here would double-stun every
+            // hit. PlayerStunReceiver.ApplyHit is the seam that pairs them.
             OnHit?.Invoke(outcome, Armor01);
             Debug.Log("ZIPTIDE: ARMOR outcome=" + outcome + " damage=" + amount
                 + " armor=" + Armor01.ToString("F2") + " deaths=" + _state.Deaths);

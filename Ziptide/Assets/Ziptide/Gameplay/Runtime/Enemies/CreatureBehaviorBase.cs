@@ -119,7 +119,14 @@ namespace Ziptide.Gameplay
         {
             if (dist > touchRadius || Time.time < _nextTouchAllowed) return;
             _nextTouchAllowed = Time.time + touchCooldown;
-            if (_stun != null) _stun.ApplyStun(touchStunSeconds, touchSlowFactor, transform.position);
+            // CreatureDefinition.damage has been authored on every creature since the start and
+            // applied to NOBODY. It is applied now. Rounded, not rescaled: the authored number is the
+            // designer's intent, and re-baselining the whole creature table onto the integer scale is
+            // COMBAT_HEALTH_PLAN A.2's job, not a decision to smuggle in here.
+            int damage = Runtime != null && Runtime.Definition != null
+                ? Mathf.Max(0, Mathf.RoundToInt(Runtime.Definition.damage))
+                : 0;
+            if (_stun != null) _stun.ApplyHit(damage, touchStunSeconds, touchSlowFactor, transform.position);
         }
 
         protected static bool IsPlayerRig(Transform t)

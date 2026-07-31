@@ -48,6 +48,25 @@ namespace Ziptide.Gameplay
         }
 
         /// <summary>
+        /// A hit that both HURTS and stuns — the one entry point every attacker should use now that
+        /// the player has armor. Damage is on the canonical integer scale (`PvpRules`); the stun
+        /// values stay per-attacker because a creature's shove and a drone's bolt should not feel the
+        /// same. Damage of 0 degrades to a pure stun, so a harmless contact stays harmless.
+        ///
+        /// Pairing them here rather than inside PlayerArmor keeps the flash and the direction tracer
+        /// firing exactly once per hit.
+        /// </summary>
+        public void ApplyHit(int damage, float seconds, float slowFactor, Vector3 sourcePos)
+        {
+            if (damage > 0)
+            {
+                PlayerArmor armor = PlayerArmor.EnsureOn(gameObject);
+                if (armor != null) armor.ApplyDamage(damage, sourcePos);
+            }
+            ApplyStun(seconds, slowFactor, sourcePos);
+        }
+
+        /// <summary>
         /// Drop any active stun immediately and restore full move speed. Called when a level changes:
         /// a slow applied by a drone in one world used to follow the player into the next one, which
         /// is the unexplained "walk speed is wrong after the arena" symptom on the device checklist.
