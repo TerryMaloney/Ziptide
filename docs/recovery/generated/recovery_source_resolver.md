@@ -1,6 +1,6 @@
 # ZIPTIDE Recovery Source Resolver
 
-- Indexed C# types: **1163**
+- Indexed C# types: **1164**
 - Requested type resolutions: **78**
 
 ## Resolution counts

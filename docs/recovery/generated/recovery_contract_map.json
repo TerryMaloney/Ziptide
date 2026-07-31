@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 805,
-  "findingCount": 2896,
+  "scannedFiles": 806,
+  "findingCount": 2906,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -10142,28 +10142,28 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-            "line": 107,
+            "line": 117,
             "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
             "snippet": "_flashGo = GameObject.CreatePrimitive(PrimitiveType.Quad);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-            "line": 118,
+            "line": 128,
             "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
             "snippet": "var shader = Shader.Find(\"Sprites/Default\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-            "line": 119,
+            "line": 129,
             "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
             "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-            "line": 120,
+            "line": 130,
             "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
             "snippet": "var mat = new Material(shader);"
           }
@@ -11066,7 +11066,7 @@
       },
       {
         "owner": "Ziptide.Gameplay.ShipBoardingStation",
-        "evidenceCount": 19,
+        "evidenceCount": 20,
         "codes": [
           "CREATE_PRIMITIVE",
           "NEW_GAME_OBJECT",
@@ -11096,119 +11096,126 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 157,
+            "line": 178,
+            "symbol": "Ziptide.Gameplay.ShipBoardingStation",
+            "snippet": "var rackGo = new GameObject(\"ArmouryRack\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
+            "line": 219,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "_helmRowsRoot = new GameObject(\"HelmRows\").transform;"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 209,
+            "line": 271,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var streakRoot = new GameObject(\"__FlyOutStreaks\").transform;"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 212,
+            "line": 274,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var sGo = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 220,
+            "line": 282,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 221,
+            "line": 283,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 224,
+            "line": 286,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var mat = new Material(shader);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 237,
+            "line": 299,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var countGo = new GameObject(\"__DepartReadout\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 238,
+            "line": 300,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var countText = countGo.AddComponent<TextMesh>();"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 307,
+            "line": 369,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 321,
+            "line": 383,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var root = new GameObject(name);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 324,
+            "line": 386,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var plate = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 331,
+            "line": 393,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var interactable = plate.AddComponent<XRSimpleInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 338,
+            "line": 400,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var textGo = new GameObject(\"Label\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 339,
+            "line": 401,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var tm = textGo.AddComponent<TextMesh>();"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 356,
+            "line": 418,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 357,
+            "line": 419,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 359,
+            "line": 421,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var mat = new Material(shader);"
           }
@@ -15451,14 +15458,14 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 332,
+            "line": 394,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 333,
+            "line": 395,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
           }
@@ -17679,6 +17686,33 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.PlayerArmor",
+        "evidenceCount": 2,
+        "codes": [
+          "EVENT_DECLARATION",
+          "STATIC_EVENT_DECLARATION"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs"
+        ],
+        "evidence": [
+          {
+            "code": "EVENT_DECLARATION",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
+            "line": 27,
+            "symbol": "Ziptide.Gameplay.PlayerArmor",
+            "snippet": "public static event System.Action<PlayerHitOutcome, float> OnHit;"
+          },
+          {
+            "code": "STATIC_EVENT_DECLARATION",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
+            "line": 27,
+            "symbol": "Ziptide.Gameplay.PlayerArmor",
+            "snippet": "public static event System.Action<PlayerHitOutcome, float> OnHit;"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.PlayerStunReceiver",
         "evidenceCount": 2,
         "codes": [
@@ -17692,14 +17726,14 @@
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-            "line": 16,
+            "line": 20,
             "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
             "snippet": "public static event System.Action OnPlayerStunned;"
           },
           {
             "code": "STATIC_EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-            "line": 16,
+            "line": 20,
             "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
             "snippet": "public static event System.Action OnPlayerStunned;"
           }
@@ -18088,14 +18122,14 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 161,
+            "line": 223,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-            "line": 181,
+            "line": 243,
             "symbol": "Ziptide.Gameplay.ShipBoardingStation",
             "snippet": "SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? \"?\")))"
           }

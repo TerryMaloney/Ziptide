@@ -1,11 +1,11 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 805,
-  "evidenceCount": 837,
+  "scannedFiles": 806,
+  "evidenceCount": 839,
   "kindCounts": {
     "AUTOSAVE": 8,
-    "EVENT_DECLARE": 49,
-    "EVENT_INVOKE": 61,
+    "EVENT_DECLARE": 50,
+    "EVENT_INVOKE": 62,
     "EVENT_SUBSCRIBE": 141,
     "EVENT_UNSUBSCRIBE": 87,
     "PLAYER_PREFS_ACCESS": 20,
@@ -3717,6 +3717,24 @@
     ],
     "OnHit": [
       {
+        "kind": "EVENT_DECLARE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
+        "line": 27,
+        "owner": "Ziptide.Gameplay.PlayerArmor",
+        "target": "OnHit",
+        "detail": "static System.Action<PlayerHitOutcome, float>",
+        "snippet": "public static event System.Action<PlayerHitOutcome, float> OnHit;"
+      },
+      {
+        "kind": "EVENT_INVOKE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
+        "line": 66,
+        "owner": "Ziptide.Gameplay.PlayerArmor",
+        "target": "OnHit",
+        "detail": "",
+        "snippet": "OnHit?.Invoke(outcome, Armor01);"
+      },
+      {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Targets/TargetRuntime.cs",
         "line": 63,
@@ -3793,7 +3811,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-        "line": 16,
+        "line": 20,
         "owner": "Ziptide.Gameplay.PlayerStunReceiver",
         "target": "OnPlayerStunned",
         "detail": "static System.Action",
@@ -3802,7 +3820,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-        "line": 65,
+        "line": 75,
         "owner": "Ziptide.Gameplay.PlayerStunReceiver",
         "target": "OnPlayerStunned",
         "detail": "",
@@ -5050,7 +5068,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-        "line": 161,
+        "line": 223,
         "owner": "Ziptide.Gameplay.ShipBoardingStation",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -5059,7 +5077,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-        "line": 181,
+        "line": 243,
         "owner": "Ziptide.Gameplay.ShipBoardingStation",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -7487,7 +7505,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-        "line": 334,
+        "line": 396,
         "owner": "Ziptide.Gameplay.ShipBoardingStation",
         "target": "onSelect",
         "detail": "",
@@ -8284,7 +8302,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-        "line": 260,
+        "line": 322,
         "owner": "Ziptide.Gameplay.ShipBoardingStation",
         "target": "st.position",
         "detail": "transform",
@@ -11148,6 +11166,24 @@
       "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
     },
     {
+      "kind": "EVENT_DECLARE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
+      "line": 27,
+      "owner": "Ziptide.Gameplay.PlayerArmor",
+      "target": "OnHit",
+      "detail": "static System.Action<PlayerHitOutcome, float>",
+      "snippet": "public static event System.Action<PlayerHitOutcome, float> OnHit;"
+    },
+    {
+      "kind": "EVENT_INVOKE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
+      "line": 66,
+      "owner": "Ziptide.Gameplay.PlayerArmor",
+      "target": "OnHit",
+      "detail": "",
+      "snippet": "OnHit?.Invoke(outcome, Armor01);"
+    },
+    {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
       "line": 32,
@@ -11249,7 +11285,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-      "line": 16,
+      "line": 20,
       "owner": "Ziptide.Gameplay.PlayerStunReceiver",
       "target": "OnPlayerStunned",
       "detail": "static System.Action",
@@ -11258,7 +11294,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-      "line": 65,
+      "line": 75,
       "owner": "Ziptide.Gameplay.PlayerStunReceiver",
       "target": "OnPlayerStunned",
       "detail": "",
@@ -13076,7 +13112,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 161,
+      "line": 223,
       "owner": "Ziptide.Gameplay.ShipBoardingStation",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -13085,7 +13121,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 181,
+      "line": 243,
       "owner": "Ziptide.Gameplay.ShipBoardingStation",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -13094,7 +13130,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 260,
+      "line": 322,
       "owner": "Ziptide.Gameplay.ShipBoardingStation",
       "target": "st.position",
       "detail": "transform",
@@ -13103,7 +13139,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 334,
+      "line": 396,
       "owner": "Ziptide.Gameplay.ShipBoardingStation",
       "target": "onSelect",
       "detail": "",
