@@ -133,17 +133,79 @@ namespace Ziptide.Gameplay
 
             RebuildHelmRows();
 
-            // Disembark.
+            // THE ARMOURY RACK (⚖ Terry: the ship is where weapons live). Built before the
+            // disembark panel because the panel's gate counts what is on it.
+            BuildArmouryRack(deckCenter);
+
+            // Disembark — gated on being armed. The BUTTON is the gate, not a collider: a press can
+            // refuse and explain, where a wall can only shove, and shoving a standing VR player is
+            // how you make someone take the headset off.
             var off = MakePanel("DisembarkPanel", transform.TransformPoint(deckCenter + new Vector3(0f, 0.6f, -1.55f)),
                 "DISEMBARK", new Color(0.35f, 0.28f, 0.14f), () =>
                 {
+                    DepartureVerdict verdict = ShipArmouryRuntime.EvaluateNow(_armouryRack);
+                    if (ShipArmouryCore.Blocks(verdict))
+                    {
+                        var rill = FindObjectOfType<RillCompanion>();
+                        if (rill != null) rill.SayById(ShipArmouryCore.CueFor(verdict));
+                        Debug.Log("ZIPTIDE: SHIP_DISEMBARK_BLOCKED verdict=" + verdict);
+                        return;
+                    }
+
                     Vector3 back = _berthReturnPos != Vector3.zero
                         ? _berthReturnPos
                         : transform.TransformPoint(doorLocalPos) + Vector3.forward;
                     TeleportRig(back);
-                    Debug.Log("ZIPTIDE: SHIP_DISEMBARK");
+                    Debug.Log("ZIPTIDE: SHIP_DISEMBARK verdict=" + verdict);
                 }, small: true);
             off.transform.rotation = transform.rotation * Quaternion.Euler(0f, 180f, 0f);
+        }
+
+        private Transform _armouryRack;
+
+        /// <summary>
+        /// The weapon rail by the hatch. Slot geometry comes from ShipArmouryCore so the rack, the
+        /// departure verdict and the tests all read one set of numbers.
+        ///
+        /// Weapons are spawned ON the rack rather than on the floor of the plaza, which is where the
+        /// two starter guns used to land. Anything already carried stays carried — the rack seeds the
+        /// ship once, it does not confiscate.
+        /// </summary>
+        private void BuildArmouryRack(Vector3 deckCenter)
+        {
+            if (_armouryRack != null) return;
+
+            var rackGo = new GameObject("ArmouryRack");
+            rackGo.transform.SetParent(transform, false);
+            rackGo.transform.localPosition = deckCenter + new Vector3(-1.45f, 0f, -0.6f);
+            _armouryRack = rackGo.transform;
+
+            // The rail itself — a physical noun the companion's line can point at ("rack by the hatch").
+            MakeCube("ArmouryRail",
+                _armouryRack.localPosition + new Vector3(0f, ShipArmouryCore.RailHeight, 0f),
+                new Vector3(ShipArmouryCore.RackSlots * ShipArmouryCore.SlotSpacing, 0.06f, 0.12f),
+                new Color(0.24f, 0.26f, 0.30f), collider: false);
+
+            // Seed the starter pair. The rest of the arsenal racks here as the player earns it; the
+            // slots exist for all eight so a later weapon never has to go back on the floor.
+            SeedRackWeapon("taser_dart_gun", 0);
+            SeedRackWeapon("gravity_gun", 1);
+
+            Debug.Log("ZIPTIDE: ARMOURY_RACK built slots=" + ShipArmouryCore.RackSlots
+                + " seeded=2 railHeight=" + ShipArmouryCore.RailHeight.ToString("F2"));
+        }
+
+        private void SeedRackWeapon(string itemId, int slot)
+        {
+            Vector3 world = _armouryRack.TransformPoint(
+                new Vector3(ShipArmouryCore.SlotLocalX(slot), ShipArmouryCore.RailHeight + 0.12f, 0f));
+            GameObject go = ItemFactory.Create(itemId, world);
+            if (go == null)
+            {
+                Debug.LogWarning("ZIPTIDE: ARMOURY_RACK seed_failed item=" + itemId);
+                return;
+            }
+            go.transform.SetParent(_armouryRack, true);
         }
 
         // The helm's destination rows, rebuilt on every boarding so lock states are always CURRENT

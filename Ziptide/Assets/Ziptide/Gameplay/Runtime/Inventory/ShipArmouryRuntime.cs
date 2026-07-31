@@ -44,6 +44,25 @@ namespace Ziptide.Gameplay
 
         public DepartureVerdict Current => _last;
 
+        /// <summary>
+        /// One-shot verdict for a caller that owns its own moment — the ship's DISEMBARK panel asks
+        /// this the instant it is pressed. Shared with the polling path above so a button press and
+        /// a barrier can never disagree about whether the player is armed.
+        /// </summary>
+        public static DepartureVerdict EvaluateNow(Transform rack)
+        {
+            return ShipArmouryCore.Evaluate(CountOnBelt(), CountInHands(), CountReachableUnder(rack));
+        }
+
+        private static int CountReachableUnder(Transform rack)
+        {
+            if (rack == null) return 0;
+            int n = 0;
+            foreach (var item in rack.GetComponentsInChildren<ItemRuntime>(true))
+                if (item != null && IsWeapon(item.gameObject)) n++;
+            return n;
+        }
+
         private void Update()
         {
             if (Time.time < _nextCheck) return;
@@ -107,14 +126,7 @@ namespace Ziptide.Gameplay
             return n;
         }
 
-        private int CountReachable()
-        {
-            if (_rack == null) return 0;
-            int n = 0;
-            foreach (var item in _rack.GetComponentsInChildren<ItemRuntime>(true))
-                if (item != null && IsWeapon(item.gameObject)) n++;
-            return n;
-        }
+        private int CountReachable() => CountReachableUnder(_rack);
 
         // One source of truth, shared with the holster's allowlist. ItemDefinition carries no weapon
         // flag and its `damage` field is unserialized on every weapon asset, so the catalog IS the
