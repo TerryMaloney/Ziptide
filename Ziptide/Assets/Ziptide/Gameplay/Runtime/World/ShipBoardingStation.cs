@@ -162,6 +162,7 @@ namespace Ziptide.Gameplay
         }
 
         private Transform _armouryRack;
+        private ArmouryCarouselRuntime _carousel;
 
         /// <summary>
         /// The weapon rail by the hatch. Slot geometry comes from ShipArmouryCore so the rack, the
@@ -180,32 +181,68 @@ namespace Ziptide.Gameplay
             rackGo.transform.localPosition = deckCenter + new Vector3(-1.45f, 0f, -0.6f);
             _armouryRack = rackGo.transform;
 
-            // The rail itself — a physical noun the companion's line can point at ("rack by the hatch").
-            MakeCube("ArmouryRail",
-                _armouryRack.localPosition + new Vector3(0f, ShipArmouryCore.RailHeight, 0f),
-                new Vector3(ShipArmouryCore.RackSlots * ShipArmouryCore.SlotSpacing, 0.06f, 0.12f),
+            // THE DRUM, not a 2.4 m rail. Same slot module, same spacing, a fifth of the bulkhead —
+            // and the footprint stops depending on how many weapons the player owns.
+            _carousel = _armouryRack.gameObject.AddComponent<ArmouryCarouselRuntime>();
+
+            // The column the slots ride on: a physical noun RILL's line can point at ("rack by the
+            // hatch"), and the thing the player's hand actually turns.
+            MakeCube("ArmouryDrum",
+                _armouryRack.localPosition + new Vector3(0f, ArmouryCarouselCore.LowerRingHeight, 0f),
+                new Vector3(ArmouryCarouselCore.Diameter * 0.35f,
+                            ArmouryCarouselCore.RingGap * 2.2f,
+                            ArmouryCarouselCore.Diameter * 0.35f),
                 new Color(0.24f, 0.26f, 0.30f), collider: false);
 
-            // Seed the starter pair. The rest of the arsenal racks here as the player earns it; the
-            // slots exist for all eight so a later weapon never has to go back on the floor.
-            SeedRackWeapon("taser_dart_gun", 0);
-            SeedRackWeapon("gravity_gun", 1);
+            // Every weapon the player OWNS is restored, not just a hardcoded starter pair — "once you
+            // have it, you have it" has to survive death, travel and quitting, and the rack is where
+            // that promise becomes visible.
+            PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            int restored = 0;
+            foreach (string id in WeaponOwnership.OwnedIds(profile))
+                if (SeedRackWeapon(id, WeaponOwnership.SlotIndexOf(id))) restored++;
 
-            Debug.Log("ZIPTIDE: ARMOURY_RACK built slots=" + ShipArmouryCore.RackSlots
-                + " seeded=2 railHeight=" + ShipArmouryCore.RailHeight.ToString("F2"));
+            // First boot owns nothing, so the starter pair is GRANTED rather than merely placed —
+            // otherwise it would vanish the first time the player died holding neither.
+            if (restored == 0)
+            {
+                foreach (string id in new[] { "taser_dart_gun", "gravity_gun" })
+                {
+                    WeaponOwnership.Grant(profile, id);
+                    if (SeedRackWeapon(id, WeaponOwnership.SlotIndexOf(id))) restored++;
+                }
+            }
+
+            // Face the player at something they own rather than a blanking plate — the drum's first
+            // read should be "here is your gear", not "here is an empty rack".
+            var owned = WeaponOwnership.OwnedIds(profile);
+            if (_carousel != null && owned.Count > 0)
+                _carousel.PresentSlot(WeaponOwnership.SlotIndexOf(owned[0]));
+
+            Debug.Log("ZIPTIDE: ARMOURY_RACK built=drum capacity=" + ArmouryCarouselCore.Capacity
+                + " restored=" + restored + " diameter=" + ArmouryCarouselCore.Diameter.ToString("F2")
+                + " owned=" + owned.Count);
         }
 
-        private void SeedRackWeapon(string itemId, int slot)
+        /// <summary>Place one weapon at its permanent detent on the drum. Returns false if it failed.</summary>
+        private bool SeedRackWeapon(string itemId, int slot)
         {
-            Vector3 world = _armouryRack.TransformPoint(
-                new Vector3(ShipArmouryCore.SlotLocalX(slot), ShipArmouryCore.RailHeight + 0.12f, 0f));
-            GameObject go = ItemFactory.Create(itemId, world);
+            if (slot < 0) return false;
+
+            // Radial placement: the slot's face angle around the drum, at its ring's height.
+            float yaw = ArmouryCarouselCore.FaceOf(slot) * ArmouryCarouselCore.StepDegrees;
+            Vector3 outward = Quaternion.Euler(0f, yaw, 0f) * Vector3.forward;
+            Vector3 local = new Vector3(0f, ArmouryCarouselCore.HeightOf(slot), 0f)
+                + outward * (ArmouryCarouselCore.Diameter * 0.5f);
+
+            GameObject go = ItemFactory.Create(itemId, _armouryRack.TransformPoint(local));
             if (go == null)
             {
-                Debug.LogWarning("ZIPTIDE: ARMOURY_RACK seed_failed item=" + itemId);
-                return;
+                Debug.LogWarning("ZIPTIDE: ARMOURY_RACK seed_failed item=" + itemId + " slot=" + slot);
+                return false;
             }
             go.transform.SetParent(_armouryRack, true);
+            return true;
         }
 
         // The helm's destination rows, rebuilt on every boarding so lock states are always CURRENT
