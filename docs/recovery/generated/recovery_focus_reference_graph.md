@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **798**
+- Scanned C# files: **800**
 - Focused references: **466**
 
 ## melee
@@ -198,9 +198,9 @@
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:212` — `private static void EnsureJobDirector(WorldPackDefinition worldPack)`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:214` — `var go = PatcherUtil.EnsureRootObject("JobDirector", Vector3.zero);`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:215` — `var director = PatcherUtil.EnsureComponent<JobDirector>(go);`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:346` — `/// no machines at all — JobDirector materialises repairables from the PACK, so there was`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:412` — `var jdGo = PatcherUtil.EnsureRootObject("JobDirector", Vector3.zero);`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:413` — `var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:377` — `/// no machines at all — JobDirector materialises repairables from the PACK, so there was`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:443` — `var jdGo = PatcherUtil.EnsureRootObject("JobDirector", Vector3.zero);`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:444` — `var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);`
 - **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:19` — `/// that GameObject name (JobDirector.CheckGoToMarker).`
 - **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:57` — `// authored into the scene by FlatsSiteAuthor and resolved by JobDirector's scene`
 - **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:89` — `+ "WorldPack as job 0.\n\nStill needed (T-Dog/runtime): JobDirector -> JobRewards.Grant on "`
@@ -298,8 +298,8 @@
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:234` — `private static void EnsureObjectiveBoard()`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:236` — `var go = PatcherUtil.EnsureRootObject("ObjectiveBoard", new Vector3(-1f, 4.0f, 1.5f));`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:237` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(go);`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:424` — `var boardGo = PatcherUtil.EnsureRootObject("ObjectiveBoard", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:425` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:455` — `var boardGo = PatcherUtil.EnsureRootObject("ObjectiveBoard", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:456` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);`
 - **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:90` — `+ "completion, and ObjectiveBoard/RILL text.", "OK");`
 - **reference** · `Ziptide.Editor.Patching.WorldStubGenerator` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:466` — `var boardGo = PatcherUtil.EnsureRootObject("ObjectiveBoard", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));`
 - **reference** · `Ziptide.Editor.Patching.WorldStubGenerator` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:467` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);`

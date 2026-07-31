@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **798**
-- Scanner findings: **2888**
+- Scanned files: **800**
+- Scanner findings: **2895**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1197,14 +1197,15 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:324` **NEW_GAME_OBJECT** — `GameObject go = t != null ? t.gameObject : new GameObject(name);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:334` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(type);`
 
-### `Ziptide.Editor.Patching.ScenePatcherToxicCity` — 4 signal(s)
+### `Ziptide.Editor.Patching.ScenePatcherToxicCity` — 5 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:138` **CREATE_PRIMITIVE** — `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:150` **CREATE_PRIMITIVE** — `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:168` **NEW_GAME_OBJECT** — `var zip = new GameObject(ZipName);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:278` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:135` **NEW_GAME_OBJECT** — `var go = new GameObject("__WORLD_ATMOSPHERE");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:169` **CREATE_PRIMITIVE** — `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:181` **CREATE_PRIMITIVE** — `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:199` **NEW_GAME_OBJECT** — `var zip = new GameObject(ZipName);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:309` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.ShipHullBuilder` — 4 signal(s)
 
@@ -4672,6 +4673,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ViewerSideWorldLabel.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ViewerSideWorldLabel.cs:61` **CAMERA_MAIN_REFERENCE** — `if (_viewer == null) _viewer = Camera.main;`
 
+### `Ziptide.Gameplay.WorldAtmosphereBinder` — 1 signal(s)
+
+- Codes: `CAMERA_MAIN_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs:85` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
+
 ### `Ziptide.Gameplay.WorldDirector` — 1 signal(s)
 
 - Codes: `CAMERA_MAIN_REFERENCE`
@@ -4980,7 +4987,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:364` **FALLBACK_MARKER** — `Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:395` **FALLBACK_MARKER** — `Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor`
 
 ### `Ziptide.Editor.Patching.ShipHullBuilder` — 3 signal(s)
 

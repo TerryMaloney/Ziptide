@@ -1,13 +1,13 @@
 # ZIPTIDE Current-Board Completion Claim Audit
 
-- Strong-claim lines: **267**
-- No proof qualifier on the same line: **141**
+- Strong-claim lines: **268**
+- No proof qualifier on the same line: **142**
 
 A finding is not automatically false. It is a line that must be reconciled with the recovery proof ledger before the current status layer can be trusted.
 
 ## Counts by current document
 
-- `docs/CURRENT_EXECUTION_CHECKLIST.md`: 44
+- `docs/CURRENT_EXECUTION_CHECKLIST.md`: 45
 - `docs/EXCELLENCE_MAP.md`: 36
 - `docs/MASTER_CHECKLIST.md`: 34
 - `docs/SPRINT.md`: 60
@@ -18,49 +18,50 @@ A finding is not automatically false. It is a line that must be reconciled with 
 ## Claims
 
 - `docs/CURRENT_EXECUTION_CHECKLIST.md:4` — qualifiers: **none** — **Purpose:** the current cross-project checklist for any future operator. Read this after `docs/OPERATOR_START_HERE.md`. It records what is actually complete, what is waiting on Terry, what is blocked by another track, and the next safe work.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:17` — qualifiers: `PLAYMODE` — needs the PlayMode lane green ×3 on one SHA before anyone drops the qualifier.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:21` — qualifiers: **none** — `docs/production/TONIGHT_TEST_CARD.md` (20 ordered beats, honest ✅/🟨/❌) are ready and unchanged.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:30` — qualifiers: `APK`, `CI` — - Head `30f3ed84`. **CI, Fast Preflight and Golden Android are green (run-level).**
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:34` — qualifiers: **none** — - **Built today:** the five Catch keepers as geometry · the tender's tool arms (were dead code) ·
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:38` — qualifiers: **none** — - **Not built:** zipline · berths 1–5 quay pads · W002 defend wave/garden/glyph plate · pause board ·
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:46` — qualifiers: `EDITMODE`, `CI` — - Latest gameplay/quality-code proof: `e8d18d67732032d79a2806f1e517d19d1aa9330d`, CI run `29170675599`, Unity EditMode green. Later branch commits are unrelated descendants and preserve this cleanup.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:54` — qualifiers: **none** — 1. `docs/OPERATOR_START_HERE.md` — laws, verification, ownership, definition of done.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:56` — qualifiers: **none** — 3. `docs/CI_VERDICT.md` — whether the latest tested gameplay head is green.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:76` — qualifiers: `QUEST`, `CI` — - [x] Implement the locked asynchronous-travel design. **Code/CI green `c7b5d52`, run `29167548682`; device frame-pacing comparison pending.**
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:77` — qualifiers: `PATCHED_AUDIT`, `QUEST`, `CI` — - [x] Add the WARN-only UI readability/reach build audit. **Code/CI green `a6803ab`, run `29168358234`; generated-scene/device calibration pending.**
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:78` — qualifiers: `QUEST` — - [x] Write `docs/design/HAPTIC_COVERAGE.md` from inspected existing owners. **Documentation-level gap closed; runtime/device coverage remains deliberately open.**
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:79` — qualifiers: `APK`, `CI` — - [x] Build the canonical creature behavior-readability gate. **Seven shipped IDs, ≥3 active states each, telegraph/counter/resolution, source/factory evidence and APK pre-build blocker; code/CI green `d9b6caf`, run `29169591530`.**
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:80` — qualifiers: `APK`, `VISUAL`, `CI` — - [x] Build plant and vehicle catalog-breadth audits without touching Picasso visual assets. **Structural CI/APK gate green `b7a6cfa`, run `29170323869`; content warnings remain for unsurfaced plants, three missing vehicle families and no garage.**
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:81` — qualifiers: `QUEST`, `CI` — - [x] Harden `AudioDirector` transition/disposal ownership. **Retired persistent sources now release clips; overlapping fades are serialized; code/CI green `e8d18d6`, run `29170675599`; long-session Quest memory soak remains device evidence.**
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:84` — qualifiers: **none** — - [ ] Continue only with explicitly claimed gameplay/content rows or Terry/Picasso-dependent work; the §7 independent queue is complete.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:90` — qualifiers: **none** — - [ ] `FH-A01-SIGNATURE-CREATURE-PRESENTATION`: W001 species passport and complete review artifacts.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:91` — qualifiers: **none** — - [ ] Do not jump to later FORGE III envelopes before the current water envelope is closed and verified.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:112` — qualifiers: `CI` — | FH-X01 contract asset | ✅ CI green | none |
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:113` — qualifiers: `CI` — | FH-X02 progression core | ✅ CI green | none |
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:114` — qualifiers: `QUEST`, `CI` — | FH-S01 observation | ✅ CI green | headset evidence |
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:115` — qualifiers: `QUEST`, `CI` — | FH-S02 holster | ✅ CI green | headset evidence |
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:116` — qualifiers: `QUEST`, `CI` — | FH-S03 travel | ✅ CI green | headset evidence |
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:117` — qualifiers: `QUEST`, `CI` — | FH-M01 scanner result | ✅ CI green | normal scanner device check |
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:118` — qualifiers: `QUEST`, `CI` — | FH-S04 repair/scan | ✅ CI green | headset repair/identity check |
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:120` — qualifiers: `QUEST`, `CI` — | FH-S06 zipline | ✅ CI green | headset arrival/release check |
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:121` — qualifiers: `QUEST`, `CI` — | FH-S07 Home/W000 surfaces | 🟡 code + CI green | Terry author bake + headset check |
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:129` — qualifiers: **none** — ### Complete or substantially complete
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:156` — qualifiers: **none** — - [ ] W001 and Chapter 1 shipped-quality at 72 FPS.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:160` — qualifiers: **none** — ## 6. Historical workstreams — done and remaining
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:164` — qualifiers: **none** — **Done:** free-flight/ship handling, space combat v1, ground vehicles v1, garden genetics/plant systems, ecology scheduling/emerge-burrow, furnished interiors and per-room culling.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:176` — qualifiers: `PATCHED_AUDIT`, `APK`, `CI` — **Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, documentation-level haptic coverage inventory, canonical creature behavior-readability CI/APK gate, plant/vehicle catalog structural CI/APK audit, and `AudioDirector` transition/resource cleanup.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:190` — qualifiers: `QUEST` — **Done:** Quality Bar P0–P5, terrain/vistas/POIs/routes/dressing, gardens/build sockets, improved ship hull, tutorial design, async-travel design, broad scene/gameplay integration and device fixes.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:201` — qualifiers: `PLAYMODE` — The ordered queue is complete. Item 8 was a conditional feasibility check and correctly stopped because the current workflow has no proven PlayMode lane.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:203` — qualifiers: `QUEST`, `CI` — 1. [x] Async travel implementation — code/CI green; device comparison pending.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:205` — qualifiers: `PATCHED_AUDIT`, `QUEST` — 3. [x] UI readability/reach audit — WARN-only build-scene processor + tests green; real-scene/device calibration pending.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:207` — qualifiers: `APK`, `CI` — 5. [x] Creature behavior-count/readability gate — one canonical catalog, source/factory evidence, CI tests and APK blocker green.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:208` — qualifiers: `PATCHED_AUDIT`, `APK`, `CI` — 6. [x] Plant/vehicle catalog breadth audit — structural CI/APK blockers green; exact surfacing/asset/garage debt remains warning-level content work.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:209` — qualifiers: `QUEST` — 7. [x] `AudioDirector` unload/disposal leak hardening — stopped sources release clips, one transition owner, lifecycle tests green `e8d18d6`, run `29170675599`; device memory soak remains.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:222` — qualifiers: **none** — - [ ] W001/Chapter 1 art and sound at shipped quality.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:227` — qualifiers: **none** — - [ ] Complete Photon combat sync, room-code UX, avatars/voice when hardware is available.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:234` — qualifiers: **none** — - [ ] Complete all campaign branches, Transmission fragments, and four endings.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:236` — qualifiers: **none** — - [ ] Complete multiplayer Arena, Photon online, and Tidefront program.
-- `docs/CURRENT_EXECUTION_CHECKLIST.md:250` — qualifiers: `QUEST`, `CI` — 6. Record CI/test/device evidence honestly: code-green is not device-green.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:20` — qualifiers: `PLAYMODE` — **The recovery PlayMode red that has been open since rb36 is closed.**
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:23` — qualifiers: **none** — `WORLD_PACK_INVALID` to blocker is the next safe step — best done when no bake is imminent.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:25` — qualifiers: **none** — `docs/production/TONIGHT_TEST_CARD.md` (20 ordered beats, honest ✅/🟨/❌) are ready and unchanged.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:34` — qualifiers: `APK`, `CI` — - Head `30f3ed84`. **CI, Fast Preflight and Golden Android are green (run-level).**
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:38` — qualifiers: **none** — - **Built today:** the five Catch keepers as geometry · the tender's tool arms (were dead code) ·
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:42` — qualifiers: **none** — - **Not built:** zipline · berths 1–5 quay pads · W002 defend wave/garden/glyph plate · pause board ·
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:50` — qualifiers: `EDITMODE`, `CI` — - Latest gameplay/quality-code proof: `e8d18d67732032d79a2806f1e517d19d1aa9330d`, CI run `29170675599`, Unity EditMode green. Later branch commits are unrelated descendants and preserve this cleanup.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:58` — qualifiers: **none** — 1. `docs/OPERATOR_START_HERE.md` — laws, verification, ownership, definition of done.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:60` — qualifiers: **none** — 3. `docs/CI_VERDICT.md` — whether the latest tested gameplay head is green.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:80` — qualifiers: `QUEST`, `CI` — - [x] Implement the locked asynchronous-travel design. **Code/CI green `c7b5d52`, run `29167548682`; device frame-pacing comparison pending.**
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:81` — qualifiers: `PATCHED_AUDIT`, `QUEST`, `CI` — - [x] Add the WARN-only UI readability/reach build audit. **Code/CI green `a6803ab`, run `29168358234`; generated-scene/device calibration pending.**
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:82` — qualifiers: `QUEST` — - [x] Write `docs/design/HAPTIC_COVERAGE.md` from inspected existing owners. **Documentation-level gap closed; runtime/device coverage remains deliberately open.**
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:83` — qualifiers: `APK`, `CI` — - [x] Build the canonical creature behavior-readability gate. **Seven shipped IDs, ≥3 active states each, telegraph/counter/resolution, source/factory evidence and APK pre-build blocker; code/CI green `d9b6caf`, run `29169591530`.**
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:84` — qualifiers: `APK`, `VISUAL`, `CI` — - [x] Build plant and vehicle catalog-breadth audits without touching Picasso visual assets. **Structural CI/APK gate green `b7a6cfa`, run `29170323869`; content warnings remain for unsurfaced plants, three missing vehicle families and no garage.**
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:85` — qualifiers: `QUEST`, `CI` — - [x] Harden `AudioDirector` transition/disposal ownership. **Retired persistent sources now release clips; overlapping fades are serialized; code/CI green `e8d18d6`, run `29170675599`; long-session Quest memory soak remains device evidence.**
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:88` — qualifiers: **none** — - [ ] Continue only with explicitly claimed gameplay/content rows or Terry/Picasso-dependent work; the §7 independent queue is complete.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:94` — qualifiers: **none** — - [ ] `FH-A01-SIGNATURE-CREATURE-PRESENTATION`: W001 species passport and complete review artifacts.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:95` — qualifiers: **none** — - [ ] Do not jump to later FORGE III envelopes before the current water envelope is closed and verified.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:116` — qualifiers: `CI` — | FH-X01 contract asset | ✅ CI green | none |
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:117` — qualifiers: `CI` — | FH-X02 progression core | ✅ CI green | none |
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:118` — qualifiers: `QUEST`, `CI` — | FH-S01 observation | ✅ CI green | headset evidence |
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:119` — qualifiers: `QUEST`, `CI` — | FH-S02 holster | ✅ CI green | headset evidence |
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:120` — qualifiers: `QUEST`, `CI` — | FH-S03 travel | ✅ CI green | headset evidence |
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:121` — qualifiers: `QUEST`, `CI` — | FH-M01 scanner result | ✅ CI green | normal scanner device check |
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:122` — qualifiers: `QUEST`, `CI` — | FH-S04 repair/scan | ✅ CI green | headset repair/identity check |
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:124` — qualifiers: `QUEST`, `CI` — | FH-S06 zipline | ✅ CI green | headset arrival/release check |
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:125` — qualifiers: `QUEST`, `CI` — | FH-S07 Home/W000 surfaces | 🟡 code + CI green | Terry author bake + headset check |
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:133` — qualifiers: **none** — ### Complete or substantially complete
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:160` — qualifiers: **none** — - [ ] W001 and Chapter 1 shipped-quality at 72 FPS.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:164` — qualifiers: **none** — ## 6. Historical workstreams — done and remaining
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:168` — qualifiers: **none** — **Done:** free-flight/ship handling, space combat v1, ground vehicles v1, garden genetics/plant systems, ecology scheduling/emerge-burrow, furnished interiors and per-room culling.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:180` — qualifiers: `PATCHED_AUDIT`, `APK`, `CI` — **Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, documentation-level haptic coverage inventory, canonical creature behavior-readability CI/APK gate, plant/vehicle catalog structural CI/APK audit, and `AudioDirector` transition/resource cleanup.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:194` — qualifiers: `QUEST` — **Done:** Quality Bar P0–P5, terrain/vistas/POIs/routes/dressing, gardens/build sockets, improved ship hull, tutorial design, async-travel design, broad scene/gameplay integration and device fixes.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:205` — qualifiers: `PLAYMODE` — The ordered queue is complete. Item 8 was a conditional feasibility check and correctly stopped because the current workflow has no proven PlayMode lane.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:207` — qualifiers: `QUEST`, `CI` — 1. [x] Async travel implementation — code/CI green; device comparison pending.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:209` — qualifiers: `PATCHED_AUDIT`, `QUEST` — 3. [x] UI readability/reach audit — WARN-only build-scene processor + tests green; real-scene/device calibration pending.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:211` — qualifiers: `APK`, `CI` — 5. [x] Creature behavior-count/readability gate — one canonical catalog, source/factory evidence, CI tests and APK blocker green.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:212` — qualifiers: `PATCHED_AUDIT`, `APK`, `CI` — 6. [x] Plant/vehicle catalog breadth audit — structural CI/APK blockers green; exact surfacing/asset/garage debt remains warning-level content work.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:213` — qualifiers: `QUEST` — 7. [x] `AudioDirector` unload/disposal leak hardening — stopped sources release clips, one transition owner, lifecycle tests green `e8d18d6`, run `29170675599`; device memory soak remains.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:226` — qualifiers: **none** — - [ ] W001/Chapter 1 art and sound at shipped quality.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:231` — qualifiers: **none** — - [ ] Complete Photon combat sync, room-code UX, avatars/voice when hardware is available.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:238` — qualifiers: **none** — - [ ] Complete all campaign branches, Transmission fragments, and four endings.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:240` — qualifiers: **none** — - [ ] Complete multiplayer Arena, Photon online, and Tidefront program.
+- `docs/CURRENT_EXECUTION_CHECKLIST.md:254` — qualifiers: `QUEST`, `CI` — 6. Record CI/test/device evidence honestly: code-green is not device-green.
 - `docs/EXCELLENCE_MAP.md:9` — qualifiers: **none** — 1. **STATE** — what actually exists (⬜ nothing · 🦴 skeleton · 🧱 v1 solid · 💎 rich · numbers, not vibes).
 - `docs/EXCELLENCE_MAP.md:20` — qualifiers: **none** — - **The unevenness rule:** if your lane's rows are all 💎 while a neighboring aspect you depend on
 - `docs/EXCELLENCE_MAP.md:35` — qualifiers: **none** — | Buildings & city | 🧱→💎 in flight (Stage A/B + Round 1 ToxicCity pass) | Biome→kit/palette mapping; no primitive-box fallbacks in shipped worlds; street identity and motion fit budget | `BuildingAuditRules`; City Stage A/B audits; registry fallback logs |

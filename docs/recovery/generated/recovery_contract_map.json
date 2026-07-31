@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 798,
-  "findingCount": 2888,
+  "scannedFiles": 800,
+  "findingCount": 2895,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -5410,7 +5410,7 @@
       },
       {
         "owner": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
-        "evidenceCount": 4,
+        "evidenceCount": 5,
         "codes": [
           "CREATE_PRIMITIVE",
           "NEW_GAME_OBJECT"
@@ -5420,30 +5420,37 @@
         ],
         "evidence": [
           {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
+            "line": 135,
+            "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
+            "snippet": "var go = new GameObject(\"__WORLD_ATMOSPHERE\");"
+          },
+          {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 138,
+            "line": 169,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var target = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 150,
+            "line": 181,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var post = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 168,
+            "line": 199,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var zip = new GameObject(ZipName);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 278,
+            "line": 309,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var go = new GameObject(name);"
           }
@@ -20805,6 +20812,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.WorldAtmosphereBinder",
+        "evidenceCount": 1,
+        "codes": [
+          "CAMERA_MAIN_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CAMERA_MAIN_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs",
+            "line": 85,
+            "symbol": "Ziptide.Gameplay.WorldAtmosphereBinder",
+            "snippet": "Camera cam = Camera.main;"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.WorldDirector",
         "evidenceCount": 1,
         "codes": [
@@ -21963,7 +21989,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 364,
+            "line": 395,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor"
           }

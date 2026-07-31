@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-31T10:32:34.597173+00:00",
+  "generatedAtUtc": "2026-07-31T11:33:44.881184+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 798,
-  "findingCount": 2888,
+  "scannedFiles": 800,
+  "findingCount": 2895,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 684,
+    "diagnostics": 689,
     "events": 71,
     "fallback_debt": 179,
-    "global_render": 94,
+    "global_render": 95,
     "input": 246,
     "materials": 278,
     "persistence": 28,
-    "runtime_creation": 739,
+    "runtime_creation": 740,
     "runtime_ui": 132,
     "save_state": 289,
     "scene_loading": 9,
@@ -27,7 +27,7 @@
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 9,
-    "CAMERA_MAIN_REFERENCE": 53,
+    "CAMERA_MAIN_REFERENCE": 54,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
     "CREATE_PRIMITIVE": 278,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 235,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 461,
+    "NEW_GAME_OBJECT": 462,
     "PLAYER_PROFILE_REFERENCE": 153,
     "RENDER_SETTINGS_MUTATION": 39,
     "RUNTIME_BOOTSTRAP": 36,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 684
+    "ZIPTIDE_LOG_TAG": 689
   },
   "findings": [
     {
@@ -986,6 +986,24 @@
       "line": 171,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSandbox",
       "snippet": "/// when you stand and stare, and the sink pays scrap (ZIPTIDE: BELT_SUNK). Authoring only \u2014"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
+      "line": 130,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: WORLD_ATMO_AUTHOR skipped cause=no_vista_asset path=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
+      "line": 139,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
+      "snippet": "Debug.Log(\"ZIPTIDE: WORLD_ATMO_AUTHOR built vista=\" + vista.vistaId"
     },
     {
       "category": "diagnostics",
@@ -5284,6 +5302,33 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs",
+      "line": 54,
+      "symbol": "Ziptide.Gameplay.WorldAtmosphereBinder",
+      "snippet": "Debug.Log(\"ZIPTIDE: WORLD_ATMO applied=0 cause=no_atmosphere_authored vista=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs",
+      "line": 65,
+      "symbol": "Ziptide.Gameplay.WorldAtmosphereBinder",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: WORLD_ATMO applied=0 cause=no_player_after_\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs",
+      "line": 75,
+      "symbol": "Ziptide.Gameplay.WorldAtmosphereBinder",
+      "snippet": "Debug.Log(\"ZIPTIDE: WORLD_ATMO applied=1 vista=\" + _vista.vistaId"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
       "line": 66,
       "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
@@ -7859,7 +7904,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 364,
+      "line": 395,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor"
     },
@@ -9293,6 +9338,15 @@
       "line": 61,
       "symbol": "Ziptide.Gameplay.ViewerSideWorldLabel",
       "snippet": "if (_viewer == null) _viewer = Camera.main;"
+    },
+    {
+      "category": "global_render",
+      "code": "CAMERA_MAIN_REFERENCE",
+      "description": "Camera.main dependency",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs",
+      "line": 85,
+      "symbol": "Ziptide.Gameplay.WorldAtmosphereBinder",
+      "snippet": "Camera cam = Camera.main;"
     },
     {
       "category": "global_render",
@@ -15239,7 +15293,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 138,
+      "line": 169,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var target = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15248,7 +15302,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 150,
+      "line": 181,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var post = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -18155,7 +18209,16 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 168,
+      "line": 135,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
+      "snippet": "var go = new GameObject(\"__WORLD_ATMOSPHERE\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
+      "line": 199,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var zip = new GameObject(ZipName);"
     },
@@ -18164,7 +18227,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 278,
+      "line": 309,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var go = new GameObject(name);"
     },

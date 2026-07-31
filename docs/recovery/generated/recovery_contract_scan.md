@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **798**
-- Findings: **2888**
+- Scanned files: **800**
+- Findings: **2895**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,14 +9,14 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 46 |
-| `diagnostics` | 684 |
+| `diagnostics` | 689 |
 | `events` | 71 |
 | `fallback_debt` | 179 |
-| `global_render` | 94 |
+| `global_render` | 95 |
 | `input` | 246 |
 | `materials` | 278 |
 | `persistence` | 28 |
-| `runtime_creation` | 739 |
+| `runtime_creation` | 740 |
 | `runtime_ui` | 132 |
 | `save_state` | 289 |
 | `scene_loading` | 9 |
@@ -131,6 +131,8 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:90` · `Ziptide.Editor.Patching.QuayBerthAuthor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUAY_BERTHS built=" + centres.Count +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ReactivePropAuthor.cs:70` · `Ziptide.Editor.Patching.ReactivePropAuthor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: REACTIVE_PROPS_AUTHORED count=" + placed);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSandbox.cs:171` · `Ziptide.Editor.Patching.ScenePatcherSandbox` — ZIPTIDE diagnostic tag. `/// when you stand and stare, and the sink pays scrap (ZIPTIDE: BELT_SUNK). Authoring only —`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:130` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: WORLD_ATMO_AUTHOR skipped cause=no_vista_asset path="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:139` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_ATMO_AUTHOR built vista=" + vista.vistaId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:214` · `Ziptide.Editor.Patching.ShipHullBuilder` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HERO_SHIP_HULL renderers="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs:61` · `Ziptide.Editor.Patching.ToxicCityRiverBuilder` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TOXIC_RIVER_BUILD rivers=" + summary.Rivers`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverSaveHook.cs:36` · `Ziptide.Editor.Patching.ToxicCityRiverSaveHook` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: TOXIC_RIVER_HOOK_FAIL reason=missing_layout");`
@@ -608,6 +610,9 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:290` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: AUDIT_FAIL multiple_managers_after_travel count=" + (managers?.Length ?? 0));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:294` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TRAVEL_OK dest=" + sceneName);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:301` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FIRST_HOUR_TRAVEL dest=" + sceneName +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs:54` · `Ziptide.Gameplay.WorldAtmosphereBinder` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_ATMO applied=0 cause=no_atmosphere_authored vista="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs:65` · `Ziptide.Gameplay.WorldAtmosphereBinder` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: WORLD_ATMO applied=0 cause=no_player_after_"`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs:75` · `Ziptide.Gameplay.WorldAtmosphereBinder` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_ATMO applied=1 vista=" + _vista.vistaId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:66` · `Ziptide.Gameplay.WorldDiscoveryNodeRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_DISCOVERY scene=" + gameObject.scene.name`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:72` · `Ziptide.Gameplay.ZiplineRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: ZIPLINE_DEGENERATE anchors too close — disabled");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:125` · `Ziptide.Gameplay.ZiplineRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: ZIPLINE_READY len=" +`
@@ -898,7 +903,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:231` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Source text marks fallback/prototype debt. `// Dormant gate ring (ring of pillars as a placeholder for the portal).`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:327` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Source text marks fallback/prototype debt. `// Pure placeholder transform — named marker for missions/spawns; no renderer/collider.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:392` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Source text marks fallback/prototype debt. `pack.displayName = "Starter World (graybox)";`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:364` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Source text marks fallback/prototype debt. `Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:395` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Source text marks fallback/prototype debt. `Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:9` · `Ziptide.Editor.Patching.ShipHullBuilder` — Source text marks fallback/prototype debt. `/// Shared hero-ship fallback used by every berth. It preserves the named refit skeleton and overall`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:41` · `Ziptide.Editor.Patching.ShipHullBuilder` — Source text marks fallback/prototype debt. `// Refit skeleton: these exact direct-child names remain authoritative.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:55` · `Ziptide.Editor.Patching.ShipHullBuilder` — Source text marks fallback/prototype debt. `// Curved shell volumes soften the refit skeleton without replacing it.`
@@ -1060,6 +1065,7 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs:57` · `Ziptide.Gameplay.ObjectiveBeacon` — Camera.main dependency. `Camera cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs:184` · `Ziptide.Gameplay.ShipBoardingPresentationGuard` — Camera.main dependency. `if (_viewer == null) _viewer = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ViewerSideWorldLabel.cs:61` · `Ziptide.Gameplay.ViewerSideWorldLabel` — Camera.main dependency. `if (_viewer == null) _viewer = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldAtmosphereBinder.cs:85` · `Ziptide.Gameplay.WorldAtmosphereBinder` — Camera.main dependency. `Camera cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:185` · `Ziptide.Gameplay.ZiptideGateEffect` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:228` · `Ziptide.Gameplay.ZiptideGateEffect` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldDirector.cs:47` · `Ziptide.Gameplay.WorldDirector` — Camera.main dependency. `Camera cam = Camera.main;`
@@ -1728,8 +1734,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:217` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime primitive construction. `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:280` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime primitive construction. `if (go == null) { go = GameObject.CreatePrimitive(PrimitiveType.Cube); go.name = name; }`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:334` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(type);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:138` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:150` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:169` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:181` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:225` · `Ziptide.Editor.Patching.ShipHullBuilder` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(primitive);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:130` · `Ziptide.Editor.Patching.SignAuthor` — Runtime primitive construction. `var fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:151` · `Ziptide.Editor.Patching.SignAuthor` — Runtime primitive construction. `var glyph = GameObject.CreatePrimitive(PrimitiveType.Quad);`
@@ -2052,8 +2058,9 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:661` · `Ziptide.Editor.Patching.ScenePatcherSpaceLane` — Runtime GameObject construction. `var marker = new GameObject("__SALVAGE_ARTIFACT_HALF_A");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:253` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:324` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime GameObject construction. `GameObject go = t != null ? t.gameObject : new GameObject(name);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:168` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var zip = new GameObject(ZipName);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:278` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:135` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var go = new GameObject("__WORLD_ATMOSPHERE");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:199` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var zip = new GameObject(ZipName);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:309` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:99` · `Ziptide.Editor.Patching.SignAuthor` — Runtime GameObject construction. `var root = new GameObject(RootName).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:120` · `Ziptide.Editor.Patching.SignAuthor` — Runtime GameObject construction. `var holder = new GameObject(string.IsNullOrEmpty(plan.name) ? "ShellSign" : plan.name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs:47` · `Ziptide.Editor.Patching.ToxicCityRiverBuilder` — Runtime GameObject construction. `var root = new GameObject(RootName).transform;`
