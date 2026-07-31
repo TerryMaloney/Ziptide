@@ -1719,10 +1719,10 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:146` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(type);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:159` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:160` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:163` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:153` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(type);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:166` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:167` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:170` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.CreatureRuntime` — 4 signal(s)
 
@@ -2149,10 +2149,10 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:117` **CREATE_PRIMITIVE** — `_flashGo = GameObject.CreatePrimitive(PrimitiveType.Quad);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:128` **SHADER_FIND** — `var shader = Shader.Find("Sprites/Default");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:129` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:130` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:136` **CREATE_PRIMITIVE** — `_flashGo = GameObject.CreatePrimitive(PrimitiveType.Quad);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:147` **SHADER_FIND** — `var shader = Shader.Find("Sprites/Default");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:148` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:149` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.PortholeRuntime` — 7 signal(s)
 
@@ -2413,10 +2413,10 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:30` **CREATE_PRIMITIVE** — `var ball = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:39` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:40` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:41` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:39` **CREATE_PRIMITIVE** — `var ball = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:48` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:49` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:50` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.TaserDartGunRuntime` — 3 signal(s)
 

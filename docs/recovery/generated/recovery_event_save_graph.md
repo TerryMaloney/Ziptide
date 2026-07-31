@@ -39,7 +39,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:120`
 - `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:121`
 - `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:122`
-- `Ziptide.Gameplay.StunBolt` subscribes `transform.position` → `step` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:65`
+- `Ziptide.Gameplay.StunBolt` subscribes `transform.position` → `step` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:74`
 - `Ziptide.Gameplay.ObjectiveBoard` subscribes `runtime.StepChanged` → `OnStepChanged` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:93`
 - `Ziptide.Gameplay.ObjectiveBoard` subscribes `runtime.JobCompleted` → `OnJobCompleted` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:94`
 - `Ziptide.Gameplay.BootHoldState` subscribes `transform.position` → `headDelta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:1032`
@@ -611,7 +611,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `OnHit`
 
 - **EVENT_DECLARE** · `Ziptide.Gameplay.PlayerArmor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs:27` · `static System.Action<PlayerHitOutcome, float>` — `public static event System.Action<PlayerHitOutcome, float> OnHit;`
-- **EVENT_INVOKE** · `Ziptide.Gameplay.PlayerArmor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs:66` — `OnHit?.Invoke(outcome, Armor01);`
+- **EVENT_INVOKE** · `Ziptide.Gameplay.PlayerArmor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs:65` — `OnHit?.Invoke(outcome, Armor01);`
 - **EVENT_INVOKE** · `Ziptide.Gameplay.TargetRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Targets/TargetRuntime.cs:63` — `OnHit?.Invoke();`
 - **EVENT_DECLARE** · `Ziptide.Multiplayer.LoopbackPvpTransport` · `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Net/LoopbackPvpTransport.cs:19` · `Action<HitMsg>` — `public event Action<HitMsg> OnHit;`
 - **EVENT_INVOKE** · `Ziptide.Multiplayer.LoopbackPvpTransport` · `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Net/LoopbackPvpTransport.cs:25` — `public void SendHit(HitMsg msg) => OnHit?.Invoke(msg);`
@@ -624,7 +624,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `OnPlayerStunned`
 
 - **EVENT_DECLARE** · `Ziptide.Gameplay.PlayerStunReceiver` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:20` · `static System.Action` — `public static event System.Action OnPlayerStunned;`
-- **EVENT_INVOKE** · `Ziptide.Gameplay.PlayerStunReceiver` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:75` — `OnPlayerStunned?.Invoke();`
+- **EVENT_INVOKE** · `Ziptide.Gameplay.PlayerStunReceiver` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:94` — `OnPlayerStunned?.Invoke();`
 
 ### `OnPose`
 
@@ -1545,7 +1545,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:120` · `flat` — `case PvpWeapon.TidePike: transform.position += flat * 0.75f; break; // committed thrust`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:121` · `flat` — `case PvpWeapon.BreakerBlade: transform.position += flat * 0.3f; break; // light stagger`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:122` · `flat` — `default: transform.position += flat * 0.5f; break; // gravity/net/etc kick`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.StunBolt` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:65` · `step` — `transform.position += step;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.StunBolt` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:74` · `step` — `transform.position += step;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:1032` · `headDelta` — `transform.position += headDelta;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:332` · `handAttach` — `transform.position += handAttach.position - grip.position;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpBolt` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBolt.cs:67` · `step` — `transform.position += step;`

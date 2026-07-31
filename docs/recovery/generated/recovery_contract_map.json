@@ -8040,28 +8040,28 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs",
-            "line": 146,
+            "line": 153,
             "symbol": "Ziptide.Gameplay.CreatureBehaviorBase",
             "snippet": "var go = GameObject.CreatePrimitive(type);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs",
-            "line": 159,
+            "line": 166,
             "symbol": "Ziptide.Gameplay.CreatureBehaviorBase",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs",
-            "line": 160,
+            "line": 167,
             "symbol": "Ziptide.Gameplay.CreatureBehaviorBase",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs",
-            "line": 163,
+            "line": 170,
             "symbol": "Ziptide.Gameplay.CreatureBehaviorBase",
             "snippet": "var mat = new Material(shader);"
           }
@@ -10142,28 +10142,28 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-            "line": 117,
+            "line": 136,
             "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
             "snippet": "_flashGo = GameObject.CreatePrimitive(PrimitiveType.Quad);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-            "line": 128,
+            "line": 147,
             "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
             "snippet": "var shader = Shader.Find(\"Sprites/Default\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-            "line": 129,
+            "line": 148,
             "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
             "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-            "line": 130,
+            "line": 149,
             "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
             "snippet": "var mat = new Material(shader);"
           }
@@ -11439,28 +11439,28 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs",
-            "line": 30,
+            "line": 39,
             "symbol": "Ziptide.Gameplay.StunBolt",
             "snippet": "var ball = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs",
-            "line": 39,
+            "line": 48,
             "symbol": "Ziptide.Gameplay.StunBolt",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs",
-            "line": 40,
+            "line": 49,
             "symbol": "Ziptide.Gameplay.StunBolt",
             "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs",
-            "line": 41,
+            "line": 50,
             "symbol": "Ziptide.Gameplay.StunBolt",
             "snippet": "var mat = new Material(shader);"
           }

@@ -197,7 +197,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs",
-      "line": 65,
+      "line": 74,
       "owner": "Ziptide.Gameplay.StunBolt",
       "target": "transform.position",
       "detail": "step",
@@ -3728,7 +3728,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
-        "line": 66,
+        "line": 65,
         "owner": "Ziptide.Gameplay.PlayerArmor",
         "target": "OnHit",
         "detail": "",
@@ -3820,7 +3820,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-        "line": 75,
+        "line": 94,
         "owner": "Ziptide.Gameplay.PlayerStunReceiver",
         "target": "OnPlayerStunned",
         "detail": "",
@@ -8459,7 +8459,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs",
-        "line": 65,
+        "line": 74,
         "owner": "Ziptide.Gameplay.StunBolt",
         "target": "transform.position",
         "detail": "step",
@@ -10628,7 +10628,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs",
-      "line": 65,
+      "line": 74,
       "owner": "Ziptide.Gameplay.StunBolt",
       "target": "transform.position",
       "detail": "step",
@@ -11177,7 +11177,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
-      "line": 66,
+      "line": 65,
       "owner": "Ziptide.Gameplay.PlayerArmor",
       "target": "OnHit",
       "detail": "",
@@ -11294,7 +11294,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-      "line": 75,
+      "line": 94,
       "owner": "Ziptide.Gameplay.PlayerStunReceiver",
       "target": "OnPlayerStunned",
       "detail": "",

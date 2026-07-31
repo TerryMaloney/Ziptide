@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-31T16:10:00.810681+00:00",
+  "generatedAtUtc": "2026-07-31T16:30:58.887051+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -2648,7 +2648,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
-      "line": 67,
+      "line": 66,
       "symbol": "Ziptide.Gameplay.PlayerArmor",
       "snippet": "Debug.Log(\"ZIPTIDE: ARMOR outcome=\" + outcome + \" damage=\" + amount"
     },
@@ -2657,7 +2657,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
-      "line": 81,
+      "line": 80,
       "symbol": "Ziptide.Gameplay.PlayerArmor",
       "snippet": "else Debug.LogWarning(\"ZIPTIDE: ARMOR_DEATH no_world_runtime \u2014 player stays where they fell\");"
     },
@@ -2666,7 +2666,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
-      "line": 85,
+      "line": 84,
       "symbol": "Ziptide.Gameplay.PlayerArmor",
       "snippet": "Debug.Log(\"ZIPTIDE: ARMOR_DEATH deaths=\" + _state.Deaths + \" respawned=1 protected=1\");"
     },
@@ -3116,7 +3116,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-      "line": 76,
+      "line": 95,
       "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
       "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_STUN sec=\" + seconds.ToString(\"F2\") + \" slow=\" + slowFactor.ToString(\"F2\"));"
     },
@@ -3125,7 +3125,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-      "line": 91,
+      "line": 110,
       "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
       "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_HIT src=\" + sourcePos.ToString(\"F1\"));"
     },
@@ -12377,7 +12377,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs",
-      "line": 163,
+      "line": 170,
       "symbol": "Ziptide.Gameplay.CreatureBehaviorBase",
       "snippet": "var mat = new Material(shader);"
     },
@@ -12440,7 +12440,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs",
-      "line": 41,
+      "line": 50,
       "symbol": "Ziptide.Gameplay.StunBolt",
       "snippet": "var mat = new Material(shader);"
     },
@@ -12530,7 +12530,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-      "line": 130,
+      "line": 149,
       "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
       "snippet": "var mat = new Material(shader);"
     },
@@ -13493,7 +13493,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs",
-      "line": 159,
+      "line": 166,
       "symbol": "Ziptide.Gameplay.CreatureBehaviorBase",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -13502,7 +13502,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs",
-      "line": 160,
+      "line": 167,
       "symbol": "Ziptide.Gameplay.CreatureBehaviorBase",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -13619,7 +13619,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs",
-      "line": 39,
+      "line": 48,
       "symbol": "Ziptide.Gameplay.StunBolt",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
     },
@@ -13628,7 +13628,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs",
-      "line": 40,
+      "line": 49,
       "symbol": "Ziptide.Gameplay.StunBolt",
       "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -13772,7 +13772,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-      "line": 128,
+      "line": 147,
       "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
       "snippet": "var shader = Shader.Find(\"Sprites/Default\");"
     },
@@ -13781,7 +13781,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-      "line": 129,
+      "line": 148,
       "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
       "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
     },
@@ -15788,7 +15788,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs",
-      "line": 146,
+      "line": 153,
       "symbol": "Ziptide.Gameplay.CreatureBehaviorBase",
       "snippet": "var go = GameObject.CreatePrimitive(type);"
     },
@@ -15869,7 +15869,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs",
-      "line": 30,
+      "line": 39,
       "symbol": "Ziptide.Gameplay.StunBolt",
       "snippet": "var ball = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -16031,7 +16031,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-      "line": 117,
+      "line": 136,
       "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
       "snippet": "_flashGo = GameObject.CreatePrimitive(PrimitiveType.Quad);"
     },
