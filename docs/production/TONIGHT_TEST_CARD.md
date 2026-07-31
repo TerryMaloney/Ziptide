@@ -59,11 +59,19 @@ Status is honest: **✅ built + gate-proven** · **🟨 built, never rendered a 
 ## ❌ Not built — please don't report these
 Pause/settings board · title + legal/credits · **all music and VO (zero)** · all final art (everything is procedural stand-in) · W002's defend wave / garden plot / glyph plate · helm `TextMesh` labels may read badly at Quest resolution (known).
 
-**You still cannot be hurt.** The armor system landed today (`PlayerArmor` — armor drains, breaking it
-warns you, the next hit kills, death respawns you at the world's spawn marker) but **nothing calls it
-yet**: creatures and drones do not deal damage. So walking into a drone patrol is still safe, and that
-is expected, not a bug. Wiring the damage sources is the next slice and it is the one that needs your
-verdict on feel — "how many hits until my armor breaks" is not a question a test can answer.
+**You CAN now be hurt — this is new today and it is the one thing most likely to need retuning.**
+Armor is 6, it drains, breaking it is its own warning beat, and the next hit after that kills you (death
+= respawn at the world's spawn marker with full armor and brief protection). Watch for `ZIPTIDE: ARMOR
+outcome=…` and `ARMOR_DEATH`.
+
+⚖ **Two first-pass numbers that only you can settle:**
+- **Drone bolts do 1** — six to break your armor, a seventh to kill. Deliberately a sustained exchange
+  rather than a burst-down, because burst-down is the wrong feeling in VR.
+- **Creatures do their authored damage, default 5** — so two touches kill. Deliberately harsh. **If it
+  plays punishing, the creature table is what moves, not the armor.**
+
+If dying feels cheap, unfair, or disorienting in the headset, say so plainly — that verdict is the whole
+point of this beat and no test can produce it.
 
 **Interiors are still empty boxes.** Dispatch, the Shipyard Office and the Relay Vault are a floor, a
 ceiling, four walls and one accent cube each. Known, not worth a line in your notes.

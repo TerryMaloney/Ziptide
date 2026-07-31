@@ -320,7 +320,10 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     verdict is knowingly lost this way, the HANDOFF entry must cite the RUN ID and conclusion
     directly, so the durable record exists somewhere even when the file is stale — done for today's
     three in rb134.
-    (→ pending: closes when a session ends with `CI_VERDICT.md` naming its own last code commit.)
+    (→ **CLOSED same day**: applied on the very next code push. I held the docs for `4bd58b18` until
+    its run finished instead of pushing immediately, and `CI_VERDICT.md` now reads **GREEN for
+    `4bd58b185b2a`** — the file names the session's own last code commit, which is exactly the
+    closure condition.)
 
 ## CLOSED
 
