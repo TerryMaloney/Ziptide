@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **806**
-- Evidence edges: **839**
+- Scanned C# files: **809**
+- Evidence edges: **843**
 - Named subscriptions without matching unsubscribe in the same owner: **62**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -14,7 +14,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE:** 141
 - **EVENT_UNSUBSCRIBE:** 87
 - **PLAYER_PREFS_ACCESS:** 20
-- **PROFILE_FIELD_ACCESS:** 387
+- **PROFILE_FIELD_ACCESS:** 391
 - **SAVE_ACCESS:** 84
 
 ## Named subscriptions without matching unsubscribe
@@ -441,6 +441,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Core.TransmissionProgress` · `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:31` · `profile` — `bool t5 = profile.HasFlag(ZiptideFlags.FRAGMENT_T5_FOUND);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Core.TransmissionProgress` · `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:32` · `profile` — `bool rill = profile.HasFlag(ZiptideFlags.FRAGMENT_RILL_CONFESS);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Core.TransmissionProgress` · `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:62` · `profile` — `if (profile.HasFlag(flag)) return 0;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Core.WeaponOwnership` · `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:30` · `profile` — `return profile.HasFlag(OwnedFlag(itemId));`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Core.WeaponOwnership` · `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:41` · `profile` — `if (profile.HasFlag(flag)) return false;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Core.WeaponOwnership` · `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:61` · `profile` — `if (profile.HasFlag(OwnedFlag(id))) owned.Add(id);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.WardenBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/WardenBehavior.cs:45` · `profile` — `bool ally = profile != null && profile.HasFlag(ZiptideFlags.C6_WARDEN_ALLY);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourHolsterSignal` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/FirstHourHolsterSignal.cs:21` · `profile` — `if (profile != null && profile.HasFlag(ZiptideFlags.FIRST_HOLSTER))`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ReleaseFeel` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ReleaseFeel.cs:129` · `profile` — `if (profile == null || profile.HasFlag(ZiptideFlags.FIRST_RELEASE)) return;`
@@ -905,6 +908,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Core.CosmeticLocker` · `Ziptide/Assets/Ziptide/Core/Runtime/CosmeticLocker.cs:21` · `profile` — `profile.SetFlag(Prefix + targetKey + "=" + cosmeticId);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Core.ShipLocker` · `Ziptide/Assets/Ziptide/Core/Runtime/ShipLocker.cs:21` · `profile` — `if (!string.IsNullOrEmpty(id)) profile.SetFlag(key + id);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Core.TransmissionProgress` · `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:63` · `profile` — `profile.SetFlag(flag);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Core.WeaponOwnership` · `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:42` · `profile` — `profile.SetFlag(flag);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ReleaseFeel` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ReleaseFeel.cs:130` · `profile` — `profile.SetFlag(ZiptideFlags.FIRST_RELEASE);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:135` · `profile` — `profile.SetFlag(flag);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ChoiceStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ChoiceStation.cs:113` · `profile` — `if (profile != null) profile.SetFlag(flag);`

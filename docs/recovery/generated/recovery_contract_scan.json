@@ -1,15 +1,15 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-31T16:30:58.887051+00:00",
+  "generatedAtUtc": "2026-07-31T18:31:25.033428+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 806,
-  "findingCount": 2906,
+  "scannedFiles": 809,
+  "findingCount": 2914,
   "categoryCounts": {
     "bootstrap": 46,
     "diagnostics": 697,
@@ -21,7 +21,7 @@
     "persistence": 28,
     "runtime_creation": 741,
     "runtime_ui": 132,
-    "save_state": 289,
+    "save_state": 297,
     "scene_loading": 9,
     "xri_ownership": 93
   },
@@ -42,11 +42,11 @@
     "INPUT_ACTION_REFERENCE": 235,
     "INPUT_BUTTON_REFERENCE": 10,
     "NEW_GAME_OBJECT": 463,
-    "PLAYER_PROFILE_REFERENCE": 153,
+    "PLAYER_PROFILE_REFERENCE": 159,
     "RENDER_SETTINGS_MUTATION": 39,
     "RUNTIME_BOOTSTRAP": 36,
     "RUNTIME_MATERIAL_CREATE": 106,
-    "SAVE_SYSTEM_REFERENCE": 127,
+    "SAVE_SYSTEM_REFERENCE": 129,
     "SHADER_FIND": 172,
     "STATIC_EVENT_DECLARATION": 20,
     "TEXTMESH_COMPONENT": 54,
@@ -23230,6 +23230,42 @@
       "category": "save_state",
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+      "line": 10,
+      "symbol": "Ziptide.Core.WeaponOwnership",
+      "snippet": "/// Ownership rides the EXISTING persisted flag set on <see cref=\"PlayerProfile\"/> rather than a new"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+      "line": 27,
+      "symbol": "Ziptide.Core.WeaponOwnership",
+      "snippet": "public static bool Owns(PlayerProfile profile, string itemId)"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+      "line": 37,
+      "symbol": "Ziptide.Core.WeaponOwnership",
+      "snippet": "public static bool Grant(PlayerProfile profile, string itemId)"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+      "line": 54,
+      "symbol": "Ziptide.Core.WeaponOwnership",
+      "snippet": "public static List<string> OwnedIds(PlayerProfile profile)"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/FirstHourHolsterSignal.cs",
       "line": 15,
       "symbol": "Ziptide.Gameplay.FirstHourHolsterSignal",
@@ -23468,6 +23504,24 @@
       "line": 14,
       "symbol": "Ziptide.Multiplayer.Conquest.ConquestResource",
       "snippet": "/// so the Gameplay-side save can JsonUtility it, same as PlayerProfile."
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs",
+      "line": 15,
+      "symbol": "Ziptide.Tests.EditMode.ArmouryCarouselCoreTests",
+      "snippet": "private static PlayerProfile Profile(params string[] ownedIds)"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs",
+      "line": 17,
+      "symbol": "Ziptide.Tests.EditMode.ArmouryCarouselCoreTests",
+      "snippet": "var p = new PlayerProfile();"
     },
     {
       "category": "save_state",
@@ -24188,6 +24242,15 @@
       "line": 22,
       "symbol": "Ziptide.Core.RecoveryFeatureId",
       "snippet": "SaveSystem = 13,"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+      "line": 11,
+      "symbol": "Ziptide.Core.WeaponOwnership",
+      "snippet": "/// save field. That is deliberate: `SaveSystem` is a protected owner, and a schema change to store"
     },
     {
       "category": "save_state",
@@ -25043,6 +25106,15 @@
       "line": 172,
       "symbol": "Ziptide.Ship.SpaceTargetRuntime",
       "snippet": "SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs",
+      "line": 124,
+      "symbol": "Ziptide.Tests.EditMode.ArmouryCarouselCoreTests",
+      "snippet": "// SaveSystem is a protected owner; a schema change to store what the flag set already"
     },
     {
       "category": "save_state",

@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 806,
-  "findingCount": 2906,
+  "scannedFiles": 809,
+  "findingCount": 2914,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -16527,6 +16527,54 @@
         ]
       },
       {
+        "owner": "Ziptide.Core.WeaponOwnership",
+        "evidenceCount": 5,
+        "codes": [
+          "PLAYER_PROFILE_REFERENCE",
+          "SAVE_SYSTEM_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs"
+        ],
+        "evidence": [
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+            "line": 10,
+            "symbol": "Ziptide.Core.WeaponOwnership",
+            "snippet": "/// Ownership rides the EXISTING persisted flag set on <see cref=\"PlayerProfile\"/> rather than a new"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+            "line": 11,
+            "symbol": "Ziptide.Core.WeaponOwnership",
+            "snippet": "/// save field. That is deliberate: `SaveSystem` is a protected owner, and a schema change to store"
+          },
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+            "line": 27,
+            "symbol": "Ziptide.Core.WeaponOwnership",
+            "snippet": "public static bool Owns(PlayerProfile profile, string itemId)"
+          },
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+            "line": 37,
+            "symbol": "Ziptide.Core.WeaponOwnership",
+            "snippet": "public static bool Grant(PlayerProfile profile, string itemId)"
+          },
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+            "line": 54,
+            "symbol": "Ziptide.Core.WeaponOwnership",
+            "snippet": "public static List<string> OwnedIds(PlayerProfile profile)"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Core.WorldResolveResult",
         "evidenceCount": 2,
         "codes": [
@@ -18638,6 +18686,40 @@
             "line": 172,
             "symbol": "Ziptide.Ship.SpaceTargetRuntime",
             "snippet": "SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.ArmouryCarouselCoreTests",
+        "evidenceCount": 3,
+        "codes": [
+          "PLAYER_PROFILE_REFERENCE",
+          "SAVE_SYSTEM_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs",
+            "line": 15,
+            "symbol": "Ziptide.Tests.EditMode.ArmouryCarouselCoreTests",
+            "snippet": "private static PlayerProfile Profile(params string[] ownedIds)"
+          },
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs",
+            "line": 17,
+            "symbol": "Ziptide.Tests.EditMode.ArmouryCarouselCoreTests",
+            "snippet": "var p = new PlayerProfile();"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs",
+            "line": 124,
+            "symbol": "Ziptide.Tests.EditMode.ArmouryCarouselCoreTests",
+            "snippet": "// SaveSystem is a protected owner; a schema change to store what the flag set already"
           }
         ]
       },

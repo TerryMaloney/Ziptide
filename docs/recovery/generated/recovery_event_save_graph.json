@@ -1,7 +1,7 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 806,
-  "evidenceCount": 839,
+  "scannedFiles": 809,
+  "evidenceCount": 843,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 50,
@@ -9,7 +9,7 @@
     "EVENT_SUBSCRIBE": 141,
     "EVENT_UNSUBSCRIBE": 87,
     "PLAYER_PREFS_ACCESS": 20,
-    "PROFILE_FIELD_ACCESS": 387,
+    "PROFILE_FIELD_ACCESS": 391,
     "SAVE_ACCESS": 84
   },
   "unmatchedNamedSubscriptionCount": 62,
@@ -2819,6 +2819,33 @@
         "target": "HasFlag",
         "detail": "profile",
         "snippet": "if (profile.HasFlag(flag)) return 0;"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+        "line": 30,
+        "owner": "Ziptide.Core.WeaponOwnership",
+        "target": "HasFlag",
+        "detail": "profile",
+        "snippet": "return profile.HasFlag(OwnedFlag(itemId));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+        "line": 41,
+        "owner": "Ziptide.Core.WeaponOwnership",
+        "target": "HasFlag",
+        "detail": "profile",
+        "snippet": "if (profile.HasFlag(flag)) return false;"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+        "line": 61,
+        "owner": "Ziptide.Core.WeaponOwnership",
+        "target": "HasFlag",
+        "detail": "profile",
+        "snippet": "if (profile.HasFlag(OwnedFlag(id))) owned.Add(id);"
       },
       {
         "kind": "PROFILE_FIELD_ACCESS",
@@ -5667,6 +5694,15 @@
         "path": "Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs",
         "line": 63,
         "owner": "Ziptide.Core.TransmissionProgress",
+        "target": "SetFlag",
+        "detail": "profile",
+        "snippet": "profile.SetFlag(flag);"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+        "line": 42,
+        "owner": "Ziptide.Core.WeaponOwnership",
         "target": "SetFlag",
         "detail": "profile",
         "snippet": "profile.SetFlag(flag);"
@@ -9391,6 +9427,42 @@
       "target": "SetFlag",
       "detail": "profile",
       "snippet": "profile.SetFlag(flag);"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+      "line": 30,
+      "owner": "Ziptide.Core.WeaponOwnership",
+      "target": "HasFlag",
+      "detail": "profile",
+      "snippet": "return profile.HasFlag(OwnedFlag(itemId));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+      "line": 41,
+      "owner": "Ziptide.Core.WeaponOwnership",
+      "target": "HasFlag",
+      "detail": "profile",
+      "snippet": "if (profile.HasFlag(flag)) return false;"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+      "line": 42,
+      "owner": "Ziptide.Core.WeaponOwnership",
+      "target": "SetFlag",
+      "detail": "profile",
+      "snippet": "profile.SetFlag(flag);"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs",
+      "line": 61,
+      "owner": "Ziptide.Core.WeaponOwnership",
+      "target": "HasFlag",
+      "detail": "profile",
+      "snippet": "if (profile.HasFlag(OwnedFlag(id))) owned.Add(id);"
     },
     {
       "kind": "EVENT_UNSUBSCRIBE",

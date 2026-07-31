@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **806**
-- Scanner findings: **2906**
+- Scanned files: **809**
+- Scanner findings: **2914**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -3625,6 +3625,16 @@ None.
   - `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:47` **PLAYER_PROFILE_REFERENCE** — `public static int SyncClarityFlags(PlayerProfile profile)`
   - `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:60` **PLAYER_PROFILE_REFERENCE** — `private static int SetIfMissing(PlayerProfile profile, string flag)`
 
+### `Ziptide.Core.WeaponOwnership` — 5 signal(s)
+
+- Codes: `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:10` **PLAYER_PROFILE_REFERENCE** — `/// Ownership rides the EXISTING persisted flag set on <see cref="PlayerProfile"/> rather than a new`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:11` **SAVE_SYSTEM_REFERENCE** — `/// save field. That is deliberate: `SaveSystem` is a protected owner, and a schema change to store`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:27` **PLAYER_PROFILE_REFERENCE** — `public static bool Owns(PlayerProfile profile, string itemId)`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:37` **PLAYER_PROFILE_REFERENCE** — `public static bool Grant(PlayerProfile profile, string itemId)`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:54` **PLAYER_PROFILE_REFERENCE** — `public static List<string> OwnedIds(PlayerProfile profile)`
+
 ### `Ziptide.Core.WorldResolveResult` — 2 signal(s)
 
 - Codes: `PLAYER_PROFILE_REFERENCE`
@@ -4131,6 +4141,14 @@ None.
 - Codes: `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs`
   - `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs:172` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,`
+
+### `Ziptide.Tests.EditMode.ArmouryCarouselCoreTests` — 3 signal(s)
+
+- Codes: `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs:15` **PLAYER_PROFILE_REFERENCE** — `private static PlayerProfile Profile(params string[] ownedIds)`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs:17` **PLAYER_PROFILE_REFERENCE** — `var p = new PlayerProfile();`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs:124` **SAVE_SYSTEM_REFERENCE** — `// SaveSystem is a protected owner; a schema change to store what the flag set already`
 
 ### `Ziptide.Tests.EditMode.ComfortSettingsTests` — 2 signal(s)
 

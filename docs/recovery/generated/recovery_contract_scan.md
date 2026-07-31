@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **806**
-- Findings: **2906**
+- Scanned files: **809**
+- Findings: **2914**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -18,7 +18,7 @@
 | `persistence` | 28 |
 | `runtime_creation` | 741 |
 | `runtime_ui` | 132 |
-| `save_state` | 289 |
+| `save_state` | 297 |
 | `scene_loading` | 9 |
 | `xri_ownership` | 93 |
 
@@ -2620,6 +2620,10 @@
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:23` · `Ziptide.Core.TransmissionProgress` — PlayerProfile reference. `public static int ComputeTier(PlayerProfile profile)`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:47` · `Ziptide.Core.TransmissionProgress` — PlayerProfile reference. `public static int SyncClarityFlags(PlayerProfile profile)`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:60` · `Ziptide.Core.TransmissionProgress` — PlayerProfile reference. `private static int SetIfMissing(PlayerProfile profile, string flag)`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:10` · `Ziptide.Core.WeaponOwnership` — PlayerProfile reference. `/// Ownership rides the EXISTING persisted flag set on <see cref="PlayerProfile"/> rather than a new`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:27` · `Ziptide.Core.WeaponOwnership` — PlayerProfile reference. `public static bool Owns(PlayerProfile profile, string itemId)`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:37` · `Ziptide.Core.WeaponOwnership` — PlayerProfile reference. `public static bool Grant(PlayerProfile profile, string itemId)`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:54` · `Ziptide.Core.WeaponOwnership` — PlayerProfile reference. `public static List<string> OwnedIds(PlayerProfile profile)`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/FirstHourHolsterSignal.cs:15` · `Ziptide.Gameplay.FirstHourHolsterSignal` — PlayerProfile reference. `PlayerProfile profile,`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:181` · `Ziptide.Gameplay.HolsterSocketInteractor` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:8` · `Ziptide.Gameplay.SaveSystem` — PlayerProfile reference. `/// Owns the live <see cref="PlayerProfile"/> and persists it to disk as JSON in`
@@ -2647,6 +2651,8 @@
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:145` · `Ziptide.Gameplay.ShipRefit` — PlayerProfile reference. `private static void ApplyDecals(Transform root, PlayerProfile profile)`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:176` · `Ziptide.Gameplay.ShipRefit` — PlayerProfile reference. `private static void ApplyNameplate(Transform root, PlayerProfile profile, ShipChassisPreset chassis)`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Conquest/PlanetNode.cs:14` · `Ziptide.Multiplayer.Conquest.ConquestResource` — PlayerProfile reference. `/// so the Gameplay-side save can JsonUtility it, same as PlayerProfile.`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs:15` · `Ziptide.Tests.EditMode.ArmouryCarouselCoreTests` — PlayerProfile reference. `private static PlayerProfile Profile(params string[] ownedIds)`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs:17` · `Ziptide.Tests.EditMode.ArmouryCarouselCoreTests` — PlayerProfile reference. `var p = new PlayerProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/CosmeticLockerTests.cs:16` · `Ziptide.Tests.EditMode.CosmeticLockerTests` — PlayerProfile reference. `var p = new PlayerProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/CosmeticLockerTests.cs:26` · `Ziptide.Tests.EditMode.CosmeticLockerTests` — PlayerProfile reference. `var p = new PlayerProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/CosmeticLockerTests.cs:39` · `Ziptide.Tests.EditMode.CosmeticLockerTests` — PlayerProfile reference. `var p = new PlayerProfile();`
@@ -2727,6 +2733,7 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryAutomaticOwnerCatalog.cs:52` · `Ziptide.Core.RecoveryAutomaticOwnerRegistration` — SaveSystem reference. `Required("SAVE_SYSTEM_BOOTSTRAP", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs", "Ziptide.Gameplay.SaveSystem", RecoveryFeatureId.SaveSystem),`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs:49` · `Ziptide.Core.RecoveryExposureProfile` — SaveSystem reference. `RecoveryFeatureId.SaveSystem,`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryFeatureId.cs:22` · `Ziptide.Core.RecoveryFeatureId` — SaveSystem reference. `SaveSystem = 13,`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/WeaponOwnership.cs:11` · `Ziptide.Core.WeaponOwnership` — SaveSystem reference. `/// save field. That is deliberate: `SaveSystem` is a protected owner, and a schema change to store`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:24` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `/// <see cref="LedgerSource.Factory"/>) onto the live SaveSystem profile.`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:117` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:169` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `if (autosave) SaveSystem.AutosaveNow("belt_edit");`
@@ -2822,6 +2829,7 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:149` · `Ziptide.Gameplay.WorldTravelStation` — SaveSystem reference. `+ " missing=" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?"));`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:155` · `Ziptide.Ship.ShipFlightRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs:172` · `Ziptide.Ship.SpaceTargetRuntime` — SaveSystem reference. `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ArmouryCarouselCoreTests.cs:124` · `Ziptide.Tests.EditMode.ArmouryCarouselCoreTests` — SaveSystem reference. `// SaveSystem is a protected owner; a schema change to store what the flag set already`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ComfortSettingsTests.cs:106` · `Ziptide.Tests.EditMode.ComfortSettingsTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem.", source);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ComfortSettingsTests.cs:121` · `Ziptide.Tests.EditMode.ComfortSettingsTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem.", source);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:184` · `Ziptide.Tests.EditMode.FirstHourObservationCoreTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem", source);`
