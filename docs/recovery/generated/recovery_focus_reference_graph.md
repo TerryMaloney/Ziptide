@@ -1,7 +1,7 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **796**
-- Focused references: **461**
+- Scanned C# files: **798**
+- Focused references: **466**
 
 ## melee
 
@@ -148,9 +148,9 @@
 
 ## repairObjective
 
-- References: **245**
-- Files: **57**
-- Non-declaration caller files: **56**
+- References: **250**
+- Files: **60**
+- Non-declaration caller files: **59**
 
 ### `CastOffArming`
 
@@ -190,6 +190,8 @@
 - **reference** · `Ziptide.Content.WorldPackDefinition` · `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackDefinition.cs:43` — `"Pure data — JobDirector materializes ChoiceStation objects, like spawnMarkers.")]`
 - **reference** · `Ziptide.Content.WorldPackDefinition` · `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackDefinition.cs:48` — `"power). Pure data — JobDirector materializes RepairableMachine objects, like spawnMarkers.")]`
 - **reference** · `Ziptide.Content.WorldPackValidator` · `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackValidator.cs:9` — `/// no-opping jobs/travel. Headless (data-only) — EditMode-tested; JobDirector logs the results.`
+- **reference** · `Ziptide.Editor.Audit.WorldAuditRunner` · `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:81` — `// JobDirector validates a pack at world entry, which is on device and too late; this is`
+- **reference** · `Ziptide.Editor.Audit.WorldPackAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WorldPackAuditRules.cs:12` — `/// The validator itself is not new and is not unused: <c>JobDirector</c> calls it at world entry.`
 - **reference** · `Ziptide.Editor.Patching.FlatsSiteAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs:29` — `/// literal name "Marker_flats_site" so JobDirector's scene fallback resolves it and the`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:15` — `/// Idempotent scene patcher for D0 City: ensures D0_City scene exists, blockout (plaza, terraces, alley, railings), and runtime objects (JobDirector, DispatchKiosk, ObjectiveBoard, DeliveryCradle). Call from BuildAndroid or menu.`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:162` — `EnsureJobDirector(worldPack);`
@@ -337,6 +339,9 @@
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:298` — `else if (step is RepairMachineCountStepDefinition repair)`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeRepairTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs:23` — `private static RepairMachineCountStepDefinition Repair(string machineId, int count = 1)`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeRepairTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs:25` — `var s = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();`
+- **reference** · `Ziptide.Tests.EditMode.WorldPackAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackAuditRulesTests.cs:60` — `var repair = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();`
+- **reference** · `Ziptide.Tests.EditMode.WorldPackAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackAuditRulesTests.cs:80` — `var repair = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();`
+- **reference** · `Ziptide.Tests.EditMode.WorldPackAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackAuditRulesTests.cs:120` — `var repair = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();`
 - **reference** · `Ziptide.Tests.EditMode.WorldPackValidatorTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackValidatorTests.cs:182` — `var rm = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();`
 - **reference** · `Ziptide.Tests.EditMode.WorldPackValidatorTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackValidatorTests.cs:195` — `var rm = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();`
 

@@ -1,6 +1,6 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **796**
+- Scanned files: **798**
 - Scanner findings: **2886**
 - Inventory systems: **22**
 
@@ -3177,7 +3177,7 @@ None.
 
 - Codes: `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:161` **XRI_MANAGER_LOOKUP** — `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:169` **XRI_MANAGER_LOOKUP** — `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
 
 ### `Ziptide.Editor.Setup.EnsureLocomotionRig` — 1 signal(s)
 
@@ -4885,7 +4885,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:454` **FALLBACK_MARKER** — `return 1.0f; // fallback: at least 1m above ground`
+  - `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:462` **FALLBACK_MARKER** — `return 1.0f; // fallback: at least 1m above ground`
 
 ### `Ziptide.Editor.Patching.BuildingBuilder` — 2 signal(s)
 

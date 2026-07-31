@@ -1,7 +1,7 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 796,
-  "referenceCount": 461,
+  "scannedFiles": 798,
+  "referenceCount": 466,
   "summaries": {
     "melee": {
       "referenceCount": 113,
@@ -89,9 +89,9 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 245,
-      "fileCount": 57,
-      "callerFileCount": 56,
+      "referenceCount": 250,
+      "fileCount": 60,
+      "callerFileCount": 59,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/JobRewards.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs",
@@ -106,6 +106,8 @@
         "Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackDefinition.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackValidator.cs",
         "Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs",
+        "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
+        "Ziptide/Assets/Ziptide/Editor/Audit/WorldPackAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs",
@@ -149,6 +151,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackAuditRulesTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackValidatorTests.cs"
       ],
       "callerPaths": [
@@ -165,6 +168,8 @@
         "Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackDefinition.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackValidator.cs",
         "Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs",
+        "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
+        "Ziptide/Assets/Ziptide/Editor/Audit/WorldPackAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs",
@@ -207,6 +212,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackAuditRulesTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackValidatorTests.cs"
       ]
     },
@@ -1599,6 +1605,24 @@
         {
           "focus": "repairObjective",
           "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
+          "line": 81,
+          "symbol": "Ziptide.Editor.Audit.WorldAuditRunner",
+          "snippet": "// JobDirector validates a pack at world entry, which is on device and too late; this is",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldPackAuditRules.cs",
+          "line": 12,
+          "symbol": "Ziptide.Editor.Audit.WorldPackAuditRules",
+          "snippet": "/// The validator itself is not new and is not unused: <c>JobDirector</c> calls it at world entry.",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs",
           "line": 29,
           "symbol": "Ziptide.Editor.Patching.FlatsSiteAuthor",
@@ -2817,6 +2841,33 @@
           "line": 25,
           "symbol": "Ziptide.Tests.EditMode.JobRuntimeRepairTests",
           "snippet": "var s = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairMachineCountStepDefinition",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackAuditRulesTests.cs",
+          "line": 60,
+          "symbol": "Ziptide.Tests.EditMode.WorldPackAuditRulesTests",
+          "snippet": "var repair = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairMachineCountStepDefinition",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackAuditRulesTests.cs",
+          "line": 80,
+          "symbol": "Ziptide.Tests.EditMode.WorldPackAuditRulesTests",
+          "snippet": "var repair = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairMachineCountStepDefinition",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackAuditRulesTests.cs",
+          "line": 120,
+          "symbol": "Ziptide.Tests.EditMode.WorldPackAuditRulesTests",
+          "snippet": "var repair = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();",
           "declaration_file": false
         },
         {
@@ -4899,6 +4950,24 @@
       "line": 91,
       "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
       "snippet": "path + \" Grip forward and Grip\u2192Muzzle direction dot=\"",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
+      "line": 81,
+      "symbol": "Ziptide.Editor.Audit.WorldAuditRunner",
+      "snippet": "// JobDirector validates a pack at world entry, which is on device and too late; this is",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldPackAuditRules.cs",
+      "line": 12,
+      "symbol": "Ziptide.Editor.Audit.WorldPackAuditRules",
+      "snippet": "/// The validator itself is not new and is not unused: <c>JobDirector</c> calls it at world entry.",
       "declaration_file": false
     },
     {
@@ -8490,6 +8559,33 @@
       "line": 105,
       "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
       "snippet": "Transform muzzle = new GameObject(\"Muzzle\").transform;",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairMachineCountStepDefinition",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackAuditRulesTests.cs",
+      "line": 60,
+      "symbol": "Ziptide.Tests.EditMode.WorldPackAuditRulesTests",
+      "snippet": "var repair = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairMachineCountStepDefinition",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackAuditRulesTests.cs",
+      "line": 80,
+      "symbol": "Ziptide.Tests.EditMode.WorldPackAuditRulesTests",
+      "snippet": "var repair = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairMachineCountStepDefinition",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackAuditRulesTests.cs",
+      "line": 120,
+      "symbol": "Ziptide.Tests.EditMode.WorldPackAuditRulesTests",
+      "snippet": "var repair = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();",
       "declaration_file": false
     },
     {

@@ -1,14 +1,14 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-31T10:21:39.876962+00:00",
+  "generatedAtUtc": "2026-07-31T10:26:10.754214+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 796,
+  "scannedFiles": 798,
   "findingCount": 2886,
   "categoryCounts": {
     "bootstrap": 46,
@@ -830,7 +830,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
-      "line": 504,
+      "line": 512,
       "symbol": "Ziptide.Editor.Audit.WorldAuditRunner",
       "snippet": "Debug.LogError(\"ZIPTIDE: AUDIT_FAIL blockers=\" + report.totalBlockers + \" warnings=\" + report.totalWarnings);"
     },
@@ -839,7 +839,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
-      "line": 513,
+      "line": 521,
       "symbol": "Ziptide.Editor.Audit.WorldAuditRunner",
       "snippet": "if (printed++ >= 40) { Debug.LogError(\"ZIPTIDE: AUDIT_BLOCKER ... (truncated)\"); return; }"
     },
@@ -848,7 +848,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
-      "line": 514,
+      "line": 522,
       "symbol": "Ziptide.Editor.Audit.WorldAuditRunner",
       "snippet": "Debug.LogError(\"ZIPTIDE: AUDIT_BLOCKER scene=\" + scene.sceneName + \" \" + f);"
     },
@@ -857,7 +857,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
-      "line": 518,
+      "line": 526,
       "symbol": "Ziptide.Editor.Audit.WorldAuditRunner",
       "snippet": "Debug.Log(\"ZIPTIDE: AUDIT_OK blockers=0 warnings=\" + report.totalWarnings);"
     },
@@ -7562,7 +7562,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
-      "line": 454,
+      "line": 462,
       "symbol": "Ziptide.Editor.Audit.WorldAuditRunner",
       "snippet": "return 1.0f; // fallback: at least 1m above ground"
     },
@@ -25634,7 +25634,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
-      "line": 161,
+      "line": 169,
       "symbol": "Ziptide.Editor.Audit.WorldAuditRunner",
       "snippet": "var managers = Object.FindObjectsOfType<XRInteractionManager>();"
     },

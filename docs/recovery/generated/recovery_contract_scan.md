@@ -1,6 +1,6 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **796**
+- Scanned files: **798**
 - Findings: **2886**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
@@ -113,10 +113,10 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/RigDumpExporter.cs:48` · `Ziptide.Editor.Audit.RigDumpExporter` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SCENE_DUMP written to " + outPath);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/UiReadabilityAuditRules.cs:183` · `Ziptide.Editor.Audit.UiReadabilityAuditRules` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: UI_AUDIT scene=" + scene.name +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:16` · `Ziptide.Editor.Audit.WorldAuditRunner` — ZIPTIDE diagnostic tag. `/// Logs ZIPTIDE: AUDIT_OK or ZIPTIDE: AUDIT_FAIL as a single line so build logs`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:504` · `Ziptide.Editor.Audit.WorldAuditRunner` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: AUDIT_FAIL blockers=" + report.totalBlockers + " warnings=" + report.totalWarnings);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:513` · `Ziptide.Editor.Audit.WorldAuditRunner` — ZIPTIDE diagnostic tag. `if (printed++ >= 40) { Debug.LogError("ZIPTIDE: AUDIT_BLOCKER ... (truncated)"); return; }`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:514` · `Ziptide.Editor.Audit.WorldAuditRunner` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: AUDIT_BLOCKER scene=" + scene.sceneName + " " + f);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:518` · `Ziptide.Editor.Audit.WorldAuditRunner` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: AUDIT_OK blockers=0 warnings=" + report.totalWarnings);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:512` · `Ziptide.Editor.Audit.WorldAuditRunner` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: AUDIT_FAIL blockers=" + report.totalBlockers + " warnings=" + report.totalWarnings);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:521` · `Ziptide.Editor.Audit.WorldAuditRunner` — ZIPTIDE diagnostic tag. `if (printed++ >= 40) { Debug.LogError("ZIPTIDE: AUDIT_BLOCKER ... (truncated)"); return; }`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:522` · `Ziptide.Editor.Audit.WorldAuditRunner` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: AUDIT_BLOCKER scene=" + scene.sceneName + " " + f);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:526` · `Ziptide.Editor.Audit.WorldAuditRunner` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: AUDIT_OK blockers=0 warnings=" + report.totalWarnings);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/AmbientMoteAuthor.cs:47` · `Ziptide.Editor.Patching.AmbientMoteAuthor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: AMBIENT_MOTES_AUTHORED recipe=" + recipeId +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:77` · `Ziptide.Editor.Patching.CityWayfindingAuthor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WAYFINDING lanterns=" + lanterns + " legs=" + Mathf.Max(0, route.Count - 1)`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourContractAuthor.cs:140` · `Ziptide.Editor.Patching.FirstHourContractImportResult` — ZIPTIDE diagnostic tag. `"ZIPTIDE: FIRST_HOUR_CONTRACT beats=" + asset.beats.Count +`
@@ -865,7 +865,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:38` · `Ziptide.Editor.Audit.FullSendPresentationAuditRules` — Source text marks fallback/prototype debt. `path + " has " + renderers.Length + " hull renderers; minimum hero fallback is "`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:67` · `Ziptide.Editor.Audit.FullSendPresentationAuditRules` — Source text marks fallback/prototype debt. `path + " has only " + nonCube + " non-cube hull primitives; hero fallback regressed toward a block stack.", path);`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Audit/RouteContinuityAuditRules.cs:78` · `Ziptide.Editor.Audit.RouteContinuityAuditRules` — Source text marks fallback/prototype debt. `// Conservative fallback for uncommon collider types. Generated route slabs are BoxColliders;`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:454` · `Ziptide.Editor.Audit.WorldAuditRunner` — Source text marks fallback/prototype debt. `return 1.0f; // fallback: at least 1m above ground`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:462` · `Ziptide.Editor.Audit.WorldAuditRunner` — Source text marks fallback/prototype debt. `return 1.0f; // fallback: at least 1m above ground`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:11` · `Ziptide.Editor.Patching.BuildingBuilder` — Source text marks fallback/prototype debt. `/// ArtModuleRegistry ("buildingModule:&lt;styleId&gt;/&lt;Module&gt;") with primitive fallback, so Picasso's`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:182` · `Ziptide.Editor.Patching.BuildingBuilder` — Source text marks fallback/prototype debt. `Debug.LogWarning("[Ziptide] KIT_UNFULFILLED id=" + regId + " (primitive fallback walls)");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourContractAuthor.cs:58` · `Ziptide.Editor.Patching.FirstHourContractImportResult` — Source text marks fallback/prototype debt. `/// Runtime code never parses JSON and no fallback beat list exists.`
@@ -2891,7 +2891,7 @@
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:51` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — XRInteractionManager creation. `primaryHost.AddComponent<XRInteractionManager>();`
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:109` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — XRInteractionManager creation. `extra.AddComponent<XRInteractionManager>();`
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:51` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — XRInteractionManager creation. `InteractionManager = managerHost.AddComponent<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:161` · `Ziptide.Editor.Audit.WorldAuditRunner` — XRInteractionManager lookup. `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:169` · `Ziptide.Editor.Audit.WorldAuditRunner` — XRInteractionManager lookup. `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:250` · `Ziptide.Editor.Setup.EnsureLocomotionRig` — XRInteractionManager lookup. `var interactionManager = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:69` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — XRInteractionManager lookup. `if (Object.FindObjectOfType<XRInteractionManager>() == null)`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:75` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — XRInteractionManager lookup. `managerGo = Object.FindObjectOfType<XRInteractionManager>().gameObject;`

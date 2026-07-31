@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 796,
+  "scannedFiles": 798,
   "findingCount": 2886,
   "maps": {
     "bootstrapPersistence": [
@@ -14742,7 +14742,7 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
-            "line": 161,
+            "line": 169,
             "symbol": "Ziptide.Editor.Audit.WorldAuditRunner",
             "snippet": "var managers = Object.FindObjectsOfType<XRInteractionManager>();"
           }
@@ -21574,7 +21574,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
-            "line": 454,
+            "line": 462,
             "symbol": "Ziptide.Editor.Audit.WorldAuditRunner",
             "snippet": "return 1.0f; // fallback: at least 1m above ground"
           }
