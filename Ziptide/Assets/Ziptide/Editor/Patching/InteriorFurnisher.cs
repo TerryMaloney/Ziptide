@@ -30,6 +30,16 @@ namespace Ziptide.Editor.Patching
         public static Transform[] Furnish(Transform root, InteriorPlan plan, Vector2 entry,
             BuildingStyleDefinition style, int seed)
         {
+            // A null style is a THROW, not a downgrade: BuildKind reads style.trimColor
+            // unconditionally, so a caller that could not find its style asset used to take the whole
+            // scene bake down with an NRE rather than shipping plainer furniture. Guarding here fixes
+            // it for every caller instead of only the one that hit it.
+            if (style == null)
+            {
+                style = ScriptableObject.CreateInstance<BuildingStyleDefinition>();
+                Debug.LogWarning("ZIPTIDE: INTERIOR_FURNISH_NO_STYLE — using an in-memory default");
+            }
+
             var furnish = RoomFurnishCore.Furnish(plan, entry, seed);
             var roomParents = new Transform[plan.Rooms.Count];
             for (int i = 0; i < plan.Rooms.Count; i++)

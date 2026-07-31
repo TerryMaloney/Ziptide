@@ -392,18 +392,23 @@ namespace Ziptide.Editor.Patching
         }
 
         /// <summary>
-        /// The style the furnisher draws with. Falls back to the tenement kit rather than failing —
-        /// an unfurnished room is the bug this whole change exists to remove, so a missing style must
-        /// never be the reason a room ships empty again.
+        /// The style the furnisher draws with. NEVER returns null.
+        ///
+        /// That guarantee is load-bearing, not defensive: `InteriorFurnisher` reads `style.trimColor`
+        /// unconditionally, so a missing asset does not degrade to plain furniture — it throws inside
+        /// the bake and takes the whole scene patch down with it. The first version of this method
+        /// looked up the wrong folder and returned null with only a warning, and the comment claimed
+        /// a fallback the code did not implement. CI caught it; the guarantee is now real.
         /// </summary>
         private static BuildingStyleDefinition ResolveInteriorStyle(CityLayoutDefinition kit)
         {
-            const string fallbackPath = "Assets/Ziptide/Content/City/BuildingStyles/toxic_tenement.asset";
-            var style = AssetDatabase.LoadAssetAtPath<BuildingStyleDefinition>(fallbackPath);
-            if (style == null)
-                Debug.LogWarning("ZIPTIDE: INTERIOR_STYLE_MISSING path=" + fallbackPath
-                    + " — furniture will use primitive defaults");
-            return style;
+            const string stylePath = "Assets/Ziptide/Resources/BuildingStyles/toxic_tenement.asset";
+            var style = AssetDatabase.LoadAssetAtPath<BuildingStyleDefinition>(stylePath);
+            if (style != null) return style;
+
+            Debug.LogWarning("ZIPTIDE: INTERIOR_STYLE_MISSING path=" + stylePath
+                + " — furnishing with an in-memory default so the bake still completes");
+            return ScriptableObject.CreateInstance<BuildingStyleDefinition>();
         }
 
         private static void BuildWallWithMaybeGap(Transform parent, string name, Vector3 center, Vector3 size, Color color, bool gap, bool gapAlongX)
