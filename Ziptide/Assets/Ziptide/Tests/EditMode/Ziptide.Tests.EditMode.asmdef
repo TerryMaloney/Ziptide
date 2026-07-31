@@ -9,6 +9,7 @@
         "Ziptide.Ship",
         "Ziptide.Visuals",
         "Unity.XR.Interaction.Toolkit",
+        "Unity.InputSystem",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Ziptide.Editor"

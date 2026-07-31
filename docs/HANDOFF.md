@@ -32,6 +32,96 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-31 (rb133) — 🔧 the `ApplyProcessors` NRE, FIXED at its real cause: the repair only ran after a travel
+
+**Read §1 if you take any input work.** rb132's fix direction ("disable the turn provider across the
+consolidation window") turned out to be the wrong diagnosis, and following it would have added a new
+suspend/resume race to a system that already had a correct fix sitting in the tree, unreachable.
+
+---
+
+#### 1 · The fix was already written. It was installed on one trigger.
+
+`docs/systems/VR_RIG_GOTCHAS.md` #9 nailed this on 2026-07-20: ZIPTIDE's control law is left-stick
+move / right-stick turn, so the left-hand turn and snap properties are authored as embedded direct
+actions with **zero bindings**. Disabling one is not durable — XRI's `OnEnable` runs
+`EnableAllDirectActions`, revives it, and the next `ReadInput` enters the Input System with no
+binding state and throws inside `InputActionState.ApplyProcessors`. The durable spelling is a **null
+action**, and `InputMutationRepairDriver.ClearInertDirectProperties()` did exactly that.
+
+**The mutation was right. Its trigger was wrong.** It lived inside the post-travel repair, and that
+driver's `Update()` opens with:
+
+```csharp
+if (!_sawTravel) return;      // _sawTravel is only set by a TravelCoordinator trip
+```
+
+So **cold boot never swept**, and neither did any PlayMode test that merely loads a scene. `_Boot`'s
+placeholders stayed enabled and the identical crash kept landing on whichever test read first — which
+is precisely the 1–3 test wobble rb132 tabulated and three sessions read as flakiness. rb130 §4 saw
+one name, rb131 saw another, rb132 saw a third; one defect, three costumes.
+
+**Shipped (`e0fad407`):**
+- `LocomotionInertActionSweep` — one implementation, with the asymmetry stated: a property carrying an
+  `InputActionReference` is **never** swept (the asset owns its binding state; nulling it would delete
+  real input). Only a reference-free, map-free, zero-binding action qualifies.
+- The driver runs it at **install (`OnEnable`)**, on **every `sceneLoaded`**, and in the post-travel
+  repair. The log now carries `reason=installed|scene_loaded:<name>|post_travel_repair`, so which
+  trigger fired is visible in a logcat instead of inferred.
+- Both editor authoring sites (`LocomotionContractEnforcer`, `EnsureLocomotionRig`) now say why the
+  placeholder exists and who clears it. Unity cannot serialize a null embedded action, so the
+  build-time half legitimately authors the placeholder — the pairing just has to be legible.
+- 7 EditMode tests: both directions (clear too little → crash, clear too much → delete real input)
+  and all three provider types.
+
+**No protected owner was touched.** `PlayerInputSessionGuard`, `PlayerRigPersistence` and the input
+action assets are unchanged; the whole change is inside the driver the guard already installs.
+
+**⚠ Proof status — this is NOT proven yet.** An intermittent defect is not cleared by one green run;
+that is the same part-for-whole trap as MISS_LEDGER #20. **Dispatch the PlayMode lane three times on
+one SHA and require 43/43 each time before anyone writes "fixed" without a qualifier.** I have not
+done that; CI compile is the only proof level reached here.
+
+---
+
+#### 2 · Every WorldPack is now checked at build time (`5982e469`)
+
+MISS_LEDGER #21's open half, safe to land now that no bake is imminent. `WorldPackAuditRules` runs
+`WorldPackValidator` over every generated pack as a project-wide section of `WorldAuditRunner`, in the
+order the build already uses (patch all scenes → audit). **WARN-only** per the `PerfBudgetAuditRules`
+ratchet — a new blocker in the audit aborts Terry's local build, so it earns promotion after one clean
+run. An empty pack set reports `WORLD_PACK_NONE_FOUND` rather than passing silently.
+
+**Correction to my own rb131:** I wrote that `WorldPackValidator` "is called from nothing but its own
+unit tests." Wrong — `JobDirector.cs:37` calls it at world entry. The gap is narrower than I stated
+and still real: that is a runtime check, on device, after you have already travelled into the broken
+world, and only for the world you entered. I read the test call sites and generalised. Same class as
+MISS_LEDGER #20; recorded there.
+
+---
+
+#### 3 · State
+
+| Item | Where |
+|---|---|
+| CI on `e0fad407` | in flight at time of writing — **read the RUN's conclusion, not one job's** |
+| Golden Android | ✅ `8355ca07` (unchanged by this work) |
+| PlayMode | last known 42/43 on `b4fb5ec8`; **needs 3× dispatch on a post-fix SHA** |
+| `level1_wiring_gate` | pass, 22 features, 0 findings |
+| `tools/tests` | 297 OK |
+
+#### 4 · Next
+
+1. **Dispatch PlayMode ×3 on the post-fix SHA.** That is the only honest proof for §1.
+2. Promote `WORLD_PACK_INVALID` from Warning to Blocker after one clean audit run (§2's ratchet).
+3. Still unbuilt from rb130 §3: W002's defend wave / garden plot / glyph plate · pause+settings board ·
+   title + legal/credits · all music and VO · all final art.
+4. `ZiplineRuntime.IsDesignatedArrival` is public, tested, and called by nothing — either wire it or
+   delete it.
+
+**Commits:** `e0fad407` (input sweep), `5982e469` (pack audit).
+
+
 ### 2026-07-30 (rb132) — 🔬 the last PlayMode red, DIAGNOSED: it is the Input System `ApplyProcessors` NRE, still alive
 
 **Correction to rb131 first:** I wrote "the PlayMode red is cleared". It was not, and I claimed it

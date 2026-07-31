@@ -207,13 +207,17 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     enforced. **CLASS:** a cross-file invariant that is automatic on the generated path and manual
     on the bespoke path — the bespoke path inherits the assumption without the enforcement.
     **SYSTEM CHANGE:** ① the wiring gate's 22nd feature binds the contract step to the pack machine
-    (mutation-tested: removing either half reds CI) — DONE. ② **`WorldPackValidator` already
-    contains the rule that predicts this exact defect in words ("Repair 'X' but the pack spawns no
-    such machine — likely un-completable") and is called from NOTHING but its own unit tests.**
-    Wire it into `WorldAuditRunner` as a project-wide pack report so every world is checked, not
-    just the one someone remembered — WARN first per the `PerfBudgetAuditRules` ratchet, promote to
-    blocker after one clean run (→ open; deliberately not done mid-session with a bake imminent,
-    because a new blocker in the audit aborts Terry's local build).
+    (mutation-tested: removing either half reds CI) — DONE. ② `WorldPackValidator` already contains
+    the rule that predicts this exact defect in words ("Repair 'X' but the pack spawns no such
+    machine — likely un-completable"). Wire it into `WorldAuditRunner` as a project-wide pack report
+    so every world is checked, not just the one someone remembered — WARN first per the
+    `PerfBudgetAuditRules` ratchet, promote to blocker after one clean run — **DONE 2026-07-31
+    (`WorldPackAuditRules`)**.
+    **CORRECTION (2026-07-31):** I wrote above that the validator "is called from NOTHING but its
+    own unit tests". That was wrong — `JobDirector.cs:37` calls it at world entry. The gap is
+    narrower than I stated and still real: that call is a RUNTIME check, on device, after the player
+    has already travelled into the broken world, and only for the world they entered. I read the
+    test call sites and generalised; the honest claim was "nothing checks packs at BUILD time".
     (→ pending: closes when a green-run citation is part of the standard session report format.)
 
 22. **WHAT:** The `InputActionState.ApplyProcessors` NRE was diagnosed correctly on 2026-07-20 and
