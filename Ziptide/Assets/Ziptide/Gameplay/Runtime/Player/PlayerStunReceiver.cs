@@ -5,7 +5,11 @@ namespace Ziptide.Gameplay
 {
     /// <summary>
     /// Lives on the persistent rig. Non-lethal hit reaction for drone stun bolts (Drone Combat V1):
-    /// a brief screen flash + temporary movement slow that self-clears. NO health, NO death.
+    /// a brief screen flash + temporary movement slow that self-clears.
+    ///
+    /// ⚠ This once read "NO health, NO death" — and that was the largest gameplay hole in the game:
+    /// every creature's authored `damage` applied to nobody, so combat had no stakes. Phase B ended
+    /// it. This receiver now hosts <see cref="PlayerArmor"/>, which owns armor, death and respawn.
     /// Ensured by <see cref="PlayerRigPersistence"/> so it's present in every world.
     /// </summary>
     public class PlayerStunReceiver : MonoBehaviour
@@ -35,6 +39,12 @@ namespace Ziptide.Gameplay
         {
             _cam = GetComponentInChildren<Camera>();
             _move = GetComponentInChildren<ActionBasedContinuousMoveProvider>(true);
+
+            // COMBAT_HEALTH_PLAN Phase B: the class summary above used to end "NO health, NO death".
+            // It does now. This receiver already owns the head, the screen flash and the incoming-fire
+            // tracer, so it hosts the armor shell rather than a new automatic owner being registered
+            // for it — the shell reuses this feedback instead of inventing a second flash.
+            PlayerArmor.EnsureOn(gameObject);
         }
 
         /// <summary>
