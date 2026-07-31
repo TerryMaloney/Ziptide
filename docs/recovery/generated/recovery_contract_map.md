@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **815**
-- Scanner findings: **2926**
+- Scanner findings: **2928**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -908,11 +908,11 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:86` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:277` **CREATE_PRIMITIVE** — `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:320` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:477` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:615` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:661` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:690` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:714` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:482` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:620` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:666` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:695` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:719` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — 4 signal(s)
 
@@ -999,9 +999,9 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs:37` **NEW_GAME_OBJECT** — `var node = new GameObject("Room_" + i);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs:45` **NEW_GAME_OBJECT** — `var go = new GameObject(item.Kind);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs:202` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(type);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs:47` **NEW_GAME_OBJECT** — `var node = new GameObject("Room_" + i);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs:55` **NEW_GAME_OBJECT** — `var go = new GameObject(item.Kind);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs:212` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(type);`
 
 ### `Ziptide.Editor.Patching.PatcherUtil` — 2 signal(s)
 
@@ -4939,6 +4939,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:11` **FALLBACK_MARKER** — `/// ArtModuleRegistry ("buildingModule:&lt;styleId&gt;/&lt;Module&gt;") with primitive fallback, so Picasso's`
   - `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:182` **FALLBACK_MARKER** — `Debug.LogWarning("[Ziptide] KIT_UNFULFILLED id=" + regId + " (primitive fallback walls)");`
+
+### `Ziptide.Editor.Patching.CityBuilder` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:401` **FALLBACK_MARKER** — `/// a fallback the code did not implement. CI caught it; the guarantee is now real.`
 
 ### `Ziptide.Editor.Patching.FirstHourContractImportResult` — 1 signal(s)
 

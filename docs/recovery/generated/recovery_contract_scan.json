@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-31T23:26:27.870132+00:00",
+  "generatedAtUtc": "2026-07-31T23:43:30.984282+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,12 +9,12 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 815,
-  "findingCount": 2926,
+  "findingCount": 2928,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 703,
+    "diagnostics": 704,
     "events": 73,
-    "fallback_debt": 179,
+    "fallback_debt": 180,
     "global_render": 95,
     "input": 246,
     "materials": 281,
@@ -37,7 +37,7 @@
     "EDITOR_BOOTSTRAP": 10,
     "EVENT_DECLARATION": 53,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 179,
+    "FALLBACK_MARKER": 180,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 235,
     "INPUT_BUTTON_REFERENCE": 10,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 703
+    "ZIPTIDE_LOG_TAG": 704
   },
   "findings": [
     {
@@ -893,9 +893,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 404,
+      "line": 409,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
-      "snippet": "Debug.LogWarning(\"ZIPTIDE: INTERIOR_STYLE_MISSING path=\" + fallbackPath"
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: INTERIOR_STYLE_MISSING path=\" + stylePath"
     },
     {
       "category": "diagnostics",
@@ -968,6 +968,15 @@
       "line": 457,
       "symbol": "Ziptide.Editor.Patching.ForgePhotoBooth",
       "snippet": "Debug.Log(\"ZIPTIDE: FORGE_PHOTO id=\" + id + \" shot=\" + shot.name);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs",
+      "line": 40,
+      "symbol": "Ziptide.Editor.Patching.InteriorFurnisher",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: INTERIOR_FURNISH_NO_STYLE \u2014 using an in-memory default\");"
     },
     {
       "category": "diagnostics",
@@ -7772,6 +7781,15 @@
       "line": 182,
       "symbol": "Ziptide.Editor.Patching.BuildingBuilder",
       "snippet": "Debug.LogWarning(\"[Ziptide] KIT_UNFULFILLED id=\" + regId + \" (primitive fallback walls)\");"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+      "line": 401,
+      "symbol": "Ziptide.Editor.Patching.CityBuilder",
+      "snippet": "/// a fallback the code did not implement. CI caught it; the guarantee is now real."
     },
     {
       "category": "fallback_debt",
@@ -15059,7 +15077,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 477,
+      "line": 482,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15068,7 +15086,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 690,
+      "line": 695,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -15194,7 +15212,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs",
-      "line": 202,
+      "line": 212,
       "symbol": "Ziptide.Editor.Patching.InteriorFurnisher",
       "snippet": "var go = GameObject.CreatePrimitive(type);"
     },
@@ -17579,7 +17597,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 615,
+      "line": 620,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -17588,7 +17606,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 661,
+      "line": 666,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
     },
@@ -17597,7 +17615,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 714,
+      "line": 719,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -17768,7 +17786,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs",
-      "line": 37,
+      "line": 47,
       "symbol": "Ziptide.Editor.Patching.InteriorFurnisher",
       "snippet": "var node = new GameObject(\"Room_\" + i);"
     },
@@ -17777,7 +17795,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs",
-      "line": 45,
+      "line": 55,
       "symbol": "Ziptide.Editor.Patching.InteriorFurnisher",
       "snippet": "var go = new GameObject(item.Kind);"
     },
