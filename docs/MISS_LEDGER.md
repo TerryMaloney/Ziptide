@@ -301,6 +301,27 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     as an explicit ⚠ in COMBAT_HEALTH_PLAN's header so the next reader is warned at the point of use.
     (→ pending: closes when the grep-first step is in OPERATOR_START_HERE's Definition of Done.)
 
+26. **WHAT:** Three code commits today passed CI (`adc108f4`, `d655ac0c`, `911ccd1f`) and only the
+    first has a **durable** green record. `docs/CI_VERDICT.md` still names `52fee309` as the last
+    GREEN, so anyone reading the committed record — the thing CLAUDE.md's workflow-integrity rule
+    points at — under-reports what is actually verified.
+    **FOUND BY:** noticing the verdict file never updated past `52fee309` while the API said two
+    later runs succeeded (2026-07-31).
+    **WHY MISSED:** the verdict job refuses a stale write, and correctly so: it tolerates later
+    commits only to generated evidence, `CI_VERDICT.md`, `HANDOFF.md` and `handoff_queue/**`. I
+    pushed docs touching `TONIGHT_TEST_CARD.md`, `MISS_LEDGER.md`, `EXCELLENCE_MAP.md` and
+    `CURRENT_EXECUTION_CHECKLIST.md` within a minute of each code push, so by the time the run
+    finished the head had moved to a path the writer does not tolerate. **The mechanism is right;
+    my sequencing was wrong.** Every one of those doc pushes cost the code commit its record.
+    **CLASS:** a correct conservative guard defeated by push ordering — the evidence is lost not
+    because verification failed but because the author raced it. Nothing is red, so nothing warns.
+    **SYSTEM CHANGE:** ① sequence: land docs BEFORE the code commit they describe, or batch them
+    into it; never push unrelated docs while a run is in flight on the previous commit. ② when a
+    verdict is knowingly lost this way, the HANDOFF entry must cite the RUN ID and conclusion
+    directly, so the durable record exists somewhere even when the file is stale — done for today's
+    three in rb134.
+    (→ pending: closes when a session ends with `CI_VERDICT.md` naming its own last code commit.)
+
 ## CLOSED
 
 *(entries move here when their SYSTEM CHANGE is verified in place — the fix alone never closes

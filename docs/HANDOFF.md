@@ -151,6 +151,24 @@ slice, it is small, and it is the one that genuinely needs a headset — "how ma
 breaks" is a feel question no test answers. Landing the shell separately keeps that slice small and
 keeps this one provable. PlayMode **43/43** on `911ccd1f`.
 
+#### 7 · ⚠ `docs/CI_VERDICT.md` UNDER-REPORTS what is verified — read this before believing it
+
+The committed verdict names **`52fee309`** as the last GREEN. That is stale and **pessimistic**: two
+later code commits also passed. The verdict job refuses a write when the head has moved to a path it
+does not tolerate (it allows only generated evidence, `CI_VERDICT.md`, `HANDOFF.md`,
+`handoff_queue/**`) — and I pushed docs touching `TONIGHT_TEST_CARD.md`, `MISS_LEDGER.md` and
+`EXCELLENCE_MAP.md` within a minute of each code push. The guard is right; my sequencing was wrong
+(MISS_LEDGER #26). **Land docs before the code they describe, or batch them into it.**
+
+Authoritative results, by run id — cite these, not the file:
+
+| Commit | What | Run | Conclusion |
+|---|---|---|---|
+| `adc108f4` | atmosphere | `30627442522` | ✅ success (run-level) |
+| `52fee309` | weapon catalog + armoury core | `30630600884` | ✅ success (run-level) |
+| `d655ac0c` | rack + disembark gate | `30633631182` | ✅ success (run-level) |
+| `911ccd1f` | Phase B armor shell | `30645974326` | ✅ EditMode + audit green; PlayMode **43/43** |
+
 **Commits:** `adc108f4` (atmosphere) · `52fee309` (weapon catalog + armoury core) · `d655ac0c` (rack +
 disembark gate) · `a1f12982` (combat plan status) · `911ccd1f` (Phase B shell). Earlier today: the
 `ApplyProcessors` NRE proven fixed (PlayMode 43/43 ×3) and `WorldPackAuditRules`.
