@@ -147,8 +147,22 @@ namespace Ziptide.Tests.EditMode
                 var derived = SkyAtmosphere.ForHazard(v.atmosphere.hazardTag, v.atmosphere.intensity);
                 Assert.IsTrue(derived.HazeEnabled || derived.MoteCount > 0,
                     spec.Key + ": Signature tier claimed but the atmosphere is empty (bad hazardTag or zero intensity)");
-                Assert.IsTrue(v.directionalLightIntensity > 0f || v.overrideAmbient,
-                    spec.Key + ": pillar 4 — a Signature sky's colour must reach the ground (light coupling unset)");
+
+                // Pillar 4 has TWO honest regimes, and a vista must declare which one it is in.
+                //   • vista-driven (the normal case): this asset's own light/ambient coupling.
+                //   • binder-driven (no generated theme, so SkyVistaAuthor never assigns this vista
+                //     and its light fields are never read): the world's own authored fog/ambient.
+                // Before this split, a binder-driven world could only pass by setting light fields
+                // nothing reads — a hollow signature, exactly inverted from the one this gate was
+                // written to catch.
+                bool vistaOwnsCoupling = v.directionalLightIntensity > 0f || v.overrideAmbient;
+                bool declaredElsewhere = !string.IsNullOrEmpty(v.atmosphere.groundCouplingOwner);
+                Assert.IsTrue(vistaOwnsCoupling || declaredElsewhere,
+                    spec.Key + ": pillar 4 — a Signature sky's colour must reach the ground "
+                    + "(set light coupling here, or name what carries it in atmosphere.groundCouplingOwner)");
+                Assert.IsFalse(vistaOwnsCoupling && declaredElsewhere,
+                    spec.Key + ": pillar 4 is claimed twice — either this vista drives the ground "
+                    + "light or something else does, and a vista that does both hides which is real");
             }
             Assert.GreaterOrEqual(signatures, 1, "at least one Signature sky exists (W005)");
         }

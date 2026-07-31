@@ -166,6 +166,21 @@ namespace Ziptide.Editor.Patching
                 new Color(0.40f, 0.50f, 0.70f), new Color(0.25f, 0.35f, 0.50f), bands: 6, seed: 1, phase: 0.3f);
             d.stars.density = 0f;              // smog: no stars over the city
             d.shellGridIntensity = 0f;          // canon: invisible at W001
+
+            // SKYSCAPE_DESIGN §4.1 — the acid default, on the first planet the player stands on.
+            // ToxicCity has no theme asset, so SkyVistaAuthor cannot reach it and the dome/body/light
+            // above still come from the shipped spec fields. WorldAtmosphereBinder reads ONLY this
+            // block, so the city gains air (haze band + green drift) without its look changing.
+            // Intensity is under the Bloom reference (0.8): this is smog you work in all day, not a
+            // set-piece, and the motes have to stay readable against machinery the player is repairing.
+            d.atmosphere.enabled = true;
+            d.atmosphere.hazardTag = "acid";
+            d.atmosphere.intensity = 0.7f;
+            d.atmosphere.bodyGlow = false;      // the legacy path owns the planet; nothing to glow behind
+            // Pillar 4 is already satisfied here, just not by this asset: the city's authored fog is
+            // green (0.18, 0.22, 0.16) and its palette carries a `toxic` green, so the air's colour is
+            // on the ground. Declaring that is honest; setting light fields nothing reads would not be.
+            d.atmosphere.groundCouplingOwner = "ToxicCity.spec.json fog + layout palette";
             return d;
         }
 

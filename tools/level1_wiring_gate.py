@@ -91,6 +91,13 @@ FEATURES: tuple[tuple[str, str, str, str], ...] = (
     ("relay repair machine", "Editor/Patching/ToxicCityContractBuilder.cs",
      r"machineId = ToxicCityContractBuilder\.RelayMachineId",
      r'RepairMachine\("ToxicCity_S4_RelayRepair"'),
+    # SKYSCAPE pillar 3 on the first planet. The atmosphere stack was built and tested against W005,
+    # a world the first level never reaches, while ToxicCity shipped with perfectly still air. The
+    # failure this guards is the quiet one: a binder authored into the scene that never applies,
+    # which looks exactly like working weather in a diff.
+    ("world atmosphere", "Gameplay/Runtime/World/WorldAtmosphereBinder.cs",
+     r"AddComponent<Ziptide\.Gameplay\.WorldAtmosphereBinder>|AddComponent<WorldAtmosphereBinder>",
+     r"_rig\.Apply\(_vista, player\)"),
 )
 
 # Ids the city bake and the contract depend on. A spec that loses one of these strands a step.

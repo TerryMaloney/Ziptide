@@ -105,6 +105,13 @@ namespace Ziptide.Visuals
             public Color hazeTintOverride = new Color(0f, 0f, 0f, 0f);
             [Tooltip("Signature-tier only: soft scatter glow behind body 0 so its edge reads as lit air, not cardboard.")]
             public bool bodyGlow = false;
+
+            [Tooltip("Set ONLY for a world whose sky is NOT driven by this vista (no generated theme, " +
+                     "so SkyVistaAuthor never assigns it and the light/ambient fields below are never " +
+                     "read). Names what actually carries SKYSCAPE pillar 4 — 'the sky's colour reaches " +
+                     "the ground' — e.g. \"ToxicCity.spec.json fog\". Blank means this vista owns its " +
+                     "own coupling in the normal way.")]
+            public string groundCouplingOwner = "";
         }
 
         [System.Serializable]

@@ -107,6 +107,37 @@ namespace Ziptide.Editor.Patching
             // THE HANGAR WALK: berths 1-5 west of your own, empty. Runs after the shipyard exists
             // so it can measure off the real berth rather than the design doc's coordinates.
             QuayBerthAuthor.Build(root, kit);
+
+            // THE AIR: haze band + acid drift (SKYSCAPE_DESIGN §4.1). ToxicCity owns no theme, so
+            // the vista path never reaches it and the first planet shipped with perfectly still,
+            // perfectly clear air. Additive by construction — the binder drives only haze and motes.
+            EnsureWorldAtmosphere(root);
+        }
+
+        /// <summary>
+        /// Point a <see cref="WorldAtmosphereBinder"/> at ToxicCity's authored vista. The dome, the
+        /// planet, the fog and the light all still come from the shipped spec fields; only the
+        /// atmosphere block is read, so this cannot change the city's existing look.
+        /// </summary>
+        private static void EnsureWorldAtmosphere(Transform root)
+        {
+            var vista = AssetDatabase.LoadAssetAtPath<Ziptide.Visuals.SkyVistaDefinition>(
+                SkyVistaLibrary.AssetPathFor(ZiptideConstants.SceneToxicCity));
+            if (vista == null)
+            {
+                // EnsureAllAuthored runs earlier in the bake hook; if it did not, say so rather than
+                // silently shipping still air again.
+                Debug.LogWarning("ZIPTIDE: WORLD_ATMO_AUTHOR skipped cause=no_vista_asset path="
+                    + SkyVistaLibrary.AssetPathFor(ZiptideConstants.SceneToxicCity));
+                return;
+            }
+
+            var go = new GameObject("__WORLD_ATMOSPHERE");
+            go.transform.SetParent(root, false);
+            var binder = go.AddComponent<Ziptide.Gameplay.WorldAtmosphereBinder>();
+            binder.Configure(vista);
+            Debug.Log("ZIPTIDE: WORLD_ATMO_AUTHOR built vista=" + vista.vistaId
+                + " hazard=" + vista.atmosphere.hazardTag);
         }
 
         // The reentry/landing handoff owner (product contract §4 — was "no canonical owner/beat").
