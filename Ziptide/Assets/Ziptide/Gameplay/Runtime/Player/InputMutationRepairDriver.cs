@@ -45,6 +45,36 @@ namespace Ziptide.Gameplay
             ResolveCanonicalFields();
         }
 
+        // The inert-property sweep must NOT wait for a travel. Update() below only repairs after a
+        // trip, so before this hook a cold boot -- and any PlayMode test that merely loads a scene --
+        // kept _Boot's zero-binding left-hand turn/snap properties enabled and met the
+        // ApplyProcessors NRE on the provider's first read. PlayerInputSessionGuard installs this
+        // component during AfterSceneLoad, so OnEnable lands before the first provider Update.
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoadedSweep;
+            SceneManager.sceneLoaded += OnSceneLoadedSweep;
+            SweepInertProperties("installed");
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoadedSweep;
+        }
+
+        private void OnSceneLoadedSweep(Scene scene, LoadSceneMode mode)
+        {
+            SweepInertProperties("scene_loaded:" + (scene.IsValid() ? scene.name : "invalid"));
+        }
+
+        private static void SweepInertProperties(string reason)
+        {
+            int cleared = LocomotionInertActionSweep.SweepLoadedProviders();
+            if (cleared > 0)
+                Debug.Log("ZIPTIDE: INPUT_MUTATION_INERT_CLEARED count=" + cleared
+                    + " reason=" + reason);
+        }
+
         private void Update()
         {
             bool travelling = TravelCoordinator.IsTravelling;
@@ -353,55 +383,20 @@ namespace Ziptide.Gameplay
                 preservedDisabled);
         }
 
-        // Replace empty embedded direct actions with a default property (null action). The XRI
-        // property setters disable the outgoing action while playing, so this is the one mutation
-        // that survives every later OnEnable/EnableAllDirectActions pass. Bound or referenced
-        // actions are never touched.
+        // One implementation, two triggers. The mutation itself lives in LocomotionInertActionSweep so
+        // the post-travel repair below and the install/scene-load hook above can never drift apart --
+        // drift is exactly how the cold-boot path kept crashing after this was "fixed".
         private static int ClearInertDirectProperties(IList<Behaviour> readers)
         {
-            if (readers == null) return 0;
-            int cleared = 0;
-            for (int i = 0; i < readers.Count; i++)
-            {
-                switch (readers[i])
-                {
-                    case ActionBasedContinuousMoveProvider move:
-                        if (IsInertDirectProperty(move.leftHandMoveAction))
-                        { move.leftHandMoveAction = default; cleared++; }
-                        if (IsInertDirectProperty(move.rightHandMoveAction))
-                        { move.rightHandMoveAction = default; cleared++; }
-                        break;
-                    case ActionBasedContinuousTurnProvider turn:
-                        if (IsInertDirectProperty(turn.leftHandTurnAction))
-                        { turn.leftHandTurnAction = default; cleared++; }
-                        if (IsInertDirectProperty(turn.rightHandTurnAction))
-                        { turn.rightHandTurnAction = default; cleared++; }
-                        break;
-                    case ActionBasedSnapTurnProvider snap:
-                        if (IsInertDirectProperty(snap.leftHandSnapTurnAction))
-                        { snap.leftHandSnapTurnAction = default; cleared++; }
-                        if (IsInertDirectProperty(snap.rightHandSnapTurnAction))
-                        { snap.rightHandSnapTurnAction = default; cleared++; }
-                        break;
-                }
-            }
+            int cleared = LocomotionInertActionSweep.Clear(readers);
             if (cleared > 0)
-                Debug.Log("ZIPTIDE: INPUT_MUTATION_INERT_CLEARED count=" + cleared);
+                Debug.Log("ZIPTIDE: INPUT_MUTATION_INERT_CLEARED count=" + cleared
+                    + " reason=post_travel_repair");
             return cleared;
         }
 
-        private static bool IsInertDirectProperty(InputActionProperty property)
-        {
-            if (property.reference != null) return false;
-            return IsInertDirectAction(property.action);
-        }
-
         private static bool IsInertDirectAction(InputAction action)
-        {
-            if (action == null || action.actionMap != null) return false;
-            try { return action.bindings.Count == 0; }
-            catch { return false; }
-        }
+            => LocomotionInertActionSweep.IsInertAction(action);
 
         private static void AddReaderActions(
             IList<Behaviour> readers,

@@ -98,8 +98,16 @@ push and let CI's compile catch a wrong name fast — cheaper than guessing in p
   zero bindings** is assigned `default(InputActionProperty)`. XRI's property setter disables the outgoing
   action, later `OnEnable` has nothing to revive, and `ReadInput` null-skips the property. Log:
   `ZIPTIDE: INPUT_MUTATION_INERT_CLEARED count=...`.
+- **The half that was missing (found 2026-07-31):** the mutation above was correct but reachable from ONE
+  trigger — `InputMutationRepairDriver.Update()` returns early until it has seen a travel. Cold boot, and
+  any PlayMode test that only loads a scene, never swept, so `_Boot`'s left-hand turn/snap placeholders
+  stayed enabled and the same `ApplyProcessors` NRE kept landing intermittently on whichever test read
+  first. Fixed by extracting `LocomotionInertActionSweep` (one implementation) and running it from the
+  driver's `OnEnable` **and** every `sceneLoaded`, as well as the post-travel repair. Log now carries
+  `reason=installed|scene_loaded:<name>|post_travel_repair`.
 - **Hard rule:** for an intentionally unused hand/action, **null/default property beats disabled non-null
-  action**. Before accepting any input-state fix, inspect the later provider lifecycle (`OnEnable`, restore,
+  action** — and the repair must run on *every* path that can reach the read, not just the one where the
+  bug was first seen. Before accepting any input-state fix, inspect the later provider lifecycle (`OnEnable`, restore,
   boot hold, scene load, travel rewire). If that lifecycle can reverse the state toggle, normalize the owned
   property/data instead.
 - **Verification rule:** timing-sensitive input recovery is not accepted after one green route. Require

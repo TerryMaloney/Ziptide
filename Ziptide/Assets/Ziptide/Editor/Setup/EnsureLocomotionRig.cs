@@ -101,6 +101,8 @@ namespace Ziptide.Editor.Setup
             soSnap.FindProperty("m_TurnAmount").floatValue = 45f;
             InputActionReference rightSnap = FindActionReference(inputActionsPath, "XRI RightHand Locomotion", "Snap Turn");
             if (rightSnap != null) soSnap.FindProperty("m_RightHandSnapTurnAction.m_Reference").objectReferenceValue = rightSnap;
+            // Zero-binding placeholder for the hand that never turns. It cannot be serialized as
+            // null, so LocomotionInertActionSweep nulls it at runtime (VR_RIG_GOTCHAS #9).
             soSnap.FindProperty("m_LeftHandSnapTurnAction.m_UseReference").boolValue = false;
             soSnap.FindProperty("m_RightHandSnapTurnAction.m_UseReference").boolValue = true;
             soSnap.ApplyModifiedPropertiesWithoutUndo();

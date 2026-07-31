@@ -39,6 +39,10 @@ namespace Ziptide.Editor.Patching
 
             rightRef.objectReferenceValue = turnReference;
             rightUse.boolValue = true;
+            // Left stick moves; it never turns. Unity serialization cannot persist a null embedded
+            // action, so this authors a zero-binding placeholder that XRI would happily enable and
+            // then crash reading (VR_RIG_GOTCHAS #9). LocomotionInertActionSweep nulls it at runtime,
+            // on install and on every scene load. Change one half and you reopen the crash.
             leftUse.boolValue = false;
             speed.floatValue = TurnModeCore.DefaultSmoothTurnSpeed;
             so.ApplyModifiedPropertiesWithoutUndo();

@@ -216,6 +216,31 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     because a new blocker in the audit aborts Terry's local build).
     (→ pending: closes when a green-run citation is part of the standard session report format.)
 
+22. **WHAT:** The `InputActionState.ApplyProcessors` NRE was diagnosed correctly on 2026-07-20 and
+    the fix shipped (`ClearInertDirectProperties` — null the zero-binding embedded action instead of
+    disabling it), yet the same crash kept landing intermittently in PlayMode eleven days later. The
+    mutation was right; its **trigger** was wrong. It lived inside `InputMutationRepairDriver`'s
+    post-travel repair, and that method's `Update()` returns early until it has seen a travel — so
+    cold boot, and every PlayMode test that merely loads a scene, still met the enabled placeholder
+    and crashed on the provider's first read.
+    **FOUND BY:** reading `Update()`'s early-out while chasing the last PlayMode red (2026-07-31),
+    not from the stack — the stack looked identical to the one already "fixed", which is why three
+    sessions read it as flaky.
+    **WHY MISSED:** the bug was found on the recovery route, so the fix was installed on the recovery
+    route. The route that exhibits a defect is the route that gets the guard; nobody asked which
+    *other* paths reach the same read. VR_RIG_GOTCHAS #9's verification rule even demanded a
+    same-SHA rerun — and got it — because both runs travelled.
+    **CLASS:** a correct repair installed on one trigger path, leaving the identical defect live on
+    every other path to the same call site. The acute fix looks complete because its own reproduction
+    goes green.
+    **SYSTEM CHANGE:** ① the mutation is extracted to `LocomotionInertActionSweep` (one
+    implementation) and driven from install, every `sceneLoaded`, and the post-travel repair, with
+    `reason=` on the log so which trigger fired is visible — DONE. ② the standing rule, recorded in
+    VR_RIG_GOTCHAS #9: **a repair is not accepted until every path that can reach the guarded call
+    has been enumerated and shown to run it** — "the reproduction is green" is not that enumeration.
+    (→ pending: closes when the PlayMode lane is green across three consecutive dispatches on one
+    SHA, which is the only honest proof for an intermittent defect.)
+
 ## CLOSED
 
 *(entries move here when their SYSTEM CHANGE is verified in place — the fix alone never closes
