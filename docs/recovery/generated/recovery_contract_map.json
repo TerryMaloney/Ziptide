@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 798,
-  "findingCount": 2886,
+  "findingCount": 2888,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -2622,7 +2622,7 @@
       },
       {
         "owner": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
-        "evidenceCount": 12,
+        "evidenceCount": 14,
         "codes": [
           "INPUT_ACTION_REFERENCE"
         ],
@@ -2689,28 +2689,42 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
-            "line": 95,
+            "line": 88,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "new InputActionProperty(new InputAction(name, InputActionType.Value, \"<Gamepad>/leftStick\"));"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 101,
             "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
             "snippet": "move.rightHandMoveAction = new InputActionProperty(new InputAction(\"unused\"));"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
-            "line": 96,
+            "line": 103,
             "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
             "snippet": "turn.leftHandTurnAction = new InputActionProperty(new InputAction(\"unused\"));"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
-            "line": 97,
+            "line": 105,
             "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
             "snippet": "snap.leftHandSnapTurnAction = new InputActionProperty(new InputAction(\"unused\"));"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
-            "line": 112,
+            "line": 121,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "// [SerializeField] InputAction, so a freshly added XRI provider carries TWO zero-binding"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 135,
             "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
             "snippet": "turn.leftHandTurnAction = new InputActionProperty(new InputAction(\"unused\"));"
           }

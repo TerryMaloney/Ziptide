@@ -1,10 +1,10 @@
 {
   "tool": "recovery_claim_audit",
-  "claimCount": 265,
-  "unqualifiedCount": 140,
+  "claimCount": 267,
+  "unqualifiedCount": 141,
   "missingDocuments": [],
   "fileCounts": {
-    "docs/CURRENT_EXECUTION_CHECKLIST.md": 42,
+    "docs/CURRENT_EXECUTION_CHECKLIST.md": 44,
     "docs/EXCELLENCE_MAP.md": 36,
     "docs/MASTER_CHECKLIST.md": 34,
     "docs/SPRINT.md": 60,
@@ -17,9 +17,9 @@
     "CI": 80,
     "EDITMODE": 6,
     "PATCHED_AUDIT": 23,
-    "PLAYMODE": 1,
+    "PLAYMODE": 2,
     "QUEST": 54,
-    "UNQUALIFIED": 140,
+    "UNQUALIFIED": 141,
     "VISUAL": 8
   },
   "claims": [
@@ -35,7 +35,29 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 14,
+      "line": 17,
+      "text": "needs the PlayMode lane green \u00d73 on one SHA before anyone drops the qualifier.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "PLAYMODE"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 21,
+      "text": "`docs/production/TONIGHT_TEST_CARD.md` (20 ordered beats, honest \u2705/\ud83d\udfe8/\u274c) are ready and unchanged.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 30,
       "text": "- Head `30f3ed84`. **CI, Fast Preflight and Golden Android are green (run-level).**",
       "markers": [
         "green"
@@ -48,7 +70,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 18,
+      "line": 34,
       "text": "- **Built today:** the five Catch keepers as geometry \u00b7 the tender's tool arms (were dead code) \u00b7",
       "markers": [
         "Built"
@@ -58,7 +80,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 22,
+      "line": 38,
       "text": "- **Not built:** zipline \u00b7 berths 1\u20135 quay pads \u00b7 W002 defend wave/garden/glyph plate \u00b7 pause board \u00b7",
       "markers": [
         "built"
@@ -68,7 +90,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 30,
+      "line": 46,
       "text": "- Latest gameplay/quality-code proof: `e8d18d67732032d79a2806f1e517d19d1aa9330d`, CI run `29170675599`, Unity EditMode green. Later branch commits are unrelated descendants and preserve this cleanup.",
       "markers": [
         "green"
@@ -81,7 +103,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 38,
+      "line": 54,
       "text": "1. `docs/OPERATOR_START_HERE.md` \u2014 laws, verification, ownership, definition of done.",
       "markers": [
         "done"
@@ -91,7 +113,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 40,
+      "line": 56,
       "text": "3. `docs/CI_VERDICT.md` \u2014 whether the latest tested gameplay head is green.",
       "markers": [
         "green"
@@ -101,7 +123,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 60,
+      "line": 76,
       "text": "- [x] Implement the locked asynchronous-travel design. **Code/CI green `c7b5d52`, run `29167548682`; device frame-pacing comparison pending.**",
       "markers": [
         "green"
@@ -114,7 +136,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 61,
+      "line": 77,
       "text": "- [x] Add the WARN-only UI readability/reach build audit. **Code/CI green `a6803ab`, run `29168358234`; generated-scene/device calibration pending.**",
       "markers": [
         "green"
@@ -128,7 +150,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 62,
+      "line": 78,
       "text": "- [x] Write `docs/design/HAPTIC_COVERAGE.md` from inspected existing owners. **Documentation-level gap closed; runtime/device coverage remains deliberately open.**",
       "markers": [
         "closed"
@@ -140,7 +162,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 63,
+      "line": 79,
       "text": "- [x] Build the canonical creature behavior-readability gate. **Seven shipped IDs, \u22653 active states each, telegraph/counter/resolution, source/factory evidence and APK pre-build blocker; code/CI green `d9b6caf`, run `29169591530`.**",
       "markers": [
         "green",
@@ -154,7 +176,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 64,
+      "line": 80,
       "text": "- [x] Build plant and vehicle catalog-breadth audits without touching Picasso visual assets. **Structural CI/APK gate green `b7a6cfa`, run `29170323869`; content warnings remain for unsurfaced plants, three missing vehicle families and no garage.**",
       "markers": [
         "green"
@@ -168,7 +190,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 65,
+      "line": 81,
       "text": "- [x] Harden `AudioDirector` transition/disposal ownership. **Retired persistent sources now release clips; overlapping fades are serialized; code/CI green `e8d18d6`, run `29170675599`; long-session Quest memory soak remains device evidence.**",
       "markers": [
         "green"
@@ -181,7 +203,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 68,
+      "line": 84,
       "text": "- [ ] Continue only with explicitly claimed gameplay/content rows or Terry/Picasso-dependent work; the \u00a77 independent queue is complete.",
       "markers": [
         "complete"
@@ -191,7 +213,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 74,
+      "line": 90,
       "text": "- [ ] `FH-A01-SIGNATURE-CREATURE-PRESENTATION`: W001 species passport and complete review artifacts.",
       "markers": [
         "complete"
@@ -201,7 +223,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 75,
+      "line": 91,
       "text": "- [ ] Do not jump to later FORGE III envelopes before the current water envelope is closed and verified.",
       "markers": [
         "closed",
@@ -212,7 +234,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 96,
+      "line": 112,
       "text": "| FH-X01 contract asset | \u2705 CI green | none |",
       "markers": [
         "green",
@@ -225,7 +247,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 97,
+      "line": 113,
       "text": "| FH-X02 progression core | \u2705 CI green | none |",
       "markers": [
         "green",
@@ -238,7 +260,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 98,
+      "line": 114,
       "text": "| FH-S01 observation | \u2705 CI green | headset evidence |",
       "markers": [
         "green",
@@ -252,7 +274,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 99,
+      "line": 115,
       "text": "| FH-S02 holster | \u2705 CI green | headset evidence |",
       "markers": [
         "green",
@@ -266,7 +288,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 100,
+      "line": 116,
       "text": "| FH-S03 travel | \u2705 CI green | headset evidence |",
       "markers": [
         "green",
@@ -280,7 +302,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 101,
+      "line": 117,
       "text": "| FH-M01 scanner result | \u2705 CI green | normal scanner device check |",
       "markers": [
         "green",
@@ -294,7 +316,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 102,
+      "line": 118,
       "text": "| FH-S04 repair/scan | \u2705 CI green | headset repair/identity check |",
       "markers": [
         "green",
@@ -308,7 +330,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 104,
+      "line": 120,
       "text": "| FH-S06 zipline | \u2705 CI green | headset arrival/release check |",
       "markers": [
         "green",
@@ -322,7 +344,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 105,
+      "line": 121,
       "text": "| FH-S07 Home/W000 surfaces | \ud83d\udfe1 code + CI green | Terry author bake + headset check |",
       "markers": [
         "green"
@@ -335,18 +357,18 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 113,
+      "line": 129,
       "text": "### Complete or substantially complete",
       "markers": [
-        "Complete",
-        "complete"
+        "complete",
+        "Complete"
       ],
       "qualifiers": [],
       "unqualified": true
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 140,
+      "line": 156,
       "text": "- [ ] W001 and Chapter 1 shipped-quality at 72 FPS.",
       "markers": [
         "shipped"
@@ -356,7 +378,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 144,
+      "line": 160,
       "text": "## 6. Historical workstreams \u2014 done and remaining",
       "markers": [
         "done"
@@ -366,7 +388,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 148,
+      "line": 164,
       "text": "**Done:** free-flight/ship handling, space combat v1, ground vehicles v1, garden genetics/plant systems, ecology scheduling/emerge-burrow, furnished interiors and per-room culling.",
       "markers": [
         "Done"
@@ -376,7 +398,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 160,
+      "line": 176,
       "text": "**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, documentation-level haptic coverage inventory, canonical creature behavior-readability CI/APK gate, plant/vehicle catalog structural CI/APK audit, and `AudioDirector` transition/resource cleanup.",
       "markers": [
         "Done"
@@ -390,7 +412,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 174,
+      "line": 190,
       "text": "**Done:** Quality Bar P0\u2013P5, terrain/vistas/POIs/routes/dressing, gardens/build sockets, improved ship hull, tutorial design, async-travel design, broad scene/gameplay integration and device fixes.",
       "markers": [
         "Done"
@@ -402,7 +424,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 185,
+      "line": 201,
       "text": "The ordered queue is complete. Item 8 was a conditional feasibility check and correctly stopped because the current workflow has no proven PlayMode lane.",
       "markers": [
         "complete"
@@ -414,7 +436,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 187,
+      "line": 203,
       "text": "1. [x] Async travel implementation \u2014 code/CI green; device comparison pending.",
       "markers": [
         "green"
@@ -427,7 +449,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 189,
+      "line": 205,
       "text": "3. [x] UI readability/reach audit \u2014 WARN-only build-scene processor + tests green; real-scene/device calibration pending.",
       "markers": [
         "green"
@@ -440,7 +462,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 191,
+      "line": 207,
       "text": "5. [x] Creature behavior-count/readability gate \u2014 one canonical catalog, source/factory evidence, CI tests and APK blocker green.",
       "markers": [
         "green"
@@ -453,7 +475,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 192,
+      "line": 208,
       "text": "6. [x] Plant/vehicle catalog breadth audit \u2014 structural CI/APK blockers green; exact surfacing/asset/garage debt remains warning-level content work.",
       "markers": [
         "green"
@@ -467,7 +489,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 193,
+      "line": 209,
       "text": "7. [x] `AudioDirector` unload/disposal leak hardening \u2014 stopped sources release clips, one transition owner, lifecycle tests green `e8d18d6`, run `29170675599`; device memory soak remains.",
       "markers": [
         "green"
@@ -479,7 +501,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 206,
+      "line": 222,
       "text": "- [ ] W001/Chapter 1 art and sound at shipped quality.",
       "markers": [
         "shipped"
@@ -489,7 +511,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 211,
+      "line": 227,
       "text": "- [ ] Complete Photon combat sync, room-code UX, avatars/voice when hardware is available.",
       "markers": [
         "Complete"
@@ -499,7 +521,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 218,
+      "line": 234,
       "text": "- [ ] Complete all campaign branches, Transmission fragments, and four endings.",
       "markers": [
         "Complete"
@@ -509,7 +531,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 220,
+      "line": 236,
       "text": "- [ ] Complete multiplayer Arena, Photon online, and Tidefront program.",
       "markers": [
         "Complete"
@@ -519,7 +541,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 234,
+      "line": 250,
       "text": "6. Record CI/test/device evidence honestly: code-green is not device-green.",
       "markers": [
         "green"
@@ -621,7 +643,7 @@
     {
       "path": "docs/EXCELLENCE_MAP.md",
       "line": 56,
-      "text": "| Locomotion & comfort | \ud83e\uddf1 v1.1 (move/snap/vignette; Cozy/Standard/Bold and console code-green; device pending) | Player-visible presets; every artificial motion reports/suspends correctly and never parents rig | locked contract; traversal tests; `ComfortSettingsTests` + `ComfortCoverageTests` |",
+      "text": "| Locomotion & comfort | \ud83e\uddf1 v1.1 (move/snap/vignette; Cozy/Standard/Bold and console code-green; device pending) | Player-visible presets; every artificial motion reports/suspends correctly and never parents rig; **no locomotion provider ever reads a zero-binding action** | locked contract; traversal tests; `ComfortSettingsTests` + `ComfortCoverageTests`; `LocomotionInertActionSweepTests` + VR_RIG_GOTCHAS #9 |",
       "markers": [
         "green"
       ],

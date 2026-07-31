@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **798**
-- Scanner findings: **2886**
+- Scanner findings: **2888**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -649,7 +649,7 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:189` **INPUT_ACTION_REFERENCE** — `StringAssert.DoesNotContain("InputAction", source);`
 
-### `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — 12 signal(s)
+### `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — 14 signal(s)
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs`
@@ -661,10 +661,12 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:65` **INPUT_ACTION_REFERENCE** — `InputActionReference reference = InputActionReference.Create(action);`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:76` **INPUT_ACTION_REFERENCE** — `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:78` **INPUT_ACTION_REFERENCE** — `new InputAction("turn", InputActionType.Value, "<Gamepad>/rightStick"));`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:95` **INPUT_ACTION_REFERENCE** — `move.rightHandMoveAction = new InputActionProperty(new InputAction("unused"));`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:96` **INPUT_ACTION_REFERENCE** — `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:97` **INPUT_ACTION_REFERENCE** — `snap.leftHandSnapTurnAction = new InputActionProperty(new InputAction("unused"));`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:112` **INPUT_ACTION_REFERENCE** — `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:88` **INPUT_ACTION_REFERENCE** — `new InputActionProperty(new InputAction(name, InputActionType.Value, "<Gamepad>/leftStick"));`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:101` **INPUT_ACTION_REFERENCE** — `move.rightHandMoveAction = new InputActionProperty(new InputAction("unused"));`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:103` **INPUT_ACTION_REFERENCE** — `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:105` **INPUT_ACTION_REFERENCE** — `snap.leftHandSnapTurnAction = new InputActionProperty(new InputAction("unused"));`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:121` **INPUT_ACTION_REFERENCE** — `// [SerializeField] InputAction, so a freshly added XRI provider carries TWO zero-binding`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:135` **INPUT_ACTION_REFERENCE** — `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
 
 ### `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — 1 signal(s)
 

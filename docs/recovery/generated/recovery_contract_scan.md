@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **798**
-- Findings: **2886**
+- Findings: **2888**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -13,7 +13,7 @@
 | `events` | 71 |
 | `fallback_debt` | 179 |
 | `global_render` | 94 |
-| `input` | 244 |
+| `input` | 246 |
 | `materials` | 278 |
 | `persistence` | 28 |
 | `runtime_creation` | 739 |
@@ -1265,10 +1265,12 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:65` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `InputActionReference reference = InputActionReference.Create(action);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:76` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:78` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `new InputAction("turn", InputActionType.Value, "<Gamepad>/rightStick"));`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:95` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `move.rightHandMoveAction = new InputActionProperty(new InputAction("unused"));`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:96` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:97` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `snap.leftHandSnapTurnAction = new InputActionProperty(new InputAction("unused"));`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:112` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:88` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `new InputActionProperty(new InputAction(name, InputActionType.Value, "<Gamepad>/leftStick"));`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:101` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `move.rightHandMoveAction = new InputActionProperty(new InputAction("unused"));`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:103` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:105` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `snap.leftHandSnapTurnAction = new InputActionProperty(new InputAction("unused"));`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:121` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `// [SerializeField] InputAction, so a freshly added XRI provider carries TWO zero-binding`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:135` · `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — Input System action reference. `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:80` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Input System action reference. `public readonly InputActionAsset Asset;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:82` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Input System action reference. `public InputActionAssetState(InputActionAsset asset)`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:90` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Input System action reference. `public readonly InputAction Action;`
