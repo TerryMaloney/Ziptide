@@ -77,10 +77,26 @@ one name, rb131 saw another, rb132 saw a third; one defect, three costumes.
 **No protected owner was touched.** `PlayerInputSessionGuard`, `PlayerRigPersistence` and the input
 action assets are unchanged; the whole change is inside the driver the guard already installs.
 
-**⚠ Proof status — this is NOT proven yet.** An intermittent defect is not cleared by one green run;
-that is the same part-for-whole trap as MISS_LEDGER #20. **Dispatch the PlayMode lane three times on
-one SHA and require 43/43 each time before anyone writes "fixed" without a qualifier.** I have not
-done that; CI compile is the only proof level reached here.
+**✅ Proof status — the three-run bar was set and then met.** An intermittent defect is not cleared by
+one green run (the part-for-whole trap of MISS_LEDGER #20), so the bar was three consecutive 43/43
+PlayMode observations on identical Unity source. All three landed:
+
+| Run | Tested SHA | Result |
+|---|---|---|
+| `30624847856` | `a7508da6` | **43/43** |
+| `30625474855` | `65e63f8f` | **43/43** |
+| `30626042812` | `886da9ee` | **43/43** |
+
+All three SHAs are bot-authored `[skip ci]` docs/verdict descendants of `8c8af7dc`;
+`git diff 8c8af7dc 886da9ee -- Ziptide/` is **empty**, so the Unity source under test is byte-identical
+across the three. For context, the same lane read 41/43, 40/43 and 42/43 across the three runs before
+this fix, with the failure moving between tests each time.
+
+CI on `8c8af7dc` is **run-level success** (run `30623881031`) — EditMode, patch-scenes + world audit,
+and Android all green, not one job read as the whole.
+
+One caveat that is not a hedge: 43/43 proves the crash is gone from the recovery route in the editor.
+It does not prove turning *feels* right on device. That is Terry's verdict, beat 2 of the test card.
 
 ---
 
@@ -104,22 +120,30 @@ MISS_LEDGER #20; recorded there.
 
 | Item | Where |
 |---|---|
-| CI on `e0fad407` | in flight at time of writing — **read the RUN's conclusion, not one job's** |
+| CI | ✅ **run-level success** on `8c8af7dc`, run `30623881031` |
 | Golden Android | ✅ `8355ca07` (unchanged by this work) |
-| PlayMode | last known 42/43 on `b4fb5ec8`; **needs 3× dispatch on a post-fix SHA** |
+| PlayMode | ✅ **43/43 ×3** — see the table in §1 |
 | `level1_wiring_gate` | pass, 22 features, 0 findings |
 | `tools/tests` | 297 OK |
+| Headset | ❌ **still has not happened.** `tools/level1_test.ps1` + `quest_capture.ps1` + `docs/production/TONIGHT_TEST_CARD.md` are ready and unchanged |
+
+**Two CI reds on the way here, both mine, both test-side** — an asmdef reference my test file needed,
+then two assertions whose expected counts the package's own defaults contradict. Neither red
+challenged the shipped fix. Circuit breaker closed at 2 of 3; MISS_LEDGER #23 records the class.
 
 #### 4 · Next
 
-1. **Dispatch PlayMode ×3 on the post-fix SHA.** That is the only honest proof for §1.
-2. Promote `WORLD_PACK_INVALID` from Warning to Blocker after one clean audit run (§2's ratchet).
+1. **The headset run.** Everything else on this list is cheaper than one device session; that is the
+   bottleneck now, not code.
+2. Promote `WORLD_PACK_INVALID` from Warning to Blocker. §2's ratchet condition — one clean audit run
+   — is **met**: the patch-scenes + world audit job was green on `8c8af7dc` with the new section live.
 3. Still unbuilt from rb130 §3: W002's defend wave / garden plot / glyph plate · pause+settings board ·
    title + legal/credits · all music and VO · all final art.
 4. `ZiplineRuntime.IsDesignatedArrival` is public, tested, and called by nothing — either wire it or
    delete it.
 
-**Commits:** `e0fad407` (input sweep), `5982e469` (pack audit).
+**Commits:** `e0fad407` (input sweep), `d55c81fa` (pack audit), `8a798183` + `8c8af7dc` (my two CI
+reds, both test-side), `13d3e6f4` (docs).
 
 
 ### 2026-07-30 (rb132) — 🔬 the last PlayMode red, DIAGNOSED: it is the Input System `ApplyProcessors` NRE, still alive

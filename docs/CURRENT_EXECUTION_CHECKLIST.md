@@ -13,10 +13,14 @@ Read **`docs/HANDOFF.md` rb133** first. Short version:
 - **The `ApplyProcessors` NRE is fixed at its real cause** (`e0fad407`): the repair was correct but
   only ran after a travel, so cold boot and scene-load-only PlayMode tests never swept the
   zero-binding left-hand turn/snap placeholders. Now swept at install, on every scene load, and in
-  the post-travel repair (`LocomotionInertActionSweep`). **Not yet proven** — an intermittent defect
-  needs the PlayMode lane green ×3 on one SHA before anyone drops the qualifier.
+  the post-travel repair (`LocomotionInertActionSweep`).
+  **PROVEN: PlayMode 43/43 three times** on byte-identical Unity source — runs `30624847856`,
+  `30625474855`, `30626042812`. The same lane read 41/43 → 40/43 → 42/43 before the fix, the failure
+  moving between tests each run. CI is **run-level success** on `8c8af7dc` (run `30623881031`).
+  **The recovery PlayMode red that has been open since rb36 is closed.**
 - **Every WorldPack is now validated at build time** (`d55c81fa`), WARN-first — MISS_LEDGER #21's
-  open half. Promote `WORLD_PACK_INVALID` to blocker after one clean audit run.
+  open half. The ratchet condition is met (clean audit job on `8c8af7dc`), so promoting
+  `WORLD_PACK_INVALID` to blocker is the next safe step — best done when no bake is imminent.
 - **Terry did not get on the headset.** `tools/level1_test.ps1` + `tools/quest_capture.ps1` and
   `docs/production/TONIGHT_TEST_CARD.md` (20 ordered beats, honest ✅/🟨/❌) are ready and unchanged.
 - Still unbuilt: W002 defend wave / garden plot / glyph plate · pause+settings board ·

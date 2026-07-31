@@ -242,8 +242,9 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     `reason=` on the log so which trigger fired is visible — DONE. ② the standing rule, recorded in
     VR_RIG_GOTCHAS #9: **a repair is not accepted until every path that can reach the guarded call
     has been enumerated and shown to run it** — "the reproduction is green" is not that enumeration.
-    (→ pending: closes when the PlayMode lane is green across three consecutive dispatches on one
-    SHA, which is the only honest proof for an intermittent defect.)
+    (→ **CLOSED 2026-07-31**: three consecutive PlayMode dispatches on byte-identical Unity source
+    returned 43/43 — runs `30624847856` / `30625474855` / `30626042812`. The same lane read 41/43,
+    40/43 and 42/43 before the fix, with the failure moving between tests each run.)
 
 23. **WHAT:** Twice in one session my own new test failed CI because **the test's premise was wrong,
     not the code** — the berth guard asserted on the wrong axis (`017e0f17`), and
