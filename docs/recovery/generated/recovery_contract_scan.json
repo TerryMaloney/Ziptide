@@ -1,27 +1,27 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-31T18:31:25.033428+00:00",
+  "generatedAtUtc": "2026-07-31T23:26:27.870132+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 809,
-  "findingCount": 2914,
+  "scannedFiles": 815,
+  "findingCount": 2926,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 697,
+    "diagnostics": 703,
     "events": 73,
     "fallback_debt": 179,
     "global_render": 95,
     "input": 246,
-    "materials": 278,
+    "materials": 281,
     "persistence": 28,
-    "runtime_creation": 741,
+    "runtime_creation": 742,
     "runtime_ui": 132,
-    "save_state": 297,
+    "save_state": 299,
     "scene_loading": 9,
     "xri_ownership": 93
   },
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 54,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 278,
+    "CREATE_PRIMITIVE": 279,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 28,
@@ -42,12 +42,12 @@
     "INPUT_ACTION_REFERENCE": 235,
     "INPUT_BUTTON_REFERENCE": 10,
     "NEW_GAME_OBJECT": 463,
-    "PLAYER_PROFILE_REFERENCE": 159,
+    "PLAYER_PROFILE_REFERENCE": 160,
     "RENDER_SETTINGS_MUTATION": 39,
     "RUNTIME_BOOTSTRAP": 36,
-    "RUNTIME_MATERIAL_CREATE": 106,
-    "SAVE_SYSTEM_REFERENCE": 129,
-    "SHADER_FIND": 172,
+    "RUNTIME_MATERIAL_CREATE": 107,
+    "SAVE_SYSTEM_REFERENCE": 130,
+    "SHADER_FIND": 174,
     "STATIC_EVENT_DECLARATION": 20,
     "TEXTMESH_COMPONENT": 54,
     "TMP_COMPONENT": 3,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 697
+    "ZIPTIDE_LOG_TAG": 703
   },
   "findings": [
     {
@@ -869,6 +869,33 @@
       "line": 47,
       "symbol": "Ziptide.Editor.Patching.AmbientMoteAuthor",
       "snippet": "Debug.Log(\"ZIPTIDE: AMBIENT_MOTES_AUTHORED recipe=\" + recipeId +"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+      "line": 357,
+      "symbol": "Ziptide.Editor.Patching.CityBuilder",
+      "snippet": "Debug.Log(\"ZIPTIDE: INTERIOR_TIER id=\" + hb.id + \" tier=Facade area=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+      "line": 389,
+      "symbol": "Ziptide.Editor.Patching.CityBuilder",
+      "snippet": "Debug.Log(\"ZIPTIDE: INTERIOR_TIER id=\" + hb.id + \" tier=\" + tier"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+      "line": 404,
+      "symbol": "Ziptide.Editor.Patching.CityBuilder",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: INTERIOR_STYLE_MISSING path=\" + fallbackPath"
     },
     {
       "category": "diagnostics",
@@ -1774,6 +1801,24 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/ArmouryCarouselRuntime.cs",
+      "line": 43,
+      "symbol": "Ziptide.Gameplay.ArmouryCarouselRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: ARMOURY_TURN detent=\" + _detent"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/ArmouryCarouselRuntime.cs",
+      "line": 52,
+      "symbol": "Ziptide.Gameplay.ArmouryCarouselRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: ARMOURY_PRESENT slot=\" + slotIndex"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
       "line": 48,
       "symbol": "Ziptide.Gameplay.BeltRig",
@@ -2413,6 +2458,15 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ArmorVignetteRuntime.cs",
+      "line": 35,
+      "symbol": "Ziptide.Gameplay.ArmorVignetteRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: ARMOR_HUD ready style=peripheral_vignette\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/AugmentController.cs",
       "line": 61,
       "symbol": "Ziptide.Gameplay.AugmentController",
@@ -2648,7 +2702,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
-      "line": 66,
+      "line": 69,
       "symbol": "Ziptide.Gameplay.PlayerArmor",
       "snippet": "Debug.Log(\"ZIPTIDE: ARMOR outcome=\" + outcome + \" damage=\" + amount"
     },
@@ -2657,7 +2711,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
-      "line": 80,
+      "line": 83,
       "symbol": "Ziptide.Gameplay.PlayerArmor",
       "snippet": "else Debug.LogWarning(\"ZIPTIDE: ARMOR_DEATH no_world_runtime \u2014 player stays where they fell\");"
     },
@@ -2666,7 +2720,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
-      "line": 84,
+      "line": 87,
       "symbol": "Ziptide.Gameplay.PlayerArmor",
       "snippet": "Debug.Log(\"ZIPTIDE: ARMOR_DEATH deaths=\" + _state.Deaths + \" respawned=1 protected=1\");"
     },
@@ -5087,18 +5141,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 194,
+      "line": 222,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
-      "snippet": "Debug.Log(\"ZIPTIDE: ARMOURY_RACK built slots=\" + ShipArmouryCore.RackSlots"
-    },
-    {
-      "category": "diagnostics",
-      "code": "ZIPTIDE_LOG_TAG",
-      "description": "ZIPTIDE diagnostic tag",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 205,
-      "symbol": "Ziptide.Gameplay.ShipBoardingStation",
-      "snippet": "Debug.LogWarning(\"ZIPTIDE: ARMOURY_RACK seed_failed item=\" + itemId);"
+      "snippet": "Debug.Log(\"ZIPTIDE: ARMOURY_RACK built=drum capacity=\" + ArmouryCarouselCore.Capacity"
     },
     {
       "category": "diagnostics",
@@ -5107,6 +5152,15 @@
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
       "line": 241,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: ARMOURY_RACK seed_failed item=\" + itemId + \" slot=\" + slot);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
+      "line": 278,
+      "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "? (System.Action)(() => Debug.Log(\"ZIPTIDE: TRAVEL_LOCKED pack=\" + packRef.packId +"
     },
     {
@@ -5114,7 +5168,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 263,
+      "line": 300,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "Debug.Log(\"ZIPTIDE: SHIP_DEPART dest=\" + sceneName);"
     },
@@ -12502,6 +12556,15 @@
       "category": "materials",
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ArmorVignetteRuntime.cs",
+      "line": 90,
+      "symbol": "Ziptide.Gameplay.ArmorVignetteRuntime",
+      "snippet": "_renderer.material = new Material(shader);"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/AugmentController.cs",
       "line": 186,
       "symbol": "Ziptide.Gameplay.AugmentController",
@@ -12836,7 +12899,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 286,
+      "line": 323,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var mat = new Material(shader);"
     },
@@ -12845,7 +12908,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 421,
+      "line": 458,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var mat = new Material(shader);"
     },
@@ -13726,6 +13789,24 @@
       "category": "materials",
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ArmorVignetteRuntime.cs",
+      "line": 88,
+      "symbol": "Ziptide.Gameplay.ArmorVignetteRuntime",
+      "snippet": "Shader shader = Shader.Find(\"Sprites/Default\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ArmorVignetteRuntime.cs",
+      "line": 89,
+      "symbol": "Ziptide.Gameplay.ArmorVignetteRuntime",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/AugmentController.cs",
       "line": 183,
       "symbol": "Ziptide.Gameplay.AugmentController",
@@ -14312,7 +14393,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 282,
+      "line": 319,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
     },
@@ -14321,7 +14402,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 283,
+      "line": 320,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -14330,7 +14411,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 418,
+      "line": 455,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -14339,7 +14420,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 419,
+      "line": 456,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -14978,7 +15059,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 401,
+      "line": 477,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14987,7 +15068,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 614,
+      "line": 690,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -15985,6 +16066,15 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ArmorVignetteRuntime.cs",
+      "line": 73,
+      "symbol": "Ziptide.Gameplay.ArmorVignetteRuntime",
+      "snippet": "_quad = GameObject.CreatePrimitive(PrimitiveType.Quad);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/AugmentController.cs",
       "line": 99,
       "symbol": "Ziptide.Gameplay.AugmentController",
@@ -16877,7 +16967,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 274,
+      "line": 311,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var sGo = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -16886,7 +16976,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 369,
+      "line": 406,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -16895,7 +16985,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 386,
+      "line": 423,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var plate = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -17489,7 +17579,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 539,
+      "line": 615,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -17498,7 +17588,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 585,
+      "line": 661,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
     },
@@ -17507,7 +17597,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 638,
+      "line": 714,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -20297,7 +20387,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 178,
+      "line": 179,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var rackGo = new GameObject(\"ArmouryRack\");"
     },
@@ -20306,7 +20396,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 219,
+      "line": 256,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "_helmRowsRoot = new GameObject(\"HelmRows\").transform;"
     },
@@ -20315,7 +20405,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 271,
+      "line": 308,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var streakRoot = new GameObject(\"__FlyOutStreaks\").transform;"
     },
@@ -20324,7 +20414,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 299,
+      "line": 336,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var countGo = new GameObject(\"__DepartReadout\");"
     },
@@ -20333,7 +20423,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 383,
+      "line": 420,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var root = new GameObject(name);"
     },
@@ -20342,7 +20432,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 400,
+      "line": 437,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var textGo = new GameObject(\"Label\");"
     },
@@ -21935,7 +22025,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 300,
+      "line": 337,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var countText = countGo.AddComponent<TextMesh>();"
     },
@@ -21944,7 +22034,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 401,
+      "line": 438,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var tm = textGo.AddComponent<TextMesh>();"
     },
@@ -22583,7 +22673,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 393,
+      "line": 430,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var interactable = plate.AddComponent<XRSimpleInteractable>();"
     },
@@ -23468,6 +23558,15 @@
       "line": 93,
       "symbol": "Ziptide.Gameplay.SalvageCacheRuntime",
       "snippet": "public static double GrantTo(PlayerProfile profile, string resource, double pay)"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
+      "line": 200,
+      "symbol": "Ziptide.Gameplay.ShipBoardingStation",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
     {
       "category": "save_state",
@@ -25022,7 +25121,16 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 223,
+      "line": 200,
+      "symbol": "Ziptide.Gameplay.ShipBoardingStation",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
+      "line": 260,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -25031,7 +25139,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 243,
+      "line": 280,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? \"?\")))"
     },
@@ -25706,7 +25814,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 395,
+      "line": 432,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
     },
@@ -26192,7 +26300,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 394,
+      "line": 431,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
     },

@@ -1,6 +1,6 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 809,
+  "scannedFiles": 815,
   "referenceCount": 466,
   "summaries": {
     "melee": {
@@ -3402,7 +3402,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 451,
+          "line": 527,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
           "declaration_file": false
@@ -3411,7 +3411,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 452,
+          "line": 528,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -3420,7 +3420,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 458,
+          "line": 534,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
           "declaration_file": false
@@ -3429,7 +3429,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 459,
+          "line": 535,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -3617,7 +3617,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 451,
+          "line": 527,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
           "declaration_file": false
@@ -3626,7 +3626,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 452,
+          "line": 528,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -3635,7 +3635,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 458,
+          "line": 534,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
           "declaration_file": false
@@ -3644,7 +3644,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 459,
+          "line": 535,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -4062,7 +4062,7 @@
           "focus": "shipPresentation",
           "token": "ShipHullBuilder",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 426,
+          "line": 502,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "// real ~19-part silhouette now (ShipHullBuilder), same bounding box, so the boarding",
           "declaration_file": false
@@ -4071,7 +4071,7 @@
           "focus": "shipPresentation",
           "token": "ShipHullBuilder",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 431,
+          "line": 507,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "ShipHullBuilder.Build(ship, s.shipSize, kit.palette);",
           "declaration_file": false
@@ -4136,7 +4136,7 @@
           "focus": "shipPresentation",
           "token": "ShipHullBuilder.Build",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 431,
+          "line": 507,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "ShipHullBuilder.Build(ship, s.shipSize, kit.palette);",
           "declaration_file": false
@@ -5010,7 +5010,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 451,
+      "line": 527,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
       "declaration_file": false
@@ -5019,7 +5019,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 452,
+      "line": 528,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -5028,7 +5028,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 458,
+      "line": 534,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
       "declaration_file": false
@@ -5037,7 +5037,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 459,
+      "line": 535,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -5046,7 +5046,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 451,
+      "line": 527,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
       "declaration_file": false
@@ -5055,7 +5055,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 452,
+      "line": 528,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -5064,7 +5064,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 458,
+      "line": 534,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
       "declaration_file": false
@@ -5073,7 +5073,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 459,
+      "line": 535,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -5082,7 +5082,7 @@
       "focus": "shipPresentation",
       "token": "ShipHullBuilder",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 426,
+      "line": 502,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "// real ~19-part silhouette now (ShipHullBuilder), same bounding box, so the boarding",
       "declaration_file": false
@@ -5091,7 +5091,7 @@
       "focus": "shipPresentation",
       "token": "ShipHullBuilder",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 431,
+      "line": 507,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "ShipHullBuilder.Build(ship, s.shipSize, kit.palette);",
       "declaration_file": false
@@ -5100,7 +5100,7 @@
       "focus": "shipPresentation",
       "token": "ShipHullBuilder.Build",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 431,
+      "line": 507,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "ShipHullBuilder.Build(ship, s.shipSize, kit.palette);",
       "declaration_file": false

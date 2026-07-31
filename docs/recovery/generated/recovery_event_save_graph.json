@@ -1,7 +1,7 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 809,
-  "evidenceCount": 843,
+  "scannedFiles": 815,
+  "evidenceCount": 844,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 50,
@@ -10,7 +10,7 @@
     "EVENT_UNSUBSCRIBE": 87,
     "PLAYER_PREFS_ACCESS": 20,
     "PROFILE_FIELD_ACCESS": 391,
-    "SAVE_ACCESS": 84
+    "SAVE_ACCESS": 85
   },
   "unmatchedNamedSubscriptionCount": 62,
   "unmatchedNamedSubscriptions": [
@@ -3755,7 +3755,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
-        "line": 65,
+        "line": 68,
         "owner": "Ziptide.Gameplay.PlayerArmor",
         "target": "OnHit",
         "detail": "",
@@ -5095,7 +5095,16 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-        "line": 223,
+        "line": 200,
+        "owner": "Ziptide.Gameplay.ShipBoardingStation",
+        "target": "SaveSystem.Profile",
+        "detail": "",
+        "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
+        "line": 260,
         "owner": "Ziptide.Gameplay.ShipBoardingStation",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -5104,7 +5113,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-        "line": 243,
+        "line": 280,
         "owner": "Ziptide.Gameplay.ShipBoardingStation",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -7541,7 +7550,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-        "line": 396,
+        "line": 433,
         "owner": "Ziptide.Gameplay.ShipBoardingStation",
         "target": "onSelect",
         "detail": "",
@@ -8338,7 +8347,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-        "line": 322,
+        "line": 359,
         "owner": "Ziptide.Gameplay.ShipBoardingStation",
         "target": "st.position",
         "detail": "transform",
@@ -11249,7 +11258,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs",
-      "line": 65,
+      "line": 68,
       "owner": "Ziptide.Gameplay.PlayerArmor",
       "target": "OnHit",
       "detail": "",
@@ -13184,7 +13193,16 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 223,
+      "line": 200,
+      "owner": "Ziptide.Gameplay.ShipBoardingStation",
+      "target": "SaveSystem.Profile",
+      "detail": "",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
+      "line": 260,
       "owner": "Ziptide.Gameplay.ShipBoardingStation",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -13193,7 +13211,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 243,
+      "line": 280,
       "owner": "Ziptide.Gameplay.ShipBoardingStation",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -13202,7 +13220,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 322,
+      "line": 359,
       "owner": "Ziptide.Gameplay.ShipBoardingStation",
       "target": "st.position",
       "detail": "transform",
@@ -13211,7 +13229,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 396,
+      "line": 433,
       "owner": "Ziptide.Gameplay.ShipBoardingStation",
       "target": "onSelect",
       "detail": "",

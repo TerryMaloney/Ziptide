@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **809**
-- Scanner findings: **2914**
+- Scanned files: **815**
+- Scanner findings: **2926**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -908,11 +908,11 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:86` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:277` **CREATE_PRIMITIVE** — `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:320` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:401` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:539` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:585` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:614` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:638` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:477` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:615` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:661` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:690` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:714` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — 4 signal(s)
 
@@ -1441,6 +1441,15 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:296` **XR_INTERACTABLE_COMPONENT** — `var interactable = go.AddComponent<XRSimpleInteractable>();`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:332` **NEW_GAME_OBJECT** — `var go = new GameObject("Label_" + text.Replace(' ', '_'));`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:336` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
+
+### `Ziptide.Gameplay.ArmorVignetteRuntime` — 4 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ArmorVignetteRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ArmorVignetteRuntime.cs:73` **CREATE_PRIMITIVE** — `_quad = GameObject.CreatePrimitive(PrimitiveType.Quad);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ArmorVignetteRuntime.cs:88` **SHADER_FIND** — `Shader shader = Shader.Find("Sprites/Default");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ArmorVignetteRuntime.cs:89` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ArmorVignetteRuntime.cs:90` **RUNTIME_MATERIAL_CREATE** — `_renderer.material = new Material(shader);`
 
 ### `Ziptide.Gameplay.ArtifactJoinRuntime` — 1 signal(s)
 
@@ -2346,24 +2355,24 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:56` **NEW_GAME_OBJECT** — `var hangar = new GameObject("HangarBay");`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:70` **NEW_GAME_OBJECT** — `var room = new GameObject("Quarters");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:178` **NEW_GAME_OBJECT** — `var rackGo = new GameObject("ArmouryRack");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:219` **NEW_GAME_OBJECT** — `_helmRowsRoot = new GameObject("HelmRows").transform;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:271` **NEW_GAME_OBJECT** — `var streakRoot = new GameObject("__FlyOutStreaks").transform;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:274` **CREATE_PRIMITIVE** — `var sGo = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:282` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:283` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:286` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:299` **NEW_GAME_OBJECT** — `var countGo = new GameObject("__DepartReadout");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:300` **TEXTMESH_COMPONENT** — `var countText = countGo.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:369` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:383` **NEW_GAME_OBJECT** — `var root = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:386` **CREATE_PRIMITIVE** — `var plate = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:393` **XR_INTERACTABLE_COMPONENT** — `var interactable = plate.AddComponent<XRSimpleInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:400` **NEW_GAME_OBJECT** — `var textGo = new GameObject("Label");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:401` **TEXTMESH_COMPONENT** — `var tm = textGo.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:418` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:419` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:421` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:179` **NEW_GAME_OBJECT** — `var rackGo = new GameObject("ArmouryRack");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:256` **NEW_GAME_OBJECT** — `_helmRowsRoot = new GameObject("HelmRows").transform;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:308` **NEW_GAME_OBJECT** — `var streakRoot = new GameObject("__FlyOutStreaks").transform;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:311` **CREATE_PRIMITIVE** — `var sGo = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:319` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:320` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:323` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:336` **NEW_GAME_OBJECT** — `var countGo = new GameObject("__DepartReadout");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:337` **TEXTMESH_COMPONENT** — `var countText = countGo.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:406` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:420` **NEW_GAME_OBJECT** — `var root = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:423` **CREATE_PRIMITIVE** — `var plate = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:430` **XR_INTERACTABLE_COMPONENT** — `var interactable = plate.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:437` **NEW_GAME_OBJECT** — `var textGo = new GameObject("Label");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:438` **TEXTMESH_COMPONENT** — `var tm = textGo.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:455` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:456` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:458` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.ShipCastOffRuntime` — 5 signal(s)
 
@@ -3352,8 +3361,8 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:394` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:395` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:431` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:432` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
 
 ### `Ziptide.Gameplay.ShipCastOffRuntime` — 2 signal(s)
 
@@ -4006,14 +4015,16 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:94` **PLAYER_PROFILE_REFERENCE** — `public PlayerProfile StartNewProfile()`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:123` **AUTOSAVE_CALL** — `public static void AutosaveNow(string reason)`
 
-### `Ziptide.Gameplay.ShipBoardingStation` — 4 signal(s)
+### `Ziptide.Gameplay.ShipBoardingStation` — 6 signal(s)
 
-- Codes: `SAVE_SYSTEM_REFERENCE`
+- Codes: `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:81` **SAVE_SYSTEM_REFERENCE** — `var prof = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:111` **SAVE_SYSTEM_REFERENCE** — `var prof = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:223` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:243` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?")))`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:200` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:200` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:260` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:280` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?")))`
 
 ### `Ziptide.Gameplay.ShipCastOffRuntime` — 3 signal(s)
 

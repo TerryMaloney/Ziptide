@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **809**
-- Evidence edges: **843**
+- Scanned C# files: **815**
+- Evidence edges: **844**
 - Named subscriptions without matching unsubscribe in the same owner: **62**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -15,7 +15,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE:** 87
 - **PLAYER_PREFS_ACCESS:** 20
 - **PROFILE_FIELD_ACCESS:** 391
-- **SAVE_ACCESS:** 84
+- **SAVE_ACCESS:** 85
 
 ## Named subscriptions without matching unsubscribe
 
@@ -614,7 +614,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `OnHit`
 
 - **EVENT_DECLARE** · `Ziptide.Gameplay.PlayerArmor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs:27` · `static System.Action<PlayerHitOutcome, float>` — `public static event System.Action<PlayerHitOutcome, float> OnHit;`
-- **EVENT_INVOKE** · `Ziptide.Gameplay.PlayerArmor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs:65` — `OnHit?.Invoke(outcome, Armor01);`
+- **EVENT_INVOKE** · `Ziptide.Gameplay.PlayerArmor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerArmor.cs:68` — `OnHit?.Invoke(outcome, Armor01);`
 - **EVENT_INVOKE** · `Ziptide.Gameplay.TargetRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Targets/TargetRuntime.cs:63` — `OnHit?.Invoke();`
 - **EVENT_DECLARE** · `Ziptide.Multiplayer.LoopbackPvpTransport` · `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Net/LoopbackPvpTransport.cs:19` · `Action<HitMsg>` — `public event Action<HitMsg> OnHit;`
 - **EVENT_INVOKE** · `Ziptide.Multiplayer.LoopbackPvpTransport` · `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Net/LoopbackPvpTransport.cs:25` — `public void SendHit(HitMsg msg) => OnHit?.Invoke(msg);`
@@ -824,8 +824,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.SalvageCacheRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SalvageCacheRuntime.cs:84` — `double granted = GrantTo(SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:81` — `var prof = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:111` — `var prof = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:223` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:243` — `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?")))`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:200` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:260` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:280` — `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?")))`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:33` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.WorldTravelStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:64` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.WorldTravelStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:149` — `+ " missing=" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?"));`
@@ -1293,7 +1294,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `onSelect`
 
 - **EVENT_INVOKE** · `Ziptide.Gameplay.QuartersRoom` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:262` — `interactable.selectEntered.AddListener(_ => onSelect?.Invoke());`
-- **EVENT_INVOKE** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:396` — `interactable.selectEntered.AddListener(_ => onSelect?.Invoke());`
+- **EVENT_INVOKE** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:433` — `interactable.selectEntered.AddListener(_ => onSelect?.Invoke());`
 
 ### `onSubscriberFailure`
 
@@ -1501,7 +1502,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `st.position`
 
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:322` · `transform` — `st.position -= transform.forward * speed * Time.deltaTime;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:359` · `transform` — `st.position -= transform.forward * speed * Time.deltaTime;`
 
 ### `standoffDistance`
 
