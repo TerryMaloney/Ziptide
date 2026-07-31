@@ -268,6 +268,39 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     (→ pending: closes when this rule is in VR_RIG_GOTCHAS #8 alongside the "just push and let CI
     catch the name" advice, which is what nudged me toward guessing in the first place.)
 
+24. **WHAT:** `COMBAT_HEALTH_PLAN.md` sat unbuilt for three weeks with the header "PROPOSAL awaiting
+    Terry's two design decisions (§2)" while **§2 of the same document says "DECIDED (Terry,
+    2026-07-07)"**. The consequence is the largest gameplay hole in the game: the campaign player
+    cannot be hurt, and every creature's authored `damage` is applied to nobody.
+    **FOUND BY:** hunting for holes at Terry's request (2026-07-31), by reading §2 after the header
+    said not to bother.
+    **WHY MISSED:** a decision was recorded in the body of a document whose *status field* was never
+    updated to match. Every operator who checked "is this actionable?" read the header, believed it
+    was blocked on Terry, and moved on — including several who had capacity to build it.
+    **CLASS:** a stale status field outranking the document's own content. The cheapest possible lie,
+    in the most-read line of the file, and it silently converts buildable work into blocked work.
+    **SYSTEM CHANGE:** ① this plan's header now carries a verified-against-the-tree state table
+    rather than a claim — DONE. ② the durable rule: **a doc whose body records a decision may not
+    keep a status that contradicts it**, and any operator who reads a "blocked/awaiting" status must
+    confirm it against the section it points at before believing it. A status line is a claim about
+    the document, and claims get checked like any other.
+    (→ pending: closes when Phase B ships, which is the proof the status was the only thing stopping it.)
+
+25. **WHAT:** I wrote a complete second `ArmorMeter` in `Core` — the pure type plus twelve tests —
+    before discovering one already existed in `Ziptide.Multiplayer` with `PlayerCombatState` and its
+    own tests. Deleted before commit.
+    **FOUND BY:** the file-already-exists error when writing the test file, not by searching first.
+    **WHY MISSED:** I read the plan's Phase A.1 (*"New pure type `ArmorMeter` … put it beside
+    `PvpCombatant` in `Multiplayer`, or in `Core` if `Gameplay` needs it"*) as a spec to implement,
+    and the phrase "New pure type" as proof it did not exist. The plan was written before A.1 was
+    built and never updated — the same stale-status class as #24, one heading down.
+    **CLASS:** trusting a plan's tense as evidence of current state. "New type X" in a design doc says
+    nothing about whether X exists today.
+    **SYSTEM CHANGE:** before implementing any named type from a plan, grep for the type name first —
+    one command, and it is the difference between a refactor and a duplicate combat system. Recorded
+    as an explicit ⚠ in COMBAT_HEALTH_PLAN's header so the next reader is warned at the point of use.
+    (→ pending: closes when the grep-first step is in OPERATOR_START_HERE's Definition of Done.)
+
 ## CLOSED
 
 *(entries move here when their SYSTEM CHANGE is verified in place — the fix alone never closes

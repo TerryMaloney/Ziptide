@@ -32,6 +32,113 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-31 (rb134) — 🕳️ THE HOLE HUNT: the player cannot be hurt · the first planet had no air · half the arsenal was unobtainable
+
+Terry: *"we want everything hypothetically working perfectly to be AAA game minus some of the artwork."*
+So this session hunted holes rather than adding features. Four real ones, three fixed.
+
+---
+
+#### 1 · 🚨 THE BIGGEST ONE: the campaign player cannot be hurt (NOT FIXED — next operator's task)
+
+`PlayerStunReceiver` says it in a comment: **"NO health, NO death."** `CreatureDefinition.damage` is
+authored on every creature in the game and **applied to nobody**. Combat has no stakes anywhere in the
+campaign.
+
+`docs/systems/COMBAT_HEALTH_PLAN.md` diagnosed this on 2026-07-07 from Terry's own brief (*"we can't
+just have more characters be invincible forever"*). **It never got built because its header said
+"PROPOSAL awaiting Terry's two design decisions (§2)" while §2 says "DECIDED (Terry, 2026-07-07)".**
+Three weeks behind a stale status line. Header corrected; real state now tabulated there.
+
+What is actually left:
+- **A.3** — `ItemDefinition.damage` exists, is **read by nothing**, and is unserialized (0) on every
+  weapon asset. Note before "fixing" it: A.2 makes `PvpRules` the single canonical scale, so a second
+  authoritative damage field is the disagreement the plan exists to END. Derive it or delete it.
+- **A.4** — no guard test, which is why A.3 rotted invisibly.
+- **B** — the player's armor on the rig. This is the actual work and it is **not blocked on a
+  decision**, only on someone doing it.
+
+⚠ **`ArmorMeter` ALREADY EXISTS** in `Ziptide.Multiplayer`, with `PlayerCombatState` and tests. I wrote
+a complete second one in `Core` — pure type, twelve tests — before finding it, and deleted it. The trap
+is A.1's own wording (*"put it beside `PvpCombatant` in `Multiplayer`, or in `Core` if `Gameplay` needs
+it"*), which reads as create when it meant move. **Do not ship a second combat system into a game that
+has one.**
+
+---
+
+#### 2 · The first planet had no air — FIXED (`adc108f4`, CI GREEN)
+
+SKYSCAPE_DESIGN is a north star; its §6 step 1 was proven on **W005, a world the first level never
+reaches**, while ToxicCity — the first planet the player ever stands on — shipped with perfectly still,
+perfectly clear air, failing rubric §5.1 and §5.2. The stack was never the problem; the REACH was:
+atmosphere only arrives via `SkyPlanetRig`'s vista path, which needs a generated theme, and ToxicCity
+has none. `SKY_VISTA_UNWIRED` had been warning about exactly this, owned by nobody.
+
+`WorldAtmosphereBinder` drives **only** haze and motes from an authored vista, never the dome, bodies,
+palette, fog or light — so a world keeps its look and just gains air. That additive property is why it
+could land before a device session instead of after one.
+
+**A gate correctly tried to reject it.** `GateGap2_SignatureRubric` requires pillar 4 (the sky's colour
+reaching the ground). ToxicCity satisfies it via its green fog, not via the vista, whose light fields
+are never read there. Setting those fields would have been a hollow signature — the exact thing that
+gate was written to catch, inverted. The law now models both regimes: a vista either owns its ground
+coupling or **names what does** (`atmosphere.groundCouplingOwner`), and claiming both is a failure
+because it hides which is real.
+
+---
+
+#### 3 · Half the arsenal was unobtainable — FIXED (`52fee309` CI GREEN, `d655ac0c` rack)
+
+Eight weapons authored. **Four — `prism_beam`, `sonic_thumper`, `static_net`, `tide_pike` — registered,
+forge-recipe'd, tested, and placed NOWHERE.** The other four were dropped on the ground at the player's
+feet; those two `ItemFactory.Create` calls were the entire placement strategy. And they could not have
+been belted if found: `HolsterSocketInteractor` hardcoded a five-id allowlist.
+
+⚠ **The trap:** the public `AllowsItemId` is **called from nowhere**. `CanSelect`/`CanHover` go through
+the private instance `ItemIdAllowed`. Editing the public one looks exactly like a fix and widens nothing.
+
+`WeaponCatalog` (Core) is now the single truth for what is a weapon and what may ride the belt.
+⚖ Terry: **the ship is the armoury** — a rack by the hatch, and DISEMBARK refuses until a weapon is on
+your belt, with two different RILL lines because "unarmed" and "holding but not holstered" are
+different mistakes and the second player has already done what the first line asked.
+
+**`ShipArmouryCore` carries a NO-TRAP LAW:** the gate sits between the player and the entire game, so it
+never refuses when the player cannot comply — empty rack plus empty belt OPENS. A missing-item bug costs
+a confusing walk, not a dead save. Same instinct as the stalker's six-second block yield.
+
+**Deliberately left:** the two starter weapons still spawn on the plaza floor. Deleting the only other
+source of weapons before the rack is device-proven is how a no-trap law gets undone by hand. One line,
+after the headset.
+
+---
+
+#### 4 · Open holes found and NOT fixed
+
+- **The first city's interiors are empty boxes.** `CityBuilder.BuildHeroBuilding` = floor + ceiling +
+  4 walls + door gap + invisible marker + **one accent cube**. That is Dispatch (where the contract is
+  accepted), the Shipyard Office and the Relay Vault. `RoomFurnishCore`/`InteriorFurnisher` (16 kinds,
+  10 tests) exists and is unreachable there.
+- **ToxicCity generates no lot-based buildings at all** — its districts carry no `buildingStyleId`, so
+  the whole `BuildingBuilder` grammar/interior stack never runs in the first city. Bigger than one
+  session; it is an architectural decision, not a bug.
+- **The ship interior is three markers** (bunk, helm, porthole). The exterior is genuinely good. The
+  armoury rack is the first real furniture the inside has ever had.
+- **W002 has no dust** — §4.1's `vibration`/`cave-in` row. Nearly free now the binder exists.
+- `ZiplineRuntime.IsDesignatedArrival` still public, tested, called by nothing.
+
+#### 5 · On the canal stalker
+
+Terry asked for "the river fight." **It is deliberately not a fight** — `CanalStalkerCore` carries his
+own ⚖ marker: *"interacts with the BOAT, in the water, never on land."* Shadow → Bump → Block, never
+lethal, always yields. Asked; he chose **keep the escort, give it a payoff**. Do not turn it into a
+damage encounter.
+
+**Commits:** `adc108f4` (atmosphere) · `52fee309` (weapon catalog + armoury core) · `d655ac0c` (rack +
+disembark gate) · `a1f12982` (combat plan status). Earlier today: the `ApplyProcessors` NRE proven fixed
+(PlayMode 43/43 ×3) and `WorldPackAuditRules`.
+
+
+
 ### 2026-07-31 (rb133) — 🔧 the `ApplyProcessors` NRE, FIXED at its real cause: the repair only ran after a travel
 
 **Read §1 if you take any input work.** rb132's fix direction ("disable the turn provider across the
