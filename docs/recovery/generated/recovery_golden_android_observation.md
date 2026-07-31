@@ -1,9 +1,9 @@
 # Recovery Golden Android Observation
 
 - Tested SHA: `adc108f489f69595718b924e2a834bbf2426975f`
-- Workflow run: `30627442492`
+- Workflow run: `30627450155`
 - Attempt: `1`
-- Build/verification result: **cancelled**
+- Build/verification result: **success**
 - Unity: 2022.3.62f3
 - Build method: `Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK`
 - Compile define: `ZIPTIDE_RECOVERY_GOLDEN`
