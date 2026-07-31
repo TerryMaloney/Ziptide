@@ -28,6 +28,7 @@ Status is honest: **✅ built + gate-proven** · **🟨 built, never rendered a 
 | 1 | Cold boot → Home Hub → New Game | pick New Game | ✅ | `TRAVEL_OK` once, no `DUP_SINGLETON` |
 | 2 | Wake on the ship: move, grab the keepsake, holster it | — | ✅ | `INVENTORY_SAVE`, no `XRI_NOT_READY` |
 | 2b | The porthole (wall past the bunk) | walk to it | 🟨 | `PORTHOLE built …` |
+| 2c | **THE ARMOURY** — rack by the hatch; take a weapon, put it on your hip | try DISEMBARK empty-handed first | 🟨 **NEW** | `ARMOURY_RACK built slots=8` · refusing = `SHIP_DISEMBARK_BLOCKED verdict=HoldUnarmed`, then `HoldInHandOnly` if you hold it without belting |
 | 3 | Repair the gate coupler: scan → panel → part → power | the four steps | ✅ | repair lines; launch arms |
 | 4 | Board, helm, **PUNCH IT** | press it | ✅ | `FLIGHT_LAUNCH` → `FLIGHT_STREAKS` → `VEIL leg=Ascent` → `FLIGHT_DEPART` |
 | 5 | Space leg: fly the 5 rings | throttle/steer | ✅ | `RING_LIGHTS next=N/5`, `FLIGHT_RING n/5` |
@@ -38,6 +39,7 @@ Status is honest: **✅ built + gate-proven** · **🟨 built, never rendered a 
 | 6b | **The tender's arms** — stowed → deployed → slack with the panel hanging open | watch it | 🟨 **NEW** | part of `DRONE_MOOD` |
 | 7 | **THE FIND** — artifact half A on the wreck past the last ring | grab it | ✅ | `SALVAGE_FIND id=artifact_half_a` |
 | 8 | Onward → Toxic City | travel station | ✅ | `TRAVEL_START dest=ToxicCity` → `REENTRY_ARRIVAL` → `VEIL leg=Reentry` |
+| 8b | **THE AIR** — the city now has weather: a green haze band at the horizon and acid motes drifting past your face | stand still and look | 🟨 **NEW** | `WORLD_ATMO applied=1 hazard=acid` · `SKY_ATMO motes=…` |
 | 9 | **The hangar walk** — five empty berths west of yours, numbers as tally bars | walk it | 🟨 **NEW** | `QUAY_BERTHS built=5` |
 | 10 | Accept the contract at Dispatch | the board | ✅ | step advances |
 | 11 | Clear 5 drones → walk to the relay | the route | ✅ | step advances |
@@ -57,8 +59,23 @@ Status is honest: **✅ built + gate-proven** · **🟨 built, never rendered a 
 ## ❌ Not built — please don't report these
 Pause/settings board · title + legal/credits · **all music and VO (zero)** · all final art (everything is procedural stand-in) · W002's defend wave / garden plot / glyph plate · helm `TextMesh` labels may read badly at Quest resolution (known).
 
-## The one that matters most
+**You still cannot be hurt.** The armor system landed today (`PlayerArmor` — armor drains, breaking it
+warns you, the next hit kills, death respawns you at the world's spawn marker) but **nothing calls it
+yet**: creatures and drones do not deal damage. So walking into a drone patrol is still safe, and that
+is expected, not a bug. Wiring the damage sources is the next slice and it is the one that needs your
+verdict on feel — "how many hits until my armor breaks" is not a question a test can answer.
+
+**Interiors are still empty boxes.** Dispatch, the Shipyard Office and the Relay Vault are a floor, a
+ceiling, four walls and one accent cube each. Known, not worth a line in your notes.
+
+## The two that matter most
 **Beat 12.** Until today the contract could not get past it — the pack spawned no machine with the id the step asks for, so steps 5, 6 and the whole back half were unreachable by playing. It's fixed and gate-guarded but has never run on device. If step 4 doesn't advance after the relay powers up, stop and send that log section first.
+
+**Beat 2c.** The ship's ramp now refuses to let you leave unarmed. It is built so it can never trap you
+— if there is no weapon anywhere to take, it opens — but that safety has only ever been proven by a
+test, never by a person standing on the deck. **If DISEMBARK refuses when you ARE carrying a holstered
+weapon, stop and send the `SHIP_DISEMBARK_BLOCKED` line.** That is the one failure here that would cost
+you the rest of the run.
 
 ## Reporting
 One line per defect: **what you did → what you saw → the tag line (or that it's missing)**. `problems.txt` in the session folder is pre-filtered for exceptions, `MISSING`, `_FAIL` and `BLOCKED`. Press **M** in the capture window the moment something looks wrong — it timestamps the log so the moment is findable.

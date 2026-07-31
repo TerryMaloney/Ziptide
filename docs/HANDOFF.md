@@ -133,9 +133,27 @@ own ⚖ marker: *"interacts with the BOAT, in the water, never on land."* Shadow
 lethal, always yields. Asked; he chose **keep the escort, give it a payoff**. Do not turn it into a
 damage encounter.
 
+#### 6 · Phase B LANDED after all (`911ccd1f`) — but read the caveat
+
+§1 above says Phase B is the next operator's task. It isn't any more; it turned out small, because the
+hard part was already built and mislabelled. `PlayerCombatState` (Multiplayer) is a complete, tested
+implementation of the whole armor rule and **its own summary dictates the shell's shape**: *"the
+MonoBehaviour (`PlayerArmor`) should be a thin translator: forward hits in, read outcomes out, never
+decide anything itself."* So `PlayerArmor` is exactly that — one entry point, reuses the stun receiver's
+existing flash and incoming-fire tracer, and takes §2's serverless checkpoint (the world's own
+`__SPAWN_PLAYER` marker). Hosted by `PlayerStunReceiver`, so no new automatic owner to register.
+
+`PlayerStunReceiver`'s summary no longer ends "NO health, NO death".
+
+**⚠ CAVEAT — behaviour on device is UNCHANGED.** The damage SOURCES are not wired: creatures and drones
+still never call `ApplyDamage`. You can still walk through a drone patrol untouched. That is the next
+slice, it is small, and it is the one that genuinely needs a headset — "how many hits until my armor
+breaks" is a feel question no test answers. Landing the shell separately keeps that slice small and
+keeps this one provable. PlayMode **43/43** on `911ccd1f`.
+
 **Commits:** `adc108f4` (atmosphere) · `52fee309` (weapon catalog + armoury core) · `d655ac0c` (rack +
-disembark gate) · `a1f12982` (combat plan status). Earlier today: the `ApplyProcessors` NRE proven fixed
-(PlayMode 43/43 ×3) and `WorldPackAuditRules`.
+disembark gate) · `a1f12982` (combat plan status) · `911ccd1f` (Phase B shell). Earlier today: the
+`ApplyProcessors` NRE proven fixed (PlayMode 43/43 ×3) and `WorldPackAuditRules`.
 
 
 
