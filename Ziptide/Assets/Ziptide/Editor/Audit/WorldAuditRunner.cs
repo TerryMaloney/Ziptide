@@ -77,6 +77,14 @@ namespace Ziptide.Editor.Audit
             catch (System.Exception ex) { econReport.Warning("ECONOMY_AUDIT_ERROR", ex.Message); }
             report.scenes.Add(econReport);
 
+            // WorldPack integrity for EVERY generated pack — project-wide, WARN-only for now.
+            // JobDirector validates a pack at world entry, which is on device and too late; this is
+            // the build-time half (MISS_LEDGER #21).
+            var packReport = new SceneAuditReport { sceneName = "__WORLD_PACKS__" };
+            try { WorldPackAuditRules.Run(packReport); }
+            catch (System.Exception ex) { packReport.Warning("WORLD_PACK_AUDIT_ERROR", ex.Message); }
+            report.scenes.Add(packReport);
+
             // FH-X01 first-hour contract integrity — project-wide and deliberately WARN-only.
             var firstHourReport = new SceneAuditReport { sceneName = "__FIRST_HOUR__" };
             try { FirstHourContractAuditRules.Run(firstHourReport); }
