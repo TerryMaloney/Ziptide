@@ -190,6 +190,13 @@ namespace Ziptide.Editor.Patching
             Cue("TUT_GRAB_BUNK_OBJECT", "Your papers are on the bunk. Reach out and take them — properly, with your hand.");
             Cue("TUT_HOLSTER_ITEM",     "Put it on your hip. Anything holstered comes with us; anything loose stays where the world left it.");
             Cue("TUT_INTERACT_HELM",    "The helm is lit. Tell it where we are going.");
+
+            // THE ARMOURY (⚖ Terry: the ship is where weapons live, and the ramp does not open until
+            // one is on your belt). Two lines, not one, because the two failures are different and a
+            // player stuck on the second one has already done what the first line asked. RILL says
+            // what is wrong, never which button — the rack is a physical noun and so is your hip.
+            Cue("ARM_YOURSELF",         "Rack by the hatch. Take something before the ramp opens — out there is not a place you go empty-handed.");
+            Cue("BELT_IT",              "In your fist does you no good on a ladder. Put it on your hip, then the ramp is yours.");
             Cue("TUT_PUNCH_IT",         "Coupler is green. When you are ready — punch it.");
             Cue("TUT_ACCEPT_FIRST_JOB", "The kiosk has our contract. Take it and we are working.");
             Cue("TUT_SCAN_FAULT",       "Scan it. Your wrist will show you what is wrong faster than I can describe it.");

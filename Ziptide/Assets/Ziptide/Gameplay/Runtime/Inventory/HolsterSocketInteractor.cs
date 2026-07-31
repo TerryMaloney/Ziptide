@@ -31,7 +31,11 @@ namespace Ziptide.Gameplay
 
         public static bool AllowsItemId(string itemId)
         {
-            return !string.IsNullOrEmpty(itemId) && DefaultAllowedIds.Contains(itemId);
+            // Was a hardcoded five-id set, which is why four authored weapons (prism_beam,
+            // sonic_thumper, static_net, tide_pike) could not be belted even if the player found
+            // one. WeaponCatalog is now the single source of truth, shared with the ship's
+            // departure gate; DefaultAllowedIds stays as the serialized-field seed only.
+            return Ziptide.Core.WeaponCatalog.IsHolsterable(itemId);
         }
 
         protected override void Start()
@@ -139,7 +143,11 @@ namespace Ziptide.Gameplay
             ItemRuntime item = go.GetComponent<ItemRuntime>();
             if (item == null || item.Definition == null) return false;
             string id = item.Definition.itemId;
-            return DefaultAllowedIds.Contains(id)
+            // WeaponCatalog is the source of truth. The old hardcoded five-id set is why four
+            // authored weapons could not be belted even if the player found one; the serialized
+            // list stays as a per-socket widening, never a narrowing.
+            return Ziptide.Core.WeaponCatalog.IsHolsterable(id)
+                || DefaultAllowedIds.Contains(id)
                 || (allowedItemIds != null && allowedItemIds.Contains(id));
         }
 
