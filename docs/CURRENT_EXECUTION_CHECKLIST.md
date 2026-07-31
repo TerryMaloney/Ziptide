@@ -6,6 +6,22 @@
 > This is the CURRENT status layer, not a replacement for the deeper sources of truth. When detail is needed, follow the linked boards and historical plans below. When this file conflicts with an older unchecked row, prefer the newest implementation log, `HANDOFF.md`, and `CI_VERDICT.md`, then correct this file.
 
 
+## 2026-07-31 — the last PlayMode red has a real fix; the headset test has not happened yet
+
+Read **`docs/HANDOFF.md` rb133** first. Short version:
+
+- **The `ApplyProcessors` NRE is fixed at its real cause** (`e0fad407`): the repair was correct but
+  only ran after a travel, so cold boot and scene-load-only PlayMode tests never swept the
+  zero-binding left-hand turn/snap placeholders. Now swept at install, on every scene load, and in
+  the post-travel repair (`LocomotionInertActionSweep`). **Not yet proven** — an intermittent defect
+  needs the PlayMode lane green ×3 on one SHA before anyone drops the qualifier.
+- **Every WorldPack is now validated at build time** (`d55c81fa`), WARN-first — MISS_LEDGER #21's
+  open half. Promote `WORLD_PACK_INVALID` to blocker after one clean audit run.
+- **Terry did not get on the headset.** `tools/level1_test.ps1` + `tools/quest_capture.ps1` and
+  `docs/production/TONIGHT_TEST_CARD.md` (20 ordered beats, honest ✅/🟨/❌) are ready and unchanged.
+- Still unbuilt: W002 defend wave / garden plot / glyph plate · pause+settings board ·
+  title + legal/credits · all music and VO · all final art.
+
 ## ⚠ 2026-07-29 — OPERATOR TAKEOVER IN FLIGHT
 
 Terry is driving home to test on the headset. The full takeover packet is **`docs/HANDOFF.md`

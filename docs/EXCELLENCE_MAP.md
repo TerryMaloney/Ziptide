@@ -53,7 +53,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-20.)*
 
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
-| Locomotion & comfort | 🧱 v1.1 (move/snap/vignette; Cozy/Standard/Bold and console code-green; device pending) | Player-visible presets; every artificial motion reports/suspends correctly and never parents rig | locked contract; traversal tests; `ComfortSettingsTests` + `ComfortCoverageTests` |
+| Locomotion & comfort | 🧱 v1.1 (move/snap/vignette; Cozy/Standard/Bold and console code-green; device pending) | Player-visible presets; every artificial motion reports/suspends correctly and never parents rig; **no locomotion provider ever reads a zero-binding action** | locked contract; traversal tests; `ComfortSettingsTests` + `ComfortCoverageTests`; `LocomotionInertActionSweepTests` + VR_RIG_GOTCHAS #9 |
 | Hands & interaction | 💎 code / device calibration ongoing | Everything interactive answers within reach; collider before interactable | `InteractionReachAuditRules`; `VR_RIG_GOTCHAS.md`; wiring tests |
 | Weapons & combat feel | 🧱→💎 in flight (Round 1 recoil/haptics/audio/impact; device pending) | Every weapon distinct in hand, cadence, recoil, sound and tactile response; actual bounds and held axis valid | combat tests; `WeaponPerceptualAuditRules`; headset feel ledger |
 | Abilities/augments | 🧱 v1 (6 live) | Full set; visible state; bot/human symmetry where applicable | augment tests + WiringValidator |
@@ -125,7 +125,7 @@ its relevant rows have machine evidence and the human-only remainder is explicit
 
 | Quality dimension | Current gate coverage | Remaining gap |
 |---|---|---|
-| Logical correctness | EditMode suites, schema validators, wiring/economy/save contracts | `WorldContentGenome`, Lore Forge and flag-graph validators |
+| Logical correctness | EditMode suites, schema validators, wiring/economy/save contracts, `WorldPackAuditRules` (every generated pack validated at build time — WARN, promote to blocker after one clean run) | `WorldContentGenome`, Lore Forge and flag-graph validators |
 | Spatial correctness | `WorldContainmentAuditRules`, `RouteContinuityAuditRules`, `InteractionReachAuditRules`, spawn/travel checks | broaden route graph beyond named anchors; deliberate high-interactable waiver schema |
 | Perceptual correctness | `WeaponPerceptualAuditRules`, `PerceptualCoverageAuditRules`, city/ship/fleet presentation audits | full PG-5 mannequin/grid and arrival-view contact-sheet automation + mandatory review stamp |
 | Performance | `PerfBudgetAuditRules`, Forge budgets, per-module object budgets | promote calibrated over-cap warnings to blockers; device thermal/1%-low baseline |
