@@ -91,6 +91,11 @@ FEATURES: tuple[tuple[str, str, str, str], ...] = (
     ("relay repair machine", "Editor/Patching/ToxicCityContractBuilder.cs",
      r"machineId = ToxicCityContractBuilder\.RelayMachineId",
      r'RepairMachine\("ToxicCity_S4_RelayRepair"'),
+    # Dispatch is where the first level's contract is accepted, and it was a floor, a ceiling, four
+    # walls and one accent cube. The furnish core existed and nothing in this city called it — which
+    # is exactly the shape of failure this gate exists for: finished-looking work nobody invokes.
+    ("hero interiors", "Content/Runtime/City/InteriorTierCore.cs",
+     r"InteriorTierCore\.Evaluate\(", r"InteriorFurnisher\.Furnish\("),
     # SKYSCAPE pillar 3 on the first planet. The atmosphere stack was built and tested against W005,
     # a world the first level never reaches, while ToxicCity shipped with perfectly still air. The
     # failure this guards is the quiet one: a binder authored into the scene that never applies,

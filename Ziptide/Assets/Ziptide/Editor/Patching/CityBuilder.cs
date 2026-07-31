@@ -328,6 +328,82 @@ namespace Ziptide.Editor.Patching
                 Cube(hbRoot, hb.id + "_Interactable",
                     new Vector3(0f, 0.6f, depth * 0.25f), new Vector3(1f, 1.2f, 1f), pal.accent, true);
             }
+
+            FurnishHeroInterior(hbRoot, kit, hb, w, depth);
+        }
+
+        /// <summary>
+        /// Put something in the room. Until now every enterable building in the city was a floor, a
+        /// ceiling, four walls, a door gap and ONE accent cube — including Dispatch, where the player
+        /// accepts the contract that is the whole first level.
+        ///
+        /// `RoomFurnishCore` and `InteriorFurnisher` (16 furniture kinds, clearance maths, tested)
+        /// already existed; they were reachable only through BuildingBuilder's lot-generated tenements,
+        /// and ToxicCity generates no lot buildings at all. This is the missing call, not new
+        /// machinery — the tier decides how much of it a building deserves.
+        /// </summary>
+        private static void FurnishHeroInterior(
+            Transform hbRoot, CityLayoutDefinition kit, HeroBuildingDef hb, float width, float depth)
+        {
+            var footprint = new Vector2(width, depth);
+            float area = InteriorTierCore.AreaOf(footprint);
+
+            // A hero building with an interior kind IS the route — that outranks any budget. A
+            // contract you cannot walk into is a broken level (MISS_LEDGER #21's whole lesson).
+            bool servesRoute = hb.interior != InteriorKind.Empty;
+            InteriorTier tier = InteriorTierCore.Evaluate(area, servesRoute, vestibulesAlreadySpent: 0);
+            if (tier == InteriorTier.Facade)
+            {
+                Debug.Log("ZIPTIDE: INTERIOR_TIER id=" + hb.id + " tier=Facade area="
+                    + area.ToString("F1") + " cause=too_small_to_stand_in");
+                return;
+            }
+
+            Rect floor = InteriorTierCore.UsableFloor(footprint);
+            int seed = kit.seed ^ (hb.id != null ? hb.id.GetHashCode() : 0);
+
+            // Vestibules are ONE room by construction; only a Full interior large enough to be worth
+            // it gets cut into rooms. Partitioning a small room produces corridors nobody can walk.
+            InteriorPlan plan;
+            if (tier == InteriorTier.Full && InteriorTierCore.ShouldPartition(area))
+            {
+                plan = RoomPartitioner.Partition(floor, corridorWidth: 1.2f, minRoomArea: 9f,
+                    maxAspect: 2.4f, seed: seed);
+            }
+            else
+            {
+                plan = new InteriorPlan
+                {
+                    Rooms = new List<Rect> { floor },
+                    Corridors = new List<Rect>(),
+                };
+            }
+
+            // The entry is the door, so role assignment puts the foyer where the player walks in and
+            // the private rooms deepest — the furnish core already knows how to read that.
+            var entry = new Vector2(hb.doorLocalPos.x, hb.doorLocalPos.z);
+
+            BuildingStyleDefinition style = ResolveInteriorStyle(kit);
+            Transform[] rooms = InteriorFurnisher.Furnish(hbRoot, plan, entry, style, seed);
+
+            Debug.Log("ZIPTIDE: INTERIOR_TIER id=" + hb.id + " tier=" + tier
+                + " area=" + area.ToString("F1") + " rooms=" + (rooms != null ? rooms.Length : 0)
+                + " partitioned=" + (plan.Corridors.Count > 0));
+        }
+
+        /// <summary>
+        /// The style the furnisher draws with. Falls back to the tenement kit rather than failing —
+        /// an unfurnished room is the bug this whole change exists to remove, so a missing style must
+        /// never be the reason a room ships empty again.
+        /// </summary>
+        private static BuildingStyleDefinition ResolveInteriorStyle(CityLayoutDefinition kit)
+        {
+            const string fallbackPath = "Assets/Ziptide/Content/City/BuildingStyles/toxic_tenement.asset";
+            var style = AssetDatabase.LoadAssetAtPath<BuildingStyleDefinition>(fallbackPath);
+            if (style == null)
+                Debug.LogWarning("ZIPTIDE: INTERIOR_STYLE_MISSING path=" + fallbackPath
+                    + " — furniture will use primitive defaults");
+            return style;
         }
 
         private static void BuildWallWithMaybeGap(Transform parent, string name, Vector3 center, Vector3 size, Color color, bool gap, bool gapAlongX)

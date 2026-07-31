@@ -61,6 +61,7 @@ class Level1WiringGateTests(unittest.TestCase):
             "AddComponent<FaultStrobeRuntime>(); r.SetPropertyBlock(_block);",
             "QuayBerthAuthor.Build(root, kit); QuayBerthCore.PadCentres(centre, 20f);",
             'machineId = ToxicCityContractBuilder.RelayMachineId; RepairMachine("ToxicCity_S4_RelayRepair", id, l, 1f);',
+            "InteriorTierCore.Evaluate(area, servesRoute, 0); InteriorFurnisher.Furnish(r, plan, e, s, 1);",
             "AddComponent<Ziptide.Gameplay.WorldAtmosphereBinder>(); _rig.Apply(_vista, player);",
             'rill.SayById("CATCH_DEAD_RING"); rill.SayById("CATCH_OVERRUN"); rill.SayById("CATCH_THE_FIND"); rill.SayById("ARTIFACT_JOIN_HINT");',
         ]
