@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 794,
-  "findingCount": 2868,
+  "scannedFiles": 796,
+  "findingCount": 2886,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -1361,56 +1361,56 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 73,
+            "line": 77,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "InputActionReference smoothRef = smoothSo.FindProperty(\"m_RightHandTurnAction.m_Reference\")?.objectReferenceValue"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 74,
+            "line": 78,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "as InputActionReference;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 83,
+            "line": 87,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "InputActionReference snapRef = snapSo.FindProperty(\"m_RightHandSnapTurnAction.m_Reference\")?.objectReferenceValue"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 84,
+            "line": 88,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "as InputActionReference;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 90,
+            "line": 94,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "throw new InvalidOperationException(\"TURN_CONTRACT: smooth and snap providers share one InputActionReference\");"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 97,
+            "line": 101,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "private static InputActionReference FindReference(string actionName)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 104,
+            "line": 108,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "InputActionReference reference = assets[i] as InputActionReference;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 113,
+            "line": 117,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "InputActionReference reference = assets[i] as InputActionReference;"
           }
@@ -1464,56 +1464,56 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 114,
+            "line": 116,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "InputActionReference rightTurn = FindActionReference(inputActionsPath, \"XRI RightHand Locomotion\", \"Snap Turn\");"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 243,
+            "line": 245,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "private static void EnsureInputActionManager(InputActionAsset inputAsset)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 245,
+            "line": 247,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "var manager = Object.FindObjectOfType<InputActionManager>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 252,
+            "line": 254,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "Undo.RegisterCreatedObjectUndo(parent, \"InputActionManager\");"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 255,
+            "line": 257,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "manager = parent.GetComponent<InputActionManager>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 256,
+            "line": 258,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "if (manager == null) manager = parent.AddComponent<InputActionManager>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 294,
+            "line": 296,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "private static InputActionReference FindActionReference(string assetPath, string mapName, string actionName)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 299,
+            "line": 301,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "if (o is InputActionReference refAsset && refAsset.action != null)"
           }
@@ -2002,79 +2002,105 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 301,
+            "line": 331,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "var directActions = new HashSet<InputAction>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 313,
+            "line": 343,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "var disabledBefore = new List<InputAction>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 314,
+            "line": 344,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "foreach (InputAction action in map.actions)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 322,
+            "line": 352,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "foreach (InputAction action in disabledBefore)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 332,
+            "line": 362,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "foreach (InputAction action in directActions)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 399,
+            "line": 398,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "private static bool IsInertDirectAction(InputAction action)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 409,
+            "line": 404,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "HashSet<InputAction> directActions)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 435,
+            "line": 430,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "HashSet<InputAction> directActions)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 437,
+            "line": 432,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "InputAction action = property.action;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 520,
+            "line": 515,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "InputAction action = property.action;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 571,
+            "line": 566,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "private static string ActionPath(InputAction action)"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.LocomotionInertActionSweep",
+        "evidenceCount": 2,
+        "codes": [
+          "INPUT_ACTION_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LocomotionInertActionSweep.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LocomotionInertActionSweep.cs",
+            "line": 30,
+            "symbol": "Ziptide.Gameplay.LocomotionInertActionSweep",
+            "snippet": "public static bool IsInertAction(InputAction action)"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LocomotionInertActionSweep.cs",
+            "line": 38,
+            "symbol": "Ziptide.Gameplay.LocomotionInertActionSweep",
+            "snippet": "/// True for a property this sweep may null out. A property carrying an InputActionReference is"
           }
         ]
       },
@@ -2591,6 +2617,102 @@
             "line": 189,
             "symbol": "Ziptide.Tests.EditMode.FirstHourObservationCoreTests",
             "snippet": "StringAssert.DoesNotContain(\"InputAction\", source);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+        "evidenceCount": 12,
+        "codes": [
+          "INPUT_ACTION_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 44,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "Assert.IsTrue(LocomotionInertActionSweep.IsInertAction(new InputAction(\"unused\")),"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 51,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "var bound = new InputAction(\"turn\", InputActionType.Value, \"<Gamepad>/rightStick\");"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 59,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "// The dangerous direction. An InputActionReference points at an asset that owns its own"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 61,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "var asset = ScriptableObject.CreateInstance<InputActionAsset>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 64,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "InputAction action = map.AddAction(\"Turn\", InputActionType.Value);"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 65,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "InputActionReference reference = InputActionReference.Create(action);"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 76,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "turn.leftHandTurnAction = new InputActionProperty(new InputAction(\"unused\"));"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 78,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "new InputAction(\"turn\", InputActionType.Value, \"<Gamepad>/rightStick\"));"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 95,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "move.rightHandMoveAction = new InputActionProperty(new InputAction(\"unused\"));"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 96,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "turn.leftHandTurnAction = new InputActionProperty(new InputAction(\"unused\"));"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 97,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "snap.leftHandSnapTurnAction = new InputActionProperty(new InputAction(\"unused\"));"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 112,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "turn.leftHandTurnAction = new InputActionProperty(new InputAction(\"unused\"));"
           }
         ]
       },
@@ -6137,14 +6259,14 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 249,
+            "line": 251,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "GameObject parent = interactionManager != null ? interactionManager.gameObject : new GameObject(\"_InputActionManager\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 274,
+            "line": 276,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "GameObject child = new GameObject(name);"
           }
@@ -12804,6 +12926,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs",
+            "line": 36,
+            "symbol": "Ziptide.Tests.EditMode.LocomotionInertActionSweepTests",
+            "snippet": "var go = new GameObject(name);"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
         "evidenceCount": 1,
         "codes": [
@@ -14620,7 +14761,7 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 248,
+            "line": 250,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "var interactionManager = Object.FindObjectOfType<XRInteractionManager>();"
           }
@@ -19896,7 +20037,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
-            "line": 215,
+            "line": 217,
             "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
             "snippet": "var cam = Camera.main;"
           }
@@ -21575,6 +21716,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+        "evidenceCount": 1,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
+            "line": 43,
+            "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+            "snippet": "// action, so this authors a zero-binding placeholder that XRI would happily enable and"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Editor.Patching.PracticalAuthor",
         "evidenceCount": 10,
         "codes": [
@@ -22018,6 +22178,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Editor.Setup.EnsureLocomotionRig",
+        "evidenceCount": 1,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs",
+            "line": 104,
+            "symbol": "Ziptide.Editor.Setup.EnsureLocomotionRig",
+            "snippet": "// Zero-binding placeholder for the hand that never turns. It cannot be serialized as"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Editor.Setup.SetupMilestoneAScene",
         "evidenceCount": 1,
         "codes": [
@@ -22378,7 +22557,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 338,
+            "line": 368,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "// inert placeholder, not a binding that can be repaired. Keep it disabled so XRI never"
           }

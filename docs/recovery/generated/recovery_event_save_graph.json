@@ -1,13 +1,13 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 794,
-  "evidenceCount": 834,
+  "scannedFiles": 796,
+  "evidenceCount": 837,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 49,
     "EVENT_INVOKE": 61,
-    "EVENT_SUBSCRIBE": 140,
-    "EVENT_UNSUBSCRIBE": 85,
+    "EVENT_SUBSCRIBE": 141,
+    "EVENT_UNSUBSCRIBE": 87,
     "PLAYER_PREFS_ACCESS": 20,
     "PROFILE_FIELD_ACCESS": 387,
     "SAVE_ACCESS": 84
@@ -5297,6 +5297,33 @@
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
         "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
+        "line": 55,
+        "owner": "Ziptide.Gameplay.InputMutationRepairDriver",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoadedSweep",
+        "snippet": "SceneManager.sceneLoaded -= OnSceneLoadedSweep;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
+        "line": 56,
+        "owner": "Ziptide.Gameplay.InputMutationRepairDriver",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoadedSweep",
+        "snippet": "SceneManager.sceneLoaded += OnSceneLoadedSweep;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
+        "line": 62,
+        "owner": "Ziptide.Gameplay.InputMutationRepairDriver",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoadedSweep",
+        "snippet": "SceneManager.sceneLoaded -= OnSceneLoadedSweep;"
       },
       {
         "kind": "EVENT_SUBSCRIBE",
@@ -11074,6 +11101,33 @@
       "target": "GetResource",
       "detail": "Profile",
       "snippet": "credits = (long)System.Math.Floor(save.Profile.GetResource(CreditsResourceId));"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
+      "line": 55,
+      "owner": "Ziptide.Gameplay.InputMutationRepairDriver",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoadedSweep",
+      "snippet": "SceneManager.sceneLoaded -= OnSceneLoadedSweep;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
+      "line": 56,
+      "owner": "Ziptide.Gameplay.InputMutationRepairDriver",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoadedSweep",
+      "snippet": "SceneManager.sceneLoaded += OnSceneLoadedSweep;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
+      "line": 62,
+      "owner": "Ziptide.Gameplay.InputMutationRepairDriver",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoadedSweep",
+      "snippet": "SceneManager.sceneLoaded -= OnSceneLoadedSweep;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",

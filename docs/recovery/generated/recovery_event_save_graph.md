@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **794**
-- Evidence edges: **834**
+- Scanned C# files: **796**
+- Evidence edges: **837**
 - Named subscriptions without matching unsubscribe in the same owner: **62**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -11,8 +11,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 8
 - **EVENT_DECLARE:** 49
 - **EVENT_INVOKE:** 61
-- **EVENT_SUBSCRIBE:** 140
-- **EVENT_UNSUBSCRIBE:** 85
+- **EVENT_SUBSCRIBE:** 141
+- **EVENT_UNSUBSCRIBE:** 87
 - **PLAYER_PREFS_ACCESS:** 20
 - **PROFILE_FIELD_ACCESS:** 387
 - **SAVE_ACCESS:** 84
@@ -858,6 +858,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.EcologyDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:44` · `(scene, mode) =>` — `SceneManager.sceneLoaded += (scene, mode) => Ensure(scene);`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.QuartersCameraFeature` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:16` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.QuartersCameraFeature` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:17` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.InputMutationRepairDriver` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:55` · `OnSceneLoadedSweep` — `SceneManager.sceneLoaded -= OnSceneLoadedSweep;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.InputMutationRepairDriver` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:56` · `OnSceneLoadedSweep` — `SceneManager.sceneLoaded += OnSceneLoadedSweep;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.InputMutationRepairDriver` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:62` · `OnSceneLoadedSweep` — `SceneManager.sceneLoaded -= OnSceneLoadedSweep;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.LevelStateContract` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LevelStateContract.cs:41` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.LevelStateContract` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LevelStateContract.cs:46` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PlayerInputSessionGuard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:32` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`

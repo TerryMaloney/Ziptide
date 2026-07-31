@@ -1,6 +1,6 @@
 # Recovery Static Workflow Status
 
-Commit: `017e0f174f5b89a957eb79f55b3e650aea66ec00`
+Commit: `e0fad407d2bbacd335cae2f0ab155beb87792155`
 
 ## Tool tests
 

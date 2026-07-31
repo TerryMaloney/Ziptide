@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **794**
-- Scanner findings: **2868**
+- Scanned files: **796**
+- Scanner findings: **2886**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -403,14 +403,14 @@ None.
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:28` **INPUT_ACTION_REFERENCE** — `InputActionReference turnReference = FindReference("Turn");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:73` **INPUT_ACTION_REFERENCE** — `InputActionReference smoothRef = smoothSo.FindProperty("m_RightHandTurnAction.m_Reference")?.objectReferenceValue`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:74` **INPUT_ACTION_REFERENCE** — `as InputActionReference;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:83` **INPUT_ACTION_REFERENCE** — `InputActionReference snapRef = snapSo.FindProperty("m_RightHandSnapTurnAction.m_Reference")?.objectReferenceValue`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:84` **INPUT_ACTION_REFERENCE** — `as InputActionReference;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:90` **INPUT_ACTION_REFERENCE** — `throw new InvalidOperationException("TURN_CONTRACT: smooth and snap providers share one InputActionReference");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:97` **INPUT_ACTION_REFERENCE** — `private static InputActionReference FindReference(string actionName)`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:104` **INPUT_ACTION_REFERENCE** — `InputActionReference reference = assets[i] as InputActionReference;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:113` **INPUT_ACTION_REFERENCE** — `InputActionReference reference = assets[i] as InputActionReference;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:77` **INPUT_ACTION_REFERENCE** — `InputActionReference smoothRef = smoothSo.FindProperty("m_RightHandTurnAction.m_Reference")?.objectReferenceValue`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:78` **INPUT_ACTION_REFERENCE** — `as InputActionReference;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:87` **INPUT_ACTION_REFERENCE** — `InputActionReference snapRef = snapSo.FindProperty("m_RightHandSnapTurnAction.m_Reference")?.objectReferenceValue`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:88` **INPUT_ACTION_REFERENCE** — `as InputActionReference;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:94` **INPUT_ACTION_REFERENCE** — `throw new InvalidOperationException("TURN_CONTRACT: smooth and snap providers share one InputActionReference");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:101` **INPUT_ACTION_REFERENCE** — `private static InputActionReference FindReference(string actionName)`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:108` **INPUT_ACTION_REFERENCE** — `InputActionReference reference = assets[i] as InputActionReference;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:117` **INPUT_ACTION_REFERENCE** — `InputActionReference reference = assets[i] as InputActionReference;`
 
 ### `Ziptide.Editor.Setup.EnsureLocomotionRig` — 13 signal(s)
 
@@ -421,14 +421,14 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:82` **INPUT_ACTION_REFERENCE** — `InputActionReference leftMove = FindActionReference(inputActionsPath, "XRI LeftHand Locomotion", "Move");`
   - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:83` **INPUT_ACTION_REFERENCE** — `InputActionReference rightMove = FindActionReference(inputActionsPath, "XRI RightHand Locomotion", "Move");`
   - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:102` **INPUT_ACTION_REFERENCE** — `InputActionReference rightSnap = FindActionReference(inputActionsPath, "XRI RightHand Locomotion", "Snap Turn");`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:114` **INPUT_ACTION_REFERENCE** — `InputActionReference rightTurn = FindActionReference(inputActionsPath, "XRI RightHand Locomotion", "Snap Turn");`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:243` **INPUT_ACTION_REFERENCE** — `private static void EnsureInputActionManager(InputActionAsset inputAsset)`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:245` **INPUT_ACTION_REFERENCE** — `var manager = Object.FindObjectOfType<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:252` **INPUT_ACTION_REFERENCE** — `Undo.RegisterCreatedObjectUndo(parent, "InputActionManager");`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:255` **INPUT_ACTION_REFERENCE** — `manager = parent.GetComponent<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:256` **INPUT_ACTION_REFERENCE** — `if (manager == null) manager = parent.AddComponent<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:294` **INPUT_ACTION_REFERENCE** — `private static InputActionReference FindActionReference(string assetPath, string mapName, string actionName)`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:299` **INPUT_ACTION_REFERENCE** — `if (o is InputActionReference refAsset && refAsset.action != null)`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:116` **INPUT_ACTION_REFERENCE** — `InputActionReference rightTurn = FindActionReference(inputActionsPath, "XRI RightHand Locomotion", "Snap Turn");`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:245` **INPUT_ACTION_REFERENCE** — `private static void EnsureInputActionManager(InputActionAsset inputAsset)`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:247` **INPUT_ACTION_REFERENCE** — `var manager = Object.FindObjectOfType<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:254` **INPUT_ACTION_REFERENCE** — `Undo.RegisterCreatedObjectUndo(parent, "InputActionManager");`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:257` **INPUT_ACTION_REFERENCE** — `manager = parent.GetComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:258` **INPUT_ACTION_REFERENCE** — `if (manager == null) manager = parent.AddComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:296` **INPUT_ACTION_REFERENCE** — `private static InputActionReference FindActionReference(string assetPath, string mapName, string actionName)`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:301` **INPUT_ACTION_REFERENCE** — `if (o is InputActionReference refAsset && refAsset.action != null)`
 
 ### `Ziptide.Editor.Setup.SetupMilestoneAScene` — 5 signal(s)
 
@@ -524,17 +524,24 @@ None.
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:301` **INPUT_ACTION_REFERENCE** — `var directActions = new HashSet<InputAction>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:313` **INPUT_ACTION_REFERENCE** — `var disabledBefore = new List<InputAction>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:314` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:322` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in disabledBefore)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:332` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in directActions)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:399` **INPUT_ACTION_REFERENCE** — `private static bool IsInertDirectAction(InputAction action)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:409` **INPUT_ACTION_REFERENCE** — `HashSet<InputAction> directActions)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:435` **INPUT_ACTION_REFERENCE** — `HashSet<InputAction> directActions)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:437` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:520` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:571` **INPUT_ACTION_REFERENCE** — `private static string ActionPath(InputAction action)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:331` **INPUT_ACTION_REFERENCE** — `var directActions = new HashSet<InputAction>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:343` **INPUT_ACTION_REFERENCE** — `var disabledBefore = new List<InputAction>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:344` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:352` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in disabledBefore)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:362` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in directActions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:398` **INPUT_ACTION_REFERENCE** — `private static bool IsInertDirectAction(InputAction action)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:404` **INPUT_ACTION_REFERENCE** — `HashSet<InputAction> directActions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:430` **INPUT_ACTION_REFERENCE** — `HashSet<InputAction> directActions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:432` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:515` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:566` **INPUT_ACTION_REFERENCE** — `private static string ActionPath(InputAction action)`
+
+### `Ziptide.Gameplay.LocomotionInertActionSweep` — 2 signal(s)
+
+- Codes: `INPUT_ACTION_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LocomotionInertActionSweep.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LocomotionInertActionSweep.cs:30` **INPUT_ACTION_REFERENCE** — `public static bool IsInertAction(InputAction action)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LocomotionInertActionSweep.cs:38` **INPUT_ACTION_REFERENCE** — `/// True for a property this sweep may null out. A property carrying an InputActionReference is`
 
 ### `Ziptide.Gameplay.PingTool` — 2 signal(s)
 
@@ -641,6 +648,23 @@ None.
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:189` **INPUT_ACTION_REFERENCE** — `StringAssert.DoesNotContain("InputAction", source);`
+
+### `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — 12 signal(s)
+
+- Codes: `INPUT_ACTION_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:44` **INPUT_ACTION_REFERENCE** — `Assert.IsTrue(LocomotionInertActionSweep.IsInertAction(new InputAction("unused")),`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:51` **INPUT_ACTION_REFERENCE** — `var bound = new InputAction("turn", InputActionType.Value, "<Gamepad>/rightStick");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:59` **INPUT_ACTION_REFERENCE** — `// The dangerous direction. An InputActionReference points at an asset that owns its own`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:61` **INPUT_ACTION_REFERENCE** — `var asset = ScriptableObject.CreateInstance<InputActionAsset>();`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:64` **INPUT_ACTION_REFERENCE** — `InputAction action = map.AddAction("Turn", InputActionType.Value);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:65` **INPUT_ACTION_REFERENCE** — `InputActionReference reference = InputActionReference.Create(action);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:76` **INPUT_ACTION_REFERENCE** — `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:78` **INPUT_ACTION_REFERENCE** — `new InputAction("turn", InputActionType.Value, "<Gamepad>/rightStick"));`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:95` **INPUT_ACTION_REFERENCE** — `move.rightHandMoveAction = new InputActionProperty(new InputAction("unused"));`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:96` **INPUT_ACTION_REFERENCE** — `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:97` **INPUT_ACTION_REFERENCE** — `snap.leftHandSnapTurnAction = new InputActionProperty(new InputAction("unused"));`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:112` **INPUT_ACTION_REFERENCE** — `turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));`
 
 ### `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — 1 signal(s)
 
@@ -1342,8 +1366,8 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:249` **NEW_GAME_OBJECT** — `GameObject parent = interactionManager != null ? interactionManager.gameObject : new GameObject("_InputActionManager");`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:274` **NEW_GAME_OBJECT** — `GameObject child = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:251` **NEW_GAME_OBJECT** — `GameObject parent = interactionManager != null ? interactionManager.gameObject : new GameObject("_InputActionManager");`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:276` **NEW_GAME_OBJECT** — `GameObject child = new GameObject(name);`
 
 ### `Ziptide.Editor.Setup.SetupMilestoneAScene` — 11 signal(s)
 
@@ -2721,6 +2745,12 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:55` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_shipyard_office");`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:66` **NEW_GAME_OBJECT** — `_authored = new GameObject("Marker_relay_node");`
 
+### `Ziptide.Tests.EditMode.LocomotionInertActionSweepTests` — 1 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/LocomotionInertActionSweepTests.cs:36` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+
 ### `Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests` — 1 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`
@@ -3153,7 +3183,7 @@ None.
 
 - Codes: `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:248` **XRI_MANAGER_LOOKUP** — `var interactionManager = Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:250` **XRI_MANAGER_LOOKUP** — `var interactionManager = Object.FindObjectOfType<XRInteractionManager>();`
 
 ### `Ziptide.Editor.Setup.SetupMilestoneAScene` — 3 signal(s)
 
@@ -4413,7 +4443,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:215` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:217` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
 ### `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — 1 signal(s)
 
@@ -4896,6 +4926,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ForgeDependencyAuditor.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ForgeDependencyAuditor.cs:25` **FALLBACK_MARKER** — `/// FORGE_MANIFEST.json answers "what exists / what's playable / what's placeholder / what`
 
+### `Ziptide.Editor.Patching.LocomotionContractEnforcer` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:43` **FALLBACK_MARKER** — `// action, so this authors a zero-binding placeholder that XRI would happily enable and`
+
 ### `Ziptide.Editor.Patching.PracticalAuthor` — 10 signal(s)
 
 - Codes: `FALLBACK_MARKER`
@@ -5002,6 +5038,12 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:42` **FALLBACK_MARKER** — `EditorUtility.DisplayDialog("World Stub Generator",`
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:50` **FALLBACK_MARKER** — `EditorUtility.DisplayDialog("World Stub Generator",`
 
+### `Ziptide.Editor.Setup.EnsureLocomotionRig` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:104` **FALLBACK_MARKER** — `// Zero-binding placeholder for the hand that never turns. It cannot be serialized as`
+
 ### `Ziptide.Editor.Setup.SetupMilestoneAScene` — 1 signal(s)
 
 - Codes: `FALLBACK_MARKER`
@@ -5105,7 +5147,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:338` **FALLBACK_MARKER** — `// inert placeholder, not a binding that can be repaired. Keep it disabled so XRI never`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:368` **FALLBACK_MARKER** — `// inert placeholder, not a binding that can be repaired. Keep it disabled so XRI never`
 
 ### `Ziptide.Gameplay.InventoryState` — 1 signal(s)
 
