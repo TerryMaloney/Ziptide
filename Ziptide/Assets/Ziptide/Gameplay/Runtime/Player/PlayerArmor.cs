@@ -44,6 +44,9 @@ namespace Ziptide.Gameplay
                 Debug.Log("ZIPTIDE: ARMOR_READY owner=PlayerStunReceiver max="
                     + armor._state.Armor.MaxCharge);
             }
+            // Mortality without a readout is not an unfinished feature, it is an unfair one — so the
+            // vignette is ensured WITH the armor, never separately, and cannot be forgotten.
+            ArmorVignetteRuntime.EnsureOn(rig);
             return armor;
         }
 
