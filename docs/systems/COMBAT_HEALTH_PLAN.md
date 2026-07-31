@@ -1,7 +1,24 @@
 # COMBAT · HEALTH · ENEMY VARIETY — the solid plan
 
-**Status:** PROPOSAL awaiting Terry's two design decisions (§2). Phase 0 (melee grip) is already shipped
-(commit `8f93847`). Everything else below is planned, not built.
+**Status (corrected 2026-07-31):** NOT a proposal — §2 was **DECIDED by Terry on 2026-07-07** and the
+header contradicting that is why this sat unbuilt. Real state, verified against the tree:
+
+| Slice | State |
+|---|---|
+| Phase 0 — melee grip | ✅ shipped (`8f93847`) |
+| Phase A.1 — `ArmorMeter` pure type | ✅ **built** — `Multiplayer/Runtime/ArmorMeter.cs` + `PlayerCombatState`, with tests |
+| Phase A.2 — one canonical damage scale | ✅ largely done — creature baselines test against `PvpRules` |
+| Phase A.3 — `ItemDefinition.damage` as per-weapon truth | ❌ **the field exists and is read by NOTHING**, and is unserialized (0) on every weapon asset |
+| Phase A.4 — guard test that damage is on-scale | ❌ missing, which is why A.3 could rot silently |
+| Phase B — the campaign player has armor and can die | ❌ **not built.** `PlayerStunReceiver` still says *"NO health, NO death"* |
+
+**So the headline defect in §1 is still live: the campaign player cannot be hurt.** `ArmorMeter` and
+`PlayerCombatState` exist but only PvP consumes them. Phase B is the wiring that makes combat have
+stakes, and it is the largest single gameplay hole in the game.
+
+⚠ Anyone picking this up: `ArmorMeter` **already exists** in `Ziptide.Multiplayer`. Do not write a
+second one in `Core` — I nearly did. Phase A.1's note about "put it in Core if Gameplay needs it" is
+about a *move*, not a new type.
 **Author:** Picasso / Opus 4.8, 2026-07-07, on `terry-local-wip`.
 **Read with:** `docs/WIRING_MAP.md` (§3 the seam table), `PvpRules.cs`, `PvpCombatant.cs`,
 `CreatureRuntime.cs`, `CreatureDefinition.cs`, `PlayerStunReceiver.cs`.
