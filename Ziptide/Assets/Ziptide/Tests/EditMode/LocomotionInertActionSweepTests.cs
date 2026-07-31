@@ -84,16 +84,24 @@ namespace Ziptide.Tests.EditMode
             Assert.IsNotNull(turn.rightHandTurnAction.action, "right stick still turns");
         }
 
+        private static InputActionProperty Bound(string name) =>
+            new InputActionProperty(new InputAction(name, InputActionType.Value, "<Gamepad>/leftStick"));
+
         [Test]
         public void TheSweep_CoversMove_Turn_AndSnap()
         {
             // The class, not the instance: every ActionBased locomotion provider ZIPTIDE authors has
             // an unused hand, so missing one provider type reopens the same crash on a different stick.
+            // Each provider is wired to ZIPTIDE's law — left stick moves, right stick turns — leaving
+            // exactly one inert hand apiece.
             var move = Spawn<ActionBasedContinuousMoveProvider>("Move");
             var turn = Spawn<ActionBasedContinuousTurnProvider>("SmoothTurn");
             var snap = Spawn<ActionBasedSnapTurnProvider>("SnapTurn");
+            move.leftHandMoveAction = Bound("move");
             move.rightHandMoveAction = new InputActionProperty(new InputAction("unused"));
+            turn.rightHandTurnAction = Bound("turn");
             turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));
+            snap.rightHandSnapTurnAction = Bound("snap");
             snap.leftHandSnapTurnAction = new InputActionProperty(new InputAction("unused"));
 
             var readers = new List<Behaviour> { move, turn, snap };
@@ -101,6 +109,20 @@ namespace Ziptide.Tests.EditMode
             Assert.IsNull(move.rightHandMoveAction.action);
             Assert.IsNull(turn.leftHandTurnAction.action);
             Assert.IsNull(snap.leftHandSnapTurnAction.action);
+            Assert.IsNotNull(move.leftHandMoveAction.action, "the real stick survives");
+            Assert.IsNotNull(turn.rightHandTurnAction.action, "the real stick survives");
+            Assert.IsNotNull(snap.rightHandSnapTurnAction.action, "the real stick survives");
+        }
+
+        [Test]
+        public void AnUnconfiguredProvider_HasBothHandsInert_AndBothAreCleared()
+        {
+            // Learned from CI, and worth pinning: Unity's serializer instantiates the embedded
+            // [SerializeField] InputAction, so a freshly added XRI provider carries TWO zero-binding
+            // actions, not zero. Both would be enabled by OnEnable and both would crash on read — so
+            // clearing both is the correct behaviour, not over-reach.
+            var turn = Spawn<ActionBasedContinuousTurnProvider>("Unconfigured");
+            Assert.AreEqual(2, LocomotionInertActionSweep.Clear(turn));
         }
 
         [Test]
@@ -109,6 +131,7 @@ namespace Ziptide.Tests.EditMode
             // It runs on install and again on every scene load, so a second pass must be a no-op
             // rather than churn the properties of an already-clean rig.
             var turn = Spawn<ActionBasedContinuousTurnProvider>("SmoothTurn");
+            turn.rightHandTurnAction = Bound("turn");
             turn.leftHandTurnAction = new InputActionProperty(new InputAction("unused"));
 
             Assert.AreEqual(1, LocomotionInertActionSweep.Clear(turn));

@@ -83,6 +83,14 @@ The cloud container has the XRI **DLLs but not source**, so you can't read XRI m
 public API name is uncertain (see #1), either (a) reflect a known `[SerializeField]` field, or (b) just
 push and let CI's compile catch a wrong name fast — cheaper than guessing in prose.
 
+- **But do NOT extend that to package *behaviour*.** A wrong name costs one compile; a wrong assumption
+  about a package type's **default state** costs a red test cycle and reads as a code bug. In particular,
+  **never assert on a count derived from a default you cannot read** — assert on the property the feature
+  guarantees ("this hand's action is null", "the real stick survived"). If a count really is the contract,
+  pin the default in its own named test so the number has a stated source. (MISS_LEDGER #23: a freshly
+  added XRI provider has **two** zero-binding embedded actions, not zero — Unity's serializer instantiates
+  the `[SerializeField] InputAction` — and two separate tests of mine assumed otherwise.)
+
 ## #9 — A zero-binding direct XRI action still crashes after it was disabled
 - **Symptom:** the recovery route logs a successful action-map repair and reader restoration, then one frame
   later throws `NullReferenceException` from `InputActionState.ApplyProcessors` through

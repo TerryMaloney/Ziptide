@@ -245,6 +245,28 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     (→ pending: closes when the PlayMode lane is green across three consecutive dispatches on one
     SHA, which is the only honest proof for an intermittent defect.)
 
+23. **WHAT:** Twice in one session my own new test failed CI because **the test's premise was wrong,
+    not the code** — the berth guard asserted on the wrong axis (`017e0f17`), and
+    `LocomotionInertActionSweepTests` asserted "one inert property per provider" when a freshly
+    added XRI provider actually carries **two** (Unity's serializer instantiates the embedded
+    `[SerializeField] InputAction`, so both hands start as zero-binding actions). The sweep was
+    behaving correctly in both cases.
+    **FOUND BY:** CI, both times — which is the system working, but it costs a full red cycle each
+    time and a red cycle is the thing the circuit breaker counts.
+    **WHY MISSED:** both assertions were **counts**, and a count encodes an assumption about the
+    default state of a type whose source I cannot read (VR_RIG_GOTCHAS #8: the cloud container has
+    the XRI/Input System DLLs but not their source). I asserted on my model of the package instead
+    of on the behaviour I actually care about.
+    **CLASS:** asserting on a number derived from unreadable third-party default state, rather than
+    on the observable property the feature exists to guarantee.
+    **SYSTEM CHANGE:** when a package type's defaults are not readable in this container, assert the
+    **property** ("this hand's action is null", "the real stick's action survived"), not the count.
+    Where a count is genuinely the contract, pin the default in its own named test first so the
+    number has a stated source — done here as
+    `AnUnconfiguredProvider_HasBothHandsInert_AndBothAreCleared`.
+    (→ pending: closes when this rule is in VR_RIG_GOTCHAS #8 alongside the "just push and let CI
+    catch the name" advice, which is what nudged me toward guessing in the first place.)
+
 ## CLOSED
 
 *(entries move here when their SYSTEM CHANGE is verified in place — the fix alone never closes
