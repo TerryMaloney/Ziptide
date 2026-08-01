@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-08-01T10:52:15.206854+00:00",
+  "generatedAtUtc": "2026-08-01T13:49:55.616227+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -317,7 +317,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 46,
+      "line": 47,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
     },
@@ -3683,7 +3683,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 137,
+      "line": 138,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: ARTIFACT_JOIN_HINT both halves carried, not joined\");"
     },
@@ -3692,7 +3692,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 194,
+      "line": 195,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: ARTIFACT_JOIN_NO_KEY id=\" + KeyItemId"
     },
@@ -3701,7 +3701,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 200,
+      "line": 201,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: ARTIFACT_JOINED at=\" + where.ToString(\"F2\"));"
     },
@@ -3710,7 +3710,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 209,
+      "line": 217,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: ARTIFACT_JOIN_LISTENER_FAIL error=\" + ex.Message);"
     },
@@ -3944,7 +3944,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 292,
+      "line": 301,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "Debug.Log(\"ZIPTIDE: MACHINE_REPAIRED id=\" + _def.machineId"
     },
@@ -3953,7 +3953,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 305,
+      "line": 314,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "Debug.Log(\"ZIPTIDE: HAPTIC verb=\" + verb + \" hand=\" + hand.gameObject.name"
     },
@@ -3962,7 +3962,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 412,
+      "line": 421,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "ex => Debug.LogWarning(\"ZIPTIDE: REPAIR_STAGE_SUBSCRIBER_FAIL id=\" + MachineId"
     },
@@ -12737,7 +12737,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 472,
+      "line": 481,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "var material = new Material(shader);"
     },
@@ -14123,7 +14123,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 468,
+      "line": 477,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -14132,7 +14132,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 469,
+      "line": 478,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -14825,7 +14825,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 51,
+      "line": 52,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "DontDestroyOnLoad(go);"
     },
@@ -14834,7 +14834,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 59,
+      "line": 60,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "DontDestroyOnLoad(gameObject);"
     },
@@ -19838,7 +19838,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 50,
+      "line": 51,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "var go = new GameObject(\"__ArtifactJoin\");"
     },
@@ -23420,7 +23420,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 62,
+      "line": 63,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -23429,7 +23429,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 145,
+      "line": 146,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -23438,7 +23438,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 197,
+      "line": 198,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -24680,7 +24680,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 62,
+      "line": 63,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -24689,7 +24689,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 145,
+      "line": 146,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -24698,7 +24698,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 197,
+      "line": 198,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -25733,7 +25733,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 443,
+      "line": 452,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "if (manager != null) interactable.interactionManager = manager;"
     },
@@ -26219,7 +26219,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 442,
+      "line": 451,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();"
     },

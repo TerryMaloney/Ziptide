@@ -269,7 +269,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 179,
+      "line": 180,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "item.transform.position",
       "detail": "delta",
@@ -2895,7 +2895,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 63,
+        "line": 64,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "HasFlag",
         "detail": "profile",
@@ -2904,7 +2904,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 147,
+        "line": 148,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "HasFlag",
         "detail": "profile",
@@ -2913,7 +2913,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 148,
+        "line": 149,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "HasFlag",
         "detail": "profile",
@@ -4699,7 +4699,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 62,
+        "line": 63,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4708,7 +4708,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 145,
+        "line": 146,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4717,7 +4717,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 197,
+        "line": 198,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -6079,7 +6079,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 141,
+        "line": 142,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "This",
         "detail": "profile",
@@ -7177,7 +7177,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 179,
+        "line": 180,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "item.transform.position",
         "detail": "delta",
@@ -11762,7 +11762,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 62,
+      "line": 63,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -11771,7 +11771,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 63,
+      "line": 64,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "HasFlag",
       "detail": "profile",
@@ -11780,7 +11780,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 141,
+      "line": 142,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "This",
       "detail": "profile",
@@ -11789,7 +11789,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 145,
+      "line": 146,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -11798,7 +11798,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 147,
+      "line": 148,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "HasFlag",
       "detail": "profile",
@@ -11807,7 +11807,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 148,
+      "line": 149,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "HasFlag",
       "detail": "profile",
@@ -11816,7 +11816,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 179,
+      "line": 180,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "item.transform.position",
       "detail": "delta",
@@ -11825,7 +11825,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 197,
+      "line": 198,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
