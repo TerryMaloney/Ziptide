@@ -5450,7 +5450,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 317,
+            "line": 322,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var go = new GameObject(name);"
           }
@@ -22239,7 +22239,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 429,
+            "line": 434,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor"
           }
