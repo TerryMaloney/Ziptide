@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-31T23:43:30.984282+00:00",
+  "generatedAtUtc": "2026-08-01T10:52:15.206854+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -2018,7 +2018,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/ShipArmouryRuntime.cs",
-      "line": 90,
+      "line": 94,
       "symbol": "Ziptide.Gameplay.ShipArmouryRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: ARMOURY_GATE verdict=\" + verdict + \" blocks=\" + blocks"
     },
