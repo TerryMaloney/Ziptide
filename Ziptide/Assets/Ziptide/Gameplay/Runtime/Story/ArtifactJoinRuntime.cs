@@ -42,6 +42,7 @@ namespace Ziptide.Gameplay
 
         private float _nextScanAt;
         private bool _joined;
+        private RillCompanion _spineRill;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void EnsureExists()
@@ -198,6 +199,13 @@ namespace Ziptide.Gameplay
             profile?.SetFlag(ZiptideFlags.ARTIFACT_JOINED);
 
             Debug.Log("ZIPTIDE: ARTIFACT_JOINED at=" + where.ToString("F2"));
+
+            // THEMATIC_SPINE §3.1 — reads as puzzle flavour now, and as the Debugger splitting her own
+            // key so one person alone could not undo it, later.
+            // Cached, not looked up: Join() is reachable from Update, and frame_cost_gate flagged the
+            // naive version the moment it was written. Caught by the gate added an hour earlier.
+            if (_spineRill == null) _spineRill = FindObjectOfType<RillCompanion>();
+            if (_spineRill != null) _spineRill.SayById("SPINE_HALVES_JOINED");
 
             var handler = Joined;
             if (handler == null) return;

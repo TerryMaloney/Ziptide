@@ -195,6 +195,13 @@ namespace Ziptide.Editor.Patching
             // one is on your belt). Two lines, not one, because the two failures are different and a
             // player stuck on the second one has already done what the first line asked. RILL says
             // what is wrong, never which button — the rack is a physical noun and so is your hip.
+            // THE SPINE (docs/storyboard/THEMATIC_SPINE.md §3.1). Both are ordinary technician talk on
+            // first hearing and knives on the second, once the player knows Cal built the Shell and
+            // then went inside it. Neither line is a hint; both are literally true and useful in the
+            // moment, which is the whole technique — a line that only makes sense later is a wink.
+            Cue("SPINE_RELAY_DONE",     "Good. That's one more piece of it working.");
+            Cue("SPINE_HALVES_JOINED",  "Two pieces. Somebody went to trouble to make sure it took two.");
+
             Cue("ARM_YOURSELF",         "Rack by the hatch. Take something before the ramp opens — out there is not a place you go empty-handed.");
             Cue("BELT_IT",              "In your fist does you no good on a ladder. Put it on your hip, then the ramp is yours.");
             Cue("TUT_PUNCH_IT",         "Coupler is green. When you are ready — punch it.");

@@ -289,6 +289,15 @@ namespace Ziptide.Gameplay
             PulseSurface(_statusLamp, RunningColor, Color.white, 0.48f);
             if (_director == null) _director = FindObjectOfType<JobDirector>();
             if (_director != null) _director.ReportRepair(_def.machineId);
+
+            // THEMATIC_SPINE §3.1. Only the signal relay — the first repair the player makes to the
+            // NETWORK rather than to their own ship. Said over every machine it would be wallpaper;
+            // said once, over that one, it is the whole game in eight words.
+            if (_def.machineId == "signal_relay")
+            {
+                var spineRill = FindObjectOfType<RillCompanion>();
+                if (spineRill != null) spineRill.SayById("SPINE_RELAY_DONE");
+            }
             Debug.Log("ZIPTIDE: MACHINE_REPAIRED id=" + _def.machineId
                 + " instance=" + GetInstanceID()
                 + " director=" + (_director != null ? _director.GetInstanceID().ToString() : "NONE"));
