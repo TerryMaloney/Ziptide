@@ -60,7 +60,12 @@ and a 1.6 m box are the same box until something in frame has a size the player 
 4. **§2.5 — one grabbable crate worth nothing.** `LooseCrate`: Rigidbody + `XRGrabInteractable`, no
    `ItemDefinition`, never enters the inventory. The game's first tutorial is a piece of junk, and it
    only works if the junk is really junk.
-5. **§2.3 — the crane hook creeps.** `CraneHookCore` + `CraneHookRuntime`. Two counter-intuitive
+5. **§2.2 — there is something overhead.** Three gantry arches and two runners over the **landward
+   55%** of the berth, trusses at 6.2 m, lamps at 4.6 m. The half is the part worth defending: a roof
+   over the whole berth would seal off the sky, and the skyscape is the thing this project is most
+   committed to. **A scale win that costs the horizon is not a win**, so `GantryRoofCore` owns the
+   ratio and a test fails the day someone extends the roof "just a bit".
+6. **§2.3 — the crane hook creeps.** `CraneHookCore` + `CraneHookRuntime`. Two counter-intuitive
    numbers, both now pinned: **slow** (past ~0.35 m/s a hook stops reading as tonnage on a cable and
    starts reading as an animation at the wrong rate) and **eased at both ends** (an instant reversal
    on a heavy object is the clearest tell that nothing here has mass). The cable stretches, because a
@@ -80,11 +85,12 @@ and a 1.6 m box are the same box until something in frame has a size the player 
 
 #### Next
 
+**§2 of the hangar pass is done except one item.** What is left:
+
 - **§3.2 the coupler concept prompt** is written and ready for Terry to run — it unblocks the modelling
-  and nothing is built yet.
-- **§2.2** the partial gantry roof (layout only; looking up is what makes a space feel big).
+  and nothing is built yet. This is the top of the list.
 - **§2.4 background band** — frame the walk so the player exits the ship facing the skyline rather
-  than the office wall.
+  than the office wall. Needs an eye in the headset, not arithmetic in a container.
 - **`W000_DriftIn`'s GantryCrane is 10 m × 2 m** — the same defect, in the first room of the game. Its
   BerthBay is small and ringed by facades near the crane, so the widened footprint needs a placement
   **eyeballed in the scene view**, not derived from bounds arithmetic in a container with no editor.
@@ -99,8 +105,8 @@ and a 1.6 m box are the same box until something in frame has a size the player 
 
 #### Commits
 
-`70073d2a` crane · `ff960f6b` arrival walk + spec · `76669a66` foreground + teaching crate ·
-`8c9119f6` the hook creeps.
+`70073d2a` crane · `ff960f6b` arrival walk + spec · `5297eb89` foreground + teaching crate ·
+`77a3ba96` the hook creeps · plus the gantry roof commit below this entry.
 
 ---
 

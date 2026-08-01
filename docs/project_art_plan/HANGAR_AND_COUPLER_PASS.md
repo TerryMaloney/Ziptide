@@ -64,10 +64,22 @@ same defect, in the first room of the game. Its BerthBay is small and ringed by 
 near the crane, so the widened footprint needs a placement eyeballed in the scene view rather than
 guessed from bounds arithmetic. One `kind = Crane` + a width and position, once someone can see it.
 
-### 2.2 A roof the player has to look up at
+### 2.2 A roof the player has to look up at — ✅ BUILT 2026-08-01
 The berth is a *hangar* and has no overhead. Add a partial gantry roof over the ship's berth only —
 open at the seaward end so the sky (and the new acid haze) is still the backdrop. Trusses at 6 m,
 lamps hanging at 4.5 m. **Looking up is the mechanic that makes a space feel big.**
+
+**As built.** Three arches (columns + truss + a hung lamp each) and two runners along the length,
+trusses at 6.2 m, lamps at 4.6 m, over the **landward 55%** of the berth.
+
+The half is the part worth defending. A roof over the whole berth would seal off the sky, and the
+skyscape is the thing this project is most committed to — `SKYSCAPE_DESIGN` opens with Terry naming it
+as a reason the game exists, and W001's acid haze was built for it two days ago. **A scale win that
+costs the horizon is not a win.** `GantryRoofCore.LeavesTheSkyOpen` owns that ratio and
+`GantryRoofCoreTests` will fail the day someone extends the roof "just a bit".
+
+Lamps are unlit-bright quads, not real lights — a row of point lights over a berth is how a Quest frame
+budget dies, which the lantern route learned first.
 
 ### 2.3 One thing that moves, slowly — ✅ BUILT 2026-08-01
 The crane's hook descends and rises on a slow loop, or a gantry trolley tracks the length of the quay.
@@ -182,14 +194,13 @@ good in the hands.
 
 1. ~~**§2.1 crane width + rungs**~~ — ✅ done 2026-08-01.
 2. **§3.2 coupler concept** — Terry can run this immediately; it unblocks the modelling. **Next.**
-3. ~~**§2.5 lantern extension**~~ — ✅ done. **§2.2 roof** still open — layout only, teaches by
-   forcing the player to look up.
+3. ~~**§2.5 lantern extension**~~ and ~~**§2.2 roof**~~ — ✅ done.
 4. ~~**§2.3 one moving thing**~~ — ✅ done.
 5. ~~**§2.4 foreground clutter**~~ — ✅ done.
 
 ### What is left in this document
-- **§2.2** the partial gantry roof over the berth (layout).
 - **§2.4 background band** — frame the walk so the player exits facing the skyline, not the office wall.
+  The only part of §2 not built, and the one that needs an eye in the headset rather than arithmetic.
 - **§3** the coupler itself — the prompt in §3.2 is ready to run; nothing is built.
 - **W000_DriftIn's GantryCrane** — same stick defect in the first room of the game, needs a placement
   eyeballed in the editor (see §2.1).

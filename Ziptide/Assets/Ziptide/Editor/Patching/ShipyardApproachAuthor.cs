@@ -34,6 +34,7 @@ namespace Ziptide.Editor.Patching
         private static readonly Color CrateColor = new Color(0.42f, 0.30f, 0.20f);
         private static readonly Color SpoolColor = new Color(0.26f, 0.27f, 0.29f);
         private static readonly Color ToolboxColor = new Color(0.55f, 0.42f, 0.12f);
+        private static readonly Color LampAmber = new Color(1f, 0.72f, 0.32f);
 
         public static void Build(Transform cityRoot, CityLayoutDefinition kit)
         {
@@ -73,8 +74,9 @@ namespace Ziptide.Editor.Patching
             }
 
             BuildTeachingCrate(root, centreX, fromZ, toZ, y);
+            int overhead = BuildGantryRoof(root, berth, y);
 
-            Debug.Log("ZIPTIDE: APPROACH_DRESSED pieces=" + placed + " crate=1"
+            Debug.Log("ZIPTIDE: APPROACH_DRESSED pieces=" + placed + " crate=1 overhead=" + overhead
                       + " walkZ=" + fromZ.ToString("F0") + ".." + toZ.ToString("F0"));
         }
 
@@ -107,6 +109,59 @@ namespace Ziptide.Editor.Patching
             var ease = so.FindProperty("m_AttachEaseInTime");
             if (ease != null) ease.floatValue = 0.05f;
             so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        /// <summary>
+        /// §2.2 — the partial gantry roof. Columns, trusses, two runners and three hanging lamps over
+        /// the LANDWARD half of the berth only.
+        ///
+        /// The half matters more than the roof does. Covering the whole berth would seal off the sky,
+        /// and the skyscape is the thing this game is arguably built around — a scale win that costs
+        /// the horizon is not a win. `GantryRoofCore` owns that ratio and a test holds it.
+        /// </summary>
+        private static int BuildGantryRoof(Transform root, ShipyardBerthDef berth, float y)
+        {
+            GantryRoofCore.CoveredSpan(berth.berthCenter.z, berth.berthSize.y, out float fromZ, out float toZ);
+            float halfX = berth.berthSize.x * 0.5f - GantryRoofCore.EdgeInset;
+            float cx = berth.berthCenter.x;
+            float trussY = y + GantryRoofCore.TrussHeight;
+            int built = 0;
+
+            for (int i = 0; i < GantryRoofCore.TrussCount; i++)
+            {
+                float z = GantryRoofCore.TrussZ(i, fromZ, toZ);
+
+                // Columns, one per side, and the truss that spans them.
+                for (int s = -1; s <= 1; s += 2)
+                {
+                    Cube(root, "GantryColumn_" + i + (s < 0 ? "a" : "b"),
+                        new Vector3(cx + s * halfX, y + GantryRoofCore.TrussHeight * 0.5f, z),
+                        new Vector3(0.45f, GantryRoofCore.TrussHeight, 0.45f), SpoolColor, collider: true);
+                    built++;
+                }
+
+                Cube(root, "GantryTruss_" + i, new Vector3(cx, trussY, z),
+                    new Vector3(halfX * 2f, 0.35f, 0.5f), SpoolColor, collider: false);
+                built++;
+
+                // One lamp per truss, hung below it. Unlit-bright rather than a real light: a row of
+                // point lights over a berth is how a Quest frame budget dies (the lantern route
+                // learned this first).
+                Cube(root, "GantryLamp_" + i, new Vector3(cx, y + GantryRoofCore.LampHeight, z),
+                    new Vector3(0.5f, 0.16f, 0.5f), LampAmber, collider: false);
+                built++;
+            }
+
+            // Two runners along the length, which is what turns three arches into one structure.
+            for (int s = -1; s <= 1; s += 2)
+            {
+                Cube(root, "GantryRunner_" + (s < 0 ? "a" : "b"),
+                    new Vector3(cx + s * halfX, trussY, (fromZ + toZ) * 0.5f),
+                    new Vector3(0.3f, 0.3f, toZ - fromZ), SpoolColor, collider: false);
+                built++;
+            }
+
+            return built;
         }
 
         private static Color ColorFor(ClutterKind kind)
