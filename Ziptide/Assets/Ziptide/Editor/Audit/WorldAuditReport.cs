@@ -112,7 +112,9 @@ namespace Ziptide.Editor.Audit
                 sb.AppendLine();
                 if (!string.IsNullOrEmpty(scene.costBreakdown))
                 {
-                    sb.AppendLine("**Cost by root** (renderers/materials): " + scene.costBreakdown);
+                    sb.AppendLine("**Cost by group** (renderers/materials — renderers partition, "
+                        + "materials are counted per group so shared ones appear more than once): "
+                        + scene.costBreakdown);
                     sb.AppendLine();
                 }
                 if (scene.findings.Count == 0)
