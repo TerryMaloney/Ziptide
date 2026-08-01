@@ -1,7 +1,7 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **818**
-- Focused references: **466**
+- Scanned C# files: **824**
+- Focused references: **467**
 
 ## melee
 
@@ -198,9 +198,9 @@
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:212` — `private static void EnsureJobDirector(WorldPackDefinition worldPack)`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:214` — `var go = PatcherUtil.EnsureRootObject("JobDirector", Vector3.zero);`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:215` — `var director = PatcherUtil.EnsureComponent<JobDirector>(go);`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:380` — `/// no machines at all — JobDirector materialises repairables from the PACK, so there was`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:446` — `var jdGo = PatcherUtil.EnsureRootObject("JobDirector", Vector3.zero);`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:447` — `var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:385` — `/// no machines at all — JobDirector materialises repairables from the PACK, so there was`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:451` — `var jdGo = PatcherUtil.EnsureRootObject("JobDirector", Vector3.zero);`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:452` — `var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);`
 - **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:19` — `/// that GameObject name (JobDirector.CheckGoToMarker).`
 - **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:57` — `// authored into the scene by FlatsSiteAuthor and resolved by JobDirector's scene`
 - **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:89` — `+ "WorldPack as job 0.\n\nStill needed (T-Dog/runtime): JobDirector -> JobRewards.Grant on "`
@@ -298,8 +298,8 @@
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:234` — `private static void EnsureObjectiveBoard()`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:236` — `var go = PatcherUtil.EnsureRootObject("ObjectiveBoard", new Vector3(-1f, 4.0f, 1.5f));`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:237` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(go);`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:458` — `var boardGo = PatcherUtil.EnsureRootObject("ObjectiveBoard", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:459` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:463` — `var boardGo = PatcherUtil.EnsureRootObject("ObjectiveBoard", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:464` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);`
 - **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:90` — `+ "completion, and ObjectiveBoard/RILL text.", "OK");`
 - **reference** · `Ziptide.Editor.Patching.WorldStubGenerator` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:466` — `var boardGo = PatcherUtil.EnsureRootObject("ObjectiveBoard", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));`
 - **reference** · `Ziptide.Editor.Patching.WorldStubGenerator` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:467` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);`
@@ -409,10 +409,10 @@
 
 ### `ShipCastOffRuntime`
 
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:612` — `var castOff = ship.GetComponent<ShipCastOffRuntime>()`
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:613` — `?? ship.gameObject.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:619` — `var castOff = ship.GetComponent<ShipCastOffRuntime>()`
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:620` — `?? ship.gameObject.AddComponent<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:626` — `var castOff = ship.GetComponent<ShipCastOffRuntime>()`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:627` — `?? ship.gameObject.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:37` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:18` — `/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:123` — `var castOff = GetComponentInParent<ShipCastOffRuntime>();`
@@ -434,9 +434,9 @@
 
 ## shipPresentation
 
-- References: **103**
-- Files: **21**
-- Non-declaration caller files: **18**
+- References: **104**
+- Files: **22**
+- Non-declaration caller files: **19**
 
 ### `Fuselage_Aft`
 
@@ -447,10 +447,10 @@
 
 ### `ShipCastOffRuntime`
 
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:612` — `var castOff = ship.GetComponent<ShipCastOffRuntime>()`
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:613` — `?? ship.gameObject.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:619` — `var castOff = ship.GetComponent<ShipCastOffRuntime>()`
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:620` — `?? ship.gameObject.AddComponent<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:626` — `var castOff = ship.GetComponent<ShipCastOffRuntime>()`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:627` — `?? ship.gameObject.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:37` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:18` — `/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:123` — `var castOff = GetComponentInParent<ShipCastOffRuntime>();`
@@ -502,8 +502,8 @@
 
 - **reference** · `Ziptide.Editor.Audit.FullSendPresentationAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:36` — `if (renderers.Length < ShipHullBuilder.MinimumHeroRenderers)`
 - **reference** · `Ziptide.Editor.Audit.FullSendPresentationAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:39` — `+ ShipHullBuilder.MinimumHeroRenderers + ".", path);`
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:587` — `// real ~19-part silhouette now (ShipHullBuilder), same bounding box, so the boarding`
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:592` — `ShipHullBuilder.Build(ship, s.shipSize, kit.palette);`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:594` — `// real ~19-part silhouette now (ShipHullBuilder), same bounding box, so the boarding`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:599` — `ShipHullBuilder.Build(ship, s.shipSize, kit.palette);`
 - **declaration** · `Ziptide.Editor.Patching.ShipHullBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:14` — `public static class ShipHullBuilder`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:11` — `/// · CHASSIS — reproportions the named ShipHullBuilder parts per ShipChassisPreset (fuselage`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:14` — `/// baked Forge meshes supersede this through the same parent later (ShipHullBuilder's own`
@@ -513,7 +513,7 @@
 
 ### `ShipHullBuilder.Build`
 
-- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:592` — `ShipHullBuilder.Build(ship, s.shipSize, kit.palette);`
+- **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:599` — `ShipHullBuilder.Build(ship, s.shipSize, kit.palette);`
 - **reference** · `Ziptide.Tests.EditMode.HeroShipHullBuilderTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs:19` — `ShipHullBuilder.Build(ship.transform, new Vector3(5f, 3f, 12f), new GlobalPalette());`
 
 ### `ShipLocker`
@@ -564,4 +564,8 @@
 
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:100` — `if (shipRoot != null) ShipRefit.Apply(shipRoot);`
 - **reference** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:55` — `ShipRefit.Apply(gameObject);`
+
+### `__SHIP`
+
+- **reference** · `Ziptide.Editor.Patching.ShipyardApproachAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:31` — `public const string RootName = "__SHIPYARD_APPROACH";`
 

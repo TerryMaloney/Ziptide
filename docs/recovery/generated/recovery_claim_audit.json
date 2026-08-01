@@ -585,7 +585,7 @@
     {
       "path": "docs/EXCELLENCE_MAP.md",
       "line": 35,
-      "text": "| Buildings & city | \ud83e\uddf1\u2192\ud83d\udc8e in flight (Stage A/B + Round 1 ToxicCity pass) | Biome\u2192kit/palette mapping; no primitive-box fallbacks in shipped worlds; street identity and motion fit budget | `BuildingAuditRules`; City Stage A/B audits; registry fallback logs |",
+      "text": "| Buildings & city | \ud83e\uddf1\u2192\ud83d\udc8e in flight (Stage A/B + Round 1 ToxicCity pass; hangar scale pass 2026-08-01) | Biome\u2192kit/palette mapping; no primitive-box fallbacks in shipped worlds; street identity and motion fit budget; **every space states its own scale** \u2014 something in frame carries a size the player already knows, and the walking lane is never blocked | `BuildingAuditRules`; City Stage A/B audits; registry fallback logs; `LandmarkScaleCore`/`CityLandmarkAuthoringTests` (slenderness + rung pitch, ",
       "markers": [
         "shipped",
         "\ud83d\udc8e"

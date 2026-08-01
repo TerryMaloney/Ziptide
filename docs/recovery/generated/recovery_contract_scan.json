@@ -1,26 +1,26 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-08-01T16:48:47.802924+00:00",
+  "generatedAtUtc": "2026-08-01T17:00:14.843533+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 818,
-  "findingCount": 2929,
+  "scannedFiles": 824,
+  "findingCount": 2936,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 704,
+    "diagnostics": 705,
     "events": 73,
     "fallback_debt": 181,
     "global_render": 95,
     "input": 246,
-    "materials": 281,
+    "materials": 284,
     "persistence": 28,
-    "runtime_creation": 742,
-    "runtime_ui": 132,
+    "runtime_creation": 744,
+    "runtime_ui": 133,
     "save_state": 299,
     "scene_loading": 9,
     "xri_ownership": 93
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 54,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 279,
+    "CREATE_PRIMITIVE": 280,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 28,
@@ -41,13 +41,13 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 235,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 463,
+    "NEW_GAME_OBJECT": 464,
     "PLAYER_PROFILE_REFERENCE": 160,
     "RENDER_SETTINGS_MUTATION": 39,
     "RUNTIME_BOOTSTRAP": 36,
-    "RUNTIME_MATERIAL_CREATE": 107,
+    "RUNTIME_MATERIAL_CREATE": 108,
     "SAVE_SYSTEM_REFERENCE": 130,
-    "SHADER_FIND": 174,
+    "SHADER_FIND": 176,
     "STATIC_EVENT_DECLARATION": 20,
     "TEXTMESH_COMPONENT": 54,
     "TMP_COMPONENT": 3,
@@ -55,9 +55,9 @@
     "XRI_MANAGER_ASSIGN": 41,
     "XRI_MANAGER_CREATE": 7,
     "XRI_MANAGER_LOOKUP": 45,
-    "XR_INTERACTABLE_COMPONENT": 66,
+    "XR_INTERACTABLE_COMPONENT": 67,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 704
+    "ZIPTIDE_LOG_TAG": 705
   },
   "findings": [
     {
@@ -875,7 +875,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 437,
+      "line": 444,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "Debug.Log(\"ZIPTIDE: INTERIOR_TIER id=\" + hb.id + \" tier=Facade area=\""
     },
@@ -884,7 +884,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 469,
+      "line": 476,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "Debug.Log(\"ZIPTIDE: INTERIOR_TIER id=\" + hb.id + \" tier=\" + tier"
     },
@@ -893,7 +893,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 489,
+      "line": 496,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: INTERIOR_STYLE_MISSING path=\" + stylePath"
     },
@@ -1028,7 +1028,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 130,
+      "line": 135,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: WORLD_ATMO_AUTHOR skipped cause=no_vista_asset path=\""
     },
@@ -1037,7 +1037,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 139,
+      "line": 144,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "Debug.Log(\"ZIPTIDE: WORLD_ATMO_AUTHOR built vista=\" + vista.vistaId"
     },
@@ -1049,6 +1049,15 @@
       "line": 214,
       "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
       "snippet": "Debug.Log(\"ZIPTIDE: HERO_SHIP_HULL renderers=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
+      "line": 77,
+      "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
+      "snippet": "Debug.Log(\"ZIPTIDE: APPROACH_DRESSED pieces=\" + placed + \" crate=1\""
     },
     {
       "category": "diagnostics",
@@ -7787,7 +7796,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 481,
+      "line": 488,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "/// a fallback the code did not implement. CI caught it; the guarantee is now real."
     },
@@ -8066,7 +8075,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 398,
+      "line": 403,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor"
     },
@@ -12376,6 +12385,15 @@
       "category": "materials",
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
+      "line": 161,
+      "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
+      "snippet": "var m = new Material(shader) { name = \"Approach_\" + ColorUtility.ToHtmlStringRGB(c) };"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/SignRecipeLibrary.cs",
       "line": 159,
       "symbol": "Ziptide.Editor.Patching.SignRecipeLibrary",
@@ -13405,6 +13423,24 @@
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
       "line": 262,
       "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
+      "line": 159,
+      "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
+      "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
+      "line": 160,
+      "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
     {
@@ -15077,7 +15113,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 357,
+      "line": 364,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var w = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15086,7 +15122,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 562,
+      "line": 569,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15095,7 +15131,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 775,
+      "line": 782,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -15491,7 +15527,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 169,
+      "line": 174,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var target = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15500,7 +15536,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 181,
+      "line": 186,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var post = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15512,6 +15548,15 @@
       "line": 225,
       "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
       "snippet": "GameObject go = GameObject.CreatePrimitive(primitive);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
+      "line": 133,
+      "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
+      "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
     {
       "category": "runtime_creation",
@@ -17597,7 +17642,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 400,
+      "line": 407,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var marker = new GameObject(\"Marker_\" + hb.interiorMarkerId);"
     },
@@ -17606,7 +17651,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 700,
+      "line": 707,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -17615,7 +17660,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 746,
+      "line": 753,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
     },
@@ -17624,7 +17669,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 799,
+      "line": 806,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -18416,7 +18461,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 135,
+      "line": 140,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var go = new GameObject(\"__WORLD_ATMOSPHERE\");"
     },
@@ -18425,7 +18470,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 199,
+      "line": 204,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var zip = new GameObject(ZipName);"
     },
@@ -18434,9 +18479,18 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 312,
+      "line": 317,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var go = new GameObject(name);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
+      "line": 51,
+      "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
+      "snippet": "var root = new GameObject(RootName).transform;"
     },
     {
       "category": "runtime_creation",
@@ -22199,6 +22253,15 @@
       "line": 298,
       "symbol": "Ziptide.Gameplay.ObjectiveBoard",
       "snippet": "var tmp = textGo.AddComponent<TextMeshProUGUI>();"
+    },
+    {
+      "category": "runtime_ui",
+      "code": "XR_INTERACTABLE_COMPONENT",
+      "description": "XR interactable creation/reference",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
+      "line": 101,
+      "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
+      "snippet": "var grab = go.AddComponent<XRGrabInteractable>();"
     },
     {
       "category": "runtime_ui",
