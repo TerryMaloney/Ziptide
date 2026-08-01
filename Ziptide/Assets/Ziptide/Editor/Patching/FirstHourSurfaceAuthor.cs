@@ -112,7 +112,9 @@ namespace Ziptide.Editor
             visual.transform.localScale = new Vector3(0.22f, 0.12f, 0.32f);
             var collider = visual.GetComponent<Collider>();
             if (collider != null) Object.DestroyImmediate(collider);
-            PatchMaterials.Paint(visual, new Color(0.72f, 0.48f, 0.16f));
+            // Fully qualified: this file sits in `Ziptide.Editor`, not `Ziptide.Editor.Patching` like
+            // the rest of the folder, so the unqualified name does not resolve here.
+            Patching.PatchMaterials.Paint(visual, new Color(0.72f, 0.48f, 0.16f));
         }
 
         private static T FindInScene<T>(Scene scene) where T : Component
