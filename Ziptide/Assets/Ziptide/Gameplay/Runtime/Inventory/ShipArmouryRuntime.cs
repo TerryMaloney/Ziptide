@@ -22,7 +22,11 @@ namespace Ziptide.Gameplay
     [DisallowMultipleComponent]
     public class ShipArmouryRuntime : MonoBehaviour
     {
-        private const float CheckInterval = 0.25f;
+        // 1 s, not 0.25 s. Each check runs two FindObjectsOfType scans (see CountOnBelt /
+        // CountInHands), and this component lives in the ship for the whole session — so the old
+        // rate was eight full-scene type scans per second, forever, on a mobile GPU. The gate that
+        // caught it is tools/frame_cost_gate.py, added the same day.
+        private const float CheckInterval = 1f;
 
         [SerializeField]
         [Tooltip("Collider that physically holds the player aboard. Disabled the moment they are armed.")]
