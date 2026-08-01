@@ -1,14 +1,14 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-08-01T17:00:14.843533+00:00",
+  "generatedAtUtc": "2026-08-01T17:02:53.352308+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 824,
+  "scannedFiles": 826,
   "findingCount": 2936,
   "categoryCounts": {
     "bootstrap": 46,
@@ -1055,9 +1055,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-      "line": 77,
+      "line": 79,
       "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
-      "snippet": "Debug.Log(\"ZIPTIDE: APPROACH_DRESSED pieces=\" + placed + \" crate=1\""
+      "snippet": "Debug.Log(\"ZIPTIDE: APPROACH_DRESSED pieces=\" + placed + \" crate=1 overhead=\" + overhead"
     },
     {
       "category": "diagnostics",
@@ -12386,7 +12386,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-      "line": 161,
+      "line": 216,
       "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
       "snippet": "var m = new Material(shader) { name = \"Approach_\" + ColorUtility.ToHtmlStringRGB(c) };"
     },
@@ -13430,7 +13430,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-      "line": 159,
+      "line": 214,
       "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -13439,7 +13439,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-      "line": 160,
+      "line": 215,
       "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -15554,7 +15554,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-      "line": 133,
+      "line": 188,
       "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
       "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -18488,7 +18488,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-      "line": 51,
+      "line": 52,
       "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
       "snippet": "var root = new GameObject(RootName).transform;"
     },
@@ -22259,7 +22259,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-      "line": 101,
+      "line": 103,
       "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
       "snippet": "var grab = go.AddComponent<XRGrabInteractable>();"
     },

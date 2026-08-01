@@ -1,6 +1,6 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **824**
+- Scanned files: **826**
 - Scanner findings: **2936**
 - Inventory systems: **22**
 
@@ -1220,12 +1220,12 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:51` **NEW_GAME_OBJECT** — `var root = new GameObject(RootName).transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:101` **XR_INTERACTABLE_COMPONENT** — `var grab = go.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:133` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:159` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:160` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:161` **RUNTIME_MATERIAL_CREATE** — `var m = new Material(shader) { name = "Approach_" + ColorUtility.ToHtmlStringRGB(c) };`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:52` **NEW_GAME_OBJECT** — `var root = new GameObject(RootName).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:103` **XR_INTERACTABLE_COMPONENT** — `var grab = go.AddComponent<XRGrabInteractable>();`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:188` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:214` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:215` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:216` **RUNTIME_MATERIAL_CREATE** — `var m = new Material(shader) { name = "Approach_" + ColorUtility.ToHtmlStringRGB(c) };`
 
 ### `Ziptide.Editor.Patching.SignAuthor` — 4 signal(s)
 

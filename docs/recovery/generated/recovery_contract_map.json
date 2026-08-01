@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 824,
+  "scannedFiles": 826,
   "findingCount": 2936,
   "maps": {
     "bootstrapPersistence": [
@@ -5515,42 +5515,42 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 51,
+            "line": 52,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "var root = new GameObject(RootName).transform;"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 101,
+            "line": 103,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "var grab = go.AddComponent<XRGrabInteractable>();"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 133,
+            "line": 188,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 159,
+            "line": 214,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 160,
+            "line": 215,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 161,
+            "line": 216,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "var m = new Material(shader) { name = \"Approach_\" + ColorUtility.ToHtmlStringRGB(c) };"
           }
