@@ -311,27 +311,11 @@ namespace Ziptide.Editor.Patching
             return go;
         }
 
-        /// <summary>URP paint with an optional emission pass — the same shape as every other
-        /// patcher's local Paint (ScenePatcherSpaceLane, CityStageAPrimitiveFactory). Shadows off:
-        /// these are markers, and a lantern that casts is a lantern that costs.</summary>
+        /// <summary>Shared paint. This used to build a NEW material per object, which is how nineteen
+        /// lanterns became fifty-seven materials for two colours — the single biggest contributor to
+        /// ToxicCity's 333 against a hard cap of 60. Same colours, same emission, one instance each.</summary>
         private static void Paint(GameObject go, Color color, bool emissive)
-        {
-            var r = go.GetComponent<Renderer>();
-            if (r == null) return;
-            var shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (shader == null) shader = Shader.Find("Standard");
-            if (shader == null) return;
-            var mat = new Material(shader);
-            if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", color);
-            else if (mat.HasProperty("_Color")) mat.SetColor("_Color", color);
-            if (emissive && mat.HasProperty("_EmissionColor"))
-            {
-                mat.EnableKeyword("_EMISSION");
-                mat.SetColor("_EmissionColor", color * 1.8f);
-            }
-            r.sharedMaterial = mat;
-            r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        }
+            => PatchMaterials.Paint(go, color, emissive ? 1.8f : 0f);
     }
 }
 #endif

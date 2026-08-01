@@ -289,7 +289,6 @@ namespace Ziptide.Editor.Patching
             }
         }
 
-        private static readonly Dictionary<Color, Material> _mats = new Dictionary<Color, Material>();
 
         private static GameObject Block(Transform parent, string name, Vector3 localPos, Vector3 scale, Color color, int salt)
         {
@@ -304,16 +303,8 @@ namespace Ziptide.Editor.Patching
             var r = go.GetComponent<Renderer>();
             if (r != null)
             {
-                if (!_mats.TryGetValue(color, out var m) || m == null)
-                {
-                    var shader = Shader.Find("Universal Render Pipeline/Lit");
-                    if (shader == null) shader = Shader.Find("Standard");
-                    m = new Material(shader) { name = "DressMat_" + ColorUtility.ToHtmlStringRGB(color) };
-                    if (m.HasProperty("_BaseColor")) m.SetColor("_BaseColor", color);
-                    else if (m.HasProperty("_Color")) m.SetColor("_Color", color);
-                    _mats[color] = m;
-                }
-                r.sharedMaterial = m;
+                // Shared with every other patcher in the bake, not a private cache.
+                r.sharedMaterial = PatchMaterials.Get(color);
                 r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
             return go;

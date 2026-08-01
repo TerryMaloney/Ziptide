@@ -24,14 +24,15 @@ namespace Ziptide.Editor.Patching
         private const float TierStep = 3f;          // elevated walkway lift over canals
         private const float WindowInset = 0.06f;
 
-        private static readonly Dictionary<Color, Material> _matCache = new Dictionary<Color, Material>();
-
         /// <summary>Build the whole city under <paramref name="root"/>. Deterministic given kit.seed
         /// (caller should Random.InitState(kit.seed) first).</summary>
         public static void Build(Transform root, CityLayoutDefinition kit)
         {
             if (root == null || kit == null) return;
-            _matCache.Clear();
+            // One cache for the whole scene bake. Reset here, NOT at the end: the authors that run
+            // after CityBuilder (wayfinding, berths, the approach) share it, and clearing on the way
+            // out would hand them a fresh set of duplicates of everything this method just made.
+            PatchMaterials.Reset();
 
             BuildSkylineAndFog(root, kit);
             // Quality Bar P1: heightfield terrain + arrival vista UNDER the districts (no-op unless
@@ -65,23 +66,17 @@ namespace Ziptide.Editor.Patching
             BuildHazardZones(root, kit);
             BuildCreatureZones(root, kit);
 
-            _matCache.Clear();
+            Debug.Log("ZIPTIDE: CITY_MATERIALS distinct=" + PatchMaterials.Count + " scene=" + kit.sceneName);
         }
 
-        // ── Materials (shared per color for perf) ────────────────────────────
-        private static Material Mat(Color c)
-        {
-            if (_matCache.TryGetValue(c, out var m) && m != null) return m;
-            var shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (shader == null) shader = Shader.Find("Standard");
-            m = new Material(shader) { name = "CityMat_" + ColorUtility.ToHtmlStringRGB(c) };
-            if (m.HasProperty("_BaseColor")) m.SetColor("_BaseColor", c);
-            else if (m.HasProperty("_Color")) m.SetColor("_Color", c);
-            _matCache[c] = m;
-            return m;
-        }
+        // ── Materials (one instance per look, shared across EVERY patcher) ───
+        // This used to be a private per-color cache, which meant the same worn grey authored here and
+        // in the POI builder and in the dressing builder was three materials. PatchMaterials is the
+        // one cache; nothing changes colour, the scene just stops describing the same grey repeatedly.
+        private static Material Mat(Color c) => PatchMaterials.Get(c);
 
-        private static GameObject Cube(Transform parent, string name, Vector3 pos, Vector3 scale, Color color, bool collider)
+        private static GameObject Cube(Transform parent, string name, Vector3 pos, Vector3 scale,
+            Color color, bool collider, bool staticBatch = true)
         {
             var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
             go.name = name;
@@ -100,6 +95,17 @@ namespace Ziptide.Editor.Patching
                 r.sharedMaterial = Mat(color);
                 r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
+
+            // STATIC BATCHING. The city is ~1700 renderers and almost none of it moves; batching
+            // merges everything sharing a material into one draw, which is the entire payoff of the
+            // shared cache above. `WorldDressingBuilder` has done this since it shipped and says why:
+            // "hundreds of props must not mean hundreds of draws". CityBuilder — which builds most of
+            // the city, including roughly six hundred facade windows that all share one material —
+            // never did.
+            //
+            // ⚠ Pass staticBatch:false for ANYTHING THAT MOVES. A static-flagged moving object is a
+            // silent bug: Unity bakes it into a combined mesh and the transform stops mattering.
+            if (staticBatch) GameObjectUtility.SetStaticEditorFlags(go, StaticEditorFlags.BatchingStatic);
             return go;
         }
 
@@ -303,8 +309,11 @@ namespace Ziptide.Editor.Patching
             // there is, and worth more to the yard's sense of scale than five more static props.
             var rig = NewChild(root, "HookRig");
             rig.localPosition = new Vector3(jib * 0.7f, jibY, 0f);
-            var cable = Cube(rig, "HookLine", Vector3.zero, new Vector3(0.08f, 1f, 0.08f), pal.rail, false);
-            var hookGo = Cube(rig, "Hook", Vector3.zero, new Vector3(0.45f, 0.6f, 0.45f), pal.rail, false);
+            // staticBatch:false — CraneHookRuntime drives both of these every frame, and a
+            // static-flagged moving object is baked into a combined mesh where its transform stops
+            // mattering. The hook would silently stop creeping and nothing would say why.
+            var cable = Cube(rig, "HookLine", Vector3.zero, new Vector3(0.08f, 1f, 0.08f), pal.rail, false, staticBatch: false);
+            var hookGo = Cube(rig, "Hook", Vector3.zero, new Vector3(0.45f, 0.6f, 0.45f), pal.rail, false, staticBatch: false);
             rig.gameObject.AddComponent<CraneHookRuntime>().Init(
                 hookGo.transform, cable.transform,
                 CraneHookCore.DefaultMinDrop, CraneHookCore.DefaultMaxDrop, CraneHookCore.DefaultPeriod);

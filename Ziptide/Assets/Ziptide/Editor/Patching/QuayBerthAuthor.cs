@@ -116,19 +116,8 @@ namespace Ziptide.Editor.Patching
             return go;
         }
 
-        private static void Paint(GameObject go, Color color)
-        {
-            var r = go.GetComponent<Renderer>();
-            if (r == null) return;
-            var shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (shader == null) shader = Shader.Find("Standard");
-            if (shader == null) return;
-            var mat = new Material(shader);
-            if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", color);
-            else if (mat.HasProperty("_Color")) mat.SetColor("_Color", color);
-            r.sharedMaterial = mat;
-            r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        }
+        /// <summary>Shared paint — was a fresh material per pad, bollard, plate and tally bar.</summary>
+        private static void Paint(GameObject go, Color color) => PatchMaterials.Paint(go, color);
     }
 }
 #endif

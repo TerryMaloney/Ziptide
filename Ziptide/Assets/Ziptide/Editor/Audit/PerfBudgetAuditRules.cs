@@ -39,6 +39,67 @@ namespace Ziptide.Editor.Audit
             Check(report, "PERF_MATERIALS", mats.Count, MatsTarget, MatsCap, "unique materials");
             Check(report, "PERF_RENDERERS", renderers, RenderersTarget, RenderersCap, "renderers");
             Check(report, "PERF_LIGHTS", lights, LightsTarget, LightsCap, "real-time lights");
+            ReportBreakdown(report, renderers);
+        }
+
+        /// <summary>
+        /// WHERE THE COST ACTUALLY IS, per top-level root.
+        ///
+        /// ⚖ Terry, 2026-08-01: *"let's make sure we're not deleting anything if we don't need to and
+        /// let's make sure we're not accidentally counting things incorrectly."* A single scene total
+        /// cannot answer either question. It says ToxicCity is at 1769 renderers; it does not say
+        /// whether that is the ring city, the facade windows, or the districts — and picking something
+        /// to cut without knowing is how a level gets uglier without getting faster.
+        ///
+        /// Emitted as a `ZIPTIDE:` log line rather than a report finding, deliberately. The report has
+        /// exactly two severities, Warning and Blocker, and a measuring tape is neither — adding an
+        /// Info severity would change the JSON schema that other tools read, to carry something the
+        /// build log holds perfectly well.
+        /// </summary>
+        private static void ReportBreakdown(SceneAuditReport report, int totalRenderers)
+        {
+            if (totalRenderers <= 0) return;
+
+            var perRoot = new System.Collections.Generic.Dictionary<string, int>();
+            var matsPerRoot = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.HashSet<Material>>();
+
+            foreach (var r in Object.FindObjectsOfType<Renderer>())
+            {
+                if (r == null) continue;
+                string root = TopLevelName(r.transform);
+                perRoot.TryGetValue(root, out int n);
+                perRoot[root] = n + 1;
+
+                if (!matsPerRoot.TryGetValue(root, out var set))
+                    matsPerRoot[root] = set = new System.Collections.Generic.HashSet<Material>();
+                foreach (var m in r.sharedMaterials)
+                    if (m != null) set.Add(m);
+            }
+
+            // Biggest first — the only order anyone reads a budget breakdown in.
+            var rows = new System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, int>>(perRoot);
+            rows.Sort((a, b) => b.Value.CompareTo(a.Value));
+
+            var sb = new System.Text.StringBuilder("ZIPTIDE: PERF_BREAKDOWN scene=");
+            sb.Append(report.sceneName).Append(" total=").Append(totalRenderers).Append(" roots=");
+            int shown = 0;
+            foreach (var row in rows)
+            {
+                if (shown++ >= 14) break;
+                // name=renderers/materials
+                sb.Append(' ').Append(row.Key).Append('=').Append(row.Value)
+                  .Append('/').Append(matsPerRoot[row.Key].Count);
+            }
+            if (rows.Count > 14) sb.Append(" +").Append(rows.Count - 14).Append("more");
+
+            Debug.Log(sb.ToString());
+        }
+
+        /// <summary>The outermost ancestor's name — the subsystem a renderer belongs to.</summary>
+        private static string TopLevelName(Transform t)
+        {
+            while (t.parent != null) t = t.parent;
+            return t.name;
         }
 
         private static void Check(SceneAuditReport report, string code, long value, long target, long cap, string what)

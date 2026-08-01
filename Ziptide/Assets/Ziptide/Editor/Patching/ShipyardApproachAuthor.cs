@@ -48,7 +48,6 @@ namespace Ziptide.Editor.Patching
 
             var root = new GameObject(RootName).transform;
             root.SetParent(cityRoot, false);
-            _mats.Clear();   // never hand a material instance from a previous scene to this one
 
             // THE WALK IS THE BERTH DECK, alongside your own hull — amidships to the landward edge.
             //
@@ -93,8 +92,11 @@ namespace Ziptide.Editor.Patching
             Vector3 local = ApproachClutterCore.TeachingCratePosition(centreX, fromZ, toZ);
             float s = ApproachClutterCore.TeachingCrateSize;
 
+            // staticBatch:false — this one is the whole point: it has a Rigidbody and the player
+            // picks it up. Batching a body into a combined mesh is how a "grabbable" crate becomes
+            // scenery that ignores your hands.
             var go = Cube(root, CrateName, new Vector3(local.x, y + local.y, local.z),
-                Vector3.one * s, CrateColor, collider: true);
+                Vector3.one * s, CrateColor, collider: true, staticBatch: false);
 
             var rb = go.AddComponent<Rigidbody>();
             rb.mass = 4f;
@@ -178,7 +180,7 @@ namespace Ziptide.Editor.Patching
         }
 
         private static GameObject Cube(Transform parent, string name, Vector3 worldPos, Vector3 scale,
-            Color color, bool collider)
+            Color color, bool collider, bool staticBatch = true)
         {
             var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
             go.name = name;
@@ -195,25 +197,13 @@ namespace Ziptide.Editor.Patching
                 r.sharedMaterial = Mat(color);
                 r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
+            if (staticBatch) GameObjectUtility.SetStaticEditorFlags(go, StaticEditorFlags.BatchingStatic);
             return go;
         }
 
-        // Three colours, three materials — shared, because ten pieces of junk each carrying their own
-        // material is ten more draw calls on a device that counts them.
-        private static readonly System.Collections.Generic.Dictionary<Color, Material> _mats
-            = new System.Collections.Generic.Dictionary<Color, Material>();
-
-        private static Material Mat(Color c)
-        {
-            if (_mats.TryGetValue(c, out var cached) && cached != null) return cached;
-            var shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (shader == null) shader = Shader.Find("Standard");
-            var m = new Material(shader) { name = "Approach_" + ColorUtility.ToHtmlStringRGB(c) };
-            if (m.HasProperty("_BaseColor")) m.SetColor("_BaseColor", c);
-            else if (m.HasProperty("_Color")) m.SetColor("_Color", c);
-            _mats[c] = m;
-            return m;
-        }
+        // Was a private cache; PatchMaterials is now the one cache for the whole bake, so these
+        // three colours merge with any identical grey the city already made.
+        private static Material Mat(Color c) => PatchMaterials.Get(c);
     }
 }
 #endif

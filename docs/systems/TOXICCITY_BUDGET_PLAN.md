@@ -22,42 +22,61 @@ And here is the finding that changes the whole plan:
 
 > **The material count is not a content problem. It is a duplication problem.**
 
-Every author paints with `new Material(shader)` and most of them **do not cache**. Fifteen files under
-`Editor/Patching` create a fresh material per painted object:
-`CityWayfindingAuthor`, `QuayBerthAuthor`, `ToxicCityRiverBuilder`, `ToxicCityStageB`,
-`RingCityBuilder`, `ShipHullBuilder`, `PracticalAuthor`, `SignRecipeLibrary`,
-`CityStageAPrimitiveFactory`, and others. Nineteen lanterns × three parts is 57 materials **for two
-colours.** Five berth pads with decks, bollards, plates and tally bars is another forty **for four
-colours.**
+> ⚠ **CORRECTION, 2026-08-01.** The first version of this section said fifteen files create a fresh
+> material per painted object. **That was wrong and it was the exact mistake Terry warned against** —
+> counting the thing incorrectly and then cutting on the strength of it. Reading each factory rather
+> than counting `new Material(` call sites:
+>
+> - **Most authors DO cache, keyed by SLOT NAME** — `RingCityBuilder`, `ToxicCityStageB`,
+>   `ToxicCityRiverBuilder`, `CityStageAPrimitiveFactory`, `ShipHullBuilder`. Each holds maybe 6–16
+>   materials total. They were never the problem.
+> - **Exactly two were genuinely uncached**, one material per painted object:
+>   **`CityWayfindingAuthor`** (nineteen lanterns × three parts = 57 materials **for two colours**) and
+>   **`QuayBerthAuthor`** (five pads × decks, bollards, plates and tally bars ≈ 35 **for four**).
+> - **Four more cached by exact `Color` in private per-file dictionaries** — `CityBuilder`,
+>   `WorldPoiBuilder`, `WorldDressingBuilder`, `ShipyardApproachAuthor` — so the same worn grey
+>   authored in four files was four materials.
+>
+> Three of those five slot-keyed authors also already set `BatchingStatic`. **`CityBuilder`, which
+> builds most of the city, set no static flags at all.**
 
-`CityBuilder`, `WorldPoiBuilder` and `WorldDressingBuilder` *do* cache — by exact `Color`, each in its
-own private dictionary, so the same grey authored in three files is still three materials.
-
-**ToxicCity does not use 333 colours. It probably uses fewer than 50.** Nothing needs to be cut to fix
-the only broken budget.
+So the duplication is real but narrower than first claimed: **two uncached authors plus four private
+caches that could not see each other.** Whether that accounts for all 333 is not yet known — which is
+why §4's measurement now ships alongside the fix rather than after it.
 
 ---
 
 ## 2. The plan, ranked by savings ÷ risk
 
-### Tier 0 — free. No visual change. Fixes the violated cap outright.
+### Tier 0 — free. No visual change. Nothing deleted. ✅ BUILT 2026-08-01
 
-**T0.1 · One shared, quantizing material cache.** *(the whole recommendation, really)*
+**T0.1 · One shared material cache for the whole bake.** — `PatchMaterials`
 
-Replace every `new Material(...)` in the patchers with one `CityMaterials.Get(color)` that:
-1. **snaps the colour to a canonical ramp** before lookup — these are near-identical desaturated
-   industrial greys and browns; quantising to ~24 tones is invisible at arm's length and impossible to
-   see at 30 m; then
-2. returns a shared instance from a single cache.
+Keyed on what actually makes two materials different at draw time: **colour and emission**. The two
+uncached authors now route through it, and the four private `Color` caches were replaced by it, so a
+grey authored in `CityBuilder` and the same grey authored in `WorldPoiBuilder` are now one instance.
 
-Result: **333 → ~30 materials**, under the hard cap of 60 **with 50% headroom**, and the headroom is
-*structural* — a quantizing cache cannot drift past its ramp size no matter how much content is added
-later. That last property is worth more than the number: it means this budget never has to be fought
-again.
+**Deliberately NOT quantizing yet.** The first draft of this plan proposed snapping colours to a ~24
+tone ramp to guarantee the cap by construction. That is still available and still a good idea — but
+quantizing is the only step here that *changes pixels*, and doing it in the same commit as pure
+de-duplication would make it impossible to tell which mechanism produced the number. **Share first,
+measure, then quantize only if the measurement says so.**
 
-- **Risk:** very low. Same shader, same shading model, colours move by a few percent.
-- **Effort:** mechanical, ~15 files, one pure core (`ColorRamp.Snap`) plus tests.
-- **Reversible:** entirely — the ramp size is one constant.
+- **Risk:** none to the look — identical colours, identical shader, fewer instances.
+- **Reversible:** each author's `Mat()` is a one-line shim.
+
+**T0.2 · Static batching in `CityBuilder`.** ✅
+
+`CityBuilder.Cube` now sets `BatchingStatic`, which is what the shared cache pays off into: everything
+sharing a material collapses into one draw. Three other authors already did this.
+
+⚠ Two things are explicitly **excluded**, and both would have been silent bugs:
+- the crane **`HookRig`** (`CraneHookRuntime` drives it every frame), and
+- the **`LooseCrate`** (it has a Rigidbody and the player picks it up).
+
+A static-flagged moving object gets baked into a combined mesh and its transform stops mattering — the
+hook would just stop creeping, and the grab tutorial would become scenery that ignores your hands.
+Neither would throw, log, or fail a test.
 
 **T0.2 · Mark non-moving city geometry `isStatic`.**
 
@@ -127,14 +146,34 @@ worth having but is not urgent.
 
 ---
 
-## 4. What we should measure before cutting further
+## 4. The measurement — ✅ SHIPPED WITH THE FIX, NOT AFTER IT
 
-The Tier 1 and Tier 2 numbers are **derived from loop bounds in the source**, not measured. Before
-anyone deletes content on the strength of them, `PerfBudgetAuditRules` should report **renderers and
-materials per top-level root** (`District_*`, `__RING_CITY`, `__TOXIC_RIVERS`, `__QUAY_BERTHS`,
-`__SHIPYARD_APPROACH`, …).
+The Tier 1 and Tier 2 numbers are **derived from loop bounds in the source**, not measured. Nobody
+should delete content on the strength of them.
 
-That is a small addition to an audit rule that already walks every renderer, and it turns "I think the
-ring city is expensive" into a number. **Cutting content on an estimate is how a level gets uglier
-without getting faster** — the whole reason this document leads with the one measurement we actually
-have.
+So `PerfBudgetAuditRules` now emits, every audit:
+
+```
+ZIPTIDE: PERF_BREAKDOWN scene=ToxicCity total=1769 roots= __TOXIC_CITY_ROOT=1502/301 …
+```
+
+— renderers and unique materials **per top-level root**, biggest first. It turns *"I think the ring
+city is expensive"* into a number, and it will also show exactly how much of the 333 the shared cache
+actually removed.
+
+It is a `Debug.Log`, not a report finding, on purpose: the report has two severities, Warning and
+Blocker, and a measuring tape is neither. Adding an `Info` severity would change a JSON schema other
+tools read in order to carry something the build log already holds.
+
+**Cutting content on an estimate is how a level gets uglier without getting faster.** That is the whole
+reason this document leads with the one measurement we actually had — and why the next decision waits
+for this one.
+
+---
+
+## 5. Next, once the breakdown lands
+
+1. Read `PERF_BREAKDOWN` from the CI job log and record the real per-root split here.
+2. If materials are under 60 with room — **stop.** Nothing else in this document is urgent.
+3. If not, quantize (T0.1's second half) before touching any content.
+4. Only then look at the window cap, and only then ask Terry about `__RING_CITY`.

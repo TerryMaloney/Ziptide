@@ -371,20 +371,9 @@ namespace Ziptide.Editor.Patching
             return go;
         }
 
-        private static readonly System.Collections.Generic.Dictionary<Color, Material> _mats
-            = new System.Collections.Generic.Dictionary<Color, Material>();
-
-        private static Material Mat(Color color)
-        {
-            if (_mats.TryGetValue(color, out var cached) && cached != null) return cached;
-            var shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (shader == null) shader = Shader.Find("Standard");
-            var m = new Material(shader) { name = "PoiMat_" + ColorUtility.ToHtmlStringRGB(color) };
-            if (m.HasProperty("_BaseColor")) m.SetColor("_BaseColor", color);
-            else if (m.HasProperty("_Color")) m.SetColor("_Color", color);
-            _mats[color] = m;
-            return m;
-        }
+        // One cache for the whole bake (PatchMaterials), not a private one per author — the same
+        // worn grey authored here and in CityBuilder used to be two materials.
+        private static Material Mat(Color color) => PatchMaterials.Get(color);
     }
 }
 #endif
