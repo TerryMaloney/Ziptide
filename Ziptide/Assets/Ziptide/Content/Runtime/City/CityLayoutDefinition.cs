@@ -472,6 +472,16 @@ namespace Ziptide.Content
         public Vector3 direction = new Vector3(1f, 0f, 0f);
     }
 
+    /// <summary>What kind of big thing this is — decides what scale detail it wears.</summary>
+    public enum LandmarkKind
+    {
+        /// <summary>A silhouette block. Rungs, a walkway and a cab at the base; nothing else.</summary>
+        Tower = 0,
+
+        /// <summary>A working crane: everything a tower has, plus a jib arm and a hanging hook.</summary>
+        Crane = 1,
+    }
+
     /// <summary>A big silhouette block unique to a district (tower, refinery, etc.).</summary>
     [Serializable]
     public class LandmarkDef
@@ -480,6 +490,8 @@ namespace Ziptide.Content
         public Vector3 localPos = Vector3.zero;
         public float height = 14f;
         public float width = 4f;
+        [Tooltip("Crane adds a jib arm and a hook. Everything else is a plain mast.")]
+        public LandmarkKind kind = LandmarkKind.Tower;
     }
 
     /// <summary>A density-scattered prop region (crates, pipes) — seeded, decorative.</summary>

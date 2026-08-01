@@ -209,10 +209,7 @@ namespace Ziptide.Editor.Patching
 
             if (d.landmarks != null)
                 foreach (var lm in d.landmarks)
-                    if (lm != null)
-                        Cube(districtRoot, "Landmark_" + lm.name,
-                            new Vector3(lm.localPos.x, kit.walkwayHeight + lm.height * 0.5f, lm.localPos.z),
-                            new Vector3(lm.width, lm.height, lm.width), pal.building2, true);
+                    if (lm != null) BuildLandmark(districtRoot, kit, lm, pal);
 
             if (d.heroBuildings != null)
                 foreach (var hb in d.heroBuildings)
@@ -221,6 +218,89 @@ namespace Ziptide.Editor.Patching
             if (d.props != null)
                 foreach (var p in d.props)
                     if (p != null) ScatterProps(districtRoot, kit, p, pal);
+        }
+
+        // ── Landmarks ─────────────────────────────────────────────────────────
+        // A landmark used to be one cube, always. That is why the shipyard read as "a bunch of box
+        // areas": a 16 m box and a 1.6 m box are THE SAME BOX until something in frame has a size the
+        // player already knows. A Crane now wears a ruler at eye level — ladder rungs at the pitch a
+        // real ladder uses, a walkway with a handrail, a cab a person could stand in — and
+        // LandmarkScaleCore owns the numbers so they cannot drift. Detail stops at the core's ceiling:
+        // rungs at 30 m are three pixels and a draw call each.
+        //
+        // Tower stays EXACTLY the single cube it has always been. That is deliberate: twelve authored
+        // worlds carry thin landmarks that are thin on purpose (W002's LightShaft, W003's prisms), and
+        // bolting an operator cab onto a shaft of light would be a cross-world regression shipped in
+        // the name of a hangar fix. Scale detail is opt-in, per landmark.
+        private static void BuildLandmark(Transform districtRoot, CityLayoutDefinition kit, LandmarkDef lm, GlobalPalette pal)
+        {
+            float w = Mathf.Max(0.2f, lm.width);
+            float h = Mathf.Max(0.2f, lm.height);
+
+            if (lm.kind != LandmarkKind.Crane || h < LandmarkScaleCore.MinDetailedHeight)
+            {
+                Cube(districtRoot, "Landmark_" + lm.name,
+                    new Vector3(lm.localPos.x, kit.walkwayHeight + h * 0.5f, lm.localPos.z),
+                    new Vector3(w, h, w), pal.building2, true);
+                return;
+            }
+
+            var root = NewChild(districtRoot, "Landmark_" + lm.name);
+            root.localPosition = new Vector3(lm.localPos.x, kit.walkwayHeight, lm.localPos.z);
+
+            // The mast itself — the only piece that keeps a collider. Everything below is decoration
+            // and a collider on a rung is a snag hazard the player can neither see nor climb.
+            Cube(root, "Mast", new Vector3(0f, h * 0.5f, 0f), new Vector3(w, h, w), pal.building2, true);
+
+            float face = w * 0.5f;
+            float rungLen = w * 0.5f;
+
+            // Ladder: two stringers and the rungs between them, on the +Z face.
+            float ladderTop = LandmarkScaleCore.RungY(Mathf.Max(0, LandmarkScaleCore.RungCount(h) - 1));
+            for (int s = -1; s <= 1; s += 2)
+                Cube(root, "LadderStringer_" + (s < 0 ? "a" : "b"),
+                    new Vector3(s * rungLen * 0.5f, ladderTop * 0.5f, face + LandmarkScaleCore.RungReach),
+                    new Vector3(LandmarkScaleCore.RungThickness, ladderTop, LandmarkScaleCore.RungThickness),
+                    pal.rail, false);
+
+            int rungs = LandmarkScaleCore.RungCount(h);
+            for (int i = 0; i < rungs; i++)
+                Cube(root, "Rung_" + i,
+                    new Vector3(0f, LandmarkScaleCore.RungY(i), face + LandmarkScaleCore.RungReach),
+                    new Vector3(rungLen, LandmarkScaleCore.RungThickness, LandmarkScaleCore.RungThickness),
+                    pal.rail, false);
+
+            // Walkway + a rail post at each corner. A deck with nothing on it reads as a shelf; the
+            // posts are what say "a person stands here".
+            float wy = LandmarkScaleCore.WalkwayY(h);
+            float deck = w + 1.6f;
+            Cube(root, "Walkway", new Vector3(0f, wy, 0f), new Vector3(deck, 0.12f, deck), pal.catwalk, false);
+            for (int i = 0; i < 4; i++)
+            {
+                float sx = (i < 2) ? -1f : 1f;
+                float sz = (i % 2 == 0) ? -1f : 1f;
+                Cube(root, "WalkwayPost_" + i,
+                    new Vector3(sx * deck * 0.5f, wy + RailHeight * 0.5f, sz * deck * 0.5f),
+                    new Vector3(RailThickness, RailHeight, RailThickness), pal.rail, false);
+            }
+
+            // The cab. Sized off a standing operator, which is the whole reason it is here.
+            Vector3 cab = LandmarkScaleCore.CabSize(w);
+            Cube(root, "Cab", new Vector3(0f, LandmarkScaleCore.CabY(h), 0f), cab, pal.metal, false);
+
+            // A crane's jib is what makes the yard read as a WORKING yard rather than a monument, and
+            // the hook hanging off it is the only object here at a height the eye can measure against
+            // the deck. Reach scales with the mast so a taller crane looks like it could lift more.
+            float jib = Mathf.Clamp(h * 0.55f, 4f, 12f);
+            float jibY = h - 1.2f;
+            Cube(root, "Jib", new Vector3(jib * 0.5f - w * 0.25f, jibY, 0f),
+                new Vector3(jib, 0.5f, 0.5f), pal.building2, false);
+            Cube(root, "JibTieBack", new Vector3(-jib * 0.22f, jibY, 0f),
+                new Vector3(jib * 0.45f, 0.35f, 0.35f), pal.building2, false);
+            Cube(root, "HookLine", new Vector3(jib * 0.7f, jibY - 2.6f, 0f),
+                new Vector3(0.08f, 5f, 0.08f), pal.rail, false);
+            Cube(root, "Hook", new Vector3(jib * 0.7f, jibY - 5.3f, 0f),
+                new Vector3(0.45f, 0.6f, 0.45f), pal.rail, false);
         }
 
         // Facades line the district edges with GAPS (walkable streets pass between them).

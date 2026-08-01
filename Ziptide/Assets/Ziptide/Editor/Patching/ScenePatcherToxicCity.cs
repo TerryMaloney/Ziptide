@@ -242,7 +242,10 @@ namespace Ziptide.Editor.Patching
             kit.districts.Add(new DistrictDef
             {
                 id = "Shipyard", anchor = new Vector3(0f, 0f, -30f), bounds = new Vector2(22f, 18f), heightTier = 1,
-                landmarks = { new LandmarkDef { name = "Crane", localPos = new Vector3(8f, 0f, -6f), height = 16f, width = 2f } },
+                // 4.5 m, not 2 m: at 16 m tall a 2 m mast is 8:1 and reads as a stick with no surface
+                // to put a ruler on (LandmarkScaleCore.ReadsAsStick). Pulled in from x=8 to x=5 at the
+                // same time — the wider footprint would otherwise intersect the east facade row.
+                landmarks = { new LandmarkDef { name = "Crane", kind = LandmarkKind.Crane, localPos = new Vector3(5f, 0f, -5f), height = 16f, width = 4.5f } },
                 heroBuildings = { new HeroBuildingDef { id = "ShipyardOffice", localPos = new Vector3(-7f, 0f, 2f), footprint = new Vector2(7f, 7f), height = 4f, interior = InteriorKind.JobGiver, doorLocalPos = new Vector3(0f, 0f, -3.5f), interiorMarkerId = "shipyard_office" } },
             });
             kit.districts.Add(new DistrictDef

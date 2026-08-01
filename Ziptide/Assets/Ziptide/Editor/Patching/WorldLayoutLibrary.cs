@@ -805,11 +805,12 @@ namespace Ziptide.Editor.Patching
         private static void District(CityLayoutDefinition kit, string id, Vector3 anchor, float w, float l, int tier,
             (string name, Vector3 pos, float height, float width)? landmark = null,
             (string id, Vector3 pos, float fw, float fl, float h, InteriorKind kind, string markerId)? hero = null,
-            (string kind, Vector3 center, float pw, float pl, float density)? props = null)
+            (string kind, Vector3 center, float pw, float pl, float density)? props = null,
+            LandmarkKind landmarkKind = LandmarkKind.Tower)
         {
             var d = new DistrictDef { id = id, anchor = anchor, bounds = new Vector2(w, l), heightTier = tier };
             if (landmark.HasValue)
-                d.landmarks.Add(new LandmarkDef { name = landmark.Value.name, localPos = landmark.Value.pos, height = landmark.Value.height, width = landmark.Value.width });
+                d.landmarks.Add(new LandmarkDef { name = landmark.Value.name, localPos = landmark.Value.pos, height = landmark.Value.height, width = landmark.Value.width, kind = landmarkKind });
             if (hero.HasValue)
                 d.heroBuildings.Add(new HeroBuildingDef
                 {

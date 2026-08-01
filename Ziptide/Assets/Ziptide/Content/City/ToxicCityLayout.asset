@@ -113,9 +113,10 @@ MonoBehaviour:
       accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
     landmarks:
     - name: Crane
-      localPos: {x: 8, y: 0, z: -6}
+      localPos: {x: 5, y: 0, z: -5}
       height: 16
-      width: 2
+      width: 4.5
+      kind: 1
     heroBuildings:
     - id: ShipyardOffice
       localPos: {x: -7, y: 0, z: 2}

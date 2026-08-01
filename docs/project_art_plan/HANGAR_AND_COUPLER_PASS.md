@@ -35,10 +35,34 @@ Awe in VR is manufactured by exactly four things, and the yard currently has non
 
 ## 2. The hangar pass — five changes, in value order
 
-### 2.1 Widen the crane and put rungs on it *(the single biggest win)*
+### 2.1 Widen the crane and put rungs on it *(the single biggest win)* — ✅ BUILT 2026-08-01
 `Crane` goes 2 m → **4.5 m wide**, and gains a ladder with **30 cm rungs**, a mid-height walkway, and a
 cab at the top. Cost: a handful of cubes. Effect: the yard gets a ruler, and every other object inherits
 scale from it. **Do this one first even if nothing else happens.**
+
+**As built.** `LandmarkScaleCore` (Content, pure) owns the two numbers that decide whether this works —
+rung pitch (locked to the 25–35 cm band a real ladder uses, because the trick *is* that the player
+already knows the distance) and slenderness (past 4:1 there is no surface left to put detail on). It
+also owns a **detail ceiling at 7.5 m**: rungs above that are three pixels and a draw call each, so a
+40 m tower costs exactly what a 16 m one does. `CityBuilder.BuildLandmark` builds mast · ladder ·
+walkway + rail posts · cab · jib + hook, and only the mast keeps a collider — a collider on a rung is a
+snag the player can neither see nor climb.
+
+Two things worth knowing:
+- **Detail is opt-in per landmark** (`LandmarkDef.kind`). Twelve authored worlds carry landmarks that
+  are thin *on purpose* — W002's LightShaft is a shaft of light, W003's prisms are prisms — and bolting
+  an operator cab onto those would be a cross-world regression shipped in the name of a hangar fix.
+  `Tower` still builds the exact single cube it always did.
+- **The crane moved**, x=8 → x=5, z=−6 → z=−5. At 4.5 m the old position intersected the east facade
+  row; the widening would have shipped as clipping geometry.
+
+`CityLandmarkAuthoringTests` pins the authored data, not just the rule — the shipped crane would have
+failed `ReadsAsStick` from the day it was authored and nothing was asking.
+
+**Follow-up (needs Terry's editor, not the cloud):** `W000_DriftIn`'s `GantryCrane` is 10 m × 2 m — the
+same defect, in the first room of the game. Its BerthBay is small and ringed by facades on both edges
+near the crane, so the widened footprint needs a placement eyeballed in the scene view rather than
+guessed from bounds arithmetic. One `kind = Crane` + a width and position, once someone can see it.
 
 ### 2.2 A roof the player has to look up at
 The berth is a *hangar* and has no overhead. Add a partial gantry roof over the ship's berth only —
