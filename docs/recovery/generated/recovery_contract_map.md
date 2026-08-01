@@ -1220,12 +1220,12 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:52` **NEW_GAME_OBJECT** — `var root = new GameObject(RootName).transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:103` **XR_INTERACTABLE_COMPONENT** — `var grab = go.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:188` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:214` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:215` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:216` **RUNTIME_MATERIAL_CREATE** — `var m = new Material(shader) { name = "Approach_" + ColorUtility.ToHtmlStringRGB(c) };`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:49` **NEW_GAME_OBJECT** — `var root = new GameObject(RootName).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:106` **XR_INTERACTABLE_COMPONENT** — `var grab = go.AddComponent<XRGrabInteractable>();`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:183` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:209` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:210` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:211` **RUNTIME_MATERIAL_CREATE** — `var m = new Material(shader) { name = "Approach_" + ColorUtility.ToHtmlStringRGB(c) };`
 
 ### `Ziptide.Editor.Patching.SignAuthor` — 4 signal(s)
 
@@ -5041,7 +5041,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:403` **FALLBACK_MARKER** — `Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:429` **FALLBACK_MARKER** — `Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor`
 
 ### `Ziptide.Editor.Patching.ShipHullBuilder` — 3 signal(s)
 

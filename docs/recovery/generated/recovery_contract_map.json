@@ -5515,42 +5515,42 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 52,
+            "line": 49,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "var root = new GameObject(RootName).transform;"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 103,
+            "line": 106,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "var grab = go.AddComponent<XRGrabInteractable>();"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 188,
+            "line": 183,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 214,
+            "line": 209,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 215,
+            "line": 210,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs",
-            "line": 216,
+            "line": 211,
             "symbol": "Ziptide.Editor.Patching.ShipyardApproachAuthor",
             "snippet": "var m = new Material(shader) { name = \"Approach_\" + ColorUtility.ToHtmlStringRGB(c) };"
           }
@@ -22239,7 +22239,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 403,
+            "line": 429,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor"
           }
