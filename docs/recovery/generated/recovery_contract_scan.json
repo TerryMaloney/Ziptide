@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-08-01T22:26:27.759042+00:00",
+  "generatedAtUtc": "2026-08-01T22:52:43.489624+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,10 +9,10 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 827,
-  "findingCount": 2924,
+  "findingCount": 2923,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 708,
+    "diagnostics": 707,
     "events": 73,
     "fallback_debt": 181,
     "global_render": 95,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 67,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 708
+    "ZIPTIDE_LOG_TAG": 707
   },
   "findings": [
     {
@@ -803,18 +803,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Audit/PerfBudgetAuditRules.cs",
-      "line": 54,
+      "line": 103,
       "symbol": "Ziptide.Editor.Audit.PerfBudgetAuditRules",
-      "snippet": "/// Emitted as a `ZIPTIDE:` log line rather than a report finding, deliberately. The report has"
-    },
-    {
-      "category": "diagnostics",
-      "code": "ZIPTIDE_LOG_TAG",
-      "description": "ZIPTIDE diagnostic tag",
-      "path": "Ziptide/Assets/Ziptide/Editor/Audit/PerfBudgetAuditRules.cs",
-      "line": 83,
-      "symbol": "Ziptide.Editor.Audit.PerfBudgetAuditRules",
-      "snippet": "var sb = new System.Text.StringBuilder(\"ZIPTIDE: PERF_BREAKDOWN scene=\");"
+      "snippet": "Debug.Log(\"ZIPTIDE: PERF_BREAKDOWN scene=\" + report.sceneName"
     },
     {
       "category": "diagnostics",

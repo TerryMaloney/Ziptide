@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **827**
-- Findings: **2924**
+- Findings: **2923**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 46 |
-| `diagnostics` | 708 |
+| `diagnostics` | 707 |
 | `events` | 73 |
 | `fallback_debt` | 181 |
 | `global_render` | 95 |
@@ -110,8 +110,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/CityStageAAuditRules.cs:42` · `Ziptide.Editor.Audit.CityStageAAuditRules` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: CITY_STAGE_A_BUDGET_YELLOW district=" + district.name`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/CityStageBAuditRules.cs:66` · `Ziptide.Editor.Audit.CityStageBAuditRules` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: CITY_STAGE_B_BUDGET_YELLOW district="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:183` · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` — ZIPTIDE diagnostic tag. `string message = "ZIPTIDE: CREATURE_BEHAVIOR_AUDIT code=" + finding.code +`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/PerfBudgetAuditRules.cs:54` · `Ziptide.Editor.Audit.PerfBudgetAuditRules` — ZIPTIDE diagnostic tag. `/// Emitted as a `ZIPTIDE:` log line rather than a report finding, deliberately. The report has`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/PerfBudgetAuditRules.cs:83` · `Ziptide.Editor.Audit.PerfBudgetAuditRules` — ZIPTIDE diagnostic tag. `var sb = new System.Text.StringBuilder("ZIPTIDE: PERF_BREAKDOWN scene=");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/PerfBudgetAuditRules.cs:103` · `Ziptide.Editor.Audit.PerfBudgetAuditRules` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PERF_BREAKDOWN scene=" + report.sceneName`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/RigDumpExporter.cs:48` · `Ziptide.Editor.Audit.RigDumpExporter` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SCENE_DUMP written to " + outPath);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/UiReadabilityAuditRules.cs:183` · `Ziptide.Editor.Audit.UiReadabilityAuditRules` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: UI_AUDIT scene=" + scene.name +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:16` · `Ziptide.Editor.Audit.WorldAuditRunner` — ZIPTIDE diagnostic tag. `/// Logs ZIPTIDE: AUDIT_OK or ZIPTIDE: AUDIT_FAIL as a single line so build logs`
