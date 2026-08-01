@@ -495,6 +495,20 @@ namespace Ziptide.Gameplay
             return go;
         }
 
+        /// <summary>
+        /// Paint a renderer URP-safe. <b>Builds a NEW material every call, and that is deliberate —
+        /// do not "optimise" it into a shared cache.</b>
+        ///
+        /// `PlayerAvatarRig` and `PvpOnlinePresence` both paint with this and then write straight to
+        /// `renderer.sharedMaterial` (EnableKeyword + SetColor on `_EmissionColor`). Handing them a
+        /// shared instance would make one player's avatar tint recolour every object in the world that
+        /// happened to use the same base colour — in multiplayer, silently, and only sometimes.
+        ///
+        /// EDITOR AUTHORS SHOULD NOT USE THIS. A bake paints thousands of cubes and never mutates a
+        /// material afterwards, so the per-call allocation is pure cost: this helper is where the
+        /// city's districts each got 44–52 unique materials. Editor patchers use
+        /// `PatchMaterials.Paint`, which shares.
+        /// </summary>
         public static void ApplyURPColor(GameObject go, Color color)
         {
             var r = go.GetComponent<Renderer>();

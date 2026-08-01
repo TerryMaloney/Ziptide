@@ -216,7 +216,7 @@ namespace Ziptide.Editor.Patching
             go.transform.SetParent(parent, false);
             go.transform.localPosition = pos;
             go.transform.localScale = scale;
-            ItemFactory.ApplyURPColor(go, color);
+            PatchMaterials.Paint(go, color);
             var r = go.GetComponent<Renderer>();
             if (r != null) r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         }

@@ -201,6 +201,62 @@ guess. Candidates, in the order worth checking:
 
 ---
 
+## 4c. THE MEASURED BREAKDOWN — and it says almost nothing needs cutting
+
+Run `30722193193`, ToxicCity, renderers/materials per group *(renderers partition; materials are
+per-group so a shared one appears in several rows)*:
+
+| Group | Renderers | Materials |
+|---|---:|---:|
+| District_Shipyard | 204 | **45** |
+| **__RING_CITY** | **187** | **7** |
+| District_Quay | 176 | **44** |
+| District_Dispatch | 165 | **48** |
+| District_Market | 164 | 17 |
+| District_CanalRow | 158 | **52** |
+| District_Plaza | 136 | 17 |
+| __CITY_WAYFINDING | 82 | 5 ← *was ~57* |
+| __TOXIC_RIVERS | 78 | 7 |
+| District_Colonnade | 77 | 17 |
+| Shipyard | 68 | 12 |
+| Skyline | 51 | 3 |
+| __QUAY_BERTHS | 35 | 4 ← *was ~35* |
+| **__FLATS_EXPEDITION_SITE** | **32** | **32** |
+| __SHIPYARD_APPROACH | 24 | 4 |
+
+**The ring city is exonerated.** 187 renderers and **7 materials** — 11% of the scene and essentially
+free on the budget that is actually broken. §2's Tier 2 asked whether Level 1 needs it; the data says
+that was the wrong question and cutting it would have cost the city's silhouette for nothing. **This is
+exactly what "don't cut on an estimate" was protecting against — my estimate was wrong.**
+
+**The real source is one helper.** `__FLATS_EXPEDITION_SITE` shows 32 renderers and 32 materials — one
+per object — and the same signature drives the districts (four at 44–52). All of them paint through
+`ItemFactory.ApplyURPColor`, which builds a **new material on every call** and is used by
+`InteriorFurnisher`, `InteriorBuilder`, `BuildingBuilder`, `FlatsSiteAuthor` and
+`FirstHourSurfaceAuthor` — every piece of interior furniture in every building.
+
+### The trap in fixing it
+
+The obvious move — cache inside `ApplyURPColor` — is **wrong and would have shipped a silent
+multiplayer bug.** `PlayerAvatarRig` and `PvpOnlinePresence` both paint with it and then write
+*directly* to `renderer.sharedMaterial`:
+
+```csharp
+r.sharedMaterial.EnableKeyword("_EMISSION");
+r.sharedMaterial.SetColor("_EmissionColor", color * 1.6f);
+```
+
+Shared instances there mean **one player's avatar tint recolours every object in the world using that
+base colour.** Intermittent, invisible in a diff, and miserable to diagnose.
+
+So `ApplyURPColor` stays per-call and now says why in its own summary, and the **five editor authors**
+were pointed at `PatchMaterials.Paint` instead. Editor bakes paint thousands of cubes and never mutate
+a material afterwards; runtime callers do the opposite. Same helper, two genuinely different needs.
+
+**Still nothing deleted. Still nothing recoloured.**
+
+---
+
 ## 5. Next, once the breakdown lands
 
 1. Read `PERF_BREAKDOWN` from the CI job log and record the real per-root split here.

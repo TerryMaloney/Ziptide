@@ -212,7 +212,7 @@ namespace Ziptide.Editor.Patching
             go.transform.SetParent(parent, false);
             go.transform.localPosition = localPos;
             go.transform.localScale = scale;
-            ItemFactory.ApplyURPColor(go, color);
+            PatchMaterials.Paint(go, color);
             return go;
         }
     }

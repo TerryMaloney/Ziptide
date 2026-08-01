@@ -90,7 +90,7 @@ namespace Ziptide.Editor.Patching
                 cube.transform.SetParent(root.transform, false);
                 cube.transform.localPosition = new Vector3(w.center.x, h * 0.5f + 0.15f, w.center.y);
                 cube.transform.localScale = new Vector3(w.width, h, w.height);
-                ItemFactory.ApplyURPColor(cube, wallCol);
+                PatchMaterials.Paint(cube, wallCol);
                 var r = cube.GetComponent<Renderer>();
                 if (r != null) r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
@@ -113,7 +113,7 @@ namespace Ziptide.Editor.Patching
                 panel.transform.localPosition = new Vector3(room.center.x, h - 0.12f, room.center.y);
                 panel.transform.localScale = new Vector3(
                     Mathf.Min(1.2f, room.width * 0.4f), 0.06f, Mathf.Min(1.2f, room.height * 0.4f));
-                ItemFactory.ApplyURPColor(panel, lightCol);
+                PatchMaterials.Paint(panel, lightCol);
                 var r = panel.GetComponent<Renderer>();
                 if (r != null) r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }

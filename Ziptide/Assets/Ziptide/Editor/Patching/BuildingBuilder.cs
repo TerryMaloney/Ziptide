@@ -222,7 +222,7 @@ namespace Ziptide.Editor.Patching
             pane.transform.SetParent(wall, false);
             pane.transform.localPosition = new Vector3(0f, 0.08f, 0f);
             pane.transform.localScale = new Vector3(0.55f, 0.45f, 1.1f); // pokes through both wall faces
-            ItemFactory.ApplyURPColor(pane, paneColor);
+            PatchMaterials.Paint(pane, paneColor);
         }
 
         private static GameObject Cube(Transform parent, string name, Vector3 localPos, Vector3 size, Color color)
@@ -232,7 +232,7 @@ namespace Ziptide.Editor.Patching
             go.transform.SetParent(parent, false);
             go.transform.localPosition = localPos;
             go.transform.localScale = size;
-            ItemFactory.ApplyURPColor(go, color);
+            PatchMaterials.Paint(go, color);
             var r = go.GetComponent<Renderer>();
             if (r != null) r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             return go;
