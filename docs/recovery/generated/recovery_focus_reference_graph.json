@@ -1,6 +1,6 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 815,
+  "scannedFiles": 818,
   "referenceCount": 466,
   "summaries": {
     "melee": {
@@ -1678,7 +1678,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 377,
+          "line": 380,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "/// no machines at all \u2014 JobDirector materialises repairables from the PACK, so there was",
           "declaration_file": false
@@ -1687,7 +1687,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 443,
+          "line": 446,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var jdGo = PatcherUtil.EnsureRootObject(\"JobDirector\", Vector3.zero);",
           "declaration_file": false
@@ -1696,7 +1696,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 444,
+          "line": 447,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);",
           "declaration_file": false
@@ -2528,7 +2528,7 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 455,
+          "line": 458,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var boardGo = PatcherUtil.EnsureRootObject(\"ObjectiveBoard\", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));",
           "declaration_file": false
@@ -2537,7 +2537,7 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 456,
+          "line": 459,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);",
           "declaration_file": false
@@ -3402,7 +3402,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 532,
+          "line": 612,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
           "declaration_file": false
@@ -3411,7 +3411,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 533,
+          "line": 613,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -3420,7 +3420,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 539,
+          "line": 619,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
           "declaration_file": false
@@ -3429,7 +3429,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 540,
+          "line": 620,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -3617,7 +3617,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 532,
+          "line": 612,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
           "declaration_file": false
@@ -3626,7 +3626,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 533,
+          "line": 613,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -3635,7 +3635,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 539,
+          "line": 619,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
           "declaration_file": false
@@ -3644,7 +3644,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 540,
+          "line": 620,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -4062,7 +4062,7 @@
           "focus": "shipPresentation",
           "token": "ShipHullBuilder",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 507,
+          "line": 587,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "// real ~19-part silhouette now (ShipHullBuilder), same bounding box, so the boarding",
           "declaration_file": false
@@ -4071,7 +4071,7 @@
           "focus": "shipPresentation",
           "token": "ShipHullBuilder",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 512,
+          "line": 592,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "ShipHullBuilder.Build(ship, s.shipSize, kit.palette);",
           "declaration_file": false
@@ -4136,7 +4136,7 @@
           "focus": "shipPresentation",
           "token": "ShipHullBuilder.Build",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 512,
+          "line": 592,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "ShipHullBuilder.Build(ship, s.shipSize, kit.palette);",
           "declaration_file": false
@@ -5010,7 +5010,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 532,
+      "line": 612,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
       "declaration_file": false
@@ -5019,7 +5019,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 533,
+      "line": 613,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -5028,7 +5028,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 539,
+      "line": 619,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
       "declaration_file": false
@@ -5037,7 +5037,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 540,
+      "line": 620,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -5046,7 +5046,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 532,
+      "line": 612,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
       "declaration_file": false
@@ -5055,7 +5055,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 533,
+      "line": 613,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -5064,7 +5064,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 539,
+      "line": 619,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
       "declaration_file": false
@@ -5073,7 +5073,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 540,
+      "line": 620,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -5082,7 +5082,7 @@
       "focus": "shipPresentation",
       "token": "ShipHullBuilder",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 507,
+      "line": 587,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "// real ~19-part silhouette now (ShipHullBuilder), same bounding box, so the boarding",
       "declaration_file": false
@@ -5091,7 +5091,7 @@
       "focus": "shipPresentation",
       "token": "ShipHullBuilder",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 512,
+      "line": 592,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "ShipHullBuilder.Build(ship, s.shipSize, kit.palette);",
       "declaration_file": false
@@ -5100,7 +5100,7 @@
       "focus": "shipPresentation",
       "token": "ShipHullBuilder.Build",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 512,
+      "line": 592,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "ShipHullBuilder.Build(ship, s.shipSize, kit.palette);",
       "declaration_file": false
@@ -5361,7 +5361,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 377,
+      "line": 380,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "/// no machines at all \u2014 JobDirector materialises repairables from the PACK, so there was",
       "declaration_file": false
@@ -5370,7 +5370,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 443,
+      "line": 446,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var jdGo = PatcherUtil.EnsureRootObject(\"JobDirector\", Vector3.zero);",
       "declaration_file": false
@@ -5379,7 +5379,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 444,
+      "line": 447,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);",
       "declaration_file": false
@@ -5388,7 +5388,7 @@
       "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 455,
+      "line": 458,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var boardGo = PatcherUtil.EnsureRootObject(\"ObjectiveBoard\", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));",
       "declaration_file": false
@@ -5397,7 +5397,7 @@
       "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 456,
+      "line": 459,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);",
       "declaration_file": false

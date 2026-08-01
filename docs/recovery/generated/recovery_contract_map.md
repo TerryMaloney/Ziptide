@@ -1,6 +1,6 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **815**
+- Scanned files: **818**
 - Scanner findings: **2928**
 - Inventory systems: **22**
 
@@ -906,13 +906,13 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:76` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:77` **RUNTIME_MATERIAL_CREATE** — `m = new Material(shader) { name = "CityMat_" + ColorUtility.ToHtmlStringRGB(c) };`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:86` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:277` **CREATE_PRIMITIVE** — `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:320` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:482` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:620` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:666` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:695` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:719` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:357` **CREATE_PRIMITIVE** — `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:400` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:562` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:700` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:746` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:775` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:799` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — 4 signal(s)
 
@@ -1205,7 +1205,7 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:169` **CREATE_PRIMITIVE** — `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:181` **CREATE_PRIMITIVE** — `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:199` **NEW_GAME_OBJECT** — `var zip = new GameObject(ZipName);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:309` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:312` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.ShipHullBuilder` — 4 signal(s)
 
@@ -4808,7 +4808,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Content/Runtime/City/CityLayoutDefinition.cs`
-  - `Ziptide/Assets/Ziptide/Content/Runtime/City/CityLayoutDefinition.cs:495` **FALLBACK_MARKER** — `/// <summary>The shipyard berth + a static (non-flyable) ship placeholder.</summary>`
+  - `Ziptide/Assets/Ziptide/Content/Runtime/City/CityLayoutDefinition.cs:507` **FALLBACK_MARKER** — `/// <summary>The shipyard berth + a static (non-flyable) ship placeholder.</summary>`
 
 ### `Ziptide.Content.CosmeticKind` — 1 signal(s)
 
@@ -4944,7 +4944,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:401` **FALLBACK_MARKER** — `/// a fallback the code did not implement. CI caught it; the guarantee is now real.`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:481` **FALLBACK_MARKER** — `/// a fallback the code did not implement. CI caught it; the guarantee is now real.`
 
 ### `Ziptide.Editor.Patching.FirstHourContractImportResult` — 1 signal(s)
 
@@ -5030,7 +5030,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:395` **FALLBACK_MARKER** — `Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:398` **FALLBACK_MARKER** — `Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor`
 
 ### `Ziptide.Editor.Patching.ShipHullBuilder` — 3 signal(s)
 

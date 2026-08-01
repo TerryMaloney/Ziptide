@@ -1,14 +1,14 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-08-01T13:49:55.616227+00:00",
+  "generatedAtUtc": "2026-08-01T16:41:04.830484+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 815,
+  "scannedFiles": 818,
   "findingCount": 2928,
   "categoryCounts": {
     "bootstrap": 46,
@@ -875,7 +875,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 357,
+      "line": 437,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "Debug.Log(\"ZIPTIDE: INTERIOR_TIER id=\" + hb.id + \" tier=Facade area=\""
     },
@@ -884,7 +884,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 389,
+      "line": 469,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "Debug.Log(\"ZIPTIDE: INTERIOR_TIER id=\" + hb.id + \" tier=\" + tier"
     },
@@ -893,7 +893,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 409,
+      "line": 489,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: INTERIOR_STYLE_MISSING path=\" + stylePath"
     },
@@ -7508,7 +7508,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/City/CityLayoutDefinition.cs",
-      "line": 495,
+      "line": 507,
       "symbol": "Ziptide.Content.CityLayoutDefinition",
       "snippet": "/// <summary>The shipyard berth + a static (non-flyable) ship placeholder.</summary>"
     },
@@ -7787,7 +7787,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 401,
+      "line": 481,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "/// a fallback the code did not implement. CI caught it; the guarantee is now real."
     },
@@ -8066,7 +8066,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 395,
+      "line": 398,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor"
     },
@@ -15068,7 +15068,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 277,
+      "line": 357,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var w = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15077,7 +15077,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 482,
+      "line": 562,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15086,7 +15086,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 695,
+      "line": 775,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -17588,7 +17588,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 320,
+      "line": 400,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var marker = new GameObject(\"Marker_\" + hb.interiorMarkerId);"
     },
@@ -17597,7 +17597,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 620,
+      "line": 700,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -17606,7 +17606,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 666,
+      "line": 746,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
     },
@@ -17615,7 +17615,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 719,
+      "line": 799,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -18425,7 +18425,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 309,
+      "line": 312,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var go = new GameObject(name);"
     },
