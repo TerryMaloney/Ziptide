@@ -257,6 +257,45 @@ a material afterwards; runtime callers do the opposite. Same helper, two genuine
 
 ---
 
+## 4d. RESULT — measured, run `30722859731`
+
+**ToxicCity: 333 → 222 → 111 unique materials.** Two-thirds gone, nothing deleted, nothing recoloured.
+
+And it was never only ToxicCity — `ApplyURPColor` is used by the interior and building authors every
+world runs, so **five worlds dropped under the hard cap outright**:
+
+| Scene | before | after | |
+|---|---:|---:|---|
+| W012_MarasLastJump | 94 | **37** | ✅ under cap |
+| W008_SealedArchive | 91 | **41** | ✅ |
+| W011_TheHum | 74 | **43** | ✅ |
+| W004_BroadcastTomb | 96 | **51** | ✅ |
+| W009_Chitinwall | 63 | **51** | ✅ |
+| ToxicCity | 333 | **111** | still 1.85× |
+| W002_DryCistern | 223 | 186 | |
+| W005_OxidizedCanopy | 280 | 240 | |
+| SpaceLane_Trial | 711 | 711 | untouched — different authors |
+
+ToxicCity's per-district material counts went 44–52 → **28–32**, against 17 for the districts that own
+no generated buildings.
+
+### What the remaining 111 is, and the one lever left
+
+The floor is **17 per district** — that is the palette itself. Seven districts, each with a
+`paletteOverride` of ~10 fields holding *slightly different* greys, is up to seventy near-identical
+colours before a single prop is placed. Sharing cannot merge them because they are not equal; only
+**quantizing** can, and that is precisely the case it was designed for.
+
+**Quantizing is the last lever that does not delete anything — and it is the FIRST change in this
+whole pass that alters a pixel.** Everything so far has been provably identical output. Snapping to a
+~24-tone ramp would move some greys by a few percent.
+
+That is a Terry call, not a budget call, and it is queued rather than shipped: he is minutes from a
+device session and changing the city's colours underneath him without his say-so is not a trade worth
+making for a WARN-level finding.
+
+---
+
 ## 5. Next, once the breakdown lands
 
 1. Read `PERF_BREAKDOWN` from the CI job log and record the real per-root split here.
