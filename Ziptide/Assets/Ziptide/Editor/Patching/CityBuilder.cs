@@ -297,10 +297,17 @@ namespace Ziptide.Editor.Patching
                 new Vector3(jib, 0.5f, 0.5f), pal.building2, false);
             Cube(root, "JibTieBack", new Vector3(-jib * 0.22f, jibY, 0f),
                 new Vector3(jib * 0.45f, 0.35f, 0.35f), pal.building2, false);
-            Cube(root, "HookLine", new Vector3(jib * 0.7f, jibY - 2.6f, 0f),
-                new Vector3(0.08f, 5f, 0.08f), pal.rail, false);
-            Cube(root, "Hook", new Vector3(jib * 0.7f, jibY - 5.3f, 0f),
-                new Vector3(0.45f, 0.6f, 0.45f), pal.rail, false);
+
+            // §2.3: ONE thing that moves, slowly. The rig hangs off the jib and CraneHookRuntime
+            // creeps the hook up and down — the cheapest "the world is running without me" signal
+            // there is, and worth more to the yard's sense of scale than five more static props.
+            var rig = NewChild(root, "HookRig");
+            rig.localPosition = new Vector3(jib * 0.7f, jibY, 0f);
+            var cable = Cube(rig, "HookLine", Vector3.zero, new Vector3(0.08f, 1f, 0.08f), pal.rail, false);
+            var hookGo = Cube(rig, "Hook", Vector3.zero, new Vector3(0.45f, 0.6f, 0.45f), pal.rail, false);
+            rig.gameObject.AddComponent<CraneHookRuntime>().Init(
+                hookGo.transform, cable.transform,
+                CraneHookCore.DefaultMinDrop, CraneHookCore.DefaultMaxDrop, CraneHookCore.DefaultPeriod);
         }
 
         // Facades line the district edges with GAPS (walkable streets pass between them).

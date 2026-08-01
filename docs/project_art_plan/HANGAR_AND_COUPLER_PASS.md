@@ -69,10 +69,22 @@ The berth is a *hangar* and has no overhead. Add a partial gantry roof over the 
 open at the seaward end so the sky (and the new acid haze) is still the backdrop. Trusses at 6 m,
 lamps hanging at 4.5 m. **Looking up is the mechanic that makes a space feel big.**
 
-### 2.3 One thing that moves, slowly
+### 2.3 One thing that moves, slowly — ✅ BUILT 2026-08-01
 The crane's hook descends and rises on a slow loop, or a gantry trolley tracks the length of the quay.
 One object, constant motion, no interaction. This is the cheapest possible "the world is running
 without me" signal and it is worth more than five props.
+
+**As built.** `CraneHookCore` + `CraneHookRuntime` (a sine on two transforms — no allocations, no
+lookups). Two counter-intuitive numbers decide whether this reads as machinery or as a bug, so the core
+owns both and tests pin them:
+- **Slow.** A loaded hook creeps. Past ~0.35 m/s it stops looking like tonnage on a cable and starts
+  looking like an animation playing at the wrong rate. The eye is very good at this and gets it wrong
+  in exactly one direction, which is why it is a test and not a tuning slider.
+- **Eased at both ends.** A triangle wave reverses instantly, and an instant reversal on a heavy object
+  is the clearest possible tell that nothing in the scene has mass. The cosine costs the same.
+
+The cable stretches with the hook. A fixed-length one detaches from the jib, and a floating cable end
+is more distracting than no motion at all.
 
 ### 2.4 The three depth bands, deliberately — ✅ FOREGROUND BUILT 2026-08-01
 - **Foreground:** crates, a spilled toolbox, cable spools *on the walk itself* — things the player
@@ -172,13 +184,11 @@ good in the hands.
 2. **§3.2 coupler concept** — Terry can run this immediately; it unblocks the modelling. **Next.**
 3. ~~**§2.5 lantern extension**~~ — ✅ done. **§2.2 roof** still open — layout only, teaches by
    forcing the player to look up.
-4. **§2.3 one moving thing** — needs a small runtime component; worth it. The crane now has a jib and
-   a hook to move, so this is a slow loop on an object that already exists.
+4. ~~**§2.3 one moving thing**~~ — ✅ done.
 5. ~~**§2.4 foreground clutter**~~ — ✅ done.
 
 ### What is left in this document
 - **§2.2** the partial gantry roof over the berth (layout).
-- **§2.3** the crane hook on a slow loop (small runtime component; the geometry now exists).
 - **§2.4 background band** — frame the walk so the player exits facing the skyline, not the office wall.
 - **§3** the coupler itself — the prompt in §3.2 is ready to run; nothing is built.
 - **W000_DriftIn's GantryCrane** — same stick defect in the first room of the game, needs a placement

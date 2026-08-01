@@ -32,7 +32,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-20.)*
 |---|---|---|---|
 | Terrain & biomes | 🧱 v1 (fBM+warp heightfields, biome matrix, 12 worlds) | Every world's ground is distinct at a glance; walkable slopes gated; no repeated-feeling worlds | `WorldAuditRunner` + `WorldContentAuditRules`; terrain tests |
 | POIs & world dressing | 🧱 v1 (POI verbs, scatter, paths) | Every POI reachable; streets/interiors carry prop kits, not emptiness | `WorldReachabilityAuditRules` + `RouteContinuityAuditRules` candidate |
-| Buildings & city | 🧱→💎 in flight (Stage A/B + Round 1 ToxicCity pass) | Biome→kit/palette mapping; no primitive-box fallbacks in shipped worlds; street identity and motion fit budget | `BuildingAuditRules`; City Stage A/B audits; registry fallback logs |
+| Buildings & city | 🧱→💎 in flight (Stage A/B + Round 1 ToxicCity pass; hangar scale pass 2026-08-01) | Biome→kit/palette mapping; no primitive-box fallbacks in shipped worlds; street identity and motion fit budget; **every space states its own scale** — something in frame carries a size the player already knows, and the walking lane is never blocked | `BuildingAuditRules`; City Stage A/B audits; registry fallback logs; `LandmarkScaleCore`/`CityLandmarkAuthoringTests` (slenderness + rung pitch, asset AND spec); `ApproachClutterCoreTests` (corridor) |
 | Interiors | 🧱 v1 (partitioned/furnished/per-room portal cull; W002 re-bake pending) | Enterable buildings have connected, furnished, portal-culled interiors | `InteriorAuditRules` + `InteriorFurnishCoreTests` |
 | Vertical/caverns/traversal | 💎 (zip/climb/lift/pad/grapple + cave worlds) | Every traversal verb usable; multi-level reachability proven | reachability one-way edges + traversal test suites |
 | Skyscape & atmosphere | 🧱 v1 (canonical layers, signature worlds pending device verdict) | Prospect bar: drift, hazy horizon, occluded body, sky color reaches ground | `SkyVistaAuditRules` + signature-rubric tests |
@@ -91,7 +91,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-20.)*
 
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
-| Performance budgets | 🧱 | Every new content type gets cap + audit | `PerfBudgetAuditRules`; per-module manifest budgets |
+| Performance budgets | 🧱 | Every new content type gets cap + audit; per-frame cost is budgeted too, not just static scene cost | `PerfBudgetAuditRules`; per-module manifest budgets; `tools/frame_cost_gate.py` (WARN-first, baseline 67) |
 | Art pipeline (Forge) | 💎 | All shipped look traced to Forge/registry; hero photo loop | Forge/audit/library/wiring tests |
 | Wiring integrity | 💎 | Producer + consumer + verifier + map row | `WiringValidatorTests` |
 | Save integrity | 💎 | Overlay idiom; neutral old-save defaults | per-system round trips |

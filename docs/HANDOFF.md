@@ -32,6 +32,78 @@
 
 ## ENTRIES — newest first
 
+### 2026-08-01 (rb136) — 📏 THE YARD HAD NO RULER: the crane, the first walk, and the lamp that taught nothing
+
+Terry: *"if this is the first thing we see outside the ship we really want to build a sense of awe and
+perspective… the hangar was pretty much just like a bunch of sort of box areas, not very good."*
+
+The diagnosis in `docs/project_art_plan/HANGAR_AND_COUPLER_PASS.md` §1 was measured, not felt: the
+Shipyard district is 22 × 18 m with **one 16 m × 2 m crane, one 7 × 7 office, and `props: []`**. The
+problem was never that the shapes are boxes. **Nothing in the space stated its own scale.** A 16 m box
+and a 1.6 m box are the same box until something in frame has a size the player already knows.
+
+#### Did
+
+1. **§2.1 — the crane stops being a stick.** `LandmarkScaleCore` (Content, pure) owns rung pitch
+   (locked to the 25–35 cm band a real ladder uses — the trick is that the player *already knows* the
+   distance), slenderness (4:1), and a **7.5 m detail ceiling** so a 40 m tower costs what a 16 m one
+   does. `CityBuilder.BuildLandmark` builds mast · ladder · walkway + rail posts · cab · jib + hook;
+   only the mast keeps a collider. Crane 2 m → **4.5 m**, moved x=8 → x=5 because at the new width the
+   old position intersected the east facade row.
+2. **§2.5 — the arrival walk is lit.** The lantern route started *at* Dispatch, so the player crossed
+   the whole quay unlit and then arrived at a lit city with no idea the lamps meant anything.
+   `ArrivalWalk` (Quay → Shipyard → Dispatch), kept **separate** from `JobRoute` because that one is a
+   loop that must come home.
+3. **§2.4 — the foreground band exists.** `ApproachClutterCore` places nine pieces along the walk. The
+   interesting half is the **corridor**, not the scatter: junk in the walking lane is a soft-lock, and
+   the hiding kind — a VR player cannot see their own feet.
+4. **§2.5 — one grabbable crate worth nothing.** `LooseCrate`: Rigidbody + `XRGrabInteractable`, no
+   `ItemDefinition`, never enters the inventory. The game's first tutorial is a piece of junk, and it
+   only works if the junk is really junk.
+5. **§2.3 — the crane hook creeps.** `CraneHookCore` + `CraneHookRuntime`. Two counter-intuitive
+   numbers, both now pinned: **slow** (past ~0.35 m/s a hook stops reading as tonnage on a cable and
+   starts reading as an animation at the wrong rate) and **eased at both ends** (an instant reversal
+   on a heavy object is the clearest tell that nothing here has mass). The cable stretches, because a
+   fixed-length one detaches from the jib.
+
+#### Two misses worth the ledger
+
+- **The spec is upstream of the layout asset and I nearly fixed only the asset.**
+  `WorldSpecCompiler.ApplyToLayout` calls `FindLayoutBySceneName`, so compiling
+  `docs/worldspecs/ToxicCity.spec.json` overwrites `Content/City/ToxicCityLayout.asset`'s districts
+  **wholesale**. The crane widening would have silently reverted the next time anyone ran
+  *Compile World Specs*. Same shape as #24/#25: right fix, wrong level. Both levels now carry it and
+  `CityLandmarkAuthoringTests` checks both.
+- **Two lanterns have been z-fighting on Dispatch since the compass shipped**, because `JobRoute` is a
+  loop and names Dispatch twice. Found only because merging a second walk forced the question.
+  `MergeLanterns` de-duplicates within each list, not just between them.
+
+#### Next
+
+- **§3.2 the coupler concept prompt** is written and ready for Terry to run — it unblocks the modelling
+  and nothing is built yet.
+- **§2.2** the partial gantry roof (layout only; looking up is what makes a space feel big).
+- **§2.4 background band** — frame the walk so the player exits the ship facing the skyline rather
+  than the office wall.
+- **`W000_DriftIn`'s GantryCrane is 10 m × 2 m** — the same defect, in the first room of the game. Its
+  BerthBay is small and ringed by facades near the crane, so the widened footprint needs a placement
+  **eyeballed in the scene view**, not derived from bounds arithmetic in a container with no editor.
+
+#### Heads-up
+
+- `LandmarkKind` is a new field on `LandmarkDef`. **Tower renders exactly the single cube it always
+  did** — twelve worlds carry landmarks that are thin on purpose (W002's LightShaft, W003's prisms) and
+  scale detail is opt-in per landmark, deliberately.
+- `docs/worldspecs/ToxicCity.spec.json` now carries `kind` on every landmark. If a re-export drops the
+  field, the crane goes back to being a tower.
+
+#### Commits
+
+`70073d2a` crane · `ff960f6b` arrival walk + spec · `76669a66` foreground + teaching crate ·
+`8c9119f6` the hook creeps.
+
+---
+
 ### 2026-07-31 (rb134) — 🕳️ THE HOLE HUNT: the player cannot be hurt · the first planet had no air · half the arsenal was unobtainable
 
 Terry: *"we want everything hypothetically working perfectly to be AAA game minus some of the artwork."*
