@@ -36,6 +36,16 @@ namespace Ziptide.Editor.Audit
     public class SceneAuditReport
     {
         public string sceneName;
+
+        /// <summary>
+        /// Renderer/material cost per top-level root, written by <c>PerfBudgetAuditRules</c>. Not a
+        /// finding — a measuring tape. It rides the MARKDOWN report only, never the JSON, so no tool
+        /// that parses the JSON has to learn a new shape in order for us to be able to see where a
+        /// scene's cost actually lives.
+        ///
+        /// It exists because a number you can only get by scrolling a CI log is a number nobody checks.
+        /// </summary>
+        public string costBreakdown;
         public List<AuditFinding> findings = new List<AuditFinding>();
 
         public int blockerCount
@@ -100,6 +110,11 @@ namespace Ziptide.Editor.Audit
                 sb.AppendLine("## Scene: " + scene.sceneName);
                 sb.AppendLine("Blockers: " + scene.blockerCount + "  Warnings: " + scene.warningCount);
                 sb.AppendLine();
+                if (!string.IsNullOrEmpty(scene.costBreakdown))
+                {
+                    sb.AppendLine("**Cost by root** (renderers/materials): " + scene.costBreakdown);
+                    sb.AppendLine();
+                }
                 if (scene.findings.Count == 0)
                 {
                     sb.AppendLine("_No issues found._");

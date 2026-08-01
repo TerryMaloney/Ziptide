@@ -80,19 +80,22 @@ namespace Ziptide.Editor.Audit
             var rows = new System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, int>>(perRoot);
             rows.Sort((a, b) => b.Value.CompareTo(a.Value));
 
-            var sb = new System.Text.StringBuilder("ZIPTIDE: PERF_BREAKDOWN scene=");
-            sb.Append(report.sceneName).Append(" total=").Append(totalRenderers).Append(" roots=");
+            var sb = new System.Text.StringBuilder();
             int shown = 0;
             foreach (var row in rows)
             {
                 if (shown++ >= 14) break;
-                // name=renderers/materials
-                sb.Append(' ').Append(row.Key).Append('=').Append(row.Value)
-                  .Append('/').Append(matsPerRoot[row.Key].Count);
+                if (shown > 1) sb.Append("  ");
+                sb.Append(row.Key).Append('=').Append(row.Value).Append('/').Append(matsPerRoot[row.Key].Count);
             }
-            if (rows.Count > 14) sb.Append(" +").Append(rows.Count - 14).Append("more");
+            if (rows.Count > 14) sb.Append("  +").Append(rows.Count - 14).Append(" more root(s)");
 
-            Debug.Log(sb.ToString());
+            // Both: the log for whoever is watching a build, and the MARKDOWN report for whoever comes
+            // back to it later. The report is the one that matters — a number you can only get by
+            // scrolling a CI log is a number nobody checks.
+            report.costBreakdown = sb.ToString();
+            Debug.Log("ZIPTIDE: PERF_BREAKDOWN scene=" + report.sceneName
+                      + " total=" + totalRenderers + " roots= " + sb);
         }
 
         /// <summary>The outermost ancestor's name — the subsystem a renderer belongs to.</summary>

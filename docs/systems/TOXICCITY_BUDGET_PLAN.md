@@ -171,6 +171,36 @@ for this one.
 
 ---
 
+## 4b. RESULT of Tier 0 — measured, run `30721250486`
+
+| | before | after T0.1 | cap |
+|---|---|---|---|
+| ToxicCity unique materials | 333 | **222** | 60 |
+
+**111 materials gone — a third — and it is still 3.7× the cap.** That is the answer to the question
+this document was written to ask, and it is not the answer the first draft assumed.
+
+Two things follow, and both matter more than the number:
+
+1. **De-duplication alone does not clear this budget.** The plan's original framing — *"nothing needs
+   to be cut to fix the only broken budget"* — was **wrong**. Something more has to happen.
+2. **Splitting the fix was the right call.** Had quantizing shipped in the same commit, 222 would have
+   been indistinguishable from "quantizing works, ship it" and nobody would know that the remaining
+   162-over-cap has a different cause. Now we know sharing was worth 111 and the rest is elsewhere.
+
+**Where the remaining 222 live is not yet known**, and that is the next thing to find out rather than
+guess. Candidates, in the order worth checking:
+- the five **slot-keyed** authors, which do NOT route through `PatchMaterials` (`RingCityBuilder`,
+  `ToxicCityStageB`, `ToxicCityRiverBuilder`, `ShipHullBuilder`, `CityStageAPrimitiveFactory`);
+- **`BuildingBuilder`/`InteriorFurnisher`**, which paint from per-building `BuildingStyleDefinition`
+  colours — genuinely different colours per style, which quantizing WOULD collapse;
+- district **`paletteOverride`s** — seven districts × ten palette fields is up to seventy colours
+  before anything else is built.
+
+`PERF_BREAKDOWN` now writes into `AUDIT_REPORT.md` (not just the log) so the next run answers this.
+
+---
+
 ## 5. Next, once the breakdown lands
 
 1. Read `PERF_BREAKDOWN` from the CI job log and record the real per-root split here.
