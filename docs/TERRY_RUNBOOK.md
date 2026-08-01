@@ -75,9 +75,22 @@ git pull origin terry-local-wip
 tools\dev_build_install.ps1            # default profile is GoldenSlice; that is the right one
 git status                             # expect TWO NEW assets, see below
 git add Ziptide/Assets/Ziptide/Content/Worlds/Themes/ToxicCity_Theme.asset* `
-        Ziptide/Assets/Ziptide/Content/Worlds/Profiles/ToxicCity_WorldProfile.asset*
+        Ziptide/Assets/Ziptide/Content/Worlds/Profiles/ToxicCity_WorldProfile.asset* `
+        Ziptide/Assets/Ziptide/Content/City/ToxicCityLayout.asset
 git commit -m "chore(assets): ToxicCity theme + world profile from the bake" ; git push
 ```
+
+**`ToxicCityLayout.asset` will also show as MODIFIED and that is expected.** The build hook runs
+`WorldSpecCompiler.CompileAll` before the scene loop, and it finds the layout asset *by scene name* and
+overwrites its districts wholesale from `docs/worldspecs/ToxicCity.spec.json`. The spec carries seven
+districts (it adds **Quay** and **Colonnade**); the committed asset carries five. So the spec is the
+real source of truth for this city and the asset is its output — do not hand-edit the asset expecting
+it to survive.
+
+⚠️ **CONFIRMED GREEN, with numbers.** CI run `30718215590` succeeded end to end including the scene
+bake, and the audit from that exact run shows **`SKY_VISTA_UNWIRED` is gone from ToxicCity** — the
+theme is authored and W001 Toxic Venice is attached. (The `docs/AUDIT_REPORT.json` committed in the
+repo lags a run behind; the artifact from the run is the truth.)
 
 **Why those two assets are new and why it matters:** ToxicCity pointed at the *shared*
 `DefaultWorldProfile`, so the sky its layout has always authored — olive horizon, dark teal zenith,
@@ -111,6 +124,28 @@ ZIPTIDE: WORLD_ATMO applied=1 hazard=acid
 
 If `APPROACH_DRESSED` is missing, the ToxicCity patch did not run and nothing from today is in the
 build.
+
+### ⚡ Set your expectations on frame rate before you put it on
+
+The bake's own audit says ToxicCity is heavy, and this is **pre-existing and project-wide**, not
+today's work:
+
+| Measure | ToxicCity | Budget |
+|---|---|---|
+| Renderers | **1769** | target 900, cap 2500 |
+| Unique materials | **333** | **HARD CAP 60** |
+| Static triangles | 159,944 | target 150,000, cap 400,000 |
+
+333 materials means roughly 333 draw calls that cannot batch, on a mobile GPU. Eleven scenes are over
+the material cap — `SpaceLane_Trial` is at 711, `W005` at 284 — so this is a whole-project condition
+the audit deliberately hasn't promoted to a blocker yet ("promote this to a blocker after
+baselining"). Today's additions are a rounding error against it: the crane, roof, clutter and hook add
+roughly 60 renderers and four shared materials.
+
+**So if the city feels sluggish, that is the material count, not the scale pass.** Worth knowing
+which one you are judging — the geometry can look right and still run badly, and those are separate
+fixes. If it *is* bad on device, say so and material consolidation becomes the next real piece of
+work rather than more content.
 
 ### 📝 Feel notes wanted (these are the tunable numbers)
 

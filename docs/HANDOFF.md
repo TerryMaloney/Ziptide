@@ -89,9 +89,37 @@ spawns at Dispatch, not aboard, and I could not prove from here that they always
 weapon. **Deliberately not touched before a device session**, because the failure mode is a player
 with nothing to fight with. Worth ten minutes with the headset on.
 
-#### Commit
+#### 5 · ✅ Verified, and the verification itself had a lesson
 
-`94b53a79` (rebased to `78babef9`).
+CI run **`30718215590` conclusion `success`**, all jobs including the scene bake. The audit **from that
+run's artifact** shows `SKY_VISTA_UNWIRED` gone from ToxicCity — the theme is authored and the vista
+attached.
+
+Two process notes worth keeping:
+
+- **`docs/AUDIT_REPORT.json` in the repo lags a run behind.** I read it first and concluded the fix had
+  NOT worked. The committed report is refreshed by a separate `[skip ci]` commit that can be a run
+  stale; the per-run artifact (`patch-audit-report`) is the truth. Checking the repo copy to verify a
+  change you just made will mislead you in exactly the direction that looks like failure.
+- **Do not stack pushes.** Three of today's runs (`70073d2a`, `77a3ba96`, `2989a170`) were cancelled by
+  my own next push mid-bake, which wasted ~25 minutes of Unity time and briefly hid a real red.
+
+#### 6 · ⚡ The number Terry should know before the headset
+
+The bake's audit puts ToxicCity at **1769 renderers** (target 900), **333 unique materials against a
+HARD CAP of 60**, and 159,944 static triangles. Eleven scenes are over the material cap —
+`SpaceLane_Trial` sits at 711. This is **pre-existing and project-wide**; today's additions are worth
+about 60 renderers and 4 shared materials against it. The audit already says "promote this to a
+blocker after baselining" and nobody has.
+
+**If Level 1 feels sluggish on device it is the material count, not the geometry**, and those are
+separate fixes. Material consolidation is the obvious next real piece of performance work, and it
+should be measured rather than guessed at.
+
+#### Commits
+
+`94b53a79` → `78babef9` (sky + walk) · `2989a170` (handoff + sceneName guard) · `1f0274f7` (the wiring
+gate's own tests).
 
 ---
 
