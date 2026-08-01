@@ -240,6 +240,11 @@ namespace Ziptide.Editor.Patching
         {
             var kit = ScriptableObject.CreateInstance<CityLayoutDefinition>();
             kit.cityId = "toxic_city";
+            // sceneName was never set here because nothing read it — the committed asset carries it and
+            // the code default only runs if that asset is missing. It is set now because EnsureWorldRuntime
+            // authors the theme at "Themes/<sceneName>_Theme.asset", and an empty sceneName would quietly
+            // write "_Theme.asset" instead of failing. A latent trap costs one line to remove.
+            kit.sceneName = SceneName;
             kit.seed = 1337;
             kit.walkwayHeight = 0f;
 

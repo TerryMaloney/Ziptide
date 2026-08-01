@@ -32,6 +32,69 @@
 
 ## ENTRIES — newest first
 
+### 2026-08-01 (rb137) — 🔭 MEGA PASS ON LEVEL 1: the first level had no sky of its own
+
+Terry, heading for the headset: *"let's do one more mega pass on the whole first level."* One hour,
+looking for anything that would waste a device session. Two real holes, one of them mine.
+
+#### 1 · 🚨 ToxicCity was the only scene in the game with no theme
+
+It pointed at the shared `DefaultWorldProfile`. Which means the sky its own layout has always
+authored — olive horizon `(0.62, 0.55, 0.34)`, dark teal zenith, a 22° occluded body — **has never
+once been rendered.** W000–W012 author a theme from their layout via `WorldStubGenerator`; the five
+arenas do it through `ScenePatcherArena`; the space lane does it. The level the game opens in did not.
+
+The knock-on was bigger than the sky. `VisualThemeProfile.skyVista` is the seam the entire vista
+system rides, so with no theme there was **nowhere to hang W001 Toxic Venice** — the vista I built the
+acid haze for two days ago. And this was not undiscovered. It is written in two files:
+
+> `SkyVistaLibrary`: `Spec("ToxicCity", …)  // reserved: assigned once ToxicCity gains a theme`
+> `SkyVistaAuthor`: *"Scenes whose theme doesn't exist yet (e.g. ToxicCity until its patcher authors a
+> theme) are skipped silently — the vista asset waits."*
+
+It waited. **A TODO in a comment is not a task, because nothing ever asks it whether it is done.**
+`SkyVistaAuditRules` even warns `SKY_VISTA_UNWIRED` on every run — a warning nobody reads is the same
+as no warning. Now `level1_wiring_gate` asks on every push (feature 25, "first level sky").
+
+⚠️ **This changes what ToxicCity looks like.** It is the intended change, and the runbook says so, but
+if the sky reads wrong on device this is the commit.
+
+#### 2 · My own bug from this morning: the first walk was one metre long
+
+`ShipyardApproachAuthor` derived its span from the berth's **landward** edge to the Shipyard
+district's **seaward** edge. Both names read as "the walk". Those two edges are adjacent — the golden
+bridge spans the gap — so the span was **1 m** and nine pieces of junk would have been dumped in a
+heap on the bridge.
+
+CI could not catch it: the tests passed because they used invented coordinates (−40 → −22) that
+matched my mental model rather than the shipped berth. **A derived span needs its arithmetic checked
+against the real numbers, not just its variable names.** Tests now use the shipped berth, and the
+corridor is defined as what it actually is — the ship's beam, because the thing standing in the middle
+of that deck is your own hull.
+
+#### 3 · Checked and clean
+
+All 24 `tools/*_gate.py` pass or sit on declared holds. Zero audit blockers repo-wide.
+`level1_wiring_gate` 25/25. The armoury rack self-seeds and grants the starter pair on first boot, so
+a fresh save cannot strand the player unarmed. `CITY_NO_COURTYARD` on ToxicCity is a **substring
+check** looking for a GameObject named `*Courtyard*` — the Plaza district is the courtyard; renaming
+to satisfy it would be gaming the audit, so it stays.
+
+#### 4 · Noted, not changed
+
+**`ScenePatcherToxicCity.SpawnStarterWeapons` drops a loose taser and gravity gun at the Dispatch
+spawn, and the ship's rack now grants the same pair.** Two free guns on the plaza quietly undercut
+"the ship is the armoury" (⚖ Terry). The fix is probably to delete the loose pair — but the player
+spawns at Dispatch, not aboard, and I could not prove from here that they always reach the ship with a
+weapon. **Deliberately not touched before a device session**, because the failure mode is a player
+with nothing to fight with. Worth ten minutes with the headset on.
+
+#### Commit
+
+`94b53a79` (rebased to `78babef9`).
+
+---
+
 ### 2026-08-01 (rb136) — 📏 THE YARD HAD NO RULER: the crane, the first walk, and the lamp that taught nothing
 
 Terry: *"if this is the first thing we see outside the ship we really want to build a sense of awe and
