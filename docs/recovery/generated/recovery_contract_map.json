@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 818,
-  "findingCount": 2928,
+  "findingCount": 2929,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -3951,77 +3951,77 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
-            "line": 70,
+            "line": 84,
             "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
             "snippet": "Transform root = new GameObject(RootName).transform;"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
-            "line": 129,
+            "line": 155,
             "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
             "snippet": "Transform t = new GameObject(name).transform;"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
-            "line": 138,
+            "line": 164,
             "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
             "snippet": "var globe = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
-            "line": 203,
+            "line": 229,
             "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
             "snippet": "var strobe = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
-            "line": 228,
+            "line": 254,
             "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
             "snippet": "var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
-            "line": 255,
+            "line": 281,
             "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
             "snippet": "var lens = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
-            "line": 269,
+            "line": 295,
             "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
             "snippet": "var t = new GameObject(name).transform;"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
-            "line": 278,
+            "line": 304,
             "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
-            "line": 295,
+            "line": 321,
             "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
-            "line": 296,
+            "line": 322,
             "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
-            "line": 298,
+            "line": 324,
             "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
             "snippet": "var mat = new Material(shader);"
           }
@@ -23178,6 +23178,25 @@
             "line": 26,
             "symbol": "Ziptide.Tests.EditMode.BootConfigTests",
             "snippet": "\"boot must not land in the SandboxTestLab graybox \u2014 that stranded testers behind the broken dev menu\");"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.CityLandmarkAuthoringTests",
+        "evidenceCount": 1,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/CityLandmarkAuthoringTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CityLandmarkAuthoringTests.cs",
+            "line": 92,
+            "symbol": "Ziptide.Tests.EditMode.CityLandmarkAuthoringTests",
+            "snippet": "/// reads it \u2014 by regex, so the test does not need the editor's JSON plumbing.</summary>"
           }
         ]
       },

@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **818**
-- Scanner findings: **2928**
+- Scanner findings: **2929**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -927,17 +927,17 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:70` **NEW_GAME_OBJECT** — `Transform root = new GameObject(RootName).transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:129` **NEW_GAME_OBJECT** — `Transform t = new GameObject(name).transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:138` **CREATE_PRIMITIVE** — `var globe = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:203` **CREATE_PRIMITIVE** — `var strobe = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:228` **CREATE_PRIMITIVE** — `var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:255` **CREATE_PRIMITIVE** — `var lens = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:269` **NEW_GAME_OBJECT** — `var t = new GameObject(name).transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:278` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:295` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:296` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:298` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:84` **NEW_GAME_OBJECT** — `Transform root = new GameObject(RootName).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:155` **NEW_GAME_OBJECT** — `Transform t = new GameObject(name).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:164` **CREATE_PRIMITIVE** — `var globe = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:229` **CREATE_PRIMITIVE** — `var strobe = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:254` **CREATE_PRIMITIVE** — `var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:281` **CREATE_PRIMITIVE** — `var lens = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:295` **NEW_GAME_OBJECT** — `var t = new GameObject(name).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:304` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:321` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:322` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:324` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Editor.Patching.FlatsSiteAuthor` — 4 signal(s)
 
@@ -5311,6 +5311,12 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/EditMode/BootConfigTests.cs:8` **FALLBACK_MARKER** — `/// at the SandboxTestLab graybox "temporarily," and it silently stayed for weeks — booting testers`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/BootConfigTests.cs:11` **FALLBACK_MARKER** — `/// the sandbox graybox, and never _Boot itself.`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/BootConfigTests.cs:26` **FALLBACK_MARKER** — `"boot must not land in the SandboxTestLab graybox — that stranded testers behind the broken dev menu");`
+
+### `Ziptide.Tests.EditMode.CityLandmarkAuthoringTests` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/CityLandmarkAuthoringTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/CityLandmarkAuthoringTests.cs:92` **FALLBACK_MARKER** — `/// reads it — by regex, so the test does not need the editor's JSON plumbing.</summary>`
 
 ### `Ziptide.Tests.EditMode.ConquestMissionTests` — 1 signal(s)
 
