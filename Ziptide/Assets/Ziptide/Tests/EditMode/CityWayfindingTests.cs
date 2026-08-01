@@ -25,6 +25,11 @@ namespace Ziptide.Tests
         private static readonly string[] JobRoute =
             { "Dispatch", "Market", "Plaza", "Colonnade", "CanalRow", "Dispatch" };
 
+        // CityWayfindingAuthor.ArrivalWalk, mirrored for the same reason. The ramp-to-board walk is
+        // the first thirty seconds of the game and it used to be UNLIT — the player crossed the whole
+        // quay in the dark and then arrived at a lit city with no idea the lamps meant anything.
+        private static readonly string[] ArrivalWalk = { "Quay", "Shipyard", "Dispatch" };
+
         /// <summary>CityWayfindingAuthor.RelayMastOffset, mirrored (the Editor assembly is not
         /// visible from tests). The mast stands off the CanalRow anchor because the RelayVault is
         /// on it — and the offset is part of the compass, so the law measures the same point the
@@ -94,6 +99,73 @@ namespace Ziptide.Tests
             Assert.AreEqual(JobRoute[0], JobRoute[JobRoute.Length - 1],
                 "the contract's walk must return to dispatch — a corridor makes the player "
                 + "retrace, a loop makes the city feel like a place");
+        }
+
+        // ── The arrival walk ───────────────────────────────────────────────────────────────────
+
+        [Test]
+        public void TheArrivalWalkFollowsAuthoredStreetsToo()
+        {
+            Assert.IsTrue(WayfindingCore.EveryLegIsConnected(ArrivalWalk, Connections()),
+                "the arrival walk crosses ground nobody paved. Route: " + string.Join(" → ", ArrivalWalk));
+        }
+
+        [Test]
+        public void TheArrivalWalkStartsAtTheBerthsAndHandsOffToTheJobRoute()
+        {
+            var anchors = Anchors();
+            foreach (string id in ArrivalWalk)
+                Assert.IsTrue(anchors.ContainsKey(id), "arrival stop '" + id + "' is not a district");
+
+            Assert.AreEqual("Quay", ArrivalWalk[0],
+                "the lamps have to start where the player does, or the grammar is taught late");
+            Assert.AreEqual(JobRoute[0], ArrivalWalk[ArrivalWalk.Length - 1],
+                "the arrival must end where the contract's loop begins — otherwise the player walks "
+                + "a lit path to a place the lit path does not continue from");
+        }
+
+        [Test]
+        public void TheArrivalWalkIsNotALoop_BecauseYouOnlyArriveOnce()
+        {
+            Assert.AreNotEqual(ArrivalWalk[0], ArrivalWalk[ArrivalWalk.Length - 1]);
+        }
+
+        [Test]
+        public void TheSharedCornerGetsOneLantern_NotTwo()
+        {
+            // Both walks want a lamp on Dispatch. Two lanterns in one spot is a z-fighting globe that
+            // only shows up on device, which is the most expensive place to find it.
+            var anchors = Anchors();
+            var job = new List<Vector3>();
+            foreach (string id in JobRoute) job.Add(anchors[id]);
+            var arrival = new List<Vector3>();
+            foreach (string id in ArrivalWalk) arrival.Add(anchors[id]);
+
+            var merged = WayfindingCore.MergeLanterns(
+                WayfindingCore.LanternPositions(job, WayfindingCore.LanternSpacing),
+                WayfindingCore.LanternPositions(arrival, WayfindingCore.LanternSpacing));
+
+            for (int i = 0; i < merged.Count; i++)
+                for (int j = i + 1; j < merged.Count; j++)
+                    Assert.GreaterOrEqual(Vector3.Distance(merged[i], merged[j]),
+                        WayfindingCore.MergeEpsilon, "two lanterns landed on the same spot");
+
+            bool quayIsLit = false;
+            foreach (Vector3 l in merged)
+                if (Vector3.Distance(l, anchors["Quay"]) < 0.01f) { quayIsLit = true; break; }
+            Assert.IsTrue(quayIsLit,
+                "no lantern at the quay — the player still crosses the first walk of the game in the "
+                + "dark and learns what lamps mean only after they stop needing to know");
+        }
+
+        [Test]
+        public void MergeLanternsIsNullSafeAndKeepsWhatIsDistinct()
+        {
+            Assert.AreEqual(0, WayfindingCore.MergeLanterns(null, null).Count);
+            Assert.AreEqual(1, WayfindingCore.MergeLanterns(null, new[] { Vector3.zero }).Count);
+            Assert.AreEqual(1, WayfindingCore.MergeLanterns(new[] { Vector3.zero }, null).Count);
+            Assert.AreEqual(2, WayfindingCore.MergeLanterns(
+                new[] { Vector3.zero }, new[] { new Vector3(9f, 0f, 0f) }).Count);
         }
 
         [Test]

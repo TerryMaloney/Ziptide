@@ -229,12 +229,13 @@
                 {
                     "name": "Crane",
                     "localPos": {
-                        "x": 8,
+                        "x": 5,
                         "y": 0,
-                        "z": -6
+                        "z": -5
                     },
                     "height": 16,
-                    "width": 2
+                    "width": 4.5,
+                    "kind": 1
                 }
             ],
             "heroBuildings": [
@@ -447,7 +448,8 @@
                         "z": 6
                     },
                     "height": 40,
-                    "width": 6
+                    "width": 6,
+                    "kind": 0
                 },
                 {
                     "name": "GardenTower",
@@ -457,7 +459,8 @@
                         "z": 6
                     },
                     "height": 18,
-                    "width": 5
+                    "width": 5,
+                    "kind": 0
                 }
             ],
             "heroBuildings": [],
@@ -738,12 +741,13 @@
                 {
                     "name": "QuayCrane",
                     "localPos": {
-                        "x": -8,
+                        "x": -6,
                         "y": 0,
-                        "z": -3
+                        "z": 0
                     },
                     "height": 12,
-                    "width": 2
+                    "width": 3.5,
+                    "kind": 1
                 }
             ],
             "heroBuildings": [
@@ -869,7 +873,8 @@
                         "z": 0
                     },
                     "height": 8,
-                    "width": 2
+                    "width": 2,
+                    "kind": 0
                 }
             ],
             "heroBuildings": [],

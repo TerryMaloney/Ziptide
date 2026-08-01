@@ -60,6 +60,39 @@ namespace Ziptide.Content
             return result;
         }
 
+        /// <summary>Two lanterns closer than this are one lantern with z-fighting.</summary>
+        public const float MergeEpsilon = 0.5f;
+
+        /// <summary>
+        /// Combine two lit walks into one set of lantern positions, dropping any that would land on
+        /// top of another. Needed the moment the city has more than one lit walk: the arrival walk
+        /// ends where the contract's loop begins, and both want a lamp on that corner.
+        ///
+        /// It de-duplicates WITHIN each list too, which fixes something that was already wrong: the
+        /// job route is a loop, so it names Dispatch twice and has been building two coincident
+        /// lanterns there since the compass shipped. Coincident transparent globes z-fight, and
+        /// z-fighting is the class of bug that is invisible on a monitor and obvious in a headset.
+        /// </summary>
+        public static List<Vector3> MergeLanterns(IList<Vector3> placed, IList<Vector3> extra)
+        {
+            var result = new List<Vector3>();
+            float sqrEps = MergeEpsilon * MergeEpsilon;
+
+            for (int pass = 0; pass < 2; pass++)
+            {
+                IList<Vector3> src = pass == 0 ? placed : extra;
+                if (src == null) continue;
+                for (int i = 0; i < src.Count; i++)
+                {
+                    bool duplicate = false;
+                    for (int j = 0; j < result.Count && !duplicate; j++)
+                        duplicate = (result[j] - src[i]).sqrMagnitude < sqrEps;
+                    if (!duplicate) result.Add(src[i]);
+                }
+            }
+            return result;
+        }
+
         /// <summary>Compass bearing from one point to another: 0° = +Z, increasing clockwise, so
         /// 90° is east and 180° is south. Y is ignored — this is a floor plan, not a slope.</summary>
         public static float BearingDegrees(Vector3 from, Vector3 to)

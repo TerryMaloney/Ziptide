@@ -45,6 +45,20 @@ namespace Ziptide.Editor.Patching
             "Dispatch",   // and back, which is what makes it a loop rather than a corridor
         };
 
+        /// <summary>
+        /// THE ARRIVAL WALK — the ramp to the contract board, and the first thirty seconds of the game.
+        ///
+        /// The lantern route used to start AT Dispatch, which meant the player walked the whole quay
+        /// unlit and then arrived at a lit city with no idea the lamps meant anything. Lighting this
+        /// leg teaches the grammar before anybody names it: you follow lamps, you find the job, and the
+        /// first time you see an unlit street you already know what that means too.
+        ///
+        /// Kept separate from <see cref="JobRoute"/> rather than prepended, because the job route is a
+        /// LOOP that must come home to Dispatch and this one is a one-way arrival. Merging them would
+        /// have broken that law to save an array.
+        /// </summary>
+        public static readonly string[] ArrivalWalk = { "Quay", "Shipyard", "Dispatch" };
+
         private static readonly Color LanternAmber = new Color(1f, 0.72f, 0.32f);
         private static readonly Color FaultRed = new Color(1f, 0.24f, 0.18f);
         private static readonly Color CrownWhite = new Color(0.92f, 0.95f, 1f);
@@ -71,21 +85,34 @@ namespace Ziptide.Editor.Patching
             root.SetParent(cityRoot, false);
 
             var route = RouteWorldPoints(kit);
-            int lanterns = BuildLanternRoute(root, route, kit.walkwayHeight);
+            var arrival = WorldPoints(kit, ArrivalWalk);
+
+            // Both walks share the Dispatch corner, so the arrival's last lamp is the loop's first.
+            // Merge before building rather than after: two lanterns in one spot is a z-fighting globe
+            // that only shows up on device.
+            var spots = WayfindingCore.MergeLanterns(
+                WayfindingCore.LanternPositions(route, WayfindingCore.LanternSpacing),
+                WayfindingCore.LanternPositions(arrival, WayfindingCore.LanternSpacing));
+
+            int lanterns = BuildLanterns(root, spots, kit.walkwayHeight);
             float separation = BuildSightlineTriple(root, kit);
 
             Debug.Log("ZIPTIDE: WAYFINDING lanterns=" + lanterns + " legs=" + Mathf.Max(0, route.Count - 1)
+                + " arrivalLegs=" + Mathf.Max(0, arrival.Count - 1)
                 + " tripleSeparation=" + separation.ToString("F0"));
         }
 
         /// <summary>The route in world space, resolved against the districts that actually exist.
         /// A layout missing one of them simply drops that stop instead of planting lamps at the
         /// origin.</summary>
-        public static List<Vector3> RouteWorldPoints(CityLayoutDefinition kit)
+        public static List<Vector3> RouteWorldPoints(CityLayoutDefinition kit) => WorldPoints(kit, JobRoute);
+
+        /// <summary>Any district-id walk, resolved to anchors against the layout being built.</summary>
+        public static List<Vector3> WorldPoints(CityLayoutDefinition kit, IList<string> districtIds)
         {
             var points = new List<Vector3>();
-            if (kit == null) return points;
-            foreach (string id in JobRoute)
+            if (kit == null || districtIds == null) return points;
+            foreach (string id in districtIds)
             {
                 var d = FindDistrict(kit, id);
                 if (d != null) points.Add(d.anchor);
@@ -103,12 +130,11 @@ namespace Ziptide.Editor.Patching
 
         // ── The lantern route ──────────────────────────────────────────────────────────────────
 
-        private static int BuildLanternRoute(Transform root, List<Vector3> route, float walkwayHeight)
+        private static int BuildLanterns(Transform root, List<Vector3> spots, float walkwayHeight)
         {
-            if (route.Count < 2) return 0;
+            if (spots == null || spots.Count < 2) return 0;
             Transform lane = Child(root, "LanternRoute", Vector3.zero);
 
-            var spots = WayfindingCore.LanternPositions(route, WayfindingCore.LanternSpacing);
             for (int i = 0; i < spots.Count; i++)
             {
                 Vector3 p = spots[i];
