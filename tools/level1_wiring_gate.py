@@ -41,6 +41,10 @@ SPEC = "docs/worldspecs/ToxicCity.spec.json"
 SEARCH_DIRS = ("Gameplay", "Ship", "Editor", "Core", "Content", "Visuals")
 
 # (feature, source file, regex proving something CREATES it, regex proving something DRIVES it)
+# ⚠ ADDING A FEATURE HERE? Run `python3 -m unittest discover -s tools/tests -p 'test_*_gate.py'`
+# before you push. The gate's own tests stage a synthetic project that must satisfy EVERY row, so a
+# new row fails them until its call sites are added to the fixture in test_level1_wiring_gate.py.
+# Running the gate is not the same as running the gate's tests — that mistake cost a CI red.
 FEATURES: tuple[tuple[str, str, str, str], ...] = (
     ("ring sequencer", "Ship/Runtime/RingCourseLightsRuntime.cs",
      r"AddComponent<RingCourseLightsRuntime>|EnsureComponent<RingCourseLightsRuntime>",

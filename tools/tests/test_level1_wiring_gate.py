@@ -63,6 +63,8 @@ class Level1WiringGateTests(unittest.TestCase):
             'machineId = ToxicCityContractBuilder.RelayMachineId; RepairMachine("ToxicCity_S4_RelayRepair", id, l, 1f);',
             "InteriorTierCore.Evaluate(area, servesRoute, 0); InteriorFurnisher.Furnish(r, plan, e, s, 1);",
             "AddComponent<Ziptide.Gameplay.WorldAtmosphereBinder>(); _rig.Apply(_vista, player);",
+            "var theme = ThemeAuthor.EnsureThemeAsset(kit); "
+            "var profile = ThemeAuthor.EnsureWorldProfileAsset(kit, theme);",
             'rill.SayById("CATCH_DEAD_RING"); rill.SayById("CATCH_OVERRUN"); rill.SayById("CATCH_THE_FIND"); rill.SayById("ARTIFACT_JOIN_HINT");',
         ]
         _write(assets / "Gameplay" / "Wiring.cs", "\n".join(wiring))
