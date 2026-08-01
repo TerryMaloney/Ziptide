@@ -79,7 +79,7 @@ namespace Ziptide.Editor.Patching
 
             EnsureLighting();
             EnsureEventSystem();
-            EnsureWorldRuntime();
+            EnsureWorldRuntime(kit);
 
             // Spawn on the Dispatch district plaza (open, on solid ground at walkwayHeight).
             var dispatch = FindDistrict(kit, "Dispatch") ?? (kit.districts.Count > 0 ? kit.districts[0] : null);
@@ -336,11 +336,37 @@ namespace Ziptide.Editor.Patching
             PatcherUtil.EnsureComponent<UnityEngine.XR.Interaction.Toolkit.UI.XRUIInputModule>(go);
         }
 
-        private static void EnsureWorldRuntime()
+        /// <summary>
+        /// THE FIRST LEVEL GETS ITS OWN SKY.
+        ///
+        /// ToxicCity pointed at the SHARED `DefaultWorldProfile`, whose theme is a generic one. Which
+        /// means the sky the layout has always authored — olive horizon, dark teal zenith, a 22°
+        /// occluded body — <b>has never once been rendered.</b> Every other scene in the game
+        /// (W000–W012 via `WorldStubGenerator`, five arenas, the space lane) authors a theme from its
+        /// own layout. This one did not, and it is the level the game opens in.
+        ///
+        /// The knock-on was worse than the sky. `VisualThemeProfile.skyVista` is the seam the whole
+        /// vista system rides, so with no theme there was nowhere to hang W001 Toxic Venice — and both
+        /// `SkyVistaLibrary` and `SkyVistaAuthor` say so in their own comments ("reserved: assigned
+        /// once ToxicCity gains a theme", "the vista asset waits"). It was written down twice and
+        /// waited anyway. That is the failure mode this project keeps paying for: a TODO in a comment
+        /// is not a task, because nothing ever asks it whether it is done.
+        ///
+        /// Authoring the theme here closes both at once, and `SkyVistaAuditRules`' SKY_VISTA_UNWIRED
+        /// warning is the thing that will notice if it ever regresses.
+        /// </summary>
+        private static void EnsureWorldRuntime(CityLayoutDefinition kit)
         {
             var go = PatcherUtil.EnsureRootObject("WorldRuntime", Vector3.zero);
             var wr = PatcherUtil.EnsureComponent<WorldRuntime>(go);
-            var profile = AssetDatabase.LoadAssetAtPath<WorldProfile>(DefaultWorldProfilePath);
+
+            // Same pipeline the other thirteen scenes use: theme from the layout, profile from the
+            // theme. Falls back to the shared default if authoring somehow yields nothing, because a
+            // WorldRuntime with no profile is a world with no fall net.
+            var theme = ThemeAuthor.EnsureThemeAsset(kit);
+            var profile = ThemeAuthor.EnsureWorldProfileAsset(kit, theme);
+            if (profile == null) profile = AssetDatabase.LoadAssetAtPath<WorldProfile>(DefaultWorldProfilePath);
+
             if (profile != null)
             {
                 var so = new SerializedObject(wr);

@@ -8,13 +8,21 @@ namespace Ziptide.Tests.EditMode
     /// Junk on the quay is decoration. Junk IN THE WALKING LANE is a soft-lock on the first walk of
     /// the game, and it is the kind that hides: a VR player cannot see their own feet, so a knee-high
     /// crate on the line is invisible until it stops them. Every one of these pins that lane open.
+    ///
+    /// The span below is ToxicCity's real berth (centre z −48, depth 16 m): amidships to the landward
+    /// edge, which is the deck the player crosses leaving the ramp. Using the SHIPPED numbers is not
+    /// incidental — the first version of the author derived its span from two edges whose names both
+    /// read as "the walk" and which are one metre apart, and a test on invented coordinates would have
+    /// passed happily while the bake dumped nine crates in a heap on the bridge.
     /// </summary>
     public class ApproachClutterCoreTests
     {
         private const float CentreX = 0f;
+        private const float FromZ = -52f;   // berth centre − depth/4, beside the hull
+        private const float ToZ = -40f;     // the berth's landward edge
 
         private static System.Collections.Generic.List<ClutterPiece> Walk()
-            => ApproachClutterCore.Place(CentreX, -40f, -22f);
+            => ApproachClutterCore.Place(CentreX, FromZ, ToZ);
 
         [Test]
         public void NothingEverStandsInTheWalkingLane()
@@ -50,14 +58,46 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void TheWalkIsLongEnoughToBeAWalk()
+        {
+            // The one this file exists for. Nine pieces spread over a one-metre span is a heap, and a
+            // heap is what the first version built — the arithmetic was never checked against the
+            // shipped numbers because both variable names sounded correct.
+            Assert.Greater(Mathf.Abs(ToZ - FromZ), 6f,
+                "under six metres and the 'walk' is a doorway; spreading nine props along it makes a pile");
+        }
+
+        [Test]
+        public void NothingSitsWhereTheShipIs()
+        {
+            // The corridor is not a comfort number, it is the hull. Anything inside it is not on the
+            // deck at all — it is inside your own ship.
+            const float ShipHalfBeam = 2.5f;
+            foreach (var p in Walk())
+                Assert.Greater(Mathf.Abs(p.Position.x - CentreX) - ApproachClutterCore.Footprint(p).x * 0.5f,
+                    ShipHalfBeam, p.Kind + " is inside the ship's footprint");
+        }
+
+        [Test]
+        public void NothingReachesTheGantryColumnsOrTheDeckEdge()
+        {
+            // Columns stand at ±9.4 m and the deck ends at ±10 m. Clutter that drifts out there stops
+            // being foreground and starts being something you clip through.
+            const float ColumnX = 9.4f;
+            foreach (var p in Walk())
+                Assert.Less(Mathf.Abs(p.Position.x - CentreX) + ApproachClutterCore.Footprint(p).x * 0.5f,
+                    ColumnX - 1f);
+        }
+
+        [Test]
         public void NothingIsDumpedAtEitherEndOfTheWalk()
         {
             // The ramp foot and the district mouth are exactly where a player turns, and a turn is the
             // worst possible place to put an obstacle.
             foreach (var p in Walk())
             {
-                Assert.Greater(p.Position.z, -40f + 0.5f);
-                Assert.Less(p.Position.z, -22f - 0.5f);
+                Assert.Greater(p.Position.z, FromZ + 0.5f);
+                Assert.Less(p.Position.z, ToZ - 0.5f);
             }
         }
 
@@ -99,7 +139,7 @@ namespace Ziptide.Tests.EditMode
         [Test]
         public void TheTeachingCrateIsReachableWithoutBeingInTheWay()
         {
-            Vector3 c = ApproachClutterCore.TeachingCratePosition(CentreX, -40f, -22f);
+            Vector3 c = ApproachClutterCore.TeachingCratePosition(CentreX, FromZ, ToZ);
             Assert.IsFalse(ApproachClutterCore.BlocksTheWalk(c, CentreX, ApproachClutterCore.TeachingCrateSize),
                 "the free lesson must not also be a trip hazard");
             Assert.LessOrEqual(Mathf.Abs(c.x - CentreX), ApproachClutterCore.MaxOffset,
@@ -112,8 +152,8 @@ namespace Ziptide.Tests.EditMode
         {
             // A grab lesson placed after the player has already walked the whole quay has been
             // taught by the walk instead, which is to say not at all.
-            Vector3 c = ApproachClutterCore.TeachingCratePosition(CentreX, -40f, -22f);
-            float t = Mathf.InverseLerp(-40f, -22f, c.z);
+            Vector3 c = ApproachClutterCore.TeachingCratePosition(CentreX, FromZ, ToZ);
+            float t = Mathf.InverseLerp(FromZ, ToZ, c.z);
             Assert.Less(t, 0.4f);
         }
 

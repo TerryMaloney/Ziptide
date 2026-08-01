@@ -183,6 +183,36 @@ them nothing to do.
 > inserted, locked — as three small drawings; (5) unlit vs lit contact state. Even neutral studio
 > lighting, orthographic where possible. No dramatic lighting, no text labels, no UI.
 
+### 3.2b ✅ LOCKED 2026-08-01 — the generated sheet is the reference
+
+The concept sheet is generated and **accepted**. It lives with the other concept art; the panels are
+the modelling reference from here.
+
+⚖ **Terry's ruling, and it governs this whole object:** *"it's not something they are going to be
+doing more than once, it just needs to look realistic. This is technology on another planet so it
+doesn't have to necessarily work the way our technology works — as long as it works, it's good."*
+
+That settles the keying argument, and it settles it correctly. The sheet's socket is a bayonet ring
+rather than the D-profile that was argued for, and **that is fine.** The design goal was never
+mechanical correctness; it was that the object read as machinery and seat once, satisfyingly. A
+one-time interaction does not have to survive engineering scrutiny it will never receive. Do not
+re-open this.
+
+**What the runtime and the modeller must both honour** — these are the parts that carry gameplay, not
+plausibility:
+
+| Thing | Value | Why it is load-bearing |
+|---|---|---|
+| Cell size | 30 × 18 × 18 cm | Two-handed, carryable, and you can still see past it |
+| Socket height | chest height on the machine face | Reachable without crouching or reaching overhead |
+| Lead-in chamfer | present at the socket mouth | The difference between "satisfying" and "fiddly" in VR — a near miss slides in instead of bouncing off. **This is the single most important number on the sheet.** |
+| Seat motion | push in, then rotate ~30° | One motion is a slot; two is a mechanism |
+| Locked read | **the handle sits visibly tilted ~30°** | The state indicator with no UI, readable across the room |
+| Amber | contact ring + state dome, **only** when locked | One accent colour, one meaning |
+
+The handle-tilt read is the part worth protecting. It came out of the second generation and it does a
+job no HUD element would do better: from anywhere in the room, a cocked handle means seated.
+
 ### 3.3 Why the cross-section panel matters
 Panel (3) is the one that makes this buildable. A pretty exterior tells the modeller nothing about the
 lead-in angle or how deep the lock travels — and those two numbers are what decide whether it feels

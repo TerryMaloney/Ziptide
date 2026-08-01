@@ -42,9 +42,6 @@ namespace Ziptide.Editor.Patching
             var berth = kit.shipyard;
             if (berth == null || !berth.enabled) return;
 
-            var yard = FindDistrict(kit, "Shipyard");
-            if (yard == null) return;
-
             // Idempotent by name, like every other author in the bake.
             var existing = cityRoot.Find(RootName);
             if (existing != null) Object.DestroyImmediate(existing.gameObject);
@@ -53,11 +50,17 @@ namespace Ziptide.Editor.Patching
             root.SetParent(cityRoot, false);
             _mats.Clear();   // never hand a material instance from a previous scene to this one
 
-            // The walk: from the berth's landward edge to the district's seaward edge. Measured off
-            // the live layout rather than the design doc, so re-laying the city moves the junk with it.
+            // THE WALK IS THE BERTH DECK, alongside your own hull — amidships to the landward edge.
+            //
+            // The first version ran this from the berth's LANDWARD edge to the Shipyard district's
+            // SEAWARD edge, which sounds exactly right and is one metre long: those two edges are
+            // adjacent and the golden bridge spans the gap between them. Nine pieces of junk would
+            // have been dumped in a heap on the bridge. A derived span needs its arithmetic checked
+            // against the real numbers, not just its variable names — both of those names read as
+            // "the walk".
             float centreX = berth.berthCenter.x;
-            float fromZ = berth.berthCenter.z + berth.berthSize.y * 0.5f;
-            float toZ = yard.anchor.z - yard.bounds.y * 0.5f;
+            float fromZ = berth.berthCenter.z - berth.berthSize.y * 0.25f;
+            float toZ = berth.berthCenter.z + berth.berthSize.y * 0.5f;
             float y = kit.walkwayHeight;
 
             int placed = 0;
@@ -172,14 +175,6 @@ namespace Ziptide.Editor.Patching
                 case ClutterKind.Toolbox: return ToolboxColor;
                 default: return CrateColor;
             }
-        }
-
-        private static DistrictDef FindDistrict(CityLayoutDefinition kit, string id)
-        {
-            if (kit.districts == null) return null;
-            foreach (var d in kit.districts)
-                if (d != null && d.id == id) return d;
-            return null;
         }
 
         private static GameObject Cube(Transform parent, string name, Vector3 worldPos, Vector3 scale,

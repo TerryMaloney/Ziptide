@@ -103,6 +103,16 @@ FEATURES: tuple[tuple[str, str, str, str], ...] = (
     ("world atmosphere", "Gameplay/Runtime/World/WorldAtmosphereBinder.cs",
      r"AddComponent<Ziptide\.Gameplay\.WorldAtmosphereBinder>|AddComponent<WorldAtmosphereBinder>",
      r"_rig\.Apply\(_vista, player\)"),
+    # THE FIRST LEVEL'S OWN SKY. ToxicCity pointed at the shared DefaultWorldProfile, so the olive
+    # horizon and 22-degree occluded body its layout has always authored were never once rendered —
+    # and because `VisualThemeProfile.skyVista` is the seam the vista system rides, there was also
+    # nowhere to hang W001 Toxic Venice. BOTH `SkyVistaLibrary` ("reserved: assigned once ToxicCity
+    # gains a theme") and `SkyVistaAuthor` ("the vista asset waits") described this in comments, and
+    # it waited anyway. A TODO in a comment is not a task, because nothing ever asks it whether it is
+    # done. This is that question, asked on every push.
+    ("first level sky", "Editor/Patching/ThemeAuthor.cs",
+     r"ThemeAuthor\.EnsureThemeAsset\(kit\)",
+     r"ThemeAuthor\.EnsureWorldProfileAsset\(kit, theme\)"),
 )
 
 # Ids the city bake and the contract depend on. A spec that loses one of these strands a step.

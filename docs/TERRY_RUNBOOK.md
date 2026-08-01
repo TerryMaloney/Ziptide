@@ -63,6 +63,65 @@ Per `docs/DEVICE_STABILIZATION_FORENSIC_PLAN.md` (rb25/rb26): multiplayer is pau
 
 If ALL of the above pass, Phase 2 (item/holster/hammer poses + self-hit) begins next session.
 
+## 0b. ⭐ TODAY'S SESSION (2026-08-01) — the whole Level 1 pass, in five commands
+
+Everything below landed today and **all of it ships in the default GoldenSlice build** (ToxicCity is
+one of the three golden scenes, and `PatchScenesThenGoldenAPK` runs the full patch loop first). You do
+not need any extra menu step — but you DO need to commit two brand-new generated assets.
+
+```powershell
+cd C:\Ziptide
+git pull origin terry-local-wip
+tools\dev_build_install.ps1            # default profile is GoldenSlice; that is the right one
+git status                             # expect TWO NEW assets, see below
+git add Ziptide/Assets/Ziptide/Content/Worlds/Themes/ToxicCity_Theme.asset* `
+        Ziptide/Assets/Ziptide/Content/Worlds/Profiles/ToxicCity_WorldProfile.asset*
+git commit -m "chore(assets): ToxicCity theme + world profile from the bake" ; git push
+```
+
+**Why those two assets are new and why it matters:** ToxicCity pointed at the *shared*
+`DefaultWorldProfile`, so the sky its layout has always authored — olive horizon, dark teal zenith,
+a 22° occluded body — **has never once rendered**, and W001 Toxic Venice had nowhere to attach. The
+bake now authors ToxicCity its own theme like every other scene in the game. **If the sky looks
+different from what you remember, that is this, and it is the intended change** — the acid haze and
+drift from two days ago should now sit in front of the real vista instead of a generic one.
+
+### 🎮 What to look at, in the order you will meet it
+
+1. **Off the ramp — the berth deck.** Junk within arm's reach down both flanks of the hull: crates,
+   cable spools, a toolbox. **One crate is grabbable and worth nothing** — pick it up, drop it. That
+   is the grab tutorial and nobody says a word about it.
+2. **Look up.** Three gantry arches over the landward half of the berth, trusses at 6.2 m, amber lamps
+   at 4.6 m. **The seaward end is deliberately open** — the sky has to stay the backdrop. If the roof
+   feels like a lid, say so; the covered fraction is one number.
+3. **The crane.** 4.5 m wide now, with a ladder (30 cm rungs), a mid-height walkway, a cab and a jib.
+   **The hook creeps up and down on a 30 s loop.** The question that matters: *does the yard now have
+   a size?* Stand next to the crane and look at the office and the ship.
+4. **The lanterns start at the quay**, not at Dispatch. Your first step should already be following
+   them. Watch for `ZIPTIDE: WAYFINDING lanterns=… arrivalLegs=…`.
+5. **Then the contract loop as before** — Dispatch, the relay, the artifact halves.
+
+### 🔎 Logcat lines that say today's work ran
+
+```
+ZIPTIDE: APPROACH_DRESSED pieces=9 crate=1 overhead=11 walkZ=-52..-40
+ZIPTIDE: WAYFINDING lanterns=… legs=5 arrivalLegs=… tripleSeparation=…
+ZIPTIDE: WORLD_ATMO applied=1 hazard=acid
+```
+
+If `APPROACH_DRESSED` is missing, the ToxicCity patch did not run and nothing from today is in the
+build.
+
+### 📝 Feel notes wanted (these are the tunable numbers)
+
+- Crane: does 4.5 m read as *sixteen metres tall*? Are the rungs legible from the walk?
+- Hook: 3 m of travel over 30 s. Too slow to notice, or right?
+- Roof: 6.2 m trusses over 55% of the berth. Claustrophobic, or not enough?
+- Clutter: nine pieces, 3–4.6 m off the hull. Too sparse? In the way anywhere?
+- **The sky.** This is the one that changed most. Compare against `docs/systems/SKYSCAPE_DESIGN.md`.
+
+---
+
 ## 1. Pending Unity menu steps (run in the editor, then commit the results)
 Do these in order after pulling. Each generates committable assets. *(This mirrors
 `DEVICE_TEST_CHECKLIST.md` §0 — that doc has the full copy-paste block.)*

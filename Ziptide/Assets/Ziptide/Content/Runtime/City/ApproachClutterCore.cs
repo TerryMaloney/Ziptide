@@ -41,11 +41,19 @@ namespace Ziptide.Content
     /// </summary>
     public static class ApproachClutterCore
     {
-        /// <summary>Half-width of the lane that stays empty — a 2.2 m clear walk, wider than a door.</summary>
-        public const float CorridorHalfWidth = 1.1f;
+        /// <summary>
+        /// Half-width of the lane that stays empty. This is not an arbitrary comfort number — it is
+        /// <b>the ship's beam plus clearance</b>. The walk being dressed is the berth deck, and the
+        /// thing standing in the middle of it is your own hull, so the lane the player actually uses
+        /// runs down the flanks and everything inside this is already occupied.
+        /// </summary>
+        public const float CorridorHalfWidth = 3f;
 
-        /// <summary>Past this the piece is scenery, not clutter — it no longer passes within reach.</summary>
-        public const float MaxOffset = 3f;
+        /// <summary>
+        /// Past this the piece is scenery, not clutter — it no longer passes within reach. Also keeps
+        /// junk off the deck edge and clear of the gantry columns at ±9.4 m.
+        /// </summary>
+        public const float MaxOffset = 4.6f;
 
         /// <summary>The teaching crate is hand-sized, because the lesson is "your hands work".</summary>
         public const float TeachingCrateSize = 0.4f;
