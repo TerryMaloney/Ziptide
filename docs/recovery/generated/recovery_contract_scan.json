@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-08-01T22:52:43.489624+00:00",
+  "generatedAtUtc": "2026-08-01T23:07:13.453846+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -12548,7 +12548,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs",
-      "line": 505,
+      "line": 519,
       "symbol": "Ziptide.Gameplay.ItemFactory",
       "snippet": "var mat = new Material(shader);"
     },
@@ -13682,7 +13682,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs",
-      "line": 502,
+      "line": 516,
       "symbol": "Ziptide.Gameplay.ItemFactory",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -13691,7 +13691,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs",
-      "line": 503,
+      "line": 517,
       "symbol": "Ziptide.Gameplay.ItemFactory",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },

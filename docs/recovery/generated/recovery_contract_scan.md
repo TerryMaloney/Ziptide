@@ -1425,7 +1425,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/TetherSwarmBehavior.cs:62` · `Ziptide.Gameplay.TetherSwarmBehavior` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:127` · `Ziptide.Gameplay.BeltRig` — Runtime Material allocation. `_holsterMat = new Material(shader) { name = "HolsterMarker_Mat" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:98` · `Ziptide.Gameplay.ItemFactory` — Runtime Material allocation. `var mat = new Material(r.sharedMaterial);`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:505` · `Ziptide.Gameplay.ItemFactory` — Runtime Material allocation. `var mat = new Material(shader);`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:519` · `Ziptide.Gameplay.ItemFactory` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:230` · `Ziptide.Gameplay.ObjectiveBoard` — Runtime Material allocation. `_toastMaterial = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/PhotoCaptureCamera.cs:188` · `Ziptide.Gameplay.PhotoCaptureCamera` — Runtime Material allocation. `_viewfinderMaterial = new Material(shader) { name = "FieldCameraViewfinder" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ArmorVignetteRuntime.cs:90` · `Ziptide.Gameplay.ArmorVignetteRuntime` — Runtime Material allocation. `_renderer.material = new Material(shader);`
@@ -1551,8 +1551,8 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/TetherSwarmBehavior.cs:59` · `Ziptide.Gameplay.TetherSwarmBehavior` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Sprites/Default");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:125` · `Ziptide.Gameplay.BeltRig` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:126` · `Ziptide.Gameplay.BeltRig` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:502` · `Ziptide.Gameplay.ItemFactory` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:503` · `Ziptide.Gameplay.ItemFactory` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:516` · `Ziptide.Gameplay.ItemFactory` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:517` · `Ziptide.Gameplay.ItemFactory` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:226` · `Ziptide.Gameplay.ObjectiveBoard` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:227` · `Ziptide.Gameplay.ObjectiveBoard` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/PhotoCaptureCamera.cs:184` · `Ziptide.Gameplay.PhotoCaptureCamera` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Unlit") ??`

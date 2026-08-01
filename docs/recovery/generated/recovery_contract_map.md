@@ -1994,9 +1994,9 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:474` **XR_INTERACTABLE_COMPONENT** — `go.AddComponent<XRSimpleInteractable>(); // collider exists first (gotcha #6)`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:482` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:490` **XR_INTERACTABLE_COMPONENT** — `go.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:502` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:503` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:505` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:516` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:517` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:519` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.ItemRuntime` — 1 signal(s)
 
