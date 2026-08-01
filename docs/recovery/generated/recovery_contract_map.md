@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **826**
-- Scanner findings: **2936**
+- Scanned files: **827**
+- Scanner findings: **2924**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -898,21 +898,18 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CaveSpawnSafety.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CaveSpawnSafety.cs:39` **CREATE_PRIMITIVE** — `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
-### `Ziptide.Editor.Patching.CityBuilder` — 11 signal(s)
+### `Ziptide.Editor.Patching.CityBuilder` — 8 signal(s)
 
-- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:75` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:76` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:77` **RUNTIME_MATERIAL_CREATE** — `m = new Material(shader) { name = "CityMat_" + ColorUtility.ToHtmlStringRGB(c) };`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:86` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:364` **CREATE_PRIMITIVE** — `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:407` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:569` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:707` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:753` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:782` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:806` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:81` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:373` **CREATE_PRIMITIVE** — `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:416` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:578` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:716` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:762` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:791` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:815` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — 4 signal(s)
 
@@ -923,9 +920,9 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:71` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:72` **RUNTIME_MATERIAL_CREATE** — `material = new Material(shader) { name = "CityStageA_" + slot };`
 
-### `Ziptide.Editor.Patching.CityWayfindingAuthor` — 11 signal(s)
+### `Ziptide.Editor.Patching.CityWayfindingAuthor` — 8 signal(s)
 
-- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:84` **NEW_GAME_OBJECT** — `Transform root = new GameObject(RootName).transform;`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:155` **NEW_GAME_OBJECT** — `Transform t = new GameObject(name).transform;`
@@ -935,9 +932,6 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:281` **CREATE_PRIMITIVE** — `var lens = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:295` **NEW_GAME_OBJECT** — `var t = new GameObject(name).transform;`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:304` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:321` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:322` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs:324` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Editor.Patching.FlatsSiteAuthor` — 4 signal(s)
 
@@ -1003,6 +997,14 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs:55` **NEW_GAME_OBJECT** — `var go = new GameObject(item.Kind);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs:212` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(type);`
 
+### `Ziptide.Editor.Patching.PatchMaterials` — 3 signal(s)
+
+- Codes: `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/PatchMaterials.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/PatchMaterials.cs:61` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/PatchMaterials.cs:62` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/PatchMaterials.cs:65` **RUNTIME_MATERIAL_CREATE** — `var m = new Material(shader)`
+
 ### `Ziptide.Editor.Patching.PatcherUtil` — 2 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`
@@ -1022,17 +1024,14 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs:176` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
   - `Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs:177` **RUNTIME_MATERIAL_CREATE** — `_fixtureMat = new Material(shader) { name = "PracticalFixture_Iron" };`
 
-### `Ziptide.Editor.Patching.QuayBerthAuthor` — 7 signal(s)
+### `Ziptide.Editor.Patching.QuayBerthAuthor` — 4 signal(s)
 
-- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:44` **NEW_GAME_OBJECT** — `var root = new GameObject(RootName).transform;`
   - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:53` **NEW_GAME_OBJECT** — `var slip = new GameObject("Berth_" + number).transform;`
   - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:97` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:108` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:123` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:124` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:126` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Editor.Patching.ReactivePropAuthor` — 1 signal(s)
 
@@ -1216,16 +1215,13 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:262` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:263` **RUNTIME_MATERIAL_CREATE** — `material = new Material(shader) { name = "HeroShip_" + slot };`
 
-### `Ziptide.Editor.Patching.ShipyardApproachAuthor` — 6 signal(s)
+### `Ziptide.Editor.Patching.ShipyardApproachAuthor` — 3 signal(s)
 
-- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`, `XR_INTERACTABLE_COMPONENT`
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:49` **NEW_GAME_OBJECT** — `var root = new GameObject(RootName).transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:106` **XR_INTERACTABLE_COMPONENT** — `var grab = go.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:183` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:209` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:210` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:211` **RUNTIME_MATERIAL_CREATE** — `var m = new Material(shader) { name = "Approach_" + ColorUtility.ToHtmlStringRGB(c) };`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:108` **XR_INTERACTABLE_COMPONENT** — `var grab = go.AddComponent<XRGrabInteractable>();`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ShipyardApproachAuthor.cs:185` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Editor.Patching.SignAuthor` — 4 signal(s)
 
@@ -1306,9 +1302,9 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/WaterAuthor.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/WaterAuthor.cs:23` **NEW_GAME_OBJECT** — `var go = new GameObject("BerthWater");`
 
-### `Ziptide.Editor.Patching.WorldDressingBuilder` — 10 signal(s)
+### `Ziptide.Editor.Patching.WorldDressingBuilder` — 7 signal(s)
 
-- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:37` **NEW_GAME_OBJECT** — `var dressRoot = new GameObject("Dressing").transform;`
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:94` **NEW_GAME_OBJECT** — `var cairnRoot = new GameObject("Route").transform;`
@@ -1316,10 +1312,7 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:128` **NEW_GAME_OBJECT** — `var scatterRoot = new GameObject("Scatter").transform;`
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:159` **NEW_GAME_OBJECT** — `var cluster = new GameObject("Prop_" + n).transform;`
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:226` **NEW_GAME_OBJECT** — `var holder = new GameObject("TuftPlant" + i);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:296` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:309` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:310` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:311` **RUNTIME_MATERIAL_CREATE** — `m = new Material(shader) { name = "DressMat_" + ColorUtility.ToHtmlStringRGB(color) };`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:295` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Editor.Patching.WorldExperienceBuilder` — 10 signal(s)
 
@@ -1336,9 +1329,9 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldExperienceBuilder.cs:465` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldExperienceBuilder.cs:466` **RUNTIME_MATERIAL_CREATE** — `var m = new Material(shader) { name = name };`
 
-### `Ziptide.Editor.Patching.WorldPoiBuilder` — 9 signal(s)
+### `Ziptide.Editor.Patching.WorldPoiBuilder` — 6 signal(s)
 
-- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:43` **NEW_GAME_OBJECT** — `var poisRoot = new GameObject("Pois").transform;`
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:66` **NEW_GAME_OBJECT** — `var poiRoot = new GameObject("__POI_" + poi.id).transform;`
@@ -1346,9 +1339,6 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:229` **NEW_GAME_OBJECT** — `var stall = new GameObject("Stall" + i).transform;`
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:291` **NEW_GAME_OBJECT** — `var ride = new GameObject("Vehicle_" + poi.id);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:355` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:380` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:381` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:382` **RUNTIME_MATERIAL_CREATE** — `var m = new Material(shader) { name = "PoiMat_" + ColorUtility.ToHtmlStringRGB(color) };`
 
 ### `Ziptide.Editor.Patching.WorldStubGenerator` — 8 signal(s)
 
@@ -4452,10 +4442,10 @@ None.
 
 - Codes: `RENDER_SETTINGS_MUTATION`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:112` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fog = kit.fogEnabled;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:115` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogMode = FogMode.ExponentialSquared;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:116` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogColor = kit.fogColor;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:117` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogDensity = kit.fogDensity;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:118` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fog = kit.fogEnabled;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:121` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogMode = FogMode.ExponentialSquared;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:122` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogColor = kit.fogColor;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:123` **RENDER_SETTINGS_MUTATION** — `RenderSettings.fogDensity = kit.fogDensity;`
 
 ### `Ziptide.Editor.Patching.ForgePhotoBooth` — 13 signal(s)
 
@@ -4955,7 +4945,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:488` **FALLBACK_MARKER** — `/// a fallback the code did not implement. CI caught it; the guarantee is now real.`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:497` **FALLBACK_MARKER** — `/// a fallback the code did not implement. CI caught it; the guarantee is now real.`
 
 ### `Ziptide.Editor.Patching.FirstHourContractImportResult` — 1 signal(s)
 
