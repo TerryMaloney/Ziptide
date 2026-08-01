@@ -74,22 +74,36 @@ The crane's hook descends and rises on a slow loop, or a gantry trolley tracks t
 One object, constant motion, no interaction. This is the cheapest possible "the world is running
 without me" signal and it is worth more than five props.
 
-### 2.4 The three depth bands, deliberately
+### 2.4 The three depth bands, deliberately — ✅ FOREGROUND BUILT 2026-08-01
 - **Foreground:** crates, a spilled toolbox, cable spools *on the walk itself* — things the player
-  passes within arm's reach.
+  passes within arm's reach. **Built:** `ApproachClutterCore` places nine pieces, alternating sides,
+  measured off the live berth and district rather than doc coordinates.
 - **Midground:** the berths (already built) and the office.
 - **Background:** the city skyline already exists but is not *framed*. Aim the walk so the player exits
-  the ship facing the skyline, not facing the office wall.
+  the ship facing the skyline, not facing the office wall. *(Still open.)*
 
-### 2.5 What the first walk should teach — without a tutorial line
+The part worth keeping in mind: the interesting half of foreground dressing is the **corridor**, not the
+scatter. Junk in the walking lane is a soft-lock on the game's first walk, and it is the hiding kind —
+a VR player cannot see their own feet, so a knee-high crate on the line is invisible until it stops
+them. The lane is 2.2 m wide, the law is a test, and each piece's near edge is measured off the
+**footprint** the author actually builds (a toolbox is stretched 1.5× across the walk) rather than its
+nominal size. Both of those were bugs first.
+
+### 2.5 What the first walk should teach — without a tutorial line — ✅ TWO OF THREE BUILT
 The route from ramp to Dispatch is the game's first lesson, and it can teach three things by layout
 alone:
-- **Look up** — because the roof edge and the crane force it.
-- **Things are reachable** — one crate on the walk that can be picked up and is worth nothing. A
-  player who grabs a worthless crate has learned the grab verb at zero cost.
-- **The lanterns mean "this way"** — the wayfinding lantern route already exists (`CityWayfindingAuthor`)
-  but starts *after* the quay. Extend it back to the ramp so the player's first step is already
-  following it, before anyone tells them lanterns are a thing.
+- **Look up** — because the roof edge and the crane force it. *(Crane built §2.1; roof still open §2.2.)*
+- **Things are reachable** — ✅ one crate on the walk that can be picked up and is worth nothing. A
+  player who grabs a worthless crate has learned the grab verb at zero cost. **Built** as
+  `LooseCrate`: Rigidbody + `XRGrabInteractable`, no `ItemDefinition`, never enters the inventory.
+  It only works if it really is worthless, so it stays that way.
+- **The lanterns mean "this way"** — ✅ **built.** The lantern route started *at* Dispatch, so the
+  player crossed the whole quay unlit and then arrived at a lit city with no idea the lamps meant
+  anything. `ArrivalWalk` (Quay → Shipyard → Dispatch) is now lit the same way, kept separate from
+  `JobRoute` because that one is a loop that must come home. `WayfindingCore.MergeLanterns` drops
+  coincident lamps — and de-duplicating within each list also fixed something already wrong: the job
+  route names Dispatch twice, so two globes have been z-fighting on that corner since the compass
+  shipped.
 
 **None of that needs a line of dialogue.** That is the point.
 
@@ -154,9 +168,18 @@ good in the hands.
 
 ## 4. Recommended order
 
-1. **§2.1 crane width + rungs** — biggest perceived change per unit work, and everything else inherits
-   scale from it.
-2. **§3.2 coupler concept** — Terry can run this immediately; it unblocks the modelling.
-3. **§2.2 roof** and **§2.5 lantern extension** — both are layout, both teach without dialogue.
-4. **§2.3 one moving thing** — needs a small runtime component; worth it.
-5. **§2.4 foreground clutter** — cheapest, do it whenever.
+1. ~~**§2.1 crane width + rungs**~~ — ✅ done 2026-08-01.
+2. **§3.2 coupler concept** — Terry can run this immediately; it unblocks the modelling. **Next.**
+3. ~~**§2.5 lantern extension**~~ — ✅ done. **§2.2 roof** still open — layout only, teaches by
+   forcing the player to look up.
+4. **§2.3 one moving thing** — needs a small runtime component; worth it. The crane now has a jib and
+   a hook to move, so this is a slow loop on an object that already exists.
+5. ~~**§2.4 foreground clutter**~~ — ✅ done.
+
+### What is left in this document
+- **§2.2** the partial gantry roof over the berth (layout).
+- **§2.3** the crane hook on a slow loop (small runtime component; the geometry now exists).
+- **§2.4 background band** — frame the walk so the player exits facing the skyline, not the office wall.
+- **§3** the coupler itself — the prompt in §3.2 is ready to run; nothing is built.
+- **W000_DriftIn's GantryCrane** — same stick defect in the first room of the game, needs a placement
+  eyeballed in the editor (see §2.1).

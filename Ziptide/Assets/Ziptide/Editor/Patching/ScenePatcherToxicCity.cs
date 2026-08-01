@@ -108,6 +108,11 @@ namespace Ziptide.Editor.Patching
             // so it can measure off the real berth rather than the design doc's coordinates.
             QuayBerthAuthor.Build(root, kit);
 
+            // THE FOREGROUND: junk within arm's reach on the walk off the ramp, plus the one
+            // grabbable crate that teaches the grab verb without a line of dialogue. Runs after the
+            // berths so it measures the same walk the player actually crosses.
+            ShipyardApproachAuthor.Build(root, kit);
+
             // THE AIR: haze band + acid drift (SKYSCAPE_DESIGN §4.1). ToxicCity owns no theme, so
             // the vista path never reaches it and the first planet shipped with perfectly still,
             // perfectly clear air. Additive by construction — the binder drives only haze and motes.
