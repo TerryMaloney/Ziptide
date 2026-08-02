@@ -1,131 +1,161 @@
-# 🎮 DEVICE CHECK — the 2026-08-01 Level 1 pass
+# 🎮 DEVICE CHECK — THE WHOLE OF LEVEL 1
 
-**Fill this in with the headset on (or right after). Mark each row and paste the whole file back.**
-`tools/morning_check.ps1` answers the log half automatically; **everything here is the half only your
-eyes can answer.**
+**Built from the real contract**: `docs/first_hour/first_hour_beats.json` (22 beats) — not from memory.
+Every beat below is a row. Walk it in order; the order IS the level.
 
-Mark: **✅** works · **❌** broken · **🟡** works but feels wrong · **⬜** didn't get to it
+Mark: **✅** works · **❌** broken · **🟡** works but feels wrong · **⬜** didn't reach it
 
-> A **🟡** is the most valuable answer in this document. "It's there but it's wrong" is the finding
-> that never shows up in a log, a test or an audit — it is the entire reason a device pass exists.
-> Don't smooth it into a ✅.
-
----
-
-## A · Does it start at all *(if any of these fail, stop and send the log)*
-
-| | Check | Expected |
-|---|---|---|
-| ⬜ | App launches, no crash on the menu | You reach the destination menu |
-| ⬜ | Sticks are dead at the menu | Push them hard — the rig must not move or turn |
-| ⬜ | One travel, one spawn | Pick a world; you land once, no respawn flash |
-| ⬜ | Hands work | Both controllers tracked, rays present |
+> **🟡 is the most valuable mark in this file.** "It's there but it's wrong" is the finding no log,
+> test or audit can produce — it is the entire reason a device pass exists. Don't round it up to ✅.
+> 🆕 = new today and never device-tested.
 
 ---
 
-## B · 🆕 THE FIRST WALK — everything below is new today
+## PHASE 1 · COLD BOOT — `_Boot`
 
-### B1 · The berth deck, off the ramp
-
-| | Check | Expected | If wrong |
+| | # | Beat | What you should get |
 |---|---|---|---|
-| ⬜ | Junk is **there** | ~9 crates/spools/toolboxes down both flanks of your hull | absent → the approach author didn't run |
-| ⬜ | Junk is **not in your way** | You can walk the deck without bumping anything | blocked → corridor width is one number |
-| ⬜ | Junk is **close enough to notice** | You pass within a stride of it | too far → `MaxOffset` |
-| ⬜ | **The loose crate is grabbable** | One crate lifts, has weight, drops. Worth nothing. | can't grab → static-batch exclusion failed |
+| ⬜ | 1 | `FH_BOOT_READY` | A finished title surface. Not a developer menu. |
+| ⬜ | 2 | `FH_NEW_GAME_SELECTED` | New Game creates/resets the profile and enters W000 |
+| ⬜ | — | Sticks dead at the menu | Push them hard — rig must not move or turn (`BOOT_HOLD`) |
+| ⬜ | — | One travel, one spawn | You land once. No respawn flash, no sinking |
 
-**How does the deck read now vs. last time?**
-> _(your words)_
+**If phase 1 fails, stop and send the log — nothing below is meaningful.**
 
-### B2 · Look up — the gantry roof
+---
 
-| | Check | Expected | If wrong |
+## PHASE 2 · WAKING UP — `W000_DriftIn`
+
+| | # | Beat | What you should get |
 |---|---|---|---|
-| ⬜ | There **is** something overhead | 3 arches + 2 runners over the landward half |
-| ⬜ | You have to **look up** to take it in | Trusses at 6.2 m |
-| ⬜ | **The sky is still there** | Seaward end open — horizon and haze unblocked | sealed → covered fraction |
-| ⬜ | Lamps read as lamps | 3 amber, hanging at 4.6 m |
-| ⬜ | It does **not** feel like a lid | | claustrophobic → raise or shorten |
+| ⬜ | 3 | `FH_LOOK_AT_RILL` | RILL greets you only *after* you look at her light |
+| ⬜ | 4 | `FH_COMFORT_CONSOLE` | First interaction: seated/standing + comfort presets |
+| ⬜ | 5 | `FH_MOVE_IN_QUARTERS` | Short safe move inside the quarters. Comfortable? |
+| ⬜ | 6 | `FH_GRAB_BUNK_OBJECT` | One named personal object makes "grab" obvious |
+| ⬜ | 7 | `FH_HOLSTER_FIRST_ITEM` | Holstering is taught, and it sticks |
+| ⬜ | 8 | `FH_INTERACT_HELM` | The first destination tile is the obvious thing to touch |
+| ⬜ | 9 | `FH_FIRST_ZIPTIDE` | The jump earns the title. No forced camera motion |
 
-### B3 · The crane — does the yard have a size now?
+**Known open item:** W000's own crane is still 10 m × 2 m — the stick defect fixed in ToxicCity. It
+needs a placement done with the scene open. Note whether it bothers you.
 
-| | Check | Expected | If wrong |
+> Notes on phase 2:
+
+---
+
+## PHASE 3 · 🆕 ARRIVAL AT W001 — *most of today's work is here*
+
+| | # | Check | What you should get |
 |---|---|---|---|
-| ⬜ | Crane is visibly **wide**, not a stick | 4.5 m, was 2 m |
-| ⬜ | **Rungs are legible** from the walk | 30 cm apart — the whole trick | invisible → they're the ruler, say so |
-| ⬜ | Walkway + cab read as person-sized | |
-| ⬜ | **The hook is moving** | Creeps down and up, ~30 s round trip | still → static-batch exclusion failed |
-| ⬜ | The hook looks **heavy**, not animated | Eases at both ends, never snaps | wrong → speed or easing |
-| ⬜ | Cable stays attached at both ends | Stretches with the hook | detached → `CableSpan` |
-| ⬜ | Nothing clips into anything | Crane moved to x=5 to clear the facades | clipping → placement |
+| ⬜ | 10 | `FH_W001_ARRIVAL` | Quiet vista beat. Return path visible **first**. Ambient life |
+| ⬜ | 🆕 | **THE SKY** | Olive horizon, dark teal zenith, a ~22° occluded body |
+| ⬜ | 🆕 | Horizon hazy, not a hard edge | |
+| ⬜ | 🆕 | Something always drifting | acid motes |
+| ⬜ | 🆕 | Sky colour reaches the ground | not a dome over a grey city |
+| ⬜ | 🆕 | **Is the sky better than you remember?** | ❌ → revert `78babef9` |
+| ⬜ | 🆕 | Junk on the berth deck, both flanks | ~9 crates/spools/toolboxes |
+| ⬜ | 🆕 | Junk is **not** in your way | you can walk without bumping |
+| ⬜ | 🆕 | **The loose crate lifts** | one crate, has weight, worth nothing |
+| ⬜ | 🆕 | **Look up** — gantry arches overhead | 3 arches, trusses ~6.2 m |
+| ⬜ | 🆕 | Seaward end is **open** | the sky must stay the backdrop |
+| ⬜ | 🆕 | It does not feel like a lid | |
+| ⬜ | 🆕 | **The crane is wide**, not a stick | 4.5 m, was 2 m |
+| ⬜ | 🆕 | **Rungs legible** from the walk | 30 cm — they are the ruler |
+| ⬜ | 🆕 | **The hook is moving** | creeps, ~30 s round trip |
+| ⬜ | 🆕 | The hook looks heavy, not animated | eases at both ends |
+| ⬜ | 🆕 | Nothing clips into anything | crane moved to clear the facades |
+| ⬜ | 🆕 | **Lanterns start at the QUAY** | your first step already follows them |
+| ⬜ | 🆕 | No two lanterns in one spot | |
+| ⬜ | — | Berths 1–5 west of yours, empty | the ships that aren't coming back |
 
-**⭐ THE QUESTION THIS WHOLE PASS EXISTS FOR: standing in the yard, does it now read as a real
-sixteen-metre crane in a real shipyard — or still like boxes?**
-> _(your words — be blunt)_
-
-### B4 · The lanterns
-
-| | Check | Expected |
-|---|---|---|
-| ⬜ | Lanterns start **at the quay**, not at Dispatch | Your first step already follows them |
-| ⬜ | Following them gets you to Dispatch | |
-| ⬜ | No two lanterns in the same spot | Was a z-fighting pair on Dispatch |
-| ⬜ | Unlit streets read as "not the job" | The other half of the grammar |
+### ⭐ THE QUESTION THIS WHOLE PASS EXISTS FOR
+**Standing in the yard: does it read as a real sixteen-metre crane in a real shipyard — or still like boxes?**
+> _(be blunt)_
 
 ---
 
-## C · ⚠️ THE SKY — nobody has ever seen this
+## PHASE 4 · THE SHIP AS ARMOURY 🆕
 
-**ToxicCity rendered a generic shared sky for its whole life. It now renders the one its own layout
-has always authored: olive horizon, dark teal zenith, a 22° occluded body, with the acid haze in
-front of it.** It bakes clean and the audit says the vista is attached — but no human has looked.
+| | Check | What you should get |
+|---|---|---|
+| ⬜ | Rack aboard your ship holds weapons | drum/carousel, 8 slots |
+| ⬜ | The carousel **turns** | cycles through what you own |
+| ⬜ | You start owning taser + gravity gun | granted on first boot |
+| ⬜ | **Can't leave the ship unarmed** | barrier holds you |
+| ⬜ | RILL tells you *why* | `ARM_YOURSELF` / `BELT_IT` |
+| ⬜ | Take one, belt it, barrier opens | |
+| ⬜ | Empty rack + empty belt still opens | the no-trap law — don't get stuck |
 
-| | Check | Expected | If wrong |
+> Notes:
+
+---
+
+## PHASE 5 · THE CONTRACT — `FH_ACCEPT_FIRST_JOB` → `FH_MACHINE_POWER_CYCLE`
+
+| | # | Beat | What you should get |
 |---|---|---|---|
-| ⬜ | The sky **changed** from what you remember | | unchanged → the theme didn't bind |
-| ⬜ | Horizon is hazy, not a hard edge | |
-| ⬜ | There is a **body** in the sky | ~22° across, partly occluded |
-| ⬜ | Something is always drifting | Acid motes |
-| ⬜ | Sky colour reaches the ground | Not a dome floating over a grey city |
-| ⬜ | **It looks better than before** | | ❌ → revert `78babef9` |
+| ⬜ | 11 | `FH_ACCEPT_FIRST_JOB` | Job source legible through world logic, not a modal |
+| ⬜ | — | Dispatch interior is **furnished** | not an empty box (was, until recently) |
+| ⬜ | 12 | `FH_SCAN_FAULT` | Scanning names the problem and shows the next physical step |
+| ⬜ | 13 | `FH_REPAIR_ACCESS` | Repair taught by opening/exposing the service point |
+| ⬜ | 14 | `FH_REPAIR_PART_SEATED` | Seating the part confirms itself. **Does it feel good?** |
+| ⬜ | 15 | `FH_MACHINE_POWER_CYCLE` | Power-up has a visible/audible world consequence |
+| ⬜ | — | The relay's red fault strobe is findable from Dispatch | the sightline triple |
 
-**Against `docs/systems/SKYSCAPE_DESIGN.md` — the Prospect bar — does this clear it?**
-> _(your words)_
+**The coupler is the thing we just designed concept art for.** How does seating a part feel *right now*,
+before any of that is modelled? That's the baseline we're improving on.
+> 
 
 ---
 
-## D · ⚡ PERFORMANCE — the number that matters most
+## PHASE 6 · TOOLS & THE CREATURE
 
-Materials went **333 → 111** and static batching landed, so draw calls should be materially better
-than last time. Still 1.85× the material cap, and 1769 renderers.
+| | # | Beat | What you should get |
+|---|---|---|---|
+| ⬜ | 16 | `FH_SHOOT_PRACTICE_TARGET` | Safe target teaches firing **before** the creature |
+| ⬜ | 17 | `FH_OBSERVE_SIGNATURE_CREATURE` | Foreshadow + a safe window to read it. No instant attack |
+| ⬜ | 18 | `FH_COUNTER_SIGNATURE_CREATURE` | Readable counter, non-lethal resolution |
+| ⬜ | 🆕 | **You can be hurt now** | armor vignette on damage — never device-tested |
+| ⬜ | 🆕 | Damage feels fair, not cheap | creature 5 vs armor 6 — one hit is most of your armor |
+| ⬜ | 🆕 | Death → respawn works and isn't punishing | |
 
-| | Check | Expected |
+> Notes:
+
+---
+
+## PHASE 7 · TRAVERSAL, REWARD, RETURN
+
+| | # | Beat | What you should get |
+|---|---|---|---|
+| ⬜ | 19 | `FH_USE_JOB_ZIPLINE` | Zipline sits **on** the job path. No floating arrow needed |
+| ⬜ | 20 | `FH_FIRST_JOB_REWARD` | Visual + audio + haptic + a persistent world change |
+| ⬜ | 21 | `FH_RETURN_TO_SHIP` | The return path was shown at arrival and still works |
+| ⬜ | 22 | `FH_CHANGED_SHIP_PAYOFF` | Ship/RILL visibly changed, save reassurance lands |
+| ⬜ | — | Artifact halves join at the berth | two pieces, one per hand |
+| ⬜ | — | The expedition outside the wall is reachable | half B lives there |
+
+> Notes:
+
+---
+
+## PHASE 8 · ⚡ PERFORMANCE — judge this separately from the art
+
+Materials went **333 → 111** today and static batching landed. Draw calls should be materially better.
+Still 1769 renderers and 1.85× the material cap.
+
+| | Check | Answer |
 |---|---|---|
-| ⬜ | Frame rate **feels** smooth walking the city | |
-| ⬜ | Better, worse, or the same as last time? | ⟶ **_______________** |
-| ⬜ | Any specific place it drops | ⟶ **_______________** |
-| ⬜ | Turning your head is smooth | Judder here is the worst kind |
+| ⬜ | Smooth walking the city? | |
+| ⬜ | **Better / worse / same** vs last time | ⟶ **____________** |
+| ⬜ | Any specific place it drops | ⟶ **____________** |
+| ⬜ | Head-turning smooth (judder is the worst kind) | |
 
-**If it's still rough, the next lever is colour quantizing** — the last change that deletes nothing.
-It's built in plan, not shipped, because it's the first thing that would alter a pixel. **Your call.**
-
----
-
-## E · Everything else in the hour *(as far as you get)*
-
-| | Check | Notes |
-|---|---|---|
-| ⬜ | Ship's armoury rack — weapons on it, carousel turns | |
-| ⬜ | Can't leave the ship unarmed; RILL says why | |
-| ⬜ | **You can be hurt now** — armor vignette on damage | New; never device-tested |
-| ⬜ | Dispatch interior is furnished, not an empty box | |
-| ⬜ | The relay repair completes | |
-| ⬜ | Artifact halves join at the berth | |
-| ⬜ | Creatures behave / can be dealt with | |
+**If it's still rough the next lever is colour quantizing** — built in plan, not shipped, because it's
+the first change that would alter a pixel. **Your call.**
 
 ---
 
-## F · Free text — the most useful section
+## PHASE 9 · FREE TEXT — the most useful section in this file
 
 **What felt worst?**
 > 
@@ -136,7 +166,10 @@ It's built in plan, not shipped, because it's the first thing that would alter a
 **Anything that made you stop and think "that's broken"?**
 > 
 
-**If you could only fix one thing next:**
+**Did the hour hold together as an hour — or is it a list of tasks?**
+> 
+
+**If I could only fix ONE thing next:**
 > 
 
 ---
