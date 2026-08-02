@@ -3,8 +3,8 @@
     ONE COMMAND: bake the first level, build the full APK, install it, launch it, and capture logcat.
 
 .DESCRIPTION
-    Replaces the six-menu bake batch in docs/production/LEVEL1_BAKE_AND_SMOKE.md §1 plus the build
-    and install in §2.
+    Replaces the six-menu bake batch in docs/production/LEVEL1_BAKE_AND_SMOKE.md section 1 plus the build
+    and install in section 2.
 
     The APK build (BuildAndroid.PatchScenesThenAPK) already runs five of the six bake steps as
     required hooks: W000 surfaces, Compile World Specs, Build Toxic City, Build Space Lane, and

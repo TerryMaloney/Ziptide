@@ -147,15 +147,20 @@ namespace Ziptide.Build
                     RunRequired("ScenePatcherSpaceLane.PatchActiveScene:" + path,
                         Ziptide.Editor.Patching.ScenePatcherSpaceLane.PatchActiveScene);
 
-                // The W000 first-hour surfaces -- comfort console, bunk keepsake, curated first helm.
-                // These were authored by a menu item nobody had run, so the three beats they carry
-                // were unreachable in every shipped APK while their code sat CI-green.
+                RunRequired("WorldStubGenerator.PatchActiveSceneIfGenerated:" + path,
+                    Ziptide.Editor.Patching.WorldStubGenerator.PatchActiveSceneIfGenerated);
+
+                // The W000 first-hour surfaces -- comfort console, bunk keepsake, curated first helm,
+                // porthole. These were authored by a menu item nobody had run, so the three beats they
+                // carry were unreachable in every shipped APK while their code sat CI-green.
+                //
+                // ORDER MATTERS (2026-08-02): this now runs AFTER the world is regenerated, because
+                // the surfaces anchor on the spawn marker and WorldStubGenerator.Populate destroys and
+                // rebuilds it. Running first meant authoring against the PREVIOUS bake's scene.
                 if (sceneName == "W000_DriftIn")
                     RunRequired("FirstHourSurfaceAuthor.Author:" + path,
                         () => Ziptide.Editor.FirstHourSurfaceAuthor.Author(scene));
 
-                RunRequired("WorldStubGenerator.PatchActiveSceneIfGenerated:" + path,
-                    Ziptide.Editor.Patching.WorldStubGenerator.PatchActiveSceneIfGenerated);
                 RunRequired("ScenePatcherArena.PatchActiveSceneIfArena:" + path,
                     Ziptide.Editor.Patching.ScenePatcherArena.PatchActiveSceneIfArena);
                 RunRequired("WorldImprovementCompiler.CompileActiveSceneIfDeclared:" + path,

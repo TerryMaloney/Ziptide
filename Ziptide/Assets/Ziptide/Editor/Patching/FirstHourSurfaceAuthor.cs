@@ -63,11 +63,20 @@ namespace Ziptide.Editor
                 rotation);
             EnsureComponent<ComfortConsoleRuntime>(comfort);
 
-            GameObject bunk = EnsureMarker(
-                scene,
-                BunkMarker,
-                origin + right * 0.9f + forward * 0.8f + Vector3.up * 0.9f,
-                rotation);
+            // The keepsake belongs ON the bunk, not hovering 90 cm off the floor beside it. The
+            // BunkBay district authors a landmark literally named "Bunk"; if it is there, sit the
+            // object on its top face so "pick up the thing by your bed" is a place, not a coordinate.
+            Vector3 keepsakeAt = origin + right * 0.9f + forward * 0.8f + Vector3.up * 0.9f;
+            Transform bunkLandmark = FindNamedTransform(scene, "Bunk");
+            if (bunkLandmark != null)
+            {
+                Collider surface = bunkLandmark.GetComponentInChildren<Collider>();
+                Vector3 top = surface != null
+                    ? new Vector3(bunkLandmark.position.x, surface.bounds.max.y, bunkLandmark.position.z)
+                    : bunkLandmark.position;
+                keepsakeAt = top + Vector3.up * 0.09f;   // half the keepsake's height, so it rests
+            }
+            GameObject bunk = EnsureMarker(scene, BunkMarker, keepsakeAt, rotation);
             EnsureBunkVisual(bunk);
             EnsureComponent<FirstHourBunkObjectRuntime>(bunk);
 
@@ -104,7 +113,18 @@ namespace Ziptide.Editor
             Quaternion rotation)
         {
             GameObject existing = FindNamedInScene(scene, markerName);
-            if (existing != null) return existing;
+            if (existing != null)
+            {
+                // THE AUTHOR OWNS THE POSE, every run. This used to return the existing marker
+                // untouched, which meant a marker placed by an older recipe was frozen there
+                // forever: the shipped W000 scene kept its four first-hour surfaces stuck to the
+                // hull long after the recipe stopped putting them there. These are `__`-prefixed
+                // machine markers, not set dressing — the author is their single source of truth,
+                // exactly like the scene patchers' EnsureRootObject.
+                existing.transform.position = position;
+                existing.transform.rotation = rotation;
+                return existing;
+            }
 
             var marker = new GameObject(markerName);
             SceneManager.MoveGameObjectToScene(marker, scene);
@@ -154,6 +174,12 @@ namespace Ziptide.Editor
                 if (found != null) return found;
             }
             return null;
+        }
+
+        private static Transform FindNamedTransform(Scene scene, string name)
+        {
+            GameObject found = FindNamedInScene(scene, name);
+            return found != null ? found.transform : null;
         }
 
         private static GameObject FindNamedInScene(Scene scene, string name)

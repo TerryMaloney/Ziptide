@@ -1,4 +1,4 @@
-# install_latest.ps1 — one permanent installer. Never regenerate install instructions again.
+# install_latest.ps1 - one permanent installer. Never regenerate install instructions again.
 #
 # USAGE (from anywhere):
 #   .\tools\install_latest.ps1                      # finds the newest Ziptide.apk in the usual places
@@ -18,7 +18,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $pkg = 'com.terrymaloney.ziptide'
 
-# ── 1. Locate the APK ────────────────────────────────────────────────────────
+# -- 1. Locate the APK --------------------------------------------------------
 if (-not $Path) {
     $searchRoots = @(
         "$HOME\Downloads", "$HOME\Desktop",
@@ -40,7 +40,7 @@ Write-Host "Built  : $($info.LastWriteTime)   Size: $([math]::Round($info.Length
 Write-Host "SHA-256: $((Get-FileHash $apk -Algorithm SHA256).Hash)" -ForegroundColor Cyan
 Write-Host "         ^ record this in the verdict block" -ForegroundColor DarkGray
 
-# ── 2. Find the headset(s) ───────────────────────────────────────────────────
+# -- 2. Find the headset(s) ---------------------------------------------------
 adb start-server | Out-Null
 # Force an array even when exactly one device is present. Without @(...), PowerShell stores a
 # single serial as a scalar string and $targets[0] becomes only its first character.
@@ -63,7 +63,7 @@ else {
     exit 1
 }
 
-# ── 3. Uninstall-first, then install (see HANDOFF rb109) ─────────────────────
+# -- 3. Uninstall-first, then install (see HANDOFF rb109) ---------------------
 # Local builds are signed with the PC's debug key, CI artifacts with the runner's.
 # Crossing that boundary always throws INSTALL_FAILED_UPDATE_INCOMPATIBLE, so the
 # uninstall is unconditional and its failure is expected and ignored.
@@ -76,7 +76,7 @@ foreach ($t in $targets) {
     adb -s $t install $apk
 }
 
-# ── 4. Tell the human exactly what to do next ────────────────────────────────
+# -- 4. Tell the human exactly what to do next --------------------------------
 $first = @($targets)[0]
 Write-Host ""
 Write-Host "DONE. Launch Ziptide from the Quest library." -ForegroundColor Green

@@ -227,13 +227,13 @@ foreach ($serial in $devices) {
 }
 
 if ($anyFatal) {
-    Write-Host "TWO-QUEST SMOKE: FAILED — runtime/disconnect evidence found." -ForegroundColor Red
+    Write-Host "TWO-QUEST SMOKE: FAILED - runtime/disconnect evidence found." -ForegroundColor Red
     exit 1
 }
 if (-not $allComplete) {
-    Write-Host "TWO-QUEST SMOKE: INCOMPLETE — install succeeded, but the full 2/2 presence evidence was not captured." -ForegroundColor Yellow
+    Write-Host "TWO-QUEST SMOKE: INCOMPLETE - install succeeded, but the full 2/2 presence evidence was not captured." -ForegroundColor Yellow
     exit 2
 }
 
-Write-Host "TWO-QUEST SMOKE: PASSED — both clients joined and exchanged presence." -ForegroundColor Green
+Write-Host "TWO-QUEST SMOKE: PASSED - both clients joined and exchanged presence." -ForegroundColor Green
 exit 0

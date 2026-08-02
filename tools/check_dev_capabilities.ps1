@@ -157,13 +157,13 @@ try {
             Add-Result 'ADB / Quest' 'READY' ("{0}; one authorized Quest/device connected" -f $adbVersion) $adb
         }
         elseif ($authorized -gt 1) {
-            Add-Result 'ADB / Quest' 'PARTIAL' ("{0}; {1} authorized devices connected—select one explicitly" -f $adbVersion, $authorized) $adb
+            Add-Result 'ADB / Quest' 'PARTIAL' ("{0}; {1} authorized devices connected-select one explicitly" -f $adbVersion, $authorized) $adb
         }
         elseif ($unauthorized -gt 0) {
             Add-Result 'ADB / Quest' 'PARTIAL' ("{0}; device detected but USB debugging authorization is pending in-headset" -f $adbVersion) $adb
         }
         elseif ($offline -gt 0) {
-            Add-Result 'ADB / Quest' 'PARTIAL' ("{0}; device is offline—reconnect USB and restart ADB" -f $adbVersion) $adb
+            Add-Result 'ADB / Quest' 'PARTIAL' ("{0}; device is offline-reconnect USB and restart ADB" -f $adbVersion) $adb
         }
         else {
             Add-Result 'ADB / Quest' 'PARTIAL' ("{0}; ADB is ready but no device is connected" -f $adbVersion) $adb
