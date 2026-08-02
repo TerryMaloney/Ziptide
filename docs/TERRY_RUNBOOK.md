@@ -63,17 +63,37 @@ Per `docs/DEVICE_STABILIZATION_FORENSIC_PLAN.md` (rb25/rb26): multiplayer is pau
 
 If ALL of the above pass, Phase 2 (item/holster/hammer poses + self-hit) begins next session.
 
-## 0b. ⭐ TODAY'S SESSION (2026-08-01) — the whole Level 1 pass, in five commands
+## 0b. ⭐ TODAY'S SESSION (2026-08-01) — the whole Level 1 pass
+
+### ⚡ FASTEST PATH: don't build. CI already did.
+
+The Golden Android job built and verified **the exact same method your script runs**
+(`RecoveryBuildAndroid.PatchScenesThenGoldenAPK`) on the current code, and the APK is sitting in the
+run's artifacts:
+
+- Run: **`30722864917`** · SHA **`bd7c733a`** · result **success**
+- Artifact: **`recovery-golden-apk-bd7c733a5b036d809aba4a34da64cfcaf9ff53e6`** (110 MB)
+- https://github.com/TerryMaloney/Ziptide/actions/runs/30722864917
+
+```powershell
+# download + unzip the artifact from that page, then:
+adb install -r <path-to>\Ziptide.apk
+```
+
+That skips Unity entirely — no local bake, no 20-minute build, nothing to go wrong before coffee.
+**Only the head docs commit is newer than that APK, so it contains 100% of today's code.**
+
+### The build-it-yourself path (if you'd rather, or want the generated assets committed)
 
 Everything below landed today and **all of it ships in the default GoldenSlice build** (ToxicCity is
 one of the three golden scenes, and `PatchScenesThenGoldenAPK` runs the full patch loop first). You do
-not need any extra menu step — but you DO need to commit two brand-new generated assets.
+not need any extra menu step — but you DO need to commit the generated assets.
 
 ```powershell
 cd C:\Ziptide
 git pull origin terry-local-wip
 tools\dev_build_install.ps1            # default profile is GoldenSlice; that is the right one
-git status                             # expect TWO NEW assets, see below
+git status                             # expect TWO NEW assets + one MODIFIED, see below
 git add Ziptide/Assets/Ziptide/Content/Worlds/Themes/ToxicCity_Theme.asset* `
         Ziptide/Assets/Ziptide/Content/Worlds/Profiles/ToxicCity_WorldProfile.asset* `
         Ziptide/Assets/Ziptide/Content/City/ToxicCityLayout.asset
