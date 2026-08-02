@@ -574,7 +574,7 @@
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
-          "line": 119,
+          "line": 123,
           "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
           "snippet": "string source = Read(\"Gameplay\", \"Runtime\", \"Weapons\", \"MeleeWeaponRuntime.cs\");",
           "declaration_file": false
@@ -8373,7 +8373,7 @@
       "focus": "melee",
       "token": "MeleeWeaponRuntime",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
-      "line": 119,
+      "line": 123,
       "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
       "snippet": "string source = Read(\"Gameplay\", \"Runtime\", \"Weapons\", \"MeleeWeaponRuntime.cs\");",
       "declaration_file": false

@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-08-02T20:10:43.806490+00:00",
+  "generatedAtUtc": "2026-08-02T20:20:56.490442+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -2000,7 +2000,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
-      "line": 191,
+      "line": 199,
       "symbol": "Ziptide.Gameplay.InventoryState",
       "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_DOCKED item=\" + item.name + \" slot=\" + slotId"
     },
@@ -2009,7 +2009,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
-      "line": 202,
+      "line": 210,
       "symbol": "Ziptide.Gameplay.InventoryState",
       "snippet": "Debug.LogError(\"ZIPTIDE: HOLSTER_DOCK_BLOCKER item=\" + item.name"
     },

@@ -58,7 +58,7 @@
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:12` — `/// itself when MeleeWeaponRuntime is present.`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:42` — `if (GetComponent<MeleeWeaponRuntime>() == null) return false;`
 - **declaration** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:62` — `public class MeleeWeaponRuntime : MonoBehaviour`
-- **reference** · `Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs:119` — `string source = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");`
+- **reference** · `Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs:123` — `string source = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");`
 - **reference** · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:57` — `string melee = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");`
 
 ### `Muzzle`
