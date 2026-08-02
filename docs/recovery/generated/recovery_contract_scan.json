@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-08-02T16:39:01.438763+00:00",
+  "generatedAtUtc": "2026-08-02T20:10:43.806490+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -947,7 +947,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-      "line": 95,
+      "line": 104,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_SURFACES_AUTHORED scene=\" + scene.name +"
     },
@@ -7913,7 +7913,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-      "line": 74,
+      "line": 83,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
       "snippet": "// The helm marker's authored position is now only a fallback: at runtime the tile docks"
     },
@@ -15167,7 +15167,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-      "line": 127,
+      "line": 147,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
       "snippet": "var visual = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -17669,7 +17669,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-      "line": 109,
+      "line": 129,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
       "snippet": "var marker = new GameObject(markerName);"
     },

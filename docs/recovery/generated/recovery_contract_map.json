@@ -3688,14 +3688,14 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-            "line": 109,
+            "line": 129,
             "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
             "snippet": "var marker = new GameObject(markerName);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-            "line": 127,
+            "line": 147,
             "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
             "snippet": "var visual = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           }
@@ -21793,7 +21793,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-            "line": 74,
+            "line": 83,
             "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
             "snippet": "// The helm marker's authored position is now only a fallback: at runtime the tile docks"
           }

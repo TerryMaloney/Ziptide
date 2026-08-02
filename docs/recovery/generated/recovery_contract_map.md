@@ -871,8 +871,8 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:109` **NEW_GAME_OBJECT** — `var marker = new GameObject(markerName);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:127` **CREATE_PRIMITIVE** — `var visual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:129` **NEW_GAME_OBJECT** — `var marker = new GameObject(markerName);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:147` **CREATE_PRIMITIVE** — `var visual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Editor.Patching.AmbientMoteAuthor` — 2 signal(s)
 
@@ -4946,7 +4946,7 @@ None.
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:49` **FALLBACK_MARKER** — `// The ship stays as the fallback for scenes with no marker (and the test scene, which`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:74` **FALLBACK_MARKER** — `// The helm marker's authored position is now only a fallback: at runtime the tile docks`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:83` **FALLBACK_MARKER** — `// The helm marker's authored position is now only a fallback: at runtime the tile docks`
 
 ### `Ziptide.Editor.Patching.BuildingBuilder` — 2 signal(s)
 
