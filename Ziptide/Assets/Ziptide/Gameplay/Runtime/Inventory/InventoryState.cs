@@ -169,13 +169,21 @@ namespace Ziptide.Gameplay
 
             Physics.SyncTransforms();
             yield return null;
-            if (!socket.CanSelect(grab))
+
+            // XRI INTERFACE FORM, not the concrete-class overloads. Passing XRSocketInteractor /
+            // XRGrabInteractable directly binds to CanSelect(XRBaseInteractable) and
+            // SelectEnter(XRBaseInteractor, XRBaseInteractable), which XRI deprecated with
+            // error:true - so on Unity 6 they are CS0619 HARD ERRORS, and these two lines were the
+            // only thing in the whole project still holding it in Safe Mode after the API updater
+            // ran. Both interface overloads exist in XRI 2.4.x as well (QuickSwap has used them all
+            // along), so this compiles identically on the old and new editors.
+            if (!socket.CanSelect((IXRSelectInteractable)grab))
             {
                 FailHolsterOpen(item, body, slotId, "socket_rejected");
                 yield break;
             }
 
-            manager.SelectEnter(socket, grab);
+            manager.SelectEnter((IXRSelectInteractor)socket, (IXRSelectInteractable)grab);
             yield return null;
 
             bool owned = false;

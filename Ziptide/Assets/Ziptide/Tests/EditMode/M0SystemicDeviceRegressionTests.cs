@@ -88,7 +88,11 @@ namespace Ziptide.Tests.EditMode
         public void InventoryRestore_UsesRealSocketSelection_NeverProximityOwnership()
         {
             string source = Read("Gameplay", "Runtime", "Inventory", "InventoryState.cs");
-            StringAssert.Contains("manager.SelectEnter(socket, grab);", source);
+            // The point of this assertion is that restore goes through a REAL socket selection
+            // rather than proximity ownership - not which overload spells it. The concrete-class
+            // overload is a CS0619 hard error on Unity 6, so the call is now interface-typed.
+            StringAssert.Contains("manager.SelectEnter((IXRSelectInteractor)socket, (IXRSelectInteractable)grab);",
+                source);
             StringAssert.Contains("HOLSTER_DOCK_BLOCKER", source);
             StringAssert.DoesNotContain("Vector3.Distance(item.transform.position, h.transform.position) <= 0.18f", source);
             StringAssert.DoesNotContain("item.transform.SetParent(anchor, false);", source);
