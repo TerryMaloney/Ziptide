@@ -8,7 +8,7 @@
 
     ONLY RUNTIME TAGS ARE CHECKED HERE. `APPROACH_DRESSED`, `WAYFINDING`, `CITY_MATERIALS` and
     `WORLD_ATMO_AUTHOR` are logged by the EDITOR during a bake, so they never reach a headset and
-    are absent from a log by design. The geometry they describe is checked with your eyes instead —
+    are absent from a log by design. The geometry they describe is checked with your eyes instead -
     that is what docs/DEVICE_CHECK_2026-08-01.md is for.
 
 .EXAMPLE
@@ -38,7 +38,7 @@ try {
 
     $text = Get-Content $Log -Raw
 
-    # name, pattern, what a miss MEANS. The meaning is the point — a bare tag list tells the next
+    # name, pattern, what a miss MEANS. The meaning is the point - a bare tag list tells the next
     # person nothing about whether an absence is a bug or just a route they did not walk.
     $signals = @(
         @{ n = 'Boot held the rig at the menu';  p = 'BOOT_HOLD';                m = 'boot may not have gated the sticks' },
@@ -64,7 +64,7 @@ try {
         }
     }
 
-    # ── Anything that actually broke ─────────────────────────────────────────
+    # -- Anything that actually broke -----------------------------------------
     Write-Host "`n-- FAILURES -------------------------------------------------" -ForegroundColor Cyan
     $bad = Select-String -Path $Log -Pattern 'NullReferenceException|Exception:|AndroidRuntime|FATAL|TRAVEL_FAIL|DUP_SINGLETON|NO_RAY_INTERACTORS|INPUT_ACTIONS_MISSING|ITEM_DEF_NOT_FOUND'
     if ($bad) {
@@ -78,7 +78,7 @@ try {
         Write-Host "  none. No exceptions, no fatals, no travel failures." -ForegroundColor Green
     }
 
-    # ── Paste-back block ─────────────────────────────────────────────────────
+    # -- Paste-back block -----------------------------------------------------
     $out = ".\Ziptide\Builds\morning_check_result.txt"
     $summary = @()
     $summary += "ZIPTIDE MORNING CHECK - " + (Get-Date -Format 'yyyy-MM-dd HH:mm')
