@@ -69,7 +69,7 @@ permissions:
 
 env:
   PROJECT_PATH: Ziptide
-  UNITY_VERSION: 2022.3.62f3
+  UNITY_VERSION: 6000.2.9f1
 
 concurrency:
   group: recovery-playmode-${{ github.ref }}
