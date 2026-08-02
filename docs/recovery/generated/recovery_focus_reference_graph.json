@@ -1,14 +1,15 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 827,
-  "referenceCount": 467,
+  "scannedFiles": 833,
+  "referenceCount": 480,
   "summaries": {
     "melee": {
-      "referenceCount": 113,
-      "fileCount": 38,
-      "callerFileCount": 38,
+      "referenceCount": 118,
+      "fileCount": 39,
+      "callerFileCount": 39,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs",
+        "Ziptide/Assets/Ziptide/Core/Runtime/MeleeGripCore.cs",
         "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
@@ -49,6 +50,7 @@
       ],
       "callerPaths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs",
+        "Ziptide/Assets/Ziptide/Core/Runtime/MeleeGripCore.cs",
         "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
@@ -89,7 +91,7 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 250,
+      "referenceCount": 254,
       "fileCount": 60,
       "callerFileCount": 59,
       "paths": [
@@ -217,7 +219,7 @@
       ]
     },
     "shipPresentation": {
-      "referenceCount": 104,
+      "referenceCount": 108,
       "fileCount": 22,
       "callerFileCount": 19,
       "paths": [
@@ -310,9 +312,9 @@
           "focus": "melee",
           "token": "ArenaWeaponKind.BreakerBlade",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 94,
+          "line": 96,
           "symbol": "Ziptide.Gameplay.WeaponPoseCore",
-          "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null) return;",
+          "snippet": "if (def.kind != ArenaWeaponKind.BreakerBlade && def.kind != ArenaWeaponKind.TidePike) return;",
           "declaration_file": false
         }
       ],
@@ -377,9 +379,27 @@
           "focus": "melee",
           "token": "ArenaWeaponKind.TidePike",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 81,
+          "line": 82,
           "symbol": "Ziptide.Gameplay.WeaponPoseCore",
           "snippet": "private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "ArenaWeaponKind.TidePike",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+          "line": 96,
+          "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+          "snippet": "if (def.kind != ArenaWeaponKind.BreakerBlade && def.kind != ArenaWeaponKind.TidePike) return;",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "ArenaWeaponKind.TidePike",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+          "line": 97,
+          "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+          "snippet": "InstallSemanticHandGrip(def.kind == ArenaWeaponKind.TidePike);",
           "declaration_file": false
         }
       ],
@@ -462,7 +482,7 @@
           "focus": "melee",
           "token": "HitFromHammer",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 157,
+          "line": 190,
           "symbol": "Ziptide.Gameplay.WeaponPoseCore",
           "snippet": "wall.HitFromHammer(h.ClosestPoint(tipPos));",
           "declaration_file": false
@@ -478,6 +498,15 @@
         }
       ],
       "MeleeWeaponRuntime": [
+        {
+          "focus": "melee",
+          "token": "MeleeWeaponRuntime",
+          "path": "Ziptide/Assets/Ziptide/Core/Runtime/MeleeGripCore.cs",
+          "line": 32,
+          "symbol": "Ziptide.Core.MeleeGripCore",
+          "snippet": "/// MeleeWeaponRuntime.InstallSemanticHandGrip ran on the next frame and replaced that pose with a",
+          "declaration_file": false
+        },
         {
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
@@ -536,7 +565,7 @@
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 61,
+          "line": 62,
           "symbol": "Ziptide.Gameplay.WeaponPoseCore",
           "snippet": "public class MeleeWeaponRuntime : MonoBehaviour",
           "declaration_file": true
@@ -568,6 +597,15 @@
           "line": 43,
           "symbol": "Ziptide.Content.ItemDefinition",
           "snippet": "[Tooltip(\"Muzzle point (local). Zero = factory default. Bolts/rays originate here.\")]",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Core/Runtime/MeleeGripCore.cs",
+          "line": 18,
+          "symbol": "Ziptide.Core.MeleeGripCore",
+          "snippet": "/// the existing WeaponPoseCore already solves that from the real Muzzle socket rather than from",
           "declaration_file": false
         },
         {
@@ -808,7 +846,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-          "line": 131,
+          "line": 139,
           "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
           "snippet": "Transform direct = root.Find(\"Muzzle\");",
           "declaration_file": false
@@ -817,7 +855,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-          "line": 135,
+          "line": 143,
           "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
           "snippet": "if (all[i] != null && all[i].name == \"Muzzle\") return all[i];",
           "declaration_file": false
@@ -952,7 +990,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 13,
+          "line": 14,
           "symbol": "Ziptide.Gameplay.WeaponPoseCore",
           "snippet": "/// swappable as long as they preserve the Muzzle/tip socket.",
           "declaration_file": false
@@ -961,9 +999,18 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 86,
+          "line": 87,
           "symbol": "Ziptide.Gameplay.WeaponPoseCore",
           "snippet": "_tip = transform.Find(\"Muzzle\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+          "line": 105,
+          "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+          "snippet": "/// the real Muzzle socket so a replacement mesh with different model axes still holds",
           "declaration_file": false
         },
         {
@@ -1336,7 +1383,7 @@
           "focus": "repairObjective",
           "token": "CastOffArming",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 205,
+          "line": 258,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// but never cache absence: a truly machine-less scene stays armed (CastOffArming law).",
           "declaration_file": false
@@ -1345,7 +1392,7 @@
           "focus": "repairObjective",
           "token": "CastOffArming",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 211,
+          "line": 264,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,",
           "declaration_file": false
@@ -2157,7 +2204,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 204,
+          "line": 257,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// The machine is spawned at runtime by JobDirector, so keep looking until found \u2014",
           "declaration_file": false
@@ -2166,7 +2213,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 216,
+          "line": 269,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// observes and its repaired state \u2014 divergence from the JobDirector-spawned machine",
           "declaration_file": false
@@ -2712,7 +2759,7 @@
           "focus": "repairObjective",
           "token": "REPAIR_TRACE",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 222,
+          "line": 275,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=castoff armed=\" + armed",
           "declaration_file": false
@@ -3067,7 +3114,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 36,
+          "line": 43,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "[Tooltip(\"RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).\")]",
           "declaration_file": false
@@ -3076,7 +3123,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 44,
+          "line": 51,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press",
           "declaration_file": false
@@ -3085,7 +3132,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 206,
+          "line": 259,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "foreach (var m in FindObjectsOfType<RepairableMachine>())",
           "declaration_file": false
@@ -3476,7 +3523,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-          "line": 10,
+          "line": 11,
           "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
           "snippet": "/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.",
           "declaration_file": false
@@ -3485,7 +3532,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-          "line": 16,
+          "line": 17,
           "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
           "snippet": "private ShipCastOffRuntime _castOff;",
           "declaration_file": false
@@ -3494,7 +3541,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-          "line": 19,
+          "line": 20,
           "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
           "snippet": "public void Configure(ShipCastOffRuntime castOff)",
           "declaration_file": false
@@ -3503,7 +3550,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-          "line": 26,
+          "line": 27,
           "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
           "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -3512,7 +3559,43 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-          "line": 32,
+          "line": 40,
+          "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+          "snippet": "/// ShipCastOffRuntime builds its console in Start as well, so the order is not ours to",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+          "line": 48,
+          "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+          "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+          "line": 70,
+          "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+          "snippet": "/// Derived from ShipCastOffRuntime.ButtonLocalPos so the two rows cannot drift apart.",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+          "line": 73,
+          "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+          "snippet": "ShipCastOffRuntime.ButtonLocalPos - new Vector3(0f, 0.34f, 0f);",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+          "line": 77,
           "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
           "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -3568,7 +3651,7 @@
           "focus": "repairObjective",
           "token": "gate_coupler",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 37,
+          "line": 44,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "[SerializeField] private string armingMachineId = \"gate_coupler\";",
           "declaration_file": false
@@ -3691,7 +3774,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-          "line": 10,
+          "line": 11,
           "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
           "snippet": "/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.",
           "declaration_file": false
@@ -3700,7 +3783,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-          "line": 16,
+          "line": 17,
           "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
           "snippet": "private ShipCastOffRuntime _castOff;",
           "declaration_file": false
@@ -3709,7 +3792,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-          "line": 19,
+          "line": 20,
           "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
           "snippet": "public void Configure(ShipCastOffRuntime castOff)",
           "declaration_file": false
@@ -3718,7 +3801,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-          "line": 26,
+          "line": 27,
           "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
           "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -3727,7 +3810,43 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-          "line": 32,
+          "line": 40,
+          "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+          "snippet": "/// ShipCastOffRuntime builds its console in Start as well, so the order is not ours to",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+          "line": 48,
+          "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+          "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+          "line": 70,
+          "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+          "snippet": "/// Derived from ShipCastOffRuntime.ButtonLocalPos so the two rows cannot drift apart.",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+          "line": 73,
+          "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+          "snippet": "ShipCastOffRuntime.ButtonLocalPos - new Vector3(0f, 0.34f, 0f);",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+          "line": 77,
           "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
           "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -4439,7 +4558,7 @@
           "focus": "shipPresentation",
           "token": "ShipRefit",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-          "line": 55,
+          "line": 56,
           "symbol": "Ziptide.Gameplay.ShipBoardingStation",
           "snippet": "ShipRefit.Apply(gameObject);",
           "declaration_file": false
@@ -4513,7 +4632,7 @@
           "focus": "shipPresentation",
           "token": "ShipRefit.Apply",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-          "line": 55,
+          "line": 56,
           "symbol": "Ziptide.Gameplay.ShipBoardingStation",
           "snippet": "ShipRefit.Apply(gameObject);",
           "declaration_file": false
@@ -4819,6 +4938,24 @@
       "line": 132,
       "symbol": "Ziptide.Content.WorldPackValidator",
       "snippet": "if (job.steps[s] is RepairMachineCountStepDefinition rm)",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "MeleeWeaponRuntime",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/MeleeGripCore.cs",
+      "line": 32,
+      "symbol": "Ziptide.Core.MeleeGripCore",
+      "snippet": "/// MeleeWeaponRuntime.InstallSemanticHandGrip ran on the next frame and replaced that pose with a",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/MeleeGripCore.cs",
+      "line": 18,
+      "symbol": "Ziptide.Core.MeleeGripCore",
+      "snippet": "/// the existing WeaponPoseCore already solves that from the real Muzzle socket rather than from",
       "declaration_file": false
     },
     {
@@ -5689,7 +5826,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 131,
+      "line": 139,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Transform direct = root.Find(\"Muzzle\");",
       "declaration_file": false
@@ -5698,7 +5835,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 135,
+      "line": 143,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "if (all[i] != null && all[i].name == \"Muzzle\") return all[i];",
       "declaration_file": false
@@ -6670,7 +6807,7 @@
       "focus": "repairObjective",
       "token": "CastOffArming",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 205,
+      "line": 258,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// but never cache absence: a truly machine-less scene stays armed (CastOffArming law).",
       "declaration_file": false
@@ -6679,7 +6816,7 @@
       "focus": "repairObjective",
       "token": "CastOffArming",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 211,
+      "line": 264,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,",
       "declaration_file": false
@@ -6688,7 +6825,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 204,
+      "line": 257,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// The machine is spawned at runtime by JobDirector, so keep looking until found \u2014",
       "declaration_file": false
@@ -6697,7 +6834,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 216,
+      "line": 269,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// observes and its repaired state \u2014 divergence from the JobDirector-spawned machine",
       "declaration_file": false
@@ -6706,7 +6843,7 @@
       "focus": "repairObjective",
       "token": "REPAIR_TRACE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 222,
+      "line": 275,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=castoff armed=\" + armed",
       "declaration_file": false
@@ -6715,7 +6852,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 36,
+      "line": 43,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "[Tooltip(\"RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).\")]",
       "declaration_file": false
@@ -6724,7 +6861,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 44,
+      "line": 51,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press",
       "declaration_file": false
@@ -6733,7 +6870,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 206,
+      "line": 259,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "foreach (var m in FindObjectsOfType<RepairableMachine>())",
       "declaration_file": false
@@ -6751,7 +6888,7 @@
       "focus": "repairObjective",
       "token": "gate_coupler",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 37,
+      "line": 44,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "[SerializeField] private string armingMachineId = \"gate_coupler\";",
       "declaration_file": false
@@ -6778,7 +6915,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-      "line": 10,
+      "line": 11,
       "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
       "snippet": "/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.",
       "declaration_file": false
@@ -6787,7 +6924,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-      "line": 16,
+      "line": 17,
       "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
       "snippet": "private ShipCastOffRuntime _castOff;",
       "declaration_file": false
@@ -6796,7 +6933,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-      "line": 19,
+      "line": 20,
       "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
       "snippet": "public void Configure(ShipCastOffRuntime castOff)",
       "declaration_file": false
@@ -6805,7 +6942,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-      "line": 26,
+      "line": 27,
       "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
       "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -6814,7 +6951,43 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-      "line": 32,
+      "line": 40,
+      "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+      "snippet": "/// ShipCastOffRuntime builds its console in Start as well, so the order is not ours to",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+      "line": 48,
+      "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+      "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+      "line": 70,
+      "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+      "snippet": "/// Derived from ShipCastOffRuntime.ButtonLocalPos so the two rows cannot drift apart.",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+      "line": 73,
+      "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+      "snippet": "ShipCastOffRuntime.ButtonLocalPos - new Vector3(0f, 0.34f, 0f);",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+      "line": 77,
       "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
       "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -6823,7 +6996,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-      "line": 10,
+      "line": 11,
       "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
       "snippet": "/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.",
       "declaration_file": false
@@ -6832,7 +7005,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-      "line": 16,
+      "line": 17,
       "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
       "snippet": "private ShipCastOffRuntime _castOff;",
       "declaration_file": false
@@ -6841,7 +7014,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-      "line": 19,
+      "line": 20,
       "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
       "snippet": "public void Configure(ShipCastOffRuntime castOff)",
       "declaration_file": false
@@ -6850,7 +7023,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-      "line": 26,
+      "line": 27,
       "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
       "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -6859,7 +7032,43 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
-      "line": 32,
+      "line": 40,
+      "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+      "snippet": "/// ShipCastOffRuntime builds its console in Start as well, so the order is not ours to",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+      "line": 48,
+      "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+      "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+      "line": 70,
+      "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+      "snippet": "/// Derived from ShipCastOffRuntime.ButtonLocalPos so the two rows cannot drift apart.",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+      "line": 73,
+      "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
+      "snippet": "ShipCastOffRuntime.ButtonLocalPos - new Vector3(0f, 0.34f, 0f);",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+      "line": 77,
       "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
       "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -7012,25 +7221,43 @@
       "focus": "melee",
       "token": "ArenaWeaponKind.BreakerBlade",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 94,
+      "line": 96,
       "symbol": "Ziptide.Gameplay.WeaponPoseCore",
-      "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null) return;",
+      "snippet": "if (def.kind != ArenaWeaponKind.BreakerBlade && def.kind != ArenaWeaponKind.TidePike) return;",
       "declaration_file": false
     },
     {
       "focus": "melee",
       "token": "ArenaWeaponKind.TidePike",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 81,
+      "line": 82,
       "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;",
       "declaration_file": false
     },
     {
       "focus": "melee",
+      "token": "ArenaWeaponKind.TidePike",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+      "line": 96,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+      "snippet": "if (def.kind != ArenaWeaponKind.BreakerBlade && def.kind != ArenaWeaponKind.TidePike) return;",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "ArenaWeaponKind.TidePike",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+      "line": 97,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+      "snippet": "InstallSemanticHandGrip(def.kind == ArenaWeaponKind.TidePike);",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
       "token": "HitFromHammer",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 157,
+      "line": 190,
       "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "wall.HitFromHammer(h.ClosestPoint(tipPos));",
       "declaration_file": false
@@ -7039,7 +7266,7 @@
       "focus": "melee",
       "token": "MeleeWeaponRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 61,
+      "line": 62,
       "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "public class MeleeWeaponRuntime : MonoBehaviour",
       "declaration_file": true
@@ -7048,7 +7275,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 13,
+      "line": 14,
       "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "/// swappable as long as they preserve the Muzzle/tip socket.",
       "declaration_file": false
@@ -7057,9 +7284,18 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 86,
+      "line": 87,
       "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "_tip = transform.Find(\"Muzzle\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+      "line": 105,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+      "snippet": "/// the real Muzzle socket so a replacement mesh with different model axes still holds",
       "declaration_file": false
     },
     {
@@ -7327,7 +7563,7 @@
       "focus": "shipPresentation",
       "token": "ShipRefit",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 55,
+      "line": 56,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "ShipRefit.Apply(gameObject);",
       "declaration_file": false
@@ -7336,7 +7572,7 @@
       "focus": "shipPresentation",
       "token": "ShipRefit.Apply",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
-      "line": 55,
+      "line": 56,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "ShipRefit.Apply(gameObject);",
       "declaration_file": false

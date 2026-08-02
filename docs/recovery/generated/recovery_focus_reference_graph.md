@@ -1,13 +1,13 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **827**
-- Focused references: **467**
+- Scanned C# files: **833**
+- Focused references: **480**
 
 ## melee
 
-- References: **113**
-- Files: **38**
-- Non-declaration caller files: **38**
+- References: **118**
+- Files: **39**
+- Non-declaration caller files: **39**
 
 ### `ArenaWeaponKind.BreakerBlade`
 
@@ -15,7 +15,7 @@
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:392` — `case ArenaWeaponKind.BreakerBlade:`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:453` — `case ArenaWeaponKind.BreakerBlade:`
 - **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:119` — `if (definition == null || definition.kind != ArenaWeaponKind.BreakerBlade) continue;`
-- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:94` — `if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null) return;`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:96` — `if (def.kind != ArenaWeaponKind.BreakerBlade && def.kind != ArenaWeaponKind.TidePike) return;`
 
 ### `ArenaWeaponKind.SonicThumper`
 
@@ -28,7 +28,9 @@
 - **reference** · `Ziptide.Editor.Patching.ArenaWeaponAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs:28` — `made += Ensure("tide_pike", ArenaWeaponKind.TidePike, cooldown: 0.0f);`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:399` — `case ArenaWeaponKind.TidePike:`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:454` — `case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;`
-- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:81` — `private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:82` — `private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:96` — `if (def.kind != ArenaWeaponKind.BreakerBlade && def.kind != ArenaWeaponKind.TidePike) return;`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:97` — `InstallSemanticHandGrip(def.kind == ArenaWeaponKind.TidePike);`
 
 ### `HammerTool`
 
@@ -43,24 +45,26 @@
 - **reference** · `Ziptide.Gameplay.BreakableWall` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/BreakableWall.cs:48` — `public void HitFromHammer(Vector3 worldHitPoint)`
 - **reference** · `Ziptide.Gameplay.BreakableWall` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/BreakableWall.cs:149` — `public void HitFromHammer() { HitFromHammer(transform.position); }`
 - **reference** · `Ziptide.Gameplay.HammerTool` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HammerTool.cs:118` — `if (wall != null) { wall.HitFromHammer(_head.position); _lastBreakAt = Time.time; break; }`
-- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:157` — `wall.HitFromHammer(h.ClosestPoint(tipPos));`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:190` — `wall.HitFromHammer(h.ClosestPoint(tipPos));`
 - **reference** · `Ziptide.Gameplay.SonicThumperRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs:64` — `wall.HitFromHammer(h.ClosestPoint(transform.position));`
 
 ### `MeleeWeaponRuntime`
 
+- **reference** · `Ziptide.Core.MeleeGripCore` · `Ziptide/Assets/Ziptide/Core/Runtime/MeleeGripCore.cs:32` — `/// MeleeWeaponRuntime.InstallSemanticHandGrip ran on the next frame and replaced that pose with a`
 - **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:28` — `bool melee = item.GetComponent<MeleeWeaponRuntime>() != null;`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:454` — `case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;`
 - **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:110` — `MeleeWeaponRuntime[] weapons = UnityEngine.Object.FindObjectsOfType<MeleeWeaponRuntime>(true);`
 - **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:113` — `MeleeWeaponRuntime weapon = weapons[i];`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:12` — `/// itself when MeleeWeaponRuntime is present.`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:42` — `if (GetComponent<MeleeWeaponRuntime>() == null) return false;`
-- **declaration** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:61` — `public class MeleeWeaponRuntime : MonoBehaviour`
+- **declaration** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:62` — `public class MeleeWeaponRuntime : MonoBehaviour`
 - **reference** · `Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs:119` — `string source = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");`
 - **reference** · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:57` — `string melee = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");`
 
 ### `Muzzle`
 
 - **reference** · `Ziptide.Content.ItemDefinition` · `Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs:43` — `[Tooltip("Muzzle point (local). Zero = factory default. Bolts/rays originate here.")]`
+- **reference** · `Ziptide.Core.MeleeGripCore` · `Ziptide/Assets/Ziptide/Core/Runtime/MeleeGripCore.cs:18` — `/// the existing WeaponPoseCore already solves that from the real Muzzle socket rather than from`
 - **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:20` — `public const string MuzzleDistance = "WEAPON_MUZZLE_DISTANCE_INVALID";`
 - **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:29` — `bool hasMuzzle = item.transform.Find("Muzzle") != null;`
 - **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:30` — `bool knownWeapon = melee || hasMuzzle`
@@ -87,8 +91,8 @@
 - **reference** · `Ziptide.Gameplay.BeltRig` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:149` — `/// item root axes are solved separately from the actual Muzzle socket by HolsterSocketInteractor.`
 - **reference** · `Ziptide.Gameplay.BeltRig` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:172` — `// Euler pose. New code should use ResolveDesiredAxis/ResolveDesiredUp plus the item's Muzzle axis.`
 - **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:76` — `/// Muzzle/tip axis makes guns hang barrel-down and blades sheath tip-down without assuming model axes.`
-- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:131` — `Transform direct = root.Find("Muzzle");`
-- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:135` — `if (all[i] != null && all[i].name == "Muzzle") return all[i];`
+- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:139` — `Transform direct = root.Find("Muzzle");`
+- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:143` — `if (all[i] != null && all[i].name == "Muzzle") return all[i];`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:49` — `// Every gun (anything with a Muzzle + grab) gets the aim line (CONTROL_SCHEME "Aim").`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:50` — `if (built != null && built.transform.Find("Muzzle") != null`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:208` — `var muzzle = new GameObject("Muzzle");`
@@ -103,8 +107,9 @@
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:7` — `/// The aim line (CONTROL_SCHEME.md "Aim"): a thin ray from the Muzzle to the first hit,`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:11` — `/// Melee weapons expose a child named Muzzle as their physical tip, so this component disables`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:50` — `_muzzle = transform.Find("Muzzle");`
-- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:13` — `/// swappable as long as they preserve the Muzzle/tip socket.`
-- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:86` — `_tip = transform.Find("Muzzle");`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:14` — `/// swappable as long as they preserve the Muzzle/tip socket.`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:87` — `_tip = transform.Find("Muzzle");`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:105` — `/// the real Muzzle socket so a replacement mesh with different model axes still holds`
 - **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:10` — `/// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, tracer/muzzle/impact feedback,`
 - **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:41` — `_muzzle = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:44` — `var m = new GameObject("Muzzle");`
@@ -148,7 +153,7 @@
 
 ## repairObjective
 
-- References: **250**
+- References: **254**
 - Files: **60**
 - Non-declaration caller files: **59**
 
@@ -157,8 +162,8 @@
 - **declaration** · `Ziptide.Gameplay.CastOffArming` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CastOffArming.cs:5` — `/// PRIORITIES #3 fragment). One law, pinned by CastOffArmingTests: the gate only ever blocks`
 - **declaration** · `Ziptide.Gameplay.CastOffArming` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CastOffArming.cs:10` — `public static class CastOffArming`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:17` — `/// <see cref="CastOffArming"/> — a missing machine never strands the launch. Blocked presses flash the`
-- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:205` — `// but never cache absence: a truly machine-less scene stays armed (CastOffArming law).`
-- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:211` — `bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,`
+- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:258` — `// but never cache absence: a truly machine-less scene stays armed (CastOffArming law).`
+- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:264` — `bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,`
 - **reference** · `Ziptide.Tests.EditMode.CastOffArmingTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs:11` — `public class CastOffArmingTests`
 - **reference** · `Ziptide.Tests.EditMode.CastOffArmingTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs:16` — `Assert.IsFalse(CastOffArming.IsArmed(gateConfigured: true, machineFound: true, machineRepaired: false),`
 - **reference** · `Ziptide.Tests.EditMode.CastOffArmingTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs:23` — `Assert.IsTrue(CastOffArming.IsArmed(gateConfigured: true, machineFound: true, machineRepaired: true));`
@@ -251,8 +256,8 @@
 - **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:26` — `private JobDirector _director;`
 - **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:57` — `public void Init(MachineSpawnDefinition def, JobDirector director)`
 - **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:290` — `if (_director == null) _director = FindObjectOfType<JobDirector>();`
-- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:204` — `// The machine is spawned at runtime by JobDirector, so keep looking until found —`
-- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:216` — `// observes and its repaired state — divergence from the JobDirector-spawned machine`
+- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:257` — `// The machine is spawned at runtime by JobDirector, so keep looking until found —`
+- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:269` — `// observes and its repaired state — divergence from the JobDirector-spawned machine`
 - **reference** · `Ziptide.Gameplay.TransmissionConsole` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:12` — `/// screen. Spawned by JobDirector next to any fragment pickup (the playback device lives where the`
 - **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:189` — `// finishes loading — JobDirector materialises them in its own Start. Rebind a moment later.`
 - **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:215` — `var director = FindObjectOfType<JobDirector>();`
@@ -321,7 +326,7 @@
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:114` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=runtime machine=" + machineId`
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:223` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=bank_drain step=" + CurrentStepIndex`
 - **reference** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:173` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=board director=" + jobDirector.GetInstanceID()`
-- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:222` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=castoff armed=" + armed`
+- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:275` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=castoff armed=" + armed`
 - **reference** · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:72` — `int repair = CountRuntimeLogCalls(root, "REPAIR_TRACE");`
 - **reference** · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:78` — `"REPAIR_TRACE no longer covers enough hops to distinguish state from presentation.");`
 
@@ -366,9 +371,9 @@
 - **reference** · `Ziptide.Gameplay.RepairStage` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairStage.cs:46` — `RepairableMachine designatedMachine,`
 - **reference** · `Ziptide.Gameplay.RepairStage` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairStage.cs:47` — `Action<RepairableMachine> publish)`
 - **declaration** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:14` — `public class RepairableMachine : MonoBehaviour, IScannable`
-- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:36` — `[Tooltip("RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).")]`
-- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:44` — `private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press`
-- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:206` — `foreach (var m in FindObjectsOfType<RepairableMachine>())`
+- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:43` — `[Tooltip("RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).")]`
+- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:51` — `private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press`
+- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:259` — `foreach (var m in FindObjectsOfType<RepairableMachine>())`
 - **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:16` — `/// choice, the comfort console owns comfort, RepairableMachine owns repair stages, JobRuntime owns`
 - **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:46` — `private readonly List<RepairableMachine> _machines = new List<RepairableMachine>();`
 - **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:202` — `_machines.AddRange(FindObjectsOfType<RepairableMachine>(true));`
@@ -417,11 +422,15 @@
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:18` — `/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:123` — `var castOff = GetComponentInParent<ShipCastOffRuntime>();`
 - **declaration** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:20` — `public class ShipCastOffRuntime : MonoBehaviour`
-- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:10` — `/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.`
-- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:16` — `private ShipCastOffRuntime _castOff;`
-- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:19` — `public void Configure(ShipCastOffRuntime castOff)`
-- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:26` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:32` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:11` — `/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:17` — `private ShipCastOffRuntime _castOff;`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:20` — `public void Configure(ShipCastOffRuntime castOff)`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:27` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:40` — `/// ShipCastOffRuntime builds its console in Start as well, so the order is not ours to`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:48` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:70` — `/// Derived from ShipCastOffRuntime.ButtonLocalPos so the two rows cannot drift apart.`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:73` — `ShipCastOffRuntime.ButtonLocalPos - new Vector3(0f, 0.34f, 0f);`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:77` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Tests.EditMode.ArtifactThreadTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ArtifactThreadTests.cs:30` — `string castOff = Source("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
 - **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:182` — `var castOff = go.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:264` — `string castOff = Read("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
@@ -430,11 +439,11 @@
 
 - **reference** · `Ziptide.Editor.Patching.WorldJobLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldJobLibrary.cs:138` — `.Machine("gate_coupler", new Vector3(6, 0.1f, 14), "coupler_cell",`
 - **reference** · `Ziptide.Editor.Patching.WorldJobLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldJobLibrary.cs:140` — `.Repair("gate_coupler")`
-- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:37` — `[SerializeField] private string armingMachineId = "gate_coupler";`
+- **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:44` — `[SerializeField] private string armingMachineId = "gate_coupler";`
 
 ## shipPresentation
 
-- References: **104**
+- References: **108**
 - Files: **22**
 - Non-declaration caller files: **19**
 
@@ -455,11 +464,15 @@
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:18` — `/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:123` — `var castOff = GetComponentInParent<ShipCastOffRuntime>();`
 - **declaration** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:20` — `public class ShipCastOffRuntime : MonoBehaviour`
-- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:10` — `/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.`
-- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:16` — `private ShipCastOffRuntime _castOff;`
-- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:19` — `public void Configure(ShipCastOffRuntime castOff)`
-- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:26` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:32` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:11` — `/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:17` — `private ShipCastOffRuntime _castOff;`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:20` — `public void Configure(ShipCastOffRuntime castOff)`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:27` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:40` — `/// ShipCastOffRuntime builds its console in Start as well, so the order is not ours to`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:48` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:70` — `/// Derived from ShipCastOffRuntime.ButtonLocalPos so the two rows cannot drift apart.`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:73` — `ShipCastOffRuntime.ButtonLocalPos - new Vector3(0f, 0.34f, 0f);`
+- **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:77` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Tests.EditMode.ArtifactThreadTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ArtifactThreadTests.cs:30` — `string castOff = Source("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
 - **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:182` — `var castOff = go.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:264` — `string castOff = Read("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
@@ -552,7 +565,7 @@
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:13` — `/// equips via ShipLocker (profile-flag persistence) and re-runs ShipRefit LIVE on the berth hull —`
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:19` — `[Tooltip("The hull root ShipRefit applies to (the boarding station's ship).")]`
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:100` — `if (shipRoot != null) ShipRefit.Apply(shipRoot);`
-- **reference** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:55` — `ShipRefit.Apply(gameObject);`
+- **reference** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:56` — `ShipRefit.Apply(gameObject);`
 - **declaration** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:25` — `public static class ShipRefit`
 - **declaration** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:106` — `private static ShipRefitBaseXf Remember(Transform t)`
 - **declaration** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:108` — `var b = t.GetComponent<ShipRefitBaseXf>();`
@@ -563,7 +576,7 @@
 ### `ShipRefit.Apply`
 
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:100` — `if (shipRoot != null) ShipRefit.Apply(shipRoot);`
-- **reference** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:55` — `ShipRefit.Apply(gameObject);`
+- **reference** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:56` — `ShipRefit.Apply(gameObject);`
 
 ### `__SHIP`
 
