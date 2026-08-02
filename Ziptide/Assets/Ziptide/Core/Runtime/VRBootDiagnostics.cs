@@ -66,7 +66,7 @@ namespace Ziptide.Core
             try
             {
                 var displays = new List<XRDisplaySubsystem>();
-                SubsystemManager.GetInstances(displays);
+                SubsystemManager.GetSubsystems(displays);
                 if (displays.Count == 0)
                     Debug.Log("[Ziptide] VRBootDiagnostics: XR display subsystems=0 (not running or no XR loader)");
                 else

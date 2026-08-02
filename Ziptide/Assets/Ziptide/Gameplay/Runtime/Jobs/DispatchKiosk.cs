@@ -28,7 +28,7 @@ namespace Ziptide.Gameplay
         {
             if (_director == null)
                 _director = FindObjectOfType<JobDirector>();
-            var interactable = GetComponent<XRSimpleInteractable>();
+            var interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             if (interactable != null)
                 interactable.selectEntered.AddListener(OnSelectEntered);
 
@@ -62,7 +62,7 @@ namespace Ziptide.Gameplay
 
         private void OnDestroy()
         {
-            var interactable = GetComponent<XRSimpleInteractable>();
+            var interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             if (interactable != null)
                 interactable.selectEntered.RemoveListener(OnSelectEntered);
         }

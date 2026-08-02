@@ -212,7 +212,7 @@ namespace Ziptide.Gameplay
         private void ProbeAim()
         {
             var cam = Camera.main;
-            foreach (var ray in FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.XRRayInteractor>())
+            foreach (var ray in FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>())
             {
                 if (ray == null || !ray.isActiveAndEnabled) continue;
                 Vector3 toBoard = transform.position - ray.transform.position;
@@ -293,7 +293,7 @@ namespace Ziptide.Gameplay
             go.transform.localScale = new Vector3(wide ? TileW * 2f : TileW, TileH, 0.06f);
             Paint(go, color);
 
-            var interactable = go.AddComponent<XRSimpleInteractable>();
+            var interactable = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var mgr = FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             var r = go.GetComponent<Renderer>();

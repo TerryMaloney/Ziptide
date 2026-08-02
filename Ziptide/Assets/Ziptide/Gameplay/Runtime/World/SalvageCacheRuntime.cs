@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Core;
 
 namespace Ziptide.Gameplay
@@ -42,8 +42,8 @@ namespace Ziptide.Gameplay
             // Arm the grab at RUNTIME (listeners never serialize). Collider precedes interactable.
             var body = transform.Find("CacheBody");
             if (body == null) return;
-            if (body.GetComponent<XRSimpleInteractable>() != null) return;
-            var grab = body.gameObject.AddComponent<XRSimpleInteractable>();
+            if (body.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>() != null) return;
+            var grab = body.gameObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             grab.selectEntered.AddListener(_ => Open());
         }
 

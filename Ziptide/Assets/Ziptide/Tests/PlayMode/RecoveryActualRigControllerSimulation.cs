@@ -98,16 +98,16 @@ namespace Ziptide.Tests.PlayMode
         }
 
         public Camera HeadCamera { get; }
-        public XRRayInteractor LeftRay { get; }
-        public XRRayInteractor RightRay { get; }
+        public UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor LeftRay { get; }
+        public UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor RightRay { get; }
         public string LeftRayPath => RecoveryRuntimeCensus.HierarchyPath(LeftRay.transform);
         public string RightRayPath => RecoveryRuntimeCensus.HierarchyPath(RightRay.transform);
 
         private RecoveryActualRigControllerSimulation(
             PlayerRigPersistence rig,
             Camera headCamera,
-            XRRayInteractor leftRay,
-            XRRayInteractor rightRay)
+            UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor leftRay,
+            UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor rightRay)
         {
             _rig = rig;
             HeadCamera = headCamera;
@@ -129,9 +129,9 @@ namespace Ziptide.Tests.PlayMode
             if (headCamera == null)
                 throw new InvalidOperationException("The actual persistent rig contains no head camera.");
 
-            XRRayInteractor[] rays = rig.GetComponentsInChildren<XRRayInteractor>(true);
-            XRRayInteractor leftRay = SelectDirectRay(rays, "Left");
-            XRRayInteractor rightRay = SelectDirectRay(rays, "Right");
+            UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor[] rays = rig.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>(true);
+            UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor leftRay = SelectDirectRay(rays, "Left");
+            UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor rightRay = SelectDirectRay(rays, "Right");
             if (leftRay == null || rightRay == null || leftRay == rightRay)
             {
                 throw new InvalidOperationException(
@@ -465,11 +465,11 @@ namespace Ziptide.Tests.PlayMode
         {
             var states = new List<BehaviourState>();
             if (_rig == null) return states;
-            LocomotionProvider[] providers =
-                _rig.GetComponentsInChildren<LocomotionProvider>(true);
+            UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider[] providers =
+                _rig.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider>(true);
             for (int i = 0; i < providers.Length; i++)
             {
-                LocomotionProvider provider = providers[i];
+                UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider provider = providers[i];
                 if (provider == null) continue;
                 states.Add(new BehaviourState(provider));
                 provider.enabled = false;
@@ -538,7 +538,7 @@ namespace Ziptide.Tests.PlayMode
 
         private void ActivateControllerRay(
             PlayerRigPersistence rig,
-            XRRayInteractor ray,
+            UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor ray,
             XRInteractionManager canonicalManager)
         {
             ActivateHierarchy(rig.transform, ray.transform);
@@ -584,7 +584,7 @@ namespace Ziptide.Tests.PlayMode
                     if (behaviour == null) continue;
                     string typeName = behaviour.GetType().FullName ?? string.Empty;
                     if (behaviour is XRBaseController ||
-                        behaviour is XRBaseControllerInteractor ||
+                        behaviour is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor ||
                         typeName.IndexOf(
                             "Controller",
                             StringComparison.OrdinalIgnoreCase) >= 0 ||
@@ -624,14 +624,14 @@ namespace Ziptide.Tests.PlayMode
             _transformStates.Add(new TransformState(value));
         }
 
-        private static XRRayInteractor SelectDirectRay(
-            XRRayInteractor[] rays,
+        private static UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor SelectDirectRay(
+            UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor[] rays,
             string handName)
         {
-            XRRayInteractor fallback = null;
+            UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor fallback = null;
             for (int i = 0; i < rays.Length; i++)
             {
-                XRRayInteractor ray = rays[i];
+                UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor ray = rays[i];
                 if (ray == null) continue;
                 string path = RecoveryRuntimeCensus.HierarchyPath(ray.transform);
                 if (path.IndexOf(handName, StringComparison.OrdinalIgnoreCase) < 0) continue;
@@ -644,13 +644,13 @@ namespace Ziptide.Tests.PlayMode
             return fallback;
         }
 
-        private static string DescribeRays(XRRayInteractor[] rays)
+        private static string DescribeRays(UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor[] rays)
         {
             if (rays == null || rays.Length == 0) return "rays=0";
             var values = new List<string>(rays.Length);
             for (int i = 0; i < rays.Length; i++)
             {
-                XRRayInteractor ray = rays[i];
+                UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor ray = rays[i];
                 if (ray == null) continue;
                 values.Add(
                     RecoveryRuntimeCensus.HierarchyPath(ray.transform) +

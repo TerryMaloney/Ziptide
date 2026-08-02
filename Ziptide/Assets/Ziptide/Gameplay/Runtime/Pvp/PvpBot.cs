@@ -268,7 +268,7 @@ namespace Ziptide.Gameplay
                 if (dart == null) continue;
                 var rb = dart.GetComponent<Rigidbody>();
                 if (rb == null) continue;
-                Vector3 vel = rb.velocity;
+                Vector3 vel = rb.linearVelocity;
                 Vector3 toMe = transform.position - dart.transform.position;
                 if (vel.sqrMagnitude > 1f && Vector3.Dot(vel.normalized, toMe.normalized) > 0.7f)
                 {

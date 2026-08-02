@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Content.Traversal;
 
 namespace Ziptide.Gameplay
@@ -119,7 +119,7 @@ namespace Ziptide.Gameplay
             _handle = handleGo.transform;
             PlaceHandle(0f);
 
-            var grab = handleGo.AddComponent<XRSimpleInteractable>();
+            var grab = handleGo.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             grab.selectEntered.AddListener(_ => BeginRide());
             grab.selectExited.AddListener(_ => EndRide("released"));
             Debug.Log("ZIPTIDE: ZIPLINE_READY len=" +

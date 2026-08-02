@@ -545,7 +545,7 @@ namespace Ziptide.Gameplay
             Paint(plate, color);
             var renderer = plate.GetComponent<Renderer>();
 
-            var interactable = plate.AddComponent<XRSimpleInteractable>();
+            var interactable = plate.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             interactable.selectEntered.AddListener(_ => onSelect?.Invoke());

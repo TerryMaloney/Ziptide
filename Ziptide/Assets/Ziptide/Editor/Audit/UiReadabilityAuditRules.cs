@@ -5,7 +5,7 @@ using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR.Interaction.Toolkit;
+
 
 namespace Ziptide.Editor.Audit
 {
@@ -49,7 +49,7 @@ namespace Ziptide.Editor.Audit
                 }
             }
 
-            foreach (var interactable in UnityEngine.Object.FindObjectsOfType<XRBaseInteractable>(true))
+            foreach (var interactable in UnityEngine.Object.FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>(true))
             {
                 if (interactable == null || interactable.gameObject.scene != scene) continue;
 

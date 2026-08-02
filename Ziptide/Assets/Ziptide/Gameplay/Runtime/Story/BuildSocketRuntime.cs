@@ -56,7 +56,7 @@ namespace Ziptide.Gameplay
             frame.transform.localPosition = new Vector3(0f, 0.1f, 0f);
             frame.transform.localScale = new Vector3(1.2f, 0.2f, 1.2f);
             Paint(frame, FrameColor);
-            var interactable = frame.AddComponent<XRSimpleInteractable>();
+            var interactable = frame.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             interactable.selectEntered.AddListener(_ => TryBuild());

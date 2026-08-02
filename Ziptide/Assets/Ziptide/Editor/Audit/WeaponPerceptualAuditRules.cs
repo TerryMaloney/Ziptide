@@ -1,6 +1,6 @@
 #if UNITY_EDITOR
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Gameplay;
 
 namespace Ziptide.Editor.Audit
@@ -24,7 +24,7 @@ namespace Ziptide.Editor.Audit
         {
             foreach (ItemRuntime item in Object.FindObjectsOfType<ItemRuntime>(true))
             {
-                if (item == null || item.GetComponent<XRGrabInteractable>() == null) continue;
+                if (item == null || item.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>() == null) continue;
                 bool melee = item.GetComponent<MeleeWeaponRuntime>() != null;
                 bool hasMuzzle = item.transform.Find("Muzzle") != null;
                 bool knownWeapon = melee || hasMuzzle

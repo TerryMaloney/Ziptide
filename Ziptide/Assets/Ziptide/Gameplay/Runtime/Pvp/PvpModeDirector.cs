@@ -495,7 +495,7 @@ namespace Ziptide.Gameplay
         /// (VR_RIG_GOTCHAS). A held racked weapon just becomes honest arena litter.</summary>
         private static bool HeldByPlayer(GameObject go)
         {
-            var grab = go.GetComponentInChildren<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
+            var grab = go.GetComponentInChildren<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             return grab != null && grab.isSelected;
         }
 

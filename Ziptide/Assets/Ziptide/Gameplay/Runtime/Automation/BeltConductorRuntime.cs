@@ -26,7 +26,7 @@ namespace Ziptide.Gameplay
         private Transform _handle;
         private Transform _rig;
         private ConductorRide _ride;
-        private XRBaseControllerInteractor _hand;
+        private UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor _hand;
         private int _ticksSent;
 
         private void Start()
@@ -85,7 +85,7 @@ namespace Ziptide.Gameplay
             foreach (var r in GetComponentsInChildren<Renderer>())
                 r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
-            var grab = handleGo.AddComponent<XRSimpleInteractable>();
+            var grab = handleGo.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             grab.selectEntered.AddListener(a => BeginRide(a));
             grab.selectExited.AddListener(_ => EndRide("released"));
         }
@@ -103,7 +103,7 @@ namespace Ziptide.Gameplay
             }
             var rig = Object.FindObjectOfType<PlayerRigPersistence>();
             _rig = rig != null ? rig.transform : null;
-            _hand = args.interactorObject as XRBaseControllerInteractor;
+            _hand = args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor;
             _ride = new ConductorRide(path);
             _ticksSent = 0;
             Debug.Log("ZIPTIDE: BELT_RIDE_START cells=" + path.Count);

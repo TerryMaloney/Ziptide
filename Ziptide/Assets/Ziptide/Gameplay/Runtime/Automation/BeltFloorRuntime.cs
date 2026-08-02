@@ -308,7 +308,7 @@ namespace Ziptide.Gameplay
                 // Grip a placed belt/splitter to pick it back up (its riding item lifts with it —
                 // Clear's law). 4.1l: splitters are first-class — they round-trip like belts.
                 int cx = c.x, cz = c.z;
-                var pick = tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.XRSimpleInteractable>();
+                var pick = tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
                 pick.selectEntered.AddListener(_ => RemoveBeltAt(cx, cz));
             }
         }

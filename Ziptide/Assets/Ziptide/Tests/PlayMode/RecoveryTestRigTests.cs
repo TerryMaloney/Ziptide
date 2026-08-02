@@ -82,7 +82,7 @@ namespace Ziptide.Tests.PlayMode
             target.transform.localScale = Vector3.one * 0.35f;
             _created.Add(target);
 
-            var interactable = target.AddComponent<XRSimpleInteractable>();
+            var interactable = target.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             interactable.interactionManager = _fixture.InteractionManager;
             Physics.SyncTransforms();
 
@@ -97,10 +97,10 @@ namespace Ziptide.Tests.PlayMode
             int selected = 0;
             interactable.selectEntered.AddListener(_ => selected++);
 
-            var hoverInteractor = (IXRHoverInteractor)_fixture.RightRay;
-            var selectInteractor = (IXRSelectInteractor)_fixture.RightRay;
-            var hoverInteractable = (IXRHoverInteractable)interactable;
-            var selectInteractable = (IXRSelectInteractable)interactable;
+            var hoverInteractor = (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRHoverInteractor)_fixture.RightRay;
+            var selectInteractor = (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)_fixture.RightRay;
+            var hoverInteractable = (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRHoverInteractable)interactable;
+            var selectInteractable = (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)interactable;
 
             _fixture.InteractionManager.HoverEnter(hoverInteractor, hoverInteractable);
             Assert.IsTrue(_fixture.RightRay.hasHover);

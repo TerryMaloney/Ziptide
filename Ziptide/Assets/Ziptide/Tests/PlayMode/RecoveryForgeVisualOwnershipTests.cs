@@ -3,7 +3,7 @@ using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Gameplay;
 
 namespace Ziptide.Tests.PlayMode
@@ -48,7 +48,7 @@ namespace Ziptide.Tests.PlayMode
             // scale was inherited by the already-metre-authored ForgeVisual and produced a tiny gun.
             _item.transform.localScale = new Vector3(0.08f, 0.04f, 0.20f);
             _item.AddComponent<Rigidbody>();
-            var grab = _item.AddComponent<XRGrabInteractable>();
+            var grab = _item.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             grab.useDynamicAttach = false;
 
             var grip = new GameObject("Grip");

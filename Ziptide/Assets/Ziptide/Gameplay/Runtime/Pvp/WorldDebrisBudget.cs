@@ -65,7 +65,7 @@ namespace Ziptide.Gameplay
 
             Rigidbody body = chunk.AddComponent<Rigidbody>();
             body.mass = 1.25f;
-            body.velocity = velocity;
+            body.linearVelocity = velocity;
             body.angularVelocity = angularVelocity;
 
             var debris = chunk.AddComponent<WallChunkDebris>();

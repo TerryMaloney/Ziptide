@@ -665,7 +665,7 @@ namespace Ziptide.Editor.Patching
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
 
-            var grab = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
+            var grab = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
 
             // Create the Grip FIRST so we can reference it inside the SerializedObject block below. The grip
             // is the forward-grip the gun snaps to when grabbed.

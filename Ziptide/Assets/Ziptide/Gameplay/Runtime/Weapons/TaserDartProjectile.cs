@@ -17,10 +17,10 @@ namespace Ziptide.Gameplay
         private AudioClip _impactClip;
         private bool _stuck;
         private WeaponFeelRuntime _feel;
-        private XRBaseControllerInteractor _firingHand;
+        private UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor _firingHand;
 
         public void Init(float stunSeconds, float hitImpulse, float lifetime, AudioClip impactClip,
-            WeaponFeelRuntime feel = null, XRBaseControllerInteractor firingHand = null)
+            WeaponFeelRuntime feel = null, UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor firingHand = null)
         {
             _stunSeconds = stunSeconds;
             _hitImpulse = hitImpulse;
@@ -41,7 +41,7 @@ namespace Ziptide.Gameplay
             {
                 // Unity warns when velocity is written after the body becomes kinematic. Stop the
                 // dynamic body first, then lock it for the sticky-parent state.
-                rb.velocity = Vector3.zero;
+                rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
                 rb.isKinematic = true;
             }

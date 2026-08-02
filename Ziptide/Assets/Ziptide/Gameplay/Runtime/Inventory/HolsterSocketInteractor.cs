@@ -12,7 +12,7 @@ namespace Ziptide.Gameplay
     /// an item is holstered, and returns a per-item attach target from GetAttachTransform. It never
     /// rotates one shared socket anchor after selection.
     /// </summary>
-    public class HolsterSocketInteractor : XRSocketInteractor
+    public class HolsterSocketInteractor : UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor
     {
         private static readonly HashSet<string> DefaultAllowedIds = new HashSet<string>
         {
@@ -60,12 +60,12 @@ namespace Ziptide.Gameplay
             base.OnDestroy();
         }
 
-        public override bool CanHover(IXRHoverInteractable interactable)
+        public override bool CanHover(UnityEngine.XR.Interaction.Toolkit.Interactables.IXRHoverInteractable interactable)
         {
             return base.CanHover(interactable) && ItemIdAllowed(interactable);
         }
 
-        public override bool CanSelect(IXRSelectInteractable interactable)
+        public override bool CanSelect(UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable interactable)
         {
             return base.CanSelect(interactable) && ItemIdAllowed(interactable);
         }
@@ -75,14 +75,14 @@ namespace Ziptide.Gameplay
         /// target pose for that item's authored hand-grip attach point. Solving root pose from the real
         /// Muzzle/tip axis makes guns hang barrel-down and blades sheath tip-down without assuming model axes.
         /// </summary>
-        public override Transform GetAttachTransform(IXRInteractable interactable)
+        public override Transform GetAttachTransform(UnityEngine.XR.Interaction.Toolkit.Interactables.IXRInteractable interactable)
         {
             Component component = interactable as Component;
             if (component == null) return base.GetAttachTransform(interactable);
 
             GameObject go = component.gameObject;
             ItemRuntime item = go.GetComponent<ItemRuntime>();
-            XRGrabInteractable grab = go.GetComponent<XRGrabInteractable>();
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab = go.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             if (item == null || item.Definition == null || grab == null)
                 return base.GetAttachTransform(interactable);
 
@@ -100,7 +100,7 @@ namespace Ziptide.Gameplay
         }
 
         private void ConfigurePerItemTarget(
-            Transform target, Transform itemRoot, XRGrabInteractable grab, string itemId)
+            Transform target, Transform itemRoot, UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab, string itemId)
         {
             Transform itemAttach = grab.attachTransform != null ? grab.attachTransform : itemRoot;
             Vector3 localGripPosition = itemRoot.InverseTransformPoint(itemAttach.position);
@@ -144,7 +144,7 @@ namespace Ziptide.Gameplay
             return root;
         }
 
-        private bool ItemIdAllowed(IXRInteractable interactable)
+        private bool ItemIdAllowed(UnityEngine.XR.Interaction.Toolkit.Interactables.IXRInteractable interactable)
         {
             GameObject go = (interactable as Component)?.gameObject;
             if (go == null) return false;
@@ -169,7 +169,7 @@ namespace Ziptide.Gameplay
         {
             GameObject go = (args.interactableObject as Component)?.gameObject;
             ItemRuntime item = go != null ? go.GetComponent<ItemRuntime>() : null;
-            IXRSelectInteractable selectable = args.interactableObject as IXRSelectInteractable;
+            UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable selectable = args.interactableObject as UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable;
             bool canSelect = selectable != null && CanSelect(selectable);
             Debug.Log("ZIPTIDE: HOLSTER_CANDIDATE item="
                 + (item != null && item.Definition != null ? item.Definition.itemId : "UNKNOWN")
@@ -181,13 +181,13 @@ namespace Ziptide.Gameplay
             GameObject go = (args.interactableObject as Component)?.gameObject;
             if (go == null) return;
             ItemRuntime item = go.GetComponent<ItemRuntime>();
-            XRGrabInteractable grab = go.GetComponent<XRGrabInteractable>();
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab = go.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             if (item == null || item.Definition == null || grab == null) return;
 
             Rigidbody body = go.GetComponent<Rigidbody>();
             if (body != null)
             {
-                body.velocity = Vector3.zero;
+                body.linearVelocity = Vector3.zero;
                 body.angularVelocity = Vector3.zero;
             }
 
@@ -203,13 +203,13 @@ namespace Ziptide.Gameplay
                 + " selectors=" + grab.interactorsSelecting.Count);
         }
 
-        private IEnumerator ReportPoseAfterSelection(Transform item, XRGrabInteractable grab, string itemId)
+        private IEnumerator ReportPoseAfterSelection(Transform item, UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab, string itemId)
         {
             yield return null;
             if (item == null || grab == null || !grab.isSelected) yield break;
 
             bool owned = false;
-            foreach (IXRSelectInteractor interactor in grab.interactorsSelecting)
+            foreach (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor in grab.interactorsSelecting)
                 if (ReferenceEquals(interactor, this)) { owned = true; break; }
 
             Transform tip = FindTip(item);
@@ -223,7 +223,7 @@ namespace Ziptide.Gameplay
         {
             GameObject go = (args.interactableObject as Component)?.gameObject;
             ItemRuntime item = go != null ? go.GetComponent<ItemRuntime>() : null;
-            XRGrabInteractable grab = go != null ? go.GetComponent<XRGrabInteractable>() : null;
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab = go != null ? go.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>() : null;
 
             Debug.Log("ZIPTIDE: HOLSTER_SELECT_EXIT item="
                 + (item != null && item.Definition != null ? item.Definition.itemId : "UNKNOWN")

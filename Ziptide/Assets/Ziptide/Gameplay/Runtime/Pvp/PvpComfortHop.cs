@@ -9,17 +9,17 @@ namespace Ziptide.Gameplay
     /// inducing velocity launch. Added by the arena patcher to the gravity gun (alongside the normal
     /// damage raycast). The decision Terry locked: comfort hop, not launch.
     /// </summary>
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     public class PvpComfortHop : MonoBehaviour
     {
         public float hopDistance = 2.5f;
 
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Transform _muzzle;
 
         private void Awake()
         {
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _muzzle = transform.Find("Muzzle");
         }
 

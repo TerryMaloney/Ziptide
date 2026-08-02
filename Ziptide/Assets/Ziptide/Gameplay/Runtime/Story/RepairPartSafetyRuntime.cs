@@ -14,7 +14,7 @@ namespace Ziptide.Gameplay
         public const float MinimumRelativeY = -1.5f;
 
         private RepairableMachine _machine;
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Rigidbody _body;
         private Vector3 _homePosition;
         private Quaternion _homeRotation;
@@ -24,14 +24,14 @@ namespace Ziptide.Gameplay
         {
             if (_machine != null) return;
             _machine = machine;
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _body = GetComponent<Rigidbody>();
             _homePosition = transform.position;
             _homeRotation = transform.rotation;
 
             if (_grab != null)
             {
-                _grab.selectMode = InteractableSelectMode.Single;
+                _grab.selectMode = UnityEngine.XR.Interaction.Toolkit.Interactables.InteractableSelectMode.Single;
                 _grab.useDynamicAttach = false;
                 _grab.attachEaseInTime = 0f;
                 _grab.throwOnDetach = false;
@@ -91,7 +91,7 @@ namespace Ziptide.Gameplay
         {
             if (_body != null)
             {
-                _body.velocity = Vector3.zero;
+                _body.linearVelocity = Vector3.zero;
                 _body.angularVelocity = Vector3.zero;
                 _body.useGravity = false;
                 _body.constraints = RigidbodyConstraints.FreezeAll;

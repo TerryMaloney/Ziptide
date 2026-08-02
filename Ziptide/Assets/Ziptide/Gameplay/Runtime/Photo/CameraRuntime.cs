@@ -9,7 +9,7 @@ namespace Ziptide.Gameplay
     /// <summary>FIELD CAMERA — held shell, live viewfinder, haptic shutter and real capture seam.</summary>
     public class CameraRuntime : MonoBehaviour
     {
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Transform _lens;
         private Renderer _screen;
         private PhotoCaptureCamera _captureCamera;
@@ -30,7 +30,7 @@ namespace Ziptide.Gameplay
         private void Awake()
         {
             _screenBlock = new MaterialPropertyBlock();
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _lens = transform.Find("Lens");
             BuildBody();
             _captureCamera = gameObject.AddComponent<PhotoCaptureCamera>();
@@ -39,9 +39,9 @@ namespace Ziptide.Gameplay
 
         private void OnEnable() { if (_grab != null) _grab.activated.AddListener(OnActivated); }
         private void OnDisable() { if (_grab != null) _grab.activated.RemoveListener(OnActivated); }
-        private void OnActivated(ActivateEventArgs args) => Capture(args.interactorObject as XRBaseControllerInteractor);
+        private void OnActivated(ActivateEventArgs args) => Capture(args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor);
 
-        public bool Capture(XRBaseControllerInteractor hand)
+        public bool Capture(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor hand)
         {
             if (Time.time < _nextShutter) return false;
             CameraDefinition def = Def;

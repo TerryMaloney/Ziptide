@@ -18,7 +18,7 @@ namespace Ziptide.Gameplay
 
         private Transform _muzzle;
         private LineRenderer _lr;
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Color _color = DefaultColor;
 
         private void Awake()
@@ -48,7 +48,7 @@ namespace Ziptide.Gameplay
         private void Start()
         {
             _muzzle = transform.Find("Muzzle");
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         }
 
         private void Update()
@@ -76,9 +76,9 @@ namespace Ziptide.Gameplay
         private bool IsSelectedByControllerHand()
         {
             if (_grab == null || !_grab.isSelected) return false;
-            foreach (IXRSelectInteractor interactor in _grab.interactorsSelecting)
+            foreach (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor in _grab.interactorsSelecting)
             {
-                var controller = interactor as XRBaseControllerInteractor;
+                var controller = interactor as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor;
                 if (controller != null && controller.isActiveAndEnabled && controller.gameObject.activeInHierarchy)
                     return true;
             }

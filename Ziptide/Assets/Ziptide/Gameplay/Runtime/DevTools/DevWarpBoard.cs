@@ -229,7 +229,7 @@ namespace Ziptide.Gameplay.DevTools
             go.transform.localScale = new Vector3(TileW, TileH, 0.06f);
             Paint(go, color);
 
-            var interactable = go.AddComponent<XRSimpleInteractable>();
+            var interactable = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var mgr = FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             else StartCoroutine(BindManagerLater(interactable));
@@ -252,7 +252,7 @@ namespace Ziptide.Gameplay.DevTools
             MakeLabel(label, localPos + new Vector3(0f, 0f, 0.05f), 0.009f, LabelColor, root); // on the +Z (viewer) side
         }
 
-        private static IEnumerator BindManagerLater(XRSimpleInteractable interactable)
+        private static IEnumerator BindManagerLater(UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable)
         {
             for (int i = 0; i < 20; i++)
             {
@@ -263,7 +263,7 @@ namespace Ziptide.Gameplay.DevTools
             }
         }
 
-        private void LogTileProbe(string phase, GameObject tile, XRSimpleInteractable interactable)
+        private void LogTileProbe(string phase, GameObject tile, UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable)
         {
             int managerId = interactable != null && interactable.interactionManager != null
                 ? interactable.interactionManager.GetInstanceID()
@@ -279,11 +279,11 @@ namespace Ziptide.Gameplay.DevTools
 
         private void LogAimProbe()
         {
-            var rays = FindObjectsOfType<XRRayInteractor>();
+            var rays = FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>();
             int active = 0;
             for (int i = 0; i < rays.Length; i++)
             {
-                XRRayInteractor ray = rays[i];
+                UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor ray = rays[i];
                 if (ray == null || !ray.isActiveAndEnabled || !ray.gameObject.activeInHierarchy)
                     continue;
 

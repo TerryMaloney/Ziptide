@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Content;
 using Ziptide.Multiplayer.Augments;
 
@@ -102,7 +102,7 @@ namespace Ziptide.Gameplay
             var col = go.GetComponent<Collider>();
             if (col != null) col.isTrigger = true;   // keep the collider — it's the select target
             _orbRenderer = go.GetComponent<Renderer>();
-            var grab = go.AddComponent<XRSimpleInteractable>();
+            var grab = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             grab.selectEntered.AddListener(_ => TryActivate());
             _orb = go.transform;
         }
@@ -230,7 +230,7 @@ namespace Ziptide.Gameplay
                 if (rb == null || rb.isKinematic) continue;
                 Vector3 pull = (hand - item.transform.position);
                 if (pull.magnitude < 0.4f) continue;      // close enough — let the grab take it
-                rb.velocity = Vector3.Lerp(rb.velocity, pull.normalized * 2.2f, 0.5f);
+                rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, pull.normalized * 2.2f, 0.5f);
             }
         }
     }

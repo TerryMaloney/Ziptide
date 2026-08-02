@@ -49,7 +49,7 @@ namespace Ziptide.Gameplay
             rb.isKinematic = true; // floats in place until collected; no physics needed
             rb.useGravity = false;
 
-            var grab = gameObject.AddComponent<XRGrabInteractable>();
+            var grab = gameObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null) grab.interactionManager = mgr;
             grab.selectEntered.AddListener(OnGrabbed);

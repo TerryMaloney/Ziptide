@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Content;
 
 namespace Ziptide.Gameplay
@@ -10,7 +10,7 @@ namespace Ziptide.Gameplay
     /// the displaced id is logged; respawning the displaced gem is a queued nicety). The gem then
     /// vanishes — augments are equipment, not carriables, so they never fight the holster/belt.
     /// </summary>
-    [RequireComponent(typeof(XRSimpleInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable))]
     public class AugmentPickupRuntime : MonoBehaviour
     {
         private AugmentDefinition _def;   // held directly — ItemRuntime force-requires a grab body,
@@ -20,7 +20,7 @@ namespace Ziptide.Gameplay
 
         private void Start()
         {
-            GetComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => Take());
+            GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>().selectEntered.AddListener(_ => Take());
         }
 
         private void Take()

@@ -26,8 +26,8 @@ namespace Ziptide.Gameplay
             if (GetComponent<Collider>() == null && GetComponentInChildren<Collider>() == null)
                 gameObject.AddComponent<BoxCollider>();
 
-            var grab = GetComponent<XRSimpleInteractable>();
-            if (grab == null) grab = gameObject.AddComponent<XRSimpleInteractable>();
+            var grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
+            if (grab == null) grab = gameObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             grab.selectEntered.AddListener(OnGripped);
             grab.selectExited.AddListener(OnReleased);
 
@@ -39,7 +39,7 @@ namespace Ziptide.Gameplay
 
         private void OnGripped(SelectEnterEventArgs args)
         {
-            var interactor = args.interactorObject as XRBaseControllerInteractor;
+            var interactor = args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor;
             if (interactor == null) return;
             // The rig's ray interactors can select from range — climbing only counts when the hand is
             // actually AT the wall, or you could hoist yourself on a laser pointer.
@@ -53,14 +53,14 @@ namespace Ziptide.Gameplay
 
         private void OnReleased(SelectExitEventArgs args)
         {
-            var interactor = args.interactorObject as XRBaseControllerInteractor;
+            var interactor = args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor;
             if (interactor == null) return;
             ClimbCoordinator.Ensure().EndGrip(HandOf(interactor));
         }
 
         /// <summary>Handedness from the interactor's hierarchy names (the rig's controllers carry
         /// Left/Right in their names). Unknown → Right, and the coordinator still behaves.</summary>
-        private static Hand HandOf(XRBaseControllerInteractor interactor)
+        private static Hand HandOf(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor interactor)
         {
             for (Transform t = interactor.transform; t != null; t = t.parent)
             {

@@ -1,6 +1,6 @@
 #if UNITY_EDITOR
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 
 namespace Ziptide.Editor.Audit
 {
@@ -32,9 +32,9 @@ namespace Ziptide.Editor.Audit
         public static void Run(SceneAuditReport report)
         {
             Physics.SyncTransforms();
-            foreach (XRSimpleInteractable interactable in Object.FindObjectsOfType<XRSimpleInteractable>(true))
+            foreach (UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable in Object.FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>(true))
             {
-                if (interactable == null || interactable.GetComponent<XRGrabInteractable>() != null) continue;
+                if (interactable == null || interactable.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>() != null) continue;
                 if (!IsCritical(interactable.name)) continue;
                 Collider target = FindTargetCollider(interactable);
                 if (target == null)
@@ -99,7 +99,7 @@ namespace Ziptide.Editor.Audit
                 || name.Contains("destinationbutton");
         }
 
-        private static Collider FindTargetCollider(XRSimpleInteractable interactable)
+        private static Collider FindTargetCollider(UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable)
         {
             Collider own = interactable.GetComponent<Collider>();
             if (own != null && own.enabled) return own;

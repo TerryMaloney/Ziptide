@@ -9,11 +9,11 @@ namespace Ziptide.Gameplay
     /// Fires sticky taser darts with definition-driven layered haptics, visual-only Forge recoil,
     /// authored-or-procedural fire audio, and a confirmed-impact return pulse from the projectile.
     /// </summary>
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     [RequireComponent(typeof(WeaponFeelRuntime))]
     public class TaserDartGunRuntime : MonoBehaviour
     {
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Transform _muzzle;
         private float _nextFireTime;
         private AudioSource _audioSource;
@@ -39,7 +39,7 @@ namespace Ziptide.Gameplay
 
         private void Awake()
         {
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _muzzle = transform.Find("Muzzle");
             if (_muzzle == null)
             {
@@ -84,10 +84,10 @@ namespace Ziptide.Gameplay
 
         private void OnActivated(ActivateEventArgs args)
         {
-            Fire(args.interactorObject as XRBaseControllerInteractor);
+            Fire(args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor);
         }
 
-        private void Fire(XRBaseControllerInteractor controllerInteractor)
+        private void Fire(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor controllerInteractor)
         {
             TaserDartGunDefinition def = Def;
             if (def == null || Time.time < _nextFireTime) return;
@@ -116,7 +116,7 @@ namespace Ziptide.Gameplay
             rb.mass = def.dartMass;
             rb.useGravity = true;
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-            rb.velocity = dir * def.muzzleVelocity;
+            rb.linearVelocity = dir * def.muzzleVelocity;
 
             foreach (var gunCol in GetComponentsInChildren<Collider>(true))
                 if (gunCol != null) Physics.IgnoreCollision(capsule, gunCol);

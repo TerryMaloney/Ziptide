@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Editor.Audit;
 
 namespace Ziptide.Tests.EditMode
@@ -53,7 +53,7 @@ namespace Ziptide.Tests.EditMode
                 control.name = "PowerSwitch";
                 control.transform.position = new Vector3(0f, 2.0f, 0f);
                 control.transform.localScale = new Vector3(0.20f, 0.20f, 0.08f);
-                control.AddComponent<XRSimpleInteractable>();
+                control.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
 
                 var report = new SceneAuditReport { sceneName = "PG4_BrokenFixture" };
                 InteractionReachAuditRules.Run(report);
@@ -84,7 +84,7 @@ namespace Ziptide.Tests.EditMode
                 control.name = "Tile_CONFIRM";
                 control.transform.position = new Vector3(0f, 0.90f, 0f);
                 control.transform.localScale = new Vector3(0.20f, 0.16f, 0.08f);
-                control.AddComponent<XRSimpleInteractable>();
+                control.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
 
                 var report = new SceneAuditReport { sceneName = "PG4_ValidFixture" };
                 InteractionReachAuditRules.Run(report);

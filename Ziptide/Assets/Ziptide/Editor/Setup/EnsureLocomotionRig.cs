@@ -175,7 +175,7 @@ namespace Ziptide.Editor.Setup
         /// </summary>
         private static void TuneRayInteractors(GameObject xrOriginGo)
         {
-            var rays = xrOriginGo.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.XRRayInteractor>(true);
+            var rays = xrOriginGo.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>(true);
             foreach (var ray in rays)
             {
                 if (ray == null) continue;

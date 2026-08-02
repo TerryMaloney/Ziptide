@@ -9,14 +9,14 @@ namespace Ziptide.Gameplay
     /// escalates it. Auto-returns to its home spot after <see cref="PvpRules.HammerAutoReturnSeconds"/>
     /// left off-hand, so it never gets lost. Self-builds its visual + grab so the patcher just adds it.
     /// </summary>
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     public class HammerTool : MonoBehaviour
     {
         public float swingSpeed = 1.5f;
         public float headRadius = 0.28f;
         public float breakDebounce = 0.4f;
 
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Transform _head;
         private Vector3 _lastHeadPos;
         private Vector3 _home;
@@ -27,7 +27,7 @@ namespace Ziptide.Gameplay
         private void Awake()
         {
             BuildVisual();
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             var rb = GetComponent<Rigidbody>();
             if (rb == null) rb = gameObject.AddComponent<Rigidbody>();
             rb.useGravity = true;
@@ -47,7 +47,7 @@ namespace Ziptide.Gameplay
 
         private void OnEnable()
         {
-            if (_grab == null) _grab = GetComponent<XRGrabInteractable>();
+            if (_grab == null) _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             if (_grab != null)
             {
                 _grab.selectEntered.AddListener(OnGrabbed);
@@ -126,7 +126,7 @@ namespace Ziptide.Gameplay
                 transform.position = _home;
                 transform.rotation = _homeRot;
                 var rb = GetComponent<Rigidbody>();
-                if (rb != null) { rb.velocity = Vector3.zero; rb.angularVelocity = Vector3.zero; }
+                if (rb != null) { rb.linearVelocity = Vector3.zero; rb.angularVelocity = Vector3.zero; }
                 _releasedAt = -1f;
                 Debug.Log("ZIPTIDE: PVP_HAMMER_AUTORETURN");
             }

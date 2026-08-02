@@ -16,7 +16,7 @@ namespace Ziptide.Gameplay
     /// </summary>
     public class BeltBlueprintWandItem : MonoBehaviour
     {
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private BeltFloorRuntime _hoverFloor;
         private BeltBlueprint _held;
         private Renderer _headR;
@@ -76,7 +76,7 @@ namespace Ziptide.Gameplay
             col.height = 0.34f; col.radius = 0.06f; col.center = new Vector3(0f, 0.08f, 0f);
             var rb = gameObject.AddComponent<Rigidbody>();
             rb.mass = 0.5f;
-            _grab = gameObject.AddComponent<XRGrabInteractable>();
+            _grab = gameObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _grab.selectExited.AddListener(OnReleased);
         }
 
@@ -126,7 +126,7 @@ namespace Ziptide.Gameplay
             if (floor == null || floor.Lattice == null) return; // dropped in the open — stays physical
             if (!floor.TryWorldToCell(transform.position, out int x, out int z)) return;
 
-            var hand = args.interactorObject as XRBaseControllerInteractor;
+            var hand = args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor;
             var kind = floor.Lattice.KindAt(x, z);
             if (kind == CellKind.Belt || kind == CellKind.Splitter)
             {

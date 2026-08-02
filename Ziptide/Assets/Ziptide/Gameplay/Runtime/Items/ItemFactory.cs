@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Content;
 
 namespace Ziptide.Gameplay
@@ -44,11 +44,11 @@ namespace Ziptide.Gameplay
 
             ApplyEquippedCosmetic(built, itemId);
             // Release polish LAST so its selectExited listener runs after RestorePhysicsOnRelease.
-            if (built != null && built.GetComponent<XRGrabInteractable>() != null)
+            if (built != null && built.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>() != null)
                 built.AddComponent<ReleaseFeel>();
             // Every gun (anything with a Muzzle + grab) gets the aim line (CONTROL_SCHEME "Aim").
             if (built != null && built.transform.Find("Muzzle") != null
-                && built.GetComponent<XRGrabInteractable>() != null)
+                && built.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>() != null)
                 built.AddComponent<GunLaserSight>().Init(def.laserSightColor);
             if (built != null)
                 Debug.Log("ZIPTIDE: ITEM_SPAWN id=" + itemId + " scale=" + built.transform.localScale.ToString("F3"));
@@ -185,8 +185,8 @@ namespace Ziptide.Gameplay
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
 
-            var grab = go.AddComponent<XRGrabInteractable>();
-            grab.movementType = XRBaseInteractable.MovementType.VelocityTracking;
+            var grab = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+            grab.movementType = UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable.MovementType.VelocityTracking;
             grab.useDynamicAttach = false; // snap to the Grip attach transform so the gun faces forward on grab
             grab.attachEaseInTime = 0f;    // instant snap to the grip, no slow drift toward the hand
             grab.trackPosition = true;
@@ -229,8 +229,8 @@ namespace Ziptide.Gameplay
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
 
-            var grab = go.AddComponent<XRGrabInteractable>();
-            grab.movementType = XRBaseInteractable.MovementType.VelocityTracking;
+            var grab = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+            grab.movementType = UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable.MovementType.VelocityTracking;
             grab.useDynamicAttach = false; // snap to the Grip attach transform so the gun faces forward on grab
             grab.attachEaseInTime = 0f;    // instant snap to the grip, no slow drift toward the hand
             grab.trackPosition = true;
@@ -276,8 +276,8 @@ namespace Ziptide.Gameplay
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
 
-            var grab = go.AddComponent<XRGrabInteractable>();
-            grab.movementType = XRBaseInteractable.MovementType.VelocityTracking;
+            var grab = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+            grab.movementType = UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable.MovementType.VelocityTracking;
             grab.useDynamicAttach = false;
             grab.attachEaseInTime = 0f;
             grab.trackPosition = true;
@@ -319,8 +319,8 @@ namespace Ziptide.Gameplay
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
 
-            var grab = go.AddComponent<XRGrabInteractable>();
-            grab.movementType = XRBaseInteractable.MovementType.VelocityTracking;
+            var grab = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+            grab.movementType = UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable.MovementType.VelocityTracking;
             grab.useDynamicAttach = false; // snap to the Grip attach transform so it faces forward on grab
             grab.attachEaseInTime = 0f;
             grab.trackPosition = true;
@@ -352,7 +352,7 @@ namespace Ziptide.Gameplay
         /// release and FLOATS in mid-air instead of dropping. This listener runs after XRGrab's restore,
         /// so it wins. Safe for holstering: the socket re-sets kinematic right after it grabs the gun.
         /// </summary>
-        private static void RestorePhysicsOnRelease(GameObject go, XRGrabInteractable grab)
+        private static void RestorePhysicsOnRelease(GameObject go, UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab)
         {
             if (grab == null) return;
             grab.selectExited.AddListener(_ =>
@@ -425,8 +425,8 @@ namespace Ziptide.Gameplay
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
 
-            var grab = go.AddComponent<XRGrabInteractable>();
-            grab.movementType = XRBaseInteractable.MovementType.VelocityTracking;
+            var grab = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+            grab.movementType = UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable.MovementType.VelocityTracking;
             grab.useDynamicAttach = false;
             grab.attachEaseInTime = 0f;
             grab.trackPosition = true;
@@ -471,7 +471,7 @@ namespace Ziptide.Gameplay
             ApplyURPColor(go, def.gemColor);
             var col = go.GetComponent<Collider>();
             if (col != null) col.isTrigger = true;
-            go.AddComponent<XRSimpleInteractable>();                   // collider exists first (gotcha #6)
+            go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();                   // collider exists first (gotcha #6)
             go.AddComponent<AugmentPickupRuntime>().Init(def);         // no ItemRuntime — a gem is
                                                                        // selected, never grab-carried
             return go;
@@ -487,7 +487,7 @@ namespace Ziptide.Gameplay
 
             var rb = go.AddComponent<Rigidbody>();
             rb.mass = def.mass > 0 ? def.mass : 0.5f;
-            go.AddComponent<XRGrabInteractable>();
+            go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
 
             var itemRt = go.AddComponent<ItemRuntime>();
             itemRt.Init(def);

@@ -12,7 +12,7 @@ namespace Ziptide.Gameplay
     /// </summary>
     public class BeltTileItem : MonoBehaviour
     {
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private BeltFloorRuntime _hoverFloor;
 
         /// <summary>What this tile places (4.1l): Belt or Splitter — a picked-up splitter comes
@@ -70,7 +70,7 @@ namespace Ziptide.Gameplay
             col.size = new Vector3(0.32f, 0.10f, 0.32f);
             var rb = gameObject.AddComponent<Rigidbody>();
             rb.mass = 0.6f;
-            _grab = gameObject.AddComponent<XRGrabInteractable>();
+            _grab = gameObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _grab.selectEntered.AddListener(_ => WasGrabbed = true);
             _grab.selectExited.AddListener(OnReleased);
         }
@@ -103,7 +103,7 @@ namespace Ziptide.Gameplay
 
             if (floor.PlaceCellFromHand(transform.position, transform.forward, kind))
             {
-                var hand = args.interactorObject as XRBaseControllerInteractor;
+                var hand = args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor;
                 if (hand != null) hand.SendHapticImpulse(0.55f, 0.06f); // the CLICK
                 Destroy(gameObject); // the tile became part of the floor
             }

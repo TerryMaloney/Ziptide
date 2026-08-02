@@ -279,7 +279,7 @@ namespace Ziptide.Gameplay
             int running = 0;
             int floorAccepted = 0;
             List<XRInputSubsystem> subsystems = new List<XRInputSubsystem>();
-            SubsystemManager.GetInstances(subsystems);
+            SubsystemManager.GetSubsystems(subsystems);
             for (int i = 0; i < subsystems.Count; i++)
             {
                 XRInputSubsystem subsystem = subsystems[i];

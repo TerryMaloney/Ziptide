@@ -11,10 +11,10 @@ namespace Ziptide.Gameplay
     /// with a gravity-kick impulse. Reuses the same grab/holster setup as the taser so it snaps to a
     /// forward grip and rides the belt.
     /// </summary>
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     public class GravityGunRuntime : MonoBehaviour
     {
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Transform _muzzle;
         private float _nextFireTime;
         private AudioSource _audioSource;
@@ -32,7 +32,7 @@ namespace Ziptide.Gameplay
 
         private void Awake()
         {
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _muzzle = transform.Find("Muzzle");
             if (_muzzle == null)
             {
@@ -68,10 +68,10 @@ namespace Ziptide.Gameplay
 
         private void OnActivated(ActivateEventArgs args)
         {
-            Fire(args.interactorObject as XRBaseControllerInteractor);
+            Fire(args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor);
         }
 
-        private void Fire(XRBaseControllerInteractor controllerInteractor)
+        private void Fire(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor controllerInteractor)
         {
             var def = Def;
             if (def == null) return;

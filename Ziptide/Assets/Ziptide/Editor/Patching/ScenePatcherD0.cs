@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using Ziptide.Editor.Setup;
@@ -222,7 +222,7 @@ namespace Ziptide.Editor.Patching
         {
             var go = PatcherUtil.EnsureRootObject("DispatchKiosk", new Vector3(1f, 3.7f, 1f));
             PatcherUtil.EnsureComponent<DispatchKiosk>(go);
-            PatcherUtil.EnsureComponent<XRSimpleInteractable>(go);
+            PatcherUtil.EnsureComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>(go);
             var col = go.GetComponent<Collider>();
             if (col == null)
             {

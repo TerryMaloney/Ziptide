@@ -70,7 +70,7 @@ namespace Ziptide.Gameplay
             piece.transform.SetParent(transform, true);
             piece.transform.rotation = Quaternion.Euler(0f, Random.value * 360f, 0f);
 
-            foreach (var grab in piece.GetComponentsInChildren<XRGrabInteractable>(true))
+            foreach (var grab in piece.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>(true))
                 grab.enabled = false; // a showcase, not an armory
             var rb = piece.GetComponent<Rigidbody>();
             if (rb != null) { rb.isKinematic = true; rb.useGravity = false; }
@@ -256,7 +256,7 @@ namespace Ziptide.Gameplay
             Paint(plate, color);
             var renderer = plate.GetComponent<Renderer>();
 
-            var interactable = plate.AddComponent<XRSimpleInteractable>();
+            var interactable = plate.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             interactable.selectEntered.AddListener(_ => onSelect?.Invoke());

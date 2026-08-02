@@ -459,7 +459,7 @@ namespace Ziptide.Editor.Patching
 
             var kioskGo = PatcherUtil.EnsureRootObject("DispatchKiosk", spawnPos + new Vector3(1.5f, 1.2f, 1.5f));
             PatcherUtil.EnsureComponent<DispatchKiosk>(kioskGo);
-            PatcherUtil.EnsureComponent<XRSimpleInteractable>(kioskGo);
+            PatcherUtil.EnsureComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>(kioskGo);
             var col = kioskGo.GetComponent<Collider>();
             if (col == null) { col = kioskGo.AddComponent<BoxCollider>(); col.isTrigger = true; }
 

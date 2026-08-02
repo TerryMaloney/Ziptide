@@ -71,7 +71,7 @@ namespace Ziptide.Gameplay
                 if (col != null)
                     col.isTrigger = false;
 
-                var interactable = button.AddComponent<XRSimpleInteractable>();
+                var interactable = button.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
                 var hook = button.AddComponent<ThemeSwitchButtonHook>();
                 hook.Setup(_worldRuntime, theme, interactable);
 
@@ -88,7 +88,7 @@ namespace Ziptide.Gameplay
         private WorldRuntime _worldRuntime;
         private VisualThemeProfile _theme;
 
-        public void Setup(WorldRuntime worldRuntime, VisualThemeProfile theme, XRSimpleInteractable interactable)
+        public void Setup(WorldRuntime worldRuntime, VisualThemeProfile theme, UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable)
         {
             _worldRuntime = worldRuntime;
             _theme = theme;

@@ -53,8 +53,8 @@ namespace Ziptide.Gameplay
                 sc.radius = 0.45f;
                 sc.isTrigger = true;
             }
-            var grab = gameObject.GetComponent<XRSimpleInteractable>();
-            if (grab == null) grab = gameObject.AddComponent<XRSimpleInteractable>();
+            var grab = gameObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
+            if (grab == null) grab = gameObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             grab.selectEntered.AddListener(_ => Fire());
             grab.selectExited.AddListener(_ => Abort("released"));
             Debug.Log("ZIPTIDE: GRAPPLE_READY name=" + gameObject.name);

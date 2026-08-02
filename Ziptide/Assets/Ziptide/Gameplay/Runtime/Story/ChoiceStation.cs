@@ -77,7 +77,7 @@ namespace Ziptide.Gameplay
             Paint(panel, color);
             var renderer = panel.GetComponent<Renderer>();
 
-            var interactable = panel.AddComponent<XRSimpleInteractable>();
+            var interactable = panel.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             else StartCoroutine(RetryManager(interactable));
@@ -118,7 +118,7 @@ namespace Ziptide.Gameplay
             if (_panelB != null) Tint(_panelB, _panelB == chosen ? ChosenColor : LockedColor);
         }
 
-        private IEnumerator RetryManager(XRSimpleInteractable interactable)
+        private IEnumerator RetryManager(UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable)
         {
             for (int i = 0; i < 10; i++)
             {

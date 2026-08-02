@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Core;
 
 namespace Ziptide.Gameplay
@@ -105,7 +105,7 @@ namespace Ziptide.Gameplay
 
         private static bool IsWeaponSelection(HolsterSocketInteractor socket)
         {
-            IReadOnlyList<IXRSelectInteractable> selected = socket.interactablesSelected;
+            IReadOnlyList<UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable> selected = socket.interactablesSelected;
             for (int i = 0; i < selected.Count; i++)
             {
                 var mb = selected[i] as MonoBehaviour;
@@ -117,14 +117,14 @@ namespace Ziptide.Gameplay
         private static int CountInHands()
         {
             int n = 0;
-            foreach (var grab in Object.FindObjectsOfType<XRGrabInteractable>())
+            foreach (var grab in Object.FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>())
             {
                 if (grab == null || !grab.isSelected) continue;
                 // A holster is also a selector; only a hand counts as "in your fist".
                 bool heldByHand = false;
-                IReadOnlyList<IXRSelectInteractor> by = grab.interactorsSelecting;
+                IReadOnlyList<UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor> by = grab.interactorsSelecting;
                 for (int i = 0; i < by.Count; i++)
-                    if (!(by[i] is XRSocketInteractor)) { heldByHand = true; break; }
+                    if (!(by[i] is UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor)) { heldByHand = true; break; }
                 if (heldByHand && IsWeapon(grab.gameObject)) n++;
             }
             return n;

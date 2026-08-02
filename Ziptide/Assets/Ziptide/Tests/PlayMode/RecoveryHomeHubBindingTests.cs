@@ -84,7 +84,7 @@ namespace Ziptide.Tests.PlayMode
 
             Transform tileTransform = hubHost.transform.Find("Tile_MANAGER_REPLACE");
             Assert.IsNotNull(tileTransform, "The Home Hub test tile was not created.");
-            var interactable = tileTransform.GetComponent<XRSimpleInteractable>();
+            var interactable = tileTransform.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             Assert.IsNotNull(interactable, "The Home Hub tile has no XRSimpleInteractable.");
 
             // XRI may create or resolve an early manager during interactable OnEnable. If this

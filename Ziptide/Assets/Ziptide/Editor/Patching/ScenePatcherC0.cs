@@ -222,7 +222,7 @@ namespace Ziptide.Editor.Patching
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
 
-            var grab = pistol.AddComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
+            var grab = pistol.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             var grip = new GameObject("Grip");
             grip.transform.SetParent(pistol.transform, false);
             grip.transform.localPosition = new Vector3(0f, -0.01f, -0.05f);

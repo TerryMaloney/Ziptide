@@ -77,7 +77,7 @@ namespace Ziptide.Core
             try
             {
                 var displays = new List<XRDisplaySubsystem>();
-                SubsystemManager.GetInstances(displays);
+                SubsystemManager.GetSubsystems(displays);
                 xrRunning = displays.Count > 0 && displays[0].running;
             }
             catch { }

@@ -59,7 +59,7 @@ namespace Ziptide.Gameplay
             soil.transform.localPosition = new Vector3(0f, 0.0f, 0f);
             soil.transform.localScale = new Vector3(1.0f, 0.12f, 0.8f);
             Paint(soil, SoilColor);
-            var interactable = soil.AddComponent<XRSimpleInteractable>();
+            var interactable = soil.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             interactable.selectEntered.AddListener(_ => OnSelected());

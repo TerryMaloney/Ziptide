@@ -363,7 +363,7 @@ namespace Ziptide.Gameplay
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr == null) return false;
 
-            var rays = Object.FindObjectsOfType<XRRayInteractor>();
+            var rays = Object.FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>();
             int enabledRays = 0;
             foreach (var ray in rays)
                 if (ray.isActiveAndEnabled) enabledRays++;

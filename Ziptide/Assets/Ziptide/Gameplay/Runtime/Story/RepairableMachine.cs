@@ -43,7 +43,7 @@ namespace Ziptide.Gameplay
         private GameObject _powerSwitch;
         private TextMesh _label;
         private AudioSource _feelAudio;
-        private XRBaseControllerInteractor _lastPartHand;
+        private UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor _lastPartHand;
         private Coroutine _surfacePulse;
         private Renderer _pulsingRenderer;
         private Color _pulsingBaseColor;
@@ -138,7 +138,7 @@ namespace Ziptide.Gameplay
             panelRb.isKinematic = false;
             panelRb.useGravity = false;
             panelRb.constraints = RigidbodyConstraints.FreezeAll;
-            var panelGrab = panel.AddComponent<XRGrabInteractable>();
+            var panelGrab = panel.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             panelGrab.throwOnDetach = false;
             WireManager(panelGrab);
             panelGrab.selectEntered.AddListener(args =>
@@ -161,7 +161,7 @@ namespace Ziptide.Gameplay
             var swCollider = sw.GetComponent<BoxCollider>();
             if (swCollider != null)
                 swCollider.size = new Vector3(1.35f, 1.40f, 1.80f);
-            var swInteractable = sw.AddComponent<XRSimpleInteractable>();
+            var swInteractable = sw.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             WireManager(swInteractable);
             swInteractable.selectEntered.AddListener(args =>
                 OnSwitchFlipped(SelectingController(args)));
@@ -194,14 +194,14 @@ namespace Ziptide.Gameplay
             partRb.isKinematic = false;
             partRb.useGravity = false;
             partRb.constraints = RigidbodyConstraints.FreezeAll;
-            var partGrab = part.AddComponent<XRGrabInteractable>();
+            var partGrab = part.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             partGrab.throwOnDetach = false;
             WireManager(partGrab);
             partGrab.selectEntered.AddListener(args =>
             {
                 _lastPartHand = SelectingController(args);
                 if (partRb == null) return;
-                partRb.velocity = Vector3.zero;
+                partRb.linearVelocity = Vector3.zero;
                 partRb.angularVelocity = Vector3.zero;
                 partRb.constraints = RigidbodyConstraints.None;
                 partRb.useGravity = false;
@@ -245,7 +245,7 @@ namespace Ziptide.Gameplay
                 _label.transform.rotation = Quaternion.LookRotation(_label.transform.position - cam.transform.position);
         }
 
-        private void OnPanelPulled(GameObject panel, Rigidbody rb, XRBaseControllerInteractor hand)
+        private void OnPanelPulled(GameObject panel, Rigidbody rb, UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor hand)
         {
             if (_stage != RepairStage.Panel) return;
             StopSurfacePulseAndRestore();
@@ -278,7 +278,7 @@ namespace Ziptide.Gameplay
             PublishStageChanged();
         }
 
-        private void OnSwitchFlipped(XRBaseControllerInteractor hand)
+        private void OnSwitchFlipped(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor hand)
         {
             if (_stage != RepairStage.Power) return;
             StopSurfacePulseAndRestore();
@@ -305,7 +305,7 @@ namespace Ziptide.Gameplay
             PublishStageChanged();
         }
 
-        private void SendFeedback(XRBaseControllerInteractor hand, string verb,
+        private void SendFeedback(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor hand, string verb,
             float amplitude, float duration, AudioClip clip)
         {
             if (hand != null)
@@ -356,9 +356,9 @@ namespace Ziptide.Gameplay
             _pulsingRenderer = null;
         }
 
-        private static XRBaseControllerInteractor SelectingController(SelectEnterEventArgs args)
+        private static UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor SelectingController(SelectEnterEventArgs args)
         {
-            return args != null ? args.interactorObject as XRBaseControllerInteractor : null;
+            return args != null ? args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor : null;
         }
 
         private AudioClip PanelReleaseClip()
@@ -446,7 +446,7 @@ namespace Ziptide.Gameplay
             }
         }
 
-        private static void WireManager(XRBaseInteractable interactable)
+        private static void WireManager(UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable interactable)
         {
             XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();
             if (manager != null) interactable.interactionManager = manager;
@@ -458,7 +458,7 @@ namespace Ziptide.Gameplay
             body.isKinematic = false;
             body.constraints = RigidbodyConstraints.None;
             body.useGravity = useGravity;
-            body.velocity = Vector3.zero;
+            body.linearVelocity = Vector3.zero;
             body.angularVelocity = Vector3.zero;
         }
 

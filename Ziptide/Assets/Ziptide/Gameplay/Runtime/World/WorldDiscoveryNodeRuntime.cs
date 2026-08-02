@@ -11,14 +11,14 @@ namespace Ziptide.Gameplay
     /// </summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(SphereCollider))]
-    [RequireComponent(typeof(XRSimpleInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable))]
     public sealed class WorldDiscoveryNodeRuntime : MonoBehaviour
     {
         [SerializeField] private string nodeId;
         [SerializeField] private Color idleColor = new Color(0.25f, 0.75f, 0.9f, 1f);
         [SerializeField] private Color discoveredColor = new Color(0.95f, 0.78f, 0.28f, 1f);
 
-        private XRSimpleInteractable _interactable;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable _interactable;
         private Renderer _renderer;
         private TextMesh _status;
         private bool _discovered;
@@ -36,7 +36,7 @@ namespace Ziptide.Gameplay
 
         private void Awake()
         {
-            _interactable = GetComponent<XRSimpleInteractable>();
+            _interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             _renderer = GetComponent<Renderer>();
             _status = GetComponentInChildren<TextMesh>(true);
             EnsurePropertyBlock();
@@ -60,7 +60,7 @@ namespace Ziptide.Gameplay
             ApplyColor(discoveredColor);
             SetStatus("SIGNAL LOGGED");
 
-            if (args != null && args.interactorObject is XRBaseControllerInteractor controller)
+            if (args != null && args.interactorObject is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor controller)
                 controller.SendHapticImpulse(0.32f, 0.07f);
 
             Debug.Log("ZIPTIDE: WORLD_DISCOVERY scene=" + gameObject.scene.name

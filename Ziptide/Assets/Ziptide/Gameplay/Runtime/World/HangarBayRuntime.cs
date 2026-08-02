@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Content.Ship;
 using Ziptide.Core;
 
@@ -131,7 +131,7 @@ namespace Ziptide.Gameplay
             tile.transform.localPosition = localPos;
             tile.transform.localScale = new Vector3(0.38f, 0.28f, 0.04f);
             ItemFactory.ApplyURPColor(tile, new Color(0.2f, 0.24f, 0.3f));
-            var grab = tile.AddComponent<XRSimpleInteractable>(); // collider exists (primitive)
+            var grab = tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>(); // collider exists (primitive)
             grab.selectEntered.AddListener(_ => onSelect());
 
             var tm = NewText(label, localPos + new Vector3(0f, 0f, -0.05f), 0.008f);

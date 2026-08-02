@@ -120,7 +120,7 @@ namespace Ziptide.Editor.Setup
             var cubeRb = cube.AddComponent<Rigidbody>();
             cubeRb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             cubeRb.interpolation = RigidbodyInterpolation.Interpolate;
-            var grab = cube.AddComponent<XRGrabInteractable>();
+            var grab = cube.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             var soGrab = new SerializedObject(grab);
             var movementTypeProp = soGrab.FindProperty("m_MovementType");
             if (movementTypeProp != null) movementTypeProp.enumValueIndex = 1; // VelocityTracking = 1

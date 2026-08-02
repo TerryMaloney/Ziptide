@@ -36,7 +36,7 @@ namespace Ziptide.Gameplay
             _configured = true;
         }
 
-        public void Fire(XRBaseControllerInteractor hand, AudioSource source, AudioClip authoredClip)
+        public void Fire(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor hand, AudioSource source, AudioClip authoredClip)
         {
             if (!_configured) return;
             if (hand != null) StartCoroutine(FireHaptics(hand));
@@ -54,13 +54,13 @@ namespace Ziptide.Gameplay
             }
         }
 
-        public void ConfirmHit(XRBaseControllerInteractor hand)
+        public void ConfirmHit(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor hand)
         {
             if (!_configured || hand == null) return;
             hand.SendHapticImpulse(_envelope.HitConfirm.Amplitude, _envelope.HitConfirm.Duration);
         }
 
-        private IEnumerator FireHaptics(XRBaseControllerInteractor hand)
+        private IEnumerator FireHaptics(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor hand)
         {
             hand.SendHapticImpulse(_envelope.Primary.Amplitude, _envelope.Primary.Duration);
             if (_envelope.Tail.Amplitude <= 0f) yield break;

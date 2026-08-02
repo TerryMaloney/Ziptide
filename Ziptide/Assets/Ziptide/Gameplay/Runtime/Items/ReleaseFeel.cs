@@ -23,7 +23,7 @@ namespace Ziptide.Gameplay
         private const int SampleCount = 6;
         private const float MaxThrowSpeed = 8f;
 
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Rigidbody _rb;
         private Renderer _renderer;
         private bool _held;
@@ -34,7 +34,7 @@ namespace Ziptide.Gameplay
 
         private void OnEnable()
         {
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _rb = GetComponent<Rigidbody>();
             _renderer = GetComponentInChildren<Renderer>();
             if (_grab == null) { enabled = false; return; }
@@ -80,7 +80,7 @@ namespace Ziptide.Gameplay
 
         private bool TryRescueThrow(out float appliedSpeed)
         {
-            appliedSpeed = _rb != null ? _rb.velocity.magnitude : 0f;
+            appliedSpeed = _rb != null ? _rb.linearVelocity.magnitude : 0f;
             if (_rb == null || _rb.isKinematic || _sampleHead < 2) return false;
 
             int newest = (_sampleHead - 1) % SampleCount;
@@ -92,8 +92,8 @@ namespace Ziptide.Gameplay
             if (sampled.magnitude > MaxThrowSpeed) sampled = sampled.normalized * MaxThrowSpeed;
 
             // Only intervene when XRGrab's own detach clearly failed (dead body, live hand motion).
-            if (_rb.velocity.sqrMagnitude >= 0.25f || sampled.sqrMagnitude <= 0.5f) return false;
-            _rb.velocity = sampled;
+            if (_rb.linearVelocity.sqrMagnitude >= 0.25f || sampled.sqrMagnitude <= 0.5f) return false;
+            _rb.linearVelocity = sampled;
             appliedSpeed = sampled.magnitude;
             return true;
         }

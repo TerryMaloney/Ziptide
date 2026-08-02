@@ -87,7 +87,7 @@ namespace Ziptide.Gameplay
             tile.transform.localScale = new Vector3(0.42f, 0.24f, 0.12f);
             Paint(tile, color);
 
-            var interactable = tile.AddComponent<XRSimpleInteractable>();
+            var interactable = tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var manager = FindObjectOfType<XRInteractionManager>();
             if (manager != null) interactable.interactionManager = manager;
             interactable.selectEntered.AddListener(_ => SelectPreset(preset));

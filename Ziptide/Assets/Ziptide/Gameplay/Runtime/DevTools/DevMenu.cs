@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using UnityEngine.XR.Interaction.Toolkit.UI;
 using Ziptide.Core;
 
@@ -88,7 +88,7 @@ namespace Ziptide.Gameplay.DevTools
             }
 
             int rebound = 0;
-            foreach (var ray in FindObjectsOfType<XRRayInteractor>())
+            foreach (var ray in FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>())
             {
                 if (!ray.enableUIInteraction) continue;
                 ray.enableUIInteraction = false;

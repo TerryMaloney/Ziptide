@@ -239,7 +239,7 @@ namespace Ziptide.Ship
             _returnPanel.transform.localScale = new Vector3(0.72f, 0.2f, 0.4f);
             ItemFactory.ApplyURPColor(_returnPanel, new Color(0.25f, 0.45f, 0.8f));
             AddTileLabel(_returnPanel.transform, "RETURN HOME");
-            var ret = _returnPanel.AddComponent<XRSimpleInteractable>();
+            var ret = _returnPanel.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             WireManager(ret);
             ret.selectEntered.AddListener(_ =>
             {
@@ -261,7 +261,7 @@ namespace Ziptide.Ship
             tile.transform.localScale = new Vector3(0.72f, 0.2f, 0.4f);
             ItemFactory.ApplyURPColor(tile, color);
             AddTileLabel(tile.transform, label);
-            var interactable = tile.AddComponent<XRSimpleInteractable>();
+            var interactable = tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             WireManager(interactable);
             interactable.selectEntered.AddListener(_ => onPress());
         }
@@ -281,7 +281,7 @@ namespace Ziptide.Ship
             tm.color = new Color(1f, 0.95f, 0.8f);
         }
 
-        private static void WireManager(XRBaseInteractable interactable)
+        private static void WireManager(UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable interactable)
         {
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;

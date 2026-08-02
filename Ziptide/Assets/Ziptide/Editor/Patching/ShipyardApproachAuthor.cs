@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Content;
 
 namespace Ziptide.Editor.Patching
@@ -105,7 +105,7 @@ namespace Ziptide.Editor.Patching
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
 
-            var grab = go.AddComponent<XRGrabInteractable>();
+            var grab = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             var so = new SerializedObject(grab);
             var movement = so.FindProperty("m_MovementType");
             if (movement != null) movement.enumValueIndex = 1;      // VelocityTracking — it has weight

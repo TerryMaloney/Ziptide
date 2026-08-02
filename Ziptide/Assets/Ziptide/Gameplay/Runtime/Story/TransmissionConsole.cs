@@ -45,7 +45,7 @@ namespace Ziptide.Gameplay
             Paint(screen, ScreenIdle);
             _screen = screen.GetComponent<Renderer>();
 
-            var interactable = screen.AddComponent<XRSimpleInteractable>();
+            var interactable = screen.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             else StartCoroutine(RetryManager(interactable));
@@ -78,7 +78,7 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: TRANSMISSION_PLAYBACK tier=" + tier);
         }
 
-        private IEnumerator RetryManager(XRSimpleInteractable interactable)
+        private IEnumerator RetryManager(UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable)
         {
             for (int i = 0; i < 10; i++)
             {

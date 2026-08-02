@@ -10,10 +10,10 @@ namespace Ziptide.Gameplay
     /// it lands it opens a <see cref="SlowZoneRuntime"/> for a few seconds. Small damage on a direct
     /// combatant hit — the SLOW is the payload. Counter: it's a visible arc, sidestep it.
     /// </summary>
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     public class StaticNetGunRuntime : MonoBehaviour
     {
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Transform _muzzle;
         private float _nextFireTime;
 
@@ -28,7 +28,7 @@ namespace Ziptide.Gameplay
 
         private void Awake()
         {
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _muzzle = transform.Find("Muzzle");
         }
 
@@ -55,7 +55,7 @@ namespace Ziptide.Gameplay
             rb.mass = 0.25f;
             rb.useGravity = true;
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-            rb.velocity = (dir + Vector3.up * 0.25f).normalized * (def != null ? def.netThrowSpeed : 9f);
+            rb.linearVelocity = (dir + Vector3.up * 0.25f).normalized * (def != null ? def.netThrowSpeed : 9f);
 
             foreach (var gunCol in GetComponentsInChildren<Collider>(true))
                 if (gunCol != null) Physics.IgnoreCollision(net.GetComponent<Collider>(), gunCol);
@@ -64,7 +64,7 @@ namespace Ziptide.Gameplay
 
             net.AddComponent<StaticNetProjectile>();
 
-            var interactor = args.interactorObject as XRBaseControllerInteractor;
+            var interactor = args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor;
             if (interactor != null) interactor.SendHapticImpulse(0.5f, 0.08f);
             Debug.Log("ZIPTIDE: NET_THROWN");
         }

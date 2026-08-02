@@ -58,12 +58,12 @@ namespace Ziptide.Gameplay
     /// thrust. Socket selection is not treated as being held in a hand, so a sheathed weapon cannot
     /// attack merely because the belt moved.
     /// </summary>
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     public class MeleeWeaponRuntime : MonoBehaviour
     {
         private const string SemanticGripName = "HandGripAttach";
 
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Transform _tip;
         private Vector3 _lastTipPos;
         private float _nextThrustAt;
@@ -83,7 +83,7 @@ namespace Ziptide.Gameplay
 
         private void Awake()
         {
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _tip = transform.Find("Muzzle");
             if (_tip == null) _tip = transform;
             _lastTipPos = _tip.position;
@@ -167,8 +167,8 @@ namespace Ziptide.Gameplay
         private bool IsHeldByController()
         {
             if (_grab == null || !_grab.isSelected) return false;
-            foreach (IXRSelectInteractor interactor in _grab.interactorsSelecting)
-                if (interactor is XRBaseControllerInteractor) return true;
+            foreach (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor in _grab.interactorsSelecting)
+                if (interactor is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor) return true;
             return false;
         }
 

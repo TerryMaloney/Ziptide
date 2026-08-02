@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using Ziptide.Content;
 using Ziptide.Gameplay;
-using UnityEngine.XR.Interaction.Toolkit;
+
 
 namespace Ziptide.Editor.Setup
 {
@@ -92,7 +92,7 @@ namespace Ziptide.Editor.Setup
             var grabbable = GameObject.Find("GrabbableCube");
             if (grabbable != null)
             {
-                var grab = grabbable.GetComponent<XRGrabInteractable>();
+                var grab = grabbable.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
                 if (grab != null)
                 {
                     var soGrab = new SerializedObject(grab);

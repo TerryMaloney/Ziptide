@@ -105,7 +105,7 @@ namespace Ziptide.Gameplay
 
             int total = 0, active = 0;
             var rayDetails = new StringBuilder();
-            foreach (var ray in GetComponentsInChildren<XRRayInteractor>(true))
+            foreach (var ray in GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>(true))
             {
                 total++;
                 bool on = ray.gameObject.activeInHierarchy && ray.enabled;
@@ -486,12 +486,12 @@ namespace Ziptide.Gameplay
             // Rebind only ACTIVE interactors. Skip inactive GameObjects (e.g. teleport ray GOs
             // managed by ActionBasedControllerManager) to avoid disrupting XRInteractionGroup state.
             int totalRays = 0, enabledRays = 0, skipped = 0;
-            foreach (var i in GetComponentsInChildren<XRBaseInteractor>(true))
+            foreach (var i in GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor>(true))
             {
                 if (!i.gameObject.activeInHierarchy) { skipped++; continue; }
                 if (i.interactionManager != _xriManager)
                     i.interactionManager = _xriManager;
-                if (i is XRRayInteractor ray)
+                if (i is UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor ray)
                 {
                     totalRays++;
                     if (i.enabled) enabledRays++;
@@ -509,7 +509,7 @@ namespace Ziptide.Gameplay
             // Gate it off on EVERY ray, including the INACTIVE teleport ray each hand owns (so it stays off
             // after ActionBasedControllerManager swaps rays). Belt-and-suspenders: also hard-disable the two
             // bound input actions so nothing reads the stick for anchor control.
-            foreach (var ray in GetComponentsInChildren<XRRayInteractor>(true))
+            foreach (var ray in GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>(true))
             {
                 DisableAnchorControl(ray);
                 // Force grab: a grabbed object snaps to the HAND instead of hanging out at the ray's hit
@@ -523,7 +523,7 @@ namespace Ziptide.Gameplay
             // fix only touched the active select ray, so the inactive teleport ray kept its long (~10m) line
             // and the drawn length "jumped" when the manager swapped which ray was active. Clamp the drawn
             // length on ALL line visuals (incl. inactive) so it's a stable short ray either way.
-            foreach (var lv in GetComponentsInChildren<XRInteractorLineVisual>(true))
+            foreach (var lv in GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals.XRInteractorLineVisual>(true))
             {
                 if (lv == null) continue;
                 lv.overrideInteractorLineLength = true;
@@ -557,13 +557,13 @@ namespace Ziptide.Gameplay
         // touched (that's the bug that survived every round). Log loudly if the name ever drifts again.
         private static System.Reflection.FieldInfo _anchorControlField;
         private static bool _anchorControlFieldResolved;
-        private static void DisableAnchorControl(XRRayInteractor ray)
+        private static void DisableAnchorControl(UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor ray)
         {
             if (ray == null) return;
             if (!_anchorControlFieldResolved)
             {
                 _anchorControlFieldResolved = true;
-                _anchorControlField = typeof(XRRayInteractor).GetField("m_AllowAnchorControl",
+                _anchorControlField = typeof(UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor).GetField("m_AllowAnchorControl",
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
                 if (_anchorControlField == null || _anchorControlField.FieldType != typeof(bool))
                     Debug.LogWarning("ZIPTIDE: ANCHOR_FIELD_MISSING m_AllowAnchorControl — gun may still rotate");
@@ -577,13 +577,13 @@ namespace Ziptide.Gameplay
         // the ray's hit distance. Reflection (no compile-verifiable public symbol in the cloud build).
         private static System.Reflection.FieldInfo _forceGrabField;
         private static bool _forceGrabResolved;
-        private static void EnableForceGrab(XRRayInteractor ray)
+        private static void EnableForceGrab(UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor ray)
         {
             if (ray == null) return;
             if (!_forceGrabResolved)
             {
                 _forceGrabResolved = true;
-                _forceGrabField = typeof(XRRayInteractor).GetField("m_UseForceGrab",
+                _forceGrabField = typeof(UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor).GetField("m_UseForceGrab",
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
             }
             if (_forceGrabField != null && _forceGrabField.FieldType == typeof(bool))
@@ -595,13 +595,13 @@ namespace Ziptide.Gameplay
         // "lengthened" when aimed at a grabbable. Keeps the drawn line a stable short length.
         private static System.Reflection.FieldInfo _lineSnapField;
         private static bool _lineSnapResolved;
-        private static void DisableLineSnap(XRInteractorLineVisual lv)
+        private static void DisableLineSnap(UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals.XRInteractorLineVisual lv)
         {
             if (lv == null) return;
             if (!_lineSnapResolved)
             {
                 _lineSnapResolved = true;
-                _lineSnapField = typeof(XRInteractorLineVisual).GetField("m_SnapEndpointIfAvailable",
+                _lineSnapField = typeof(UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals.XRInteractorLineVisual).GetField("m_SnapEndpointIfAvailable",
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
             }
             if (_lineSnapField != null && _lineSnapField.FieldType == typeof(bool))

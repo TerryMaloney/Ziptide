@@ -17,7 +17,7 @@ namespace Ziptide.Gameplay
     {
         private InputAction _swap;
         private XRInteractionManager _mgr;
-        private readonly List<XRBaseControllerInteractor> _rightHands = new List<XRBaseControllerInteractor>();
+        private readonly List<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor> _rightHands = new List<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>();
 
         private void OnEnable()
         {
@@ -46,26 +46,26 @@ namespace Ziptide.Gameplay
 
             if (held != null && holstered != null && hand != null && socket != null)
             {
-                _mgr.SelectExit((IXRSelectInteractor)hand, (IXRSelectInteractable)held);
-                _mgr.SelectExit((IXRSelectInteractor)socket, (IXRSelectInteractable)holstered);
-                _mgr.SelectEnter((IXRSelectInteractor)socket, (IXRSelectInteractable)held);
-                _mgr.SelectEnter((IXRSelectInteractor)hand, (IXRSelectInteractable)holstered);
+                _mgr.SelectExit((UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)hand, (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)held);
+                _mgr.SelectExit((UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)socket, (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)holstered);
+                _mgr.SelectEnter((UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)socket, (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)held);
+                _mgr.SelectEnter((UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)hand, (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)holstered);
                 Debug.Log("ZIPTIDE: QUICK_SWAP action=swap in=" + holstered.name + " out=" + held.name);
             }
             else if (held != null && hand != null)
             {
                 var empty = EmptySocket();
                 if (empty == null) return;
-                _mgr.SelectExit((IXRSelectInteractor)hand, (IXRSelectInteractable)held);
-                _mgr.SelectEnter((IXRSelectInteractor)empty, (IXRSelectInteractable)held);
+                _mgr.SelectExit((UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)hand, (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)held);
+                _mgr.SelectEnter((UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)empty, (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)held);
                 Debug.Log("ZIPTIDE: QUICK_SWAP action=holster item=" + held.name);
             }
             else if (holstered != null && socket != null)
             {
                 var freeHand = FirstRightHand();
                 if (freeHand == null) return;
-                _mgr.SelectExit((IXRSelectInteractor)socket, (IXRSelectInteractable)holstered);
-                _mgr.SelectEnter((IXRSelectInteractor)freeHand, (IXRSelectInteractable)holstered);
+                _mgr.SelectExit((UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)socket, (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)holstered);
+                _mgr.SelectEnter((UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)freeHand, (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)holstered);
                 Debug.Log("ZIPTIDE: QUICK_SWAP action=draw item=" + holstered.name);
             }
         }
@@ -74,18 +74,18 @@ namespace Ziptide.Gameplay
         {
             if (_mgr == null) _mgr = FindObjectOfType<XRInteractionManager>();
             if (_rightHands.Count == 0)
-                foreach (var i in GetComponentsInChildren<XRBaseControllerInteractor>(true))
+                foreach (var i in GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>(true))
                     if (i.name.ToLowerInvariant().Contains("right")) _rightHands.Add(i);
         }
 
-        private XRGrabInteractable HeldGun(out XRBaseControllerInteractor hand)
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable HeldGun(out UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor hand)
         {
             foreach (var h in _rightHands)
             {
                 if (h == null || !h.hasSelection) continue;
                 foreach (var sel in h.interactablesSelected)
                 {
-                    var grab = sel as XRGrabInteractable;
+                    var grab = sel as UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable;
                     if (grab != null && grab.GetComponent<ItemRuntime>() != null)
                     {
                         hand = h;
@@ -97,19 +97,19 @@ namespace Ziptide.Gameplay
             return null;
         }
 
-        private XRBaseControllerInteractor FirstRightHand()
+        private UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor FirstRightHand()
         {
             foreach (var h in _rightHands)
                 if (h != null && !h.hasSelection) return h;
             return null;
         }
 
-        private XRGrabInteractable HolsteredGun(out HolsterSocketInteractor socket)
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable HolsteredGun(out HolsterSocketInteractor socket)
         {
             foreach (var s in GetComponentsInChildren<HolsterSocketInteractor>(true))
             {
                 if (s == null || !s.hasSelection) continue;
-                var grab = s.interactablesSelected[0] as XRGrabInteractable;
+                var grab = s.interactablesSelected[0] as UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable;
                 if (grab != null)
                 {
                     socket = s;

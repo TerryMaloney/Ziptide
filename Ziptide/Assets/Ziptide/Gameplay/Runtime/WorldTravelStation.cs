@@ -114,7 +114,7 @@ namespace Ziptide.Gameplay
             var doorCol = door.AddComponent<BoxCollider>();
             doorCol.size = new Vector3(DoorWidth, DoorHeight, DoorDepth + 0.15f);
 
-            var interactable = door.AddComponent<XRSimpleInteractable>();
+            var interactable = door.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
 
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null)
@@ -255,7 +255,7 @@ namespace Ziptide.Gameplay
             else if (r.material.HasProperty("_Color")) r.material.color = color;
         }
 
-        private IEnumerator RetryManagerAssignment(XRSimpleInteractable interactable)
+        private IEnumerator RetryManagerAssignment(UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable)
         {
             for (int i = 0; i < 10; i++)
             {

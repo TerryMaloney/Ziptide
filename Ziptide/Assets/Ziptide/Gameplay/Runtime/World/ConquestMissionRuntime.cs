@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Core;
 using Ziptide.Multiplayer.Conquest;
 
@@ -204,7 +204,7 @@ namespace Ziptide.Gameplay
             bodyCol.size = new Vector3(0.5f, 0.8f, 0.5f);
             var rb = beaconRoot.AddComponent<Rigidbody>();
             rb.mass = 4f;   // heavy — it should FEEL like contraband
-            beaconRoot.AddComponent<XRGrabInteractable>();
+            beaconRoot.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _beacon = beaconRoot.transform;
 
             var pad = new GameObject("UplinkPad");
@@ -395,7 +395,7 @@ namespace Ziptide.Gameplay
             _rigRoot = rigRoot;
             // Collider exists from the primitive BEFORE the interactable — gotcha #6.
             gameObject.AddComponent<TargetRuntime>().OnHit.AddListener(GoDown);
-            gameObject.AddComponent<XRSimpleInteractable>().selectEntered
+            gameObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>().selectEntered
                       .AddListener(_ => GoDown());
         }
 
@@ -474,7 +474,7 @@ namespace Ziptide.Gameplay
             _mission = mission;
             _renderer = GetComponent<Renderer>();
             gameObject.AddComponent<TargetRuntime>().OnHit.AddListener(Hit);
-            gameObject.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => Hit());
+            gameObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>().selectEntered.AddListener(_ => Hit());
         }
 
         public void Shock(float seconds) => Hit();

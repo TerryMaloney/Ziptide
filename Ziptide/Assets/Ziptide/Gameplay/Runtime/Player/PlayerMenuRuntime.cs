@@ -190,7 +190,7 @@ namespace Ziptide.Gameplay
             tile.transform.localScale = new Vector3(0.25f, 0.15f, 0.08f);
             Paint(tile, color);
 
-            XRSimpleInteractable interactable = tile.AddComponent<XRSimpleInteractable>();
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable = tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();
             if (manager != null) interactable.interactionManager = manager;
             interactable.selectEntered.AddListener(_ => selected());
@@ -208,10 +208,10 @@ namespace Ziptide.Gameplay
                 return;
             }
 
-            XRBaseInteractable[] interactables = _menuRoot.GetComponentsInChildren<XRBaseInteractable>(true);
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable[] interactables = _menuRoot.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>(true);
             for (int i = 0; i < interactables.Length; i++)
             {
-                XRBaseInteractable interactable = interactables[i];
+                UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable interactable = interactables[i];
                 if (interactable != null && interactable.interactionManager != manager)
                     interactable.interactionManager = manager;
             }

@@ -12,15 +12,15 @@ namespace Ziptide.Gameplay
     /// <see cref="PvpRules.PrismChargeSeconds"/> it fires a instant lane beam for heavy damage, then a
     /// long cooldown. Release early = cancel, no cost.
     /// </summary>
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     public class PrismBeamRuntime : MonoBehaviour
     {
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Transform _muzzle;
         private float _chargeStart = -1f;
         private float _nextFireTime;
         private GameObject _guide;
-        private XRBaseControllerInteractor _interactor;
+        private UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor _interactor;
 
         private ArenaWeaponDefinition Def
         {
@@ -33,7 +33,7 @@ namespace Ziptide.Gameplay
 
         private void Awake()
         {
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _muzzle = transform.Find("Muzzle");
         }
 
@@ -57,7 +57,7 @@ namespace Ziptide.Gameplay
         {
             if (Time.time < _nextFireTime) return;
             _chargeStart = Time.time;
-            _interactor = args.interactorObject as XRBaseControllerInteractor;
+            _interactor = args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor;
             Debug.Log("ZIPTIDE: PRISM_CHARGE_START");
         }
 

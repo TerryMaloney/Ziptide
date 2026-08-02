@@ -8,7 +8,7 @@ namespace Ziptide.Gameplay
     /// <summary>
     /// Socket that accepts delivery items (by itemId) and notifies JobDirector for DeliverToSocketStep.
     /// </summary>
-    public class DeliveryCradleSocketInteractor : XRSocketInteractor
+    public class DeliveryCradleSocketInteractor : UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor
     {
         [Tooltip("Socket id reported to JobDirector (e.g. delivery_cradle).")]
         [SerializeField] private string socketId = "delivery_cradle";
@@ -37,19 +37,19 @@ namespace Ziptide.Gameplay
             base.OnDestroy();
         }
 
-        public override bool CanHover(IXRHoverInteractable interactable)
+        public override bool CanHover(UnityEngine.XR.Interaction.Toolkit.Interactables.IXRHoverInteractable interactable)
         {
             if (!base.CanHover(interactable)) return false;
             return ItemIdAllowed(interactable);
         }
 
-        public override bool CanSelect(IXRSelectInteractable interactable)
+        public override bool CanSelect(UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable interactable)
         {
             if (!base.CanSelect(interactable)) return false;
             return ItemIdAllowed(interactable);
         }
 
-        private bool ItemIdAllowed(IXRInteractable interactable)
+        private bool ItemIdAllowed(UnityEngine.XR.Interaction.Toolkit.Interactables.IXRInteractable interactable)
         {
             var go = (interactable as Component)?.gameObject;
             if (go == null) return false;

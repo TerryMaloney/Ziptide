@@ -74,12 +74,12 @@ namespace Ziptide.Gameplay
                 if (item == null || item.Definition == null) continue;
                 if (item.Definition.itemId != keyItemId) continue;
 
-                var grab = item.GetComponent<XRGrabInteractable>();
+                var grab = item.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
                 if (grab == null || !grab.isSelected) continue;
 
-                foreach (IXRSelectInteractor interactor in grab.interactorsSelecting)
+                foreach (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor in grab.interactorsSelecting)
                 {
-                    var hand = interactor as XRBaseControllerInteractor;
+                    var hand = interactor as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor;
                     if (hand != null && hand.isActiveAndEnabled) return item;
                 }
             }
@@ -96,7 +96,7 @@ namespace Ziptide.Gameplay
             key.transform.localPosition = Vector3.zero;
             key.transform.localRotation = Quaternion.identity;
 
-            var grab = key.GetComponent<XRGrabInteractable>();
+            var grab = key.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             if (grab != null) grab.enabled = false;      // seated for good
             var body = key.GetComponent<Rigidbody>();
             if (body != null) body.isKinematic = true;

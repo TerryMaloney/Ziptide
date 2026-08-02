@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Content;
 using Ziptide.Multiplayer;
 using Ziptide.Multiplayer.Augments;
@@ -12,10 +12,10 @@ namespace Ziptide.Gameplay
     /// swing instead of aimed taps). Counter: it needs melee range — keep your distance.
     /// Mirrors HammerTool's proven swing detection (head speed threshold + debounce).
     /// </summary>
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     public class SonicThumperRuntime : MonoBehaviour
     {
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Vector3 _lastPos;
         private float _nextThumpAt;
 
@@ -30,7 +30,7 @@ namespace Ziptide.Gameplay
 
         private void Awake()
         {
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _lastPos = transform.position;
         }
 

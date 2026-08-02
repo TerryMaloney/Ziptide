@@ -68,7 +68,7 @@ namespace Ziptide.Gameplay
                 _broodRenderers[i] = egg.GetComponent<Renderer>();
                 if (i == 1) // the center egg is the disturb point
                 {
-                    var interactable = egg.AddComponent<XRSimpleInteractable>();
+                    var interactable = egg.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
                     var mgr = Object.FindObjectOfType<XRInteractionManager>();
                     if (mgr != null) interactable.interactionManager = mgr;
                     interactable.selectEntered.AddListener(_ => Disturb());

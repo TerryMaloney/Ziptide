@@ -58,7 +58,7 @@ namespace Ziptide.Gameplay
 
         private bool LeftHandBusy()
         {
-            foreach (var i in _leftHand.GetComponentsInChildren<XRBaseControllerInteractor>())
+            foreach (var i in _leftHand.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>())
                 if (i != null && i.hasSelection) return true;
             return false;
         }

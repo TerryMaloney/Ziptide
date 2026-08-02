@@ -180,7 +180,7 @@ namespace Ziptide.Gameplay
             _buttonLabel = tm;
             RefreshLabel();
 
-            var interactable = button.AddComponent<XRSimpleInteractable>();
+            var interactable = button.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var mgr = FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             interactable.selectEntered.AddListener(_ => TryLaunch());

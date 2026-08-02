@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 
 namespace Ziptide.Gameplay
 {
@@ -30,10 +30,10 @@ namespace Ziptide.Gameplay
             _nextScan = Time.unscaledTime + 0.5f;
 
             RepairableMachine[] machines = Object.FindObjectsOfType<RepairableMachine>(true);
-            XRGrabInteractable[] grabs = Object.FindObjectsOfType<XRGrabInteractable>(true);
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable[] grabs = Object.FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>(true);
             for (int i = 0; i < grabs.Length; i++)
             {
-                XRGrabInteractable grab = grabs[i];
+                UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab = grabs[i];
                 if (grab == null || !grab.gameObject.name.StartsWith("Part_")) continue;
                 if (grab.GetComponent<RepairPartSafetyRuntime>() != null) continue;
 

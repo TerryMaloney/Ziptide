@@ -10,7 +10,7 @@ namespace Ziptide.Gameplay
     /// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, tracer/muzzle/impact feedback,
     /// layered definition-driven haptics, visual-only Forge recoil, and authored-or-procedural audio.
     /// </summary>
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     [RequireComponent(typeof(WeaponFeelRuntime))]
     public class PistolRuntime : MonoBehaviour
     {
@@ -24,7 +24,7 @@ namespace Ziptide.Gameplay
             ConfigureFeel(def);
         }
 
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Transform _muzzle;
         private float _nextFireTime;
         private AudioSource _audioSource;
@@ -37,7 +37,7 @@ namespace Ziptide.Gameplay
 
         private void Awake()
         {
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _muzzle = transform.Find("Muzzle");
             if (_muzzle == null)
             {
@@ -90,10 +90,10 @@ namespace Ziptide.Gameplay
 
         private void OnActivated(ActivateEventArgs args)
         {
-            Fire(args.interactorObject as XRBaseControllerInteractor);
+            Fire(args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor);
         }
 
-        private void Fire(XRBaseControllerInteractor controllerInteractor)
+        private void Fire(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor controllerInteractor)
         {
             PistolDefinition def = Def;
             if (def == null || Time.time < _nextFireTime) return;
@@ -146,12 +146,12 @@ namespace Ziptide.Gameplay
             return go;
         }
 
-        private XRBaseControllerInteractor GetSelectingControllerInteractor()
+        private UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor GetSelectingControllerInteractor()
         {
             if (_grab == null) return null;
             var interactors = _grab.interactorsSelecting;
             if (interactors == null || interactors.Count == 0) return null;
-            return (interactors[0] as Component)?.GetComponent<XRBaseControllerInteractor>();
+            return (interactors[0] as Component)?.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>();
         }
 
         private static bool IsAnyTriggerDown()

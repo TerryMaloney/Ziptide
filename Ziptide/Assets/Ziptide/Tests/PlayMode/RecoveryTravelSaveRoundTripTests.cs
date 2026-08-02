@@ -206,11 +206,11 @@ namespace Ziptide.Tests.PlayMode
         private void SelectHomeHubTileThroughXri(
             string tileName,
             XRInteractionManager manager,
-            XRRayInteractor ray)
+            UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor ray)
         {
             Transform tileTransform = FindTransform(tileName);
             Assert.IsNotNull(tileTransform, "Actual Home Hub tile was not found: " + tileName);
-            XRSimpleInteractable tile = tileTransform.GetComponent<XRSimpleInteractable>();
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable tile = tileTransform.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             Assert.IsNotNull(tile, tileName + " is not an XRSimpleInteractable.");
             Assert.AreSame(manager, tile.interactionManager,
                 tileName + " is not bound to the canonical interaction manager.");
@@ -238,10 +238,10 @@ namespace Ziptide.Tests.PlayMode
                 "The actual rig ray hit another object before " + tileName + ": " +
                 RecoveryRuntimeCensus.HierarchyPath(hit.transform));
 
-            var hoverInteractor = (IXRHoverInteractor)ray;
-            var selectInteractor = (IXRSelectInteractor)ray;
-            var hoverInteractable = (IXRHoverInteractable)tile;
-            var selectInteractable = (IXRSelectInteractable)tile;
+            var hoverInteractor = (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRHoverInteractor)ray;
+            var selectInteractor = (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)ray;
+            var hoverInteractable = (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRHoverInteractable)tile;
+            var selectInteractable = (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)tile;
             if (!tile.isHovered) manager.HoverEnter(hoverInteractor, hoverInteractable);
             Assert.IsTrue(tile.isHovered, tileName + " did not enter hover state.");
             manager.SelectEnter(selectInteractor, selectInteractable);

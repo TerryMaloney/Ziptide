@@ -126,7 +126,7 @@ namespace Ziptide.Gameplay
         private void ApplyFloorOriginContract()
         {
             List<XRInputSubsystem> subsystems = new List<XRInputSubsystem>();
-            SubsystemManager.GetInstances(subsystems);
+            SubsystemManager.GetSubsystems(subsystems);
             for (int i = 0; i < subsystems.Count; i++)
             {
                 XRInputSubsystem subsystem = subsystems[i];
@@ -260,12 +260,12 @@ namespace Ziptide.Gameplay
     [DisallowMultipleComponent]
     public sealed class BreakerBladeHandPoseRuntime : MonoBehaviour
     {
-        private XRGrabInteractable _grab;
+        private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _grab;
         private Transform _tip;
 
         private void Awake()
         {
-            _grab = GetComponent<XRGrabInteractable>();
+            _grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             _tip = transform.Find("Muzzle");
             if (_tip == null) _tip = transform;
         }
@@ -282,7 +282,7 @@ namespace Ziptide.Gameplay
 
         private void OnSelectEntered(SelectEnterEventArgs args)
         {
-            if (_grab == null || !(args.interactorObject is XRBaseControllerInteractor)) return;
+            if (_grab == null || !(args.interactorObject is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor)) return;
 
             Transform handAttach = args.interactorObject.GetAttachTransform(_grab);
             if (handAttach == null) return;

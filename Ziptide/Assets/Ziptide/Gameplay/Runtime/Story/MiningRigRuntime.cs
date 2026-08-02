@@ -89,7 +89,7 @@ namespace Ziptide.Gameplay
             hopper.transform.localScale = new Vector3(0.55f, 0.3f, 0.55f);
             Paint(hopper, HopperColor);
             _hopper = hopper.GetComponent<Renderer>();
-            var interactable = hopper.AddComponent<XRSimpleInteractable>();
+            var interactable = hopper.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             interactable.selectEntered.AddListener(_ => Collect());

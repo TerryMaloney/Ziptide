@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Content;
 using Ziptide.Editor.Audit;
 using Ziptide.Editor.WorldImprovement;
@@ -65,7 +65,7 @@ namespace Ziptide.Tests.EditMode
                 foreach (WorldDiscoveryNodeRuntime node in nodes)
                 {
                     Assert.That(node.GetComponent<Collider>(), Is.Not.Null);
-                    Assert.That(node.GetComponent<XRSimpleInteractable>(), Is.Not.Null);
+                    Assert.That(node.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>(), Is.Not.Null);
                     Assert.That(node.GetComponent<Rigidbody>(), Is.Null,
                         "Discovery nodes must not introduce loose physics bodies.");
                     Assert.That(node.transform.position.y, Is.InRange(0.8f, 1.3f));

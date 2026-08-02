@@ -69,14 +69,14 @@ namespace Ziptide.Gameplay
 
         private static string DetermineSlot(ItemRuntime item)
         {
-            XRGrabInteractable grab = item.GetComponent<XRGrabInteractable>();
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab = item.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             if (grab == null) return "loose";
 
             if (grab.isSelected)
             {
-                foreach (IXRSelectInteractor interactor in grab.interactorsSelecting)
+                foreach (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor in grab.interactorsSelecting)
                 {
-                    XRSocketInteractor socket = interactor as XRSocketInteractor;
+                    UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor socket = interactor as UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor;
                     if (socket != null)
                     {
                         string socketName = socket.gameObject.name.ToLowerInvariant();
@@ -112,14 +112,14 @@ namespace Ziptide.Gameplay
 
         private static void ForceDropAndDestroy(ItemRuntime item)
         {
-            XRGrabInteractable grab = item.GetComponent<XRGrabInteractable>();
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab = item.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             if (grab != null && grab.isSelected)
             {
                 XRInteractionManager manager = grab.interactionManager;
                 if (manager != null)
                 {
-                    List<IXRSelectInteractor> selecting = new List<IXRSelectInteractor>(grab.interactorsSelecting);
-                    foreach (IXRSelectInteractor interactor in selecting)
+                    List<UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor> selecting = new List<UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor>(grab.interactorsSelecting);
+                    foreach (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor in selecting)
                     {
                         try { manager.SelectExit(interactor, grab); }
                         catch (System.Exception ex)
@@ -138,7 +138,7 @@ namespace Ziptide.Gameplay
             if (item == null) yield break;
 
             HolsterSocketInteractor socket = FindMatchingSocket(slotId, playerRoot);
-            XRGrabInteractable grab = item.GetComponent<XRGrabInteractable>();
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab = item.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             if (socket == null || grab == null)
             {
                 Debug.LogError("ZIPTIDE: HOLSTER_DOCK_BLOCKER item=" + item.name + " reason="
@@ -151,7 +151,7 @@ namespace Ziptide.Gameplay
             Rigidbody body = item.GetComponent<Rigidbody>();
             if (body != null)
             {
-                body.velocity = Vector3.zero;
+                body.linearVelocity = Vector3.zero;
                 body.angularVelocity = Vector3.zero;
                 body.useGravity = false;
                 body.isKinematic = true;
@@ -177,17 +177,17 @@ namespace Ziptide.Gameplay
             // only thing in the whole project still holding it in Safe Mode after the API updater
             // ran. Both interface overloads exist in XRI 2.4.x as well (QuickSwap has used them all
             // along), so this compiles identically on the old and new editors.
-            if (!socket.CanSelect((IXRSelectInteractable)grab))
+            if (!socket.CanSelect((UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)grab))
             {
                 FailHolsterOpen(item, body, slotId, "socket_rejected");
                 yield break;
             }
 
-            manager.SelectEnter((IXRSelectInteractor)socket, (IXRSelectInteractable)grab);
+            manager.SelectEnter((UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)socket, (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)grab);
             yield return null;
 
             bool owned = false;
-            foreach (IXRSelectInteractor interactor in grab.interactorsSelecting)
+            foreach (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor in grab.interactorsSelecting)
                 if (ReferenceEquals(interactor, socket)) { owned = true; break; }
 
             if (!owned)

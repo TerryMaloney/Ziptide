@@ -41,7 +41,7 @@ namespace Ziptide.Gameplay
             col.size = new Vector3(0.22f, 0.26f, 0.34f);
             var rb = go.AddComponent<Rigidbody>();
             rb.useGravity = true;
-            var grab = go.AddComponent<XRGrabInteractable>();
+            var grab = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null) grab.interactionManager = mgr;
             go.AddComponent<WateringCanRuntime>();

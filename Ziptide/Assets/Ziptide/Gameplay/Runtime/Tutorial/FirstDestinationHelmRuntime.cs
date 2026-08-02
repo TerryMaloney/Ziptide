@@ -104,7 +104,7 @@ namespace Ziptide.Gameplay
             tile.transform.localScale = new Vector3(0.36f, 0.12f, 0.06f);
             ItemFactory.ApplyURPColor(tile, new Color(0.18f, 0.65f, 0.82f));
 
-            var interactable = tile.AddComponent<XRSimpleInteractable>();
+            var interactable = tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             var manager = FindObjectOfType<XRInteractionManager>();
             if (manager != null) interactable.interactionManager = manager;
             interactable.selectEntered.AddListener(_ => SelectW001());
@@ -163,8 +163,8 @@ namespace Ziptide.Gameplay
             rb.isKinematic = true;
             rb.useGravity = false;
 
-            var grab = GetComponent<XRGrabInteractable>();
-            if (grab == null) grab = gameObject.AddComponent<XRGrabInteractable>();
+            var grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+            if (grab == null) grab = gameObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             var manager = FindObjectOfType<XRInteractionManager>();
             if (manager != null) grab.interactionManager = manager;
             grab.selectEntered.AddListener(_ => NotifyGrabbed());

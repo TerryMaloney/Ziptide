@@ -47,8 +47,8 @@ namespace Ziptide.Gameplay
         private Transform _cam;
         private Transform _leftHand;
         private Transform _rightHand;
-        private XRBaseControllerInteractor _leftInteractor;
-        private XRBaseControllerInteractor _rightInteractor;
+        private UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor _leftInteractor;
+        private UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor _rightInteractor;
 
         private GameObject _bracer;       // parented to the left controller (persistent rig!) — must be cleaned up
         private Renderer _lens;
@@ -96,8 +96,8 @@ namespace Ziptide.Gameplay
             _leftHand = left.transform;
             _rightHand = right.transform;
             // Haptics still go through an interactor under each controller (may be null — guarded at use).
-            _leftInteractor = left.GetComponentInChildren<XRBaseControllerInteractor>();
-            _rightInteractor = right.GetComponentInChildren<XRBaseControllerInteractor>();
+            _leftInteractor = left.GetComponentInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>();
+            _rightInteractor = right.GetComponentInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>();
             Debug.Log("ZIPTIDE: WRIST_HANDS left=" + (_leftHand != null) + " right=" + (_rightHand != null)
                 + " leftInteractor=" + (_leftInteractor != null) + " rightInteractor=" + (_rightInteractor != null));
         }

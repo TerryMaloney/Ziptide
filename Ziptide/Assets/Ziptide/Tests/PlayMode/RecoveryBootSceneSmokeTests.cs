@@ -123,8 +123,8 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsNotNull(settingsTile, "The actual Home Hub has no SETTINGS tile.");
             Assert.IsNotNull(newGameTile, "The actual Home Hub has no NEW GAME tile.");
 
-            XRSimpleInteractable settings = settingsTile.GetComponent<XRSimpleInteractable>();
-            XRSimpleInteractable newGame = newGameTile.GetComponent<XRSimpleInteractable>();
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable settings = settingsTile.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable newGame = newGameTile.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             Assert.IsNotNull(settings, "The actual SETTINGS tile is not an XRI interactable.");
             Assert.IsNotNull(newGame, "The actual NEW GAME tile is not an XRI interactable.");
 
@@ -143,7 +143,7 @@ namespace Ziptide.Tests.PlayMode
             _controllerSimulation = RecoveryActualRigControllerSimulation.Activate(rig, manager);
             yield return null;
             yield return null;
-            XRRayInteractor ray = _controllerSimulation.RightRay;
+            UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor ray = _controllerSimulation.RightRay;
             Assert.IsNotNull(ray, "The actual persistent rig has no right controller ray component.");
             Assert.IsTrue(ray.isActiveAndEnabled && ray.gameObject.activeInHierarchy,
                 "The test-owned tracked-controller simulation did not activate the actual right ray: " +
@@ -173,10 +173,10 @@ namespace Ziptide.Tests.PlayMode
                 RecoveryRuntimeCensus.HierarchyPath(hit.transform));
 
             int travelStartsBefore = CountLogs("ZIPTIDE: TRAVEL_START");
-            var hoverInteractor = (IXRHoverInteractor)ray;
-            var selectInteractor = (IXRSelectInteractor)ray;
-            var hoverInteractable = (IXRHoverInteractable)settings;
-            var selectInteractable = (IXRSelectInteractable)settings;
+            var hoverInteractor = (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRHoverInteractor)ray;
+            var selectInteractor = (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)ray;
+            var hoverInteractable = (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRHoverInteractable)settings;
+            var selectInteractable = (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)settings;
 
             if (!settings.isHovered) manager.HoverEnter(hoverInteractor, hoverInteractable);
             Assert.IsTrue(settings.isHovered, "SETTINGS did not enter XRI hover state.");

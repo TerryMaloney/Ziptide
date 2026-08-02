@@ -1,0 +1,13 @@
+{
+    "profile": "GoldenSlice",
+    "define": "ZIPTIDE_RECOVERY_GOLDEN",
+    "result": "Succeeded",
+    "outputPath": "/github/workspace/Ziptide/Builds/Android/Ziptide.apk",
+    "scenes": [
+        "Assets/Ziptide/Scenes/_Boot.unity",
+        "Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity",
+        "Assets/Ziptide/Scenes/ToxicCity.unity"
+    ],
+    "totalBytes": 1235371504,
+    "durationSeconds": 126.85928399999999
+}

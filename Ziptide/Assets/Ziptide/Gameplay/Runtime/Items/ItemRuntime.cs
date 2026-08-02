@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Content;
 
 namespace Ziptide.Gameplay
@@ -11,7 +11,7 @@ namespace Ziptide.Gameplay
     /// </summary>
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(Collider))]
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     public class ItemRuntime : MonoBehaviour
     {
         [SerializeField] private ItemDefinition definition;
@@ -59,9 +59,9 @@ namespace Ziptide.Gameplay
             var rb = GetComponent<Rigidbody>();
             if (rb != null && definition.mass > 0f)
                 rb.mass = definition.mass;
-            var grab = GetComponent<XRGrabInteractable>();
+            var grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             if (grab != null)
-                grab.movementType = XRBaseInteractable.MovementType.VelocityTracking;
+                grab.movementType = UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable.MovementType.VelocityTracking;
         }
     }
 }

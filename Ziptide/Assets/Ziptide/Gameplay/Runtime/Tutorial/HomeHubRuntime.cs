@@ -334,7 +334,7 @@ namespace Ziptide.Gameplay
             tile.transform.localScale = new Vector3(0.52f, 0.28f, 0.12f);
             Paint(tile, color);
 
-            var interactable = tile.AddComponent<XRSimpleInteractable>();
+            var interactable = tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             XRInteractionManager manager = interactable.interactionManager;
             if (manager == null) manager = FindObjectOfType<XRInteractionManager>();
 
@@ -364,7 +364,7 @@ namespace Ziptide.Gameplay
         }
 
         private IEnumerator MaintainManagerBinding(
-            XRSimpleInteractable interactable,
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable,
             string tileName,
             bool everBound)
         {
@@ -405,7 +405,7 @@ namespace Ziptide.Gameplay
             }
         }
 
-        private void LogTileProbe(string phase, GameObject tile, XRSimpleInteractable interactable)
+        private void LogTileProbe(string phase, GameObject tile, UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable)
         {
             int managerId = interactable != null && interactable.interactionManager != null
                 ? interactable.interactionManager.GetInstanceID()
@@ -421,11 +421,11 @@ namespace Ziptide.Gameplay
 
         private void LogAimProbe()
         {
-            XRRayInteractor[] rays = FindObjectsOfType<XRRayInteractor>();
+            UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor[] rays = FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>();
             int active = 0;
             for (int i = 0; i < rays.Length; i++)
             {
-                XRRayInteractor ray = rays[i];
+                UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor ray = rays[i];
                 if (ray == null || !ray.isActiveAndEnabled || !ray.gameObject.activeInHierarchy)
                     continue;
 

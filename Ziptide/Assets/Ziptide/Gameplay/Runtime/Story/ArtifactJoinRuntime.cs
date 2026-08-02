@@ -162,12 +162,12 @@ namespace Ziptide.Gameplay
                 if (item == null || item.Definition == null) continue;
                 if (item.Definition.itemId != itemId) continue;
 
-                var grab = item.GetComponent<XRGrabInteractable>();
+                var grab = item.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
                 if (grab == null || !grab.isSelected) continue;
 
-                foreach (IXRSelectInteractor interactor in grab.interactorsSelecting)
+                foreach (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor in grab.interactorsSelecting)
                 {
-                    var hand = interactor as XRBaseControllerInteractor;
+                    var hand = interactor as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor;
                     if (hand != null && hand.isActiveAndEnabled) return item;
                 }
             }
@@ -222,11 +222,11 @@ namespace Ziptide.Gameplay
         /// <summary>A join you cannot feel is a join that did not happen.</summary>
         private static void Haptics(ItemRuntime item)
         {
-            var grab = item != null ? item.GetComponent<XRGrabInteractable>() : null;
+            var grab = item != null ? item.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>() : null;
             if (grab == null) return;
-            foreach (IXRSelectInteractor interactor in grab.interactorsSelecting)
+            foreach (UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor in grab.interactorsSelecting)
             {
-                var hand = interactor as XRBaseControllerInteractor;
+                var hand = interactor as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor;
                 if (hand != null) hand.SendHapticImpulse(0.9f, 0.22f);
             }
         }

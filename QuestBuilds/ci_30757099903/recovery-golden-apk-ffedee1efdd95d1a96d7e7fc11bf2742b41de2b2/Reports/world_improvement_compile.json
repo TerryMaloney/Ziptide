@@ -1,0 +1,801 @@
+{
+    "schemaVersion": 2,
+    "compilerVersion": 2,
+    "worlds": [
+        {
+            "sceneName": "D0_City",
+            "manifestId": "ziptide-d0-city-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "c67590b9d4878b75caa4552704f46f7f47d43429c56362e256f1bdccd80ea507",
+            "manifestPath": "docs/worldimprovements/D0_City.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                3,
+                6,
+                8,
+                6,
+                4,
+                4
+            ],
+            "aspectNames": [
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Ambience",
+                "Navigation",
+                "SpatialSafety",
+                "Atmosphere",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                64,
+                64,
+                64,
+                66,
+                84,
+                84,
+                87,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Discovery",
+                "Interaction",
+                "Story"
+            ]
+        },
+        {
+            "sceneName": "StarterWorld",
+            "manifestId": "ziptide-starter-world-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "54bba5fa618beda5ea8568dff41679d05dfa802db81a18f650c6adab5ce9f472",
+            "manifestPath": "docs/worldimprovements/StarterWorld.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                18,
+                6,
+                8,
+                20,
+                8,
+                8
+            ],
+            "aspectNames": [
+                "Ambience",
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Atmosphere",
+                "Navigation",
+                "SpatialSafety",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                66,
+                68,
+                68,
+                68,
+                91,
+                95,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Ambience",
+                "Discovery",
+                "Interaction"
+            ]
+        },
+        {
+            "sceneName": "ToxicCity",
+            "manifestId": "ziptide-toxiccity-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "781eca21291fbea3a1c5bab208110daaf827571d5fe34b44c37e1b84aeb5d605",
+            "manifestPath": "docs/worldimprovements/ToxicCity.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                18,
+                10,
+                14,
+                6,
+                16,
+                16
+            ],
+            "aspectNames": [
+                "Ambience",
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Atmosphere",
+                "Navigation",
+                "SpatialSafety",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                70,
+                76,
+                76,
+                76,
+                95,
+                95,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Ambience",
+                "Discovery",
+                "Interaction"
+            ]
+        },
+        {
+            "sceneName": "W000_DriftIn",
+            "manifestId": "ziptide-w000-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "f43365d963b6413a4c87f831ab4062756e64abf880d43073dbbbf057d418e612",
+            "manifestPath": "docs/worldimprovements/W000_DriftIn.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                3,
+                8,
+                12,
+                6,
+                4,
+                4
+            ],
+            "aspectNames": [
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Ambience",
+                "Navigation",
+                "SpatialSafety",
+                "Atmosphere",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                64,
+                64,
+                64,
+                68,
+                84,
+                84,
+                91,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Discovery",
+                "Interaction",
+                "Story"
+            ]
+        },
+        {
+            "sceneName": "W002_DryCistern",
+            "manifestId": "ziptide-generated-standard-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "8abfd5277712e93f69af7a2495e9c741b93335c3b8ca45e48bfcf4de41d0779c",
+            "manifestPath": "docs/worldimprovements/_generated-standard.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                6,
+                7,
+                10,
+                2,
+                8,
+                12
+            ],
+            "aspectNames": [
+                "Ambience",
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Navigation",
+                "SpatialSafety",
+                "Atmosphere",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                67,
+                68,
+                68,
+                72,
+                83,
+                83,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Ambience",
+                "Discovery",
+                "Interaction"
+            ]
+        },
+        {
+            "sceneName": "W003_GlassShelf",
+            "manifestId": "ziptide-generated-standard-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "8abfd5277712e93f69af7a2495e9c741b93335c3b8ca45e48bfcf4de41d0779c",
+            "manifestPath": "docs/worldimprovements/_generated-standard.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                3,
+                7,
+                10,
+                6,
+                4,
+                12
+            ],
+            "aspectNames": [
+                "Discovery",
+                "Interaction",
+                "Ambience",
+                "Story",
+                "Navigation",
+                "SpatialSafety",
+                "Atmosphere",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                64,
+                64,
+                67,
+                72,
+                84,
+                84,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Discovery",
+                "Interaction",
+                "Ambience"
+            ]
+        },
+        {
+            "sceneName": "W004_BroadcastTomb",
+            "manifestId": "ziptide-generated-standard-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "8abfd5277712e93f69af7a2495e9c741b93335c3b8ca45e48bfcf4de41d0779c",
+            "manifestPath": "docs/worldimprovements/_generated-standard.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                9,
+                7,
+                10,
+                11,
+                12,
+                12
+            ],
+            "aspectNames": [
+                "Ambience",
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Atmosphere",
+                "Navigation",
+                "SpatialSafety",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                67,
+                72,
+                72,
+                72,
+                95,
+                95,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Ambience",
+                "Discovery",
+                "Interaction"
+            ]
+        },
+        {
+            "sceneName": "W005_OxidizedCanopy",
+            "manifestId": "ziptide-generated-standard-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "8abfd5277712e93f69af7a2495e9c741b93335c3b8ca45e48bfcf4de41d0779c",
+            "manifestPath": "docs/worldimprovements/_generated-standard.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                6,
+                7,
+                10,
+                1,
+                8,
+                12
+            ],
+            "aspectNames": [
+                "Ambience",
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Navigation",
+                "SpatialSafety",
+                "Atmosphere",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                67,
+                68,
+                68,
+                72,
+                82,
+                82,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Ambience",
+                "Discovery",
+                "Interaction"
+            ]
+        },
+        {
+            "sceneName": "W006_MirrorFlats",
+            "manifestId": "ziptide-generated-standard-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "8abfd5277712e93f69af7a2495e9c741b93335c3b8ca45e48bfcf4de41d0779c",
+            "manifestPath": "docs/worldimprovements/_generated-standard.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                3,
+                7,
+                10,
+                6,
+                4,
+                12
+            ],
+            "aspectNames": [
+                "Discovery",
+                "Interaction",
+                "Ambience",
+                "Story",
+                "Navigation",
+                "SpatialSafety",
+                "Atmosphere",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                64,
+                64,
+                67,
+                72,
+                84,
+                84,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Discovery",
+                "Interaction",
+                "Ambience"
+            ]
+        },
+        {
+            "sceneName": "W007_SableStation",
+            "manifestId": "ziptide-generated-standard-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "8abfd5277712e93f69af7a2495e9c741b93335c3b8ca45e48bfcf4de41d0779c",
+            "manifestPath": "docs/worldimprovements/_generated-standard.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                6,
+                7,
+                10,
+                6,
+                8,
+                12
+            ],
+            "aspectNames": [
+                "Ambience",
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Navigation",
+                "SpatialSafety",
+                "Atmosphere",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                67,
+                68,
+                68,
+                72,
+                87,
+                87,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Ambience",
+                "Discovery",
+                "Interaction"
+            ]
+        },
+        {
+            "sceneName": "W008_SealedArchive",
+            "manifestId": "ziptide-generated-standard-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "8abfd5277712e93f69af7a2495e9c741b93335c3b8ca45e48bfcf4de41d0779c",
+            "manifestPath": "docs/worldimprovements/_generated-standard.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                9,
+                7,
+                10,
+                11,
+                12,
+                12
+            ],
+            "aspectNames": [
+                "Ambience",
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Atmosphere",
+                "Navigation",
+                "SpatialSafety",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                67,
+                72,
+                72,
+                72,
+                95,
+                95,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Ambience",
+                "Discovery",
+                "Interaction"
+            ]
+        },
+        {
+            "sceneName": "W009_Chitinwall",
+            "manifestId": "ziptide-generated-standard-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "8abfd5277712e93f69af7a2495e9c741b93335c3b8ca45e48bfcf4de41d0779c",
+            "manifestPath": "docs/worldimprovements/_generated-standard.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                6,
+                7,
+                10,
+                7,
+                8,
+                12
+            ],
+            "aspectNames": [
+                "Ambience",
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Navigation",
+                "SpatialSafety",
+                "Atmosphere",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                67,
+                68,
+                68,
+                72,
+                88,
+                88,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Ambience",
+                "Discovery",
+                "Interaction"
+            ]
+        },
+        {
+            "sceneName": "W010_TidalArray",
+            "manifestId": "ziptide-generated-standard-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "8abfd5277712e93f69af7a2495e9c741b93335c3b8ca45e48bfcf4de41d0779c",
+            "manifestPath": "docs/worldimprovements/_generated-standard.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                3,
+                7,
+                10,
+                6,
+                4,
+                12
+            ],
+            "aspectNames": [
+                "Discovery",
+                "Interaction",
+                "Ambience",
+                "Story",
+                "Navigation",
+                "SpatialSafety",
+                "Atmosphere",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                64,
+                64,
+                67,
+                72,
+                84,
+                84,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Discovery",
+                "Interaction",
+                "Ambience"
+            ]
+        },
+        {
+            "sceneName": "W011_TheHum",
+            "manifestId": "ziptide-generated-standard-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "8abfd5277712e93f69af7a2495e9c741b93335c3b8ca45e48bfcf4de41d0779c",
+            "manifestPath": "docs/worldimprovements/_generated-standard.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                12,
+                7,
+                10,
+                12,
+                12,
+                12
+            ],
+            "aspectNames": [
+                "Ambience",
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Atmosphere",
+                "Navigation",
+                "SpatialSafety",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                67,
+                72,
+                72,
+                72,
+                95,
+                95,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Ambience",
+                "Discovery",
+                "Interaction"
+            ]
+        },
+        {
+            "sceneName": "W012_MarasLastJump",
+            "manifestId": "ziptide-generated-standard-round3",
+            "round": 3,
+            "recipeVersion": 1,
+            "recipeHash": "8abfd5277712e93f69af7a2495e9c741b93335c3b8ca45e48bfcf4de41d0779c",
+            "manifestPath": "docs/worldimprovements/_generated-standard.round3.improvement.json",
+            "modules": [
+                "arrival_identity",
+                "route_beacons",
+                "ambient_motion",
+                "horizon_frame",
+                "grounded_route",
+                "discovery_nodes",
+                "story_traces"
+            ],
+            "objectCounts": [
+                5,
+                9,
+                7,
+                10,
+                8,
+                12,
+                12
+            ],
+            "aspectNames": [
+                "Ambience",
+                "Discovery",
+                "Interaction",
+                "Story",
+                "Navigation",
+                "SpatialSafety",
+                "Atmosphere",
+                "Identity",
+                "Perception"
+            ],
+            "aspectScores": [
+                67,
+                72,
+                72,
+                72,
+                92,
+                92,
+                95,
+                100,
+                100
+            ],
+            "weakestAspects": [
+                "Ambience",
+                "Discovery",
+                "Interaction"
+            ]
+        }
+    ]
+}

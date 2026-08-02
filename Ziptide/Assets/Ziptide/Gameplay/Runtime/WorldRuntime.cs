@@ -116,7 +116,7 @@ namespace Ziptide.Gameplay
             {
                 Rigidbody rb = bodies[i];
                 if (rb == null) continue;
-                rb.velocity = Vector3.zero;
+                rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
             }
 

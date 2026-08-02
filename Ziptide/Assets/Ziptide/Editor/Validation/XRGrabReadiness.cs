@@ -73,8 +73,8 @@ namespace Ziptide.Editor.Validation
             }
 
             // 4) XR Origin with Ray + Direct interactors
-            var rayInteractors = Object.FindObjectsOfType<XRRayInteractor>(true).ToList();
-            var directInteractors = Object.FindObjectsOfType<XRDirectInteractor>(true).ToList();
+            var rayInteractors = Object.FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>(true).ToList();
+            var directInteractors = Object.FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactors.XRDirectInteractor>(true).ToList();
             bool hasRay = rayInteractors.Any(r => r.gameObject.name.Contains("Ray") && !r.gameObject.name.Contains("Teleport"));
             if (rayInteractors.Count == 0)
             {
@@ -111,7 +111,7 @@ namespace Ziptide.Editor.Validation
             else
             {
                 var rb = cube.GetComponent<Rigidbody>();
-                var grab = cube.GetComponent<XRGrabInteractable>();
+                var grab = cube.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
                 var col = cube.GetComponent<Collider>();
                 if (rb == null) { results.Add("FAIL: GrabbableCube has no Rigidbody."); allPass = false; }
                 else if (rb.isKinematic) { results.Add("FAIL: GrabbableCube Rigidbody is Kinematic. Set to non-kinematic for grab."); allPass = false; }
@@ -125,7 +125,7 @@ namespace Ziptide.Editor.Validation
             // 7) Interaction layer overlap (simplified: interactable layer 1 Default, interactors usually include Default)
             if (cube != null)
             {
-                var grab = cube.GetComponent<XRGrabInteractable>();
+                var grab = cube.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
                 if (grab != null)
                     results.Add("INFO: GrabbableCube interaction layers = " + grab.interactionLayers.value + ". Ensure interactors include this layer.");
             }

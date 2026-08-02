@@ -124,7 +124,7 @@ namespace Ziptide.Gameplay
             }
             var rb = go.AddComponent<Rigidbody>();
             rb.mass = 2f;
-            rb.velocity = velocity;
+            rb.linearVelocity = velocity;
             rb.angularVelocity = new Vector3(Hash01(seed + 61) - 0.5f, Hash01(seed + 67) - 0.5f,
                                              Hash01(seed + 71) - 0.5f) * 4f;
             go.AddComponent<WallChunkDebris>().lifetime = DebrisLifetime;

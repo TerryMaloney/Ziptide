@@ -8,7 +8,7 @@ namespace Ziptide.Gameplay
     /// Place on a grabbable item. When the player grabs it, reports collect to JobDirector for CollectItemIdCountStep.
     /// </summary>
     [RequireComponent(typeof(ItemRuntime))]
-    [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
     public class JobCollectible : MonoBehaviour
     {
         private JobDirector _director;
@@ -23,14 +23,14 @@ namespace Ziptide.Gameplay
         {
             if (_director == null)
                 _director = FindObjectOfType<JobDirector>();
-            var grab = GetComponent<XRGrabInteractable>();
+            var grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             if (grab != null)
                 grab.selectEntered.AddListener(OnGrabbed);
         }
 
         private void OnDestroy()
         {
-            var grab = GetComponent<XRGrabInteractable>();
+            var grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             if (grab != null)
                 grab.selectEntered.RemoveListener(OnGrabbed);
         }

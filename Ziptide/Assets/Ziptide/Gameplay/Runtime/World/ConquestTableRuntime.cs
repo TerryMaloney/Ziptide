@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using Ziptide.Core;
 using Ziptide.Multiplayer.Conquest;
 
@@ -168,7 +168,7 @@ namespace Ziptide.Gameplay
                 var col = orb.GetComponent<Collider>();
                 if (col != null) col.isTrigger = true;
                 string captured = p.planetId; // closure copy
-                orb.AddComponent<XRSimpleInteractable>().selectEntered
+                orb.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>().selectEntered
                    .AddListener(_ => OnPlanetTapped(captured));
                 _orbs[p.planetId] = orb.transform;
 
@@ -310,7 +310,7 @@ namespace Ziptide.Gameplay
                 tok.transform.localScale = Vector3.one * (held ? 0.05f : 0.075f);
                 Color c = TokenColor(fleet[i]);
                 ItemFactory.ApplyURPColor(tok, held ? Color.Lerp(c, Color.black, 0.65f) : c);
-                tok.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => ToggleToken(idx));
+                tok.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>().selectEntered.AddListener(_ => ToggleToken(idx));
             }
             if (fleet.Count > 0)
             {
@@ -718,7 +718,7 @@ namespace Ziptide.Gameplay
             tile.transform.localPosition = localPos;
             tile.transform.localScale = new Vector3(0.3f, 0.16f, 0.05f);
             ItemFactory.ApplyURPColor(tile, color);
-            tile.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => onSelect());
+            tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>().selectEntered.AddListener(_ => onSelect());
             var tm = NewText(label, localPos + new Vector3(0f, 0f, -0.05f), 0.007f, parent);
             tm.color = Color.white;
         }

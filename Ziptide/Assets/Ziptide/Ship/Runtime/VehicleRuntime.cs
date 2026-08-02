@@ -306,7 +306,7 @@ namespace Ziptide.Ship
             _mountAffordance.transform.localScale = V(.16f, .12f, .22f);
             Paint(_mountAffordance, p.Glow);
 
-            XRSimpleInteractable interactable = _mountAffordance.AddComponent<XRSimpleInteractable>();
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable interactable = _mountAffordance.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
             XRInteractionManager manager = Object.FindObjectOfType<XRInteractionManager>();
             if (manager != null) interactable.interactionManager = manager;
             interactable.selectEntered.AddListener(_ => Mount());

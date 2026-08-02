@@ -25,8 +25,8 @@ namespace Ziptide.Tests.PlayMode
         public Camera HeadCamera { get; private set; }
         public Transform LeftController { get; private set; }
         public Transform RightController { get; private set; }
-        public XRRayInteractor LeftRay { get; private set; }
-        public XRRayInteractor RightRay { get; private set; }
+        public UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor LeftRay { get; private set; }
+        public UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor RightRay { get; private set; }
         public XRInteractionManager InteractionManager { get; private set; }
         public InputActionManager InputManager { get; private set; }
         public InputActionAsset ActionAsset { get; private set; }
@@ -130,16 +130,16 @@ namespace Ziptide.Tests.PlayMode
             return controller.transform;
         }
 
-        private XRRayInteractor CreateRay(Transform controller, string name)
+        private UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor CreateRay(Transform controller, string name)
         {
             var rayHost = new GameObject(name);
             rayHost.transform.SetParent(controller, false);
             rayHost.transform.localPosition = Vector3.zero;
             rayHost.transform.localRotation = Quaternion.identity;
 
-            var ray = rayHost.AddComponent<XRRayInteractor>();
+            var ray = rayHost.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>();
             ray.interactionManager = InteractionManager;
-            ray.lineType = XRRayInteractor.LineType.StraightLine;
+            ray.lineType = UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor.LineType.StraightLine;
             ray.maxRaycastDistance = 10f;
             ray.raycastMask = Physics.DefaultRaycastLayers;
             return ray;
