@@ -61,6 +61,14 @@ namespace Ziptide.Editor.Patching
             // W000 is a ship interior — the experience recipe stays OFF, latched so this never re-runs.
             n += Experience("W000_DriftIn", (kit, ex) => { ex.enabled = false; });
 
+            // THE TUTORIAL'S OWN STICK CRANE (ALWAYS-RUN, idempotent). BuildW000DriftIn now authors a
+            // real LandmarkKind.Crane, but this library is CREATE-ONLY, so the shipped
+            // W000_DriftIn_Layout.asset still carries the 10 m x 2 m Tower box that the 2026-08-01
+            // device pass met first — the same defect fixed in ToxicCity, left standing in the one
+            // scene the player actually starts in. Only rewrites while it is still the stick, so
+            // hand-tuning in the inspector afterwards is never overwritten.
+            n += UpgradeStickCrane("W000_DriftIn", "GantryCrane", height: 10f, width: 3.2f);
+
             n += Experience("W002_DryCistern", (kit, ex) =>
             {   // A vast drained basin — canyon channels where the water was; pump arches on the sky.
                 ex.enabled = true; ex.biome = BiomePreset.Canyon; ex.worldRadius = 260f; ex.heightAmplitude = 18f;
@@ -172,6 +180,42 @@ namespace Ziptide.Editor.Patching
                 ex.vistaColor = new Color(0.46f, 0.42f, 0.40f); ex.vistaAccentColor = new Color(0.70f, 0.85f, 1.00f);
             });
             return n;
+        }
+
+        /// <summary>
+        /// Promote a named landmark from a bare Tower box to a real crane, once. Idempotent by
+        /// CONDITION rather than by latch flag: it only acts while the landmark is still a Tower that
+        /// LandmarkScaleCore judges to read as a stick, so a second run does nothing and a later
+        /// hand-edit is never clobbered.
+        /// </summary>
+        private static int UpgradeStickCrane(string sceneName, string landmarkName, float height, float width)
+        {
+            string path = LayoutFolder + "/" + sceneName + "_Layout.asset";
+            var kit = AssetDatabase.LoadAssetAtPath<CityLayoutDefinition>(path);
+            if (kit == null) return 0;
+
+            int changed = 0;
+            foreach (var district in kit.districts)
+            {
+                if (district == null || district.landmarks == null) continue;
+                foreach (var landmark in district.landmarks)
+                {
+                    if (landmark == null || landmark.name != landmarkName) continue;
+                    if (landmark.kind == LandmarkKind.Crane) continue;
+                    if (!LandmarkScaleCore.ReadsAsStick(landmark.height, landmark.width)) continue;
+
+                    landmark.kind = LandmarkKind.Crane;
+                    landmark.height = height;
+                    landmark.width = width;
+                    changed++;
+                }
+            }
+            if (changed == 0) return 0;
+
+            EditorUtility.SetDirty(kit);
+            Debug.Log("[Ziptide] Stick crane upgraded -> " + sceneName + " landmark=" + landmarkName
+                      + " height=" + height + " width=" + width);
+            return changed;
         }
 
         private static int Experience(string sceneName, System.Action<CityLayoutDefinition, ExperienceDef> author)
@@ -295,8 +339,17 @@ namespace Ziptide.Editor.Patching
             // A tight two-room hangar: the bunk bay you wake in, and the berth bay with your ship.
             District(kit, "BunkBay", new Vector3(0, 0, 0), 14, 12, 0,
                 landmark: ("Bunk", new Vector3(-4, 0, -3), 2.5f, 3f));
+            // The gantry crane was a 10 m x 2 m stick — the exact defect LandmarkScaleCore was written
+            // to kill in ToxicCity, left standing here because W000 was "just the tutorial". It is the
+            // first structure the player ever sees, so it gets the same ruler: real width, 30 cm rungs,
+            // a walkway and a cab, and a hook that creeps. MinimumReadableWidth(12) is the narrowest
+            // width at which a 12 m mast still reads as a machine rather than a pole.
+            // Height stays at 10 m (this is an enclosed bay, not open sky); the width goes from 2 m to
+            // 3.2 m, comfortably above LandmarkScaleCore.MinimumReadableWidth(10) = 2.5 and close to
+            // ToxicCity's 16 x 4.5 proportion.
             District(kit, "BerthBay", new Vector3(0, 0, 18), 20, 18, 0,
-                landmark: ("GantryCrane", new Vector3(7, 0, 5), 10f, 2f));
+                landmark: ("GantryCrane", new Vector3(7, 0, 5), 10f, 3.2f),
+                landmarkKind: LandmarkKind.Crane);
             Connect(kit, "BunkBay", "BerthBay", ConnectionKind.GroundStreet, 5);
 
             // No combat, no hazards — the tutorial's only pressure is curiosity.

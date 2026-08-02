@@ -22,6 +22,13 @@ namespace Ziptide.Gameplay
         private const string ArmedLabel = "PUNCH IT";
         private const float HintSeconds = 2.5f;
 
+        /// <summary>Matches the rest of the ship's console signage (~7.7 cm a line at fontSize 48).</summary>
+        private const float LabelCharacterSize = 0.016f;
+        private const float HintCharacterSize = 0.011f;
+
+        /// <summary>Console-local pose of the launch tile. The helm tile docks one row below it.</summary>
+        public static readonly Vector3 ButtonLocalPos = new Vector3(0f, 1.0f, -0.22f);
+
         // THE FIRST LAUNCH IS NOT A ZIPTIDE. Canon (FIRST_HOUR_DIRECTORS_CUT §5, minute 10-13):
         // "helm -> PUNCH IT -> cast-off rails (ship flight, NO gate FX)". Cal is flying to a routine
         // wreck-clearance job, not crossing the network. This used to point straight at ToxicCity AND
@@ -95,6 +102,7 @@ namespace Ziptide.Gameplay
 
             targetScene = destinationScene;
             Debug.Log("ZIPTIDE: FLIGHT_DESTINATION_SELECTED target=" + targetScene);
+            RefreshLabel();               // the launch control acknowledges the choice
             PublishDestinationSelected(targetScene);
             return true;
         }
@@ -111,13 +119,13 @@ namespace Ziptide.Gameplay
             // a fail-safe for malformed/non-boardable test ships.
             Transform deck = transform.Find("CockpitDeck");
             Vector3 pos;
-            Vector3 faceTarget;
+            Vector3 readerStandsAt;
             if (deck != null)
             {
                 pos = deck.position - transform.right * 1.05f - transform.forward * 0.15f;
                 var deckCollider = deck.GetComponent<Collider>();
                 pos.y = deckCollider != null ? deckCollider.bounds.max.y : deck.position.y + 0.1f;
-                faceTarget = deck.position + transform.forward * 0.35f;
+                readerStandsAt = deck.position;   // you read this standing in the middle of the deck
                 Debug.Log("ZIPTIDE: CASTOFF_CONSOLE_LOCATION mode=cockpit");
             }
             else
@@ -125,48 +133,93 @@ namespace Ziptide.Gameplay
                 pos = transform.position - transform.right * 4f - transform.forward * 3f;
                 if (Physics.Raycast(pos + Vector3.up * 3f, Vector3.down, out var hit, 10f))
                     pos.y = hit.point.y;
-                faceTarget = transform.position;
+                readerStandsAt = transform.position;
                 Debug.LogWarning("ZIPTIDE: CASTOFF_CONSOLE_LOCATION mode=berth_fallback reason=no_cockpit_deck");
             }
 
-            var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            pedestal.name = "CastOffConsole";
-            pedestal.transform.position = pos + Vector3.up * 0.55f;
-            Vector3 face = faceTarget - pos;
-            face.y = 0f;
-            pedestal.transform.rotation = face.sqrMagnitude > 0.001f
-                ? Quaternion.LookRotation(face.normalized, Vector3.up)
-                : transform.rotation;
-            pedestal.transform.localScale = new Vector3(0.5f, 1.1f, 0.35f);
-            ItemFactory.ApplyURPColor(pedestal, new Color(0.16f, 0.18f, 0.2f));
+            // THE CONSOLE IS AN UNSCALED ROOT. It used to be the scaled pillar cube itself, so every
+            // child inherited (0.5, 1.1, 0.35) and the glyphs came out stretched more than 2:1 — the
+            // "glitchy looking text" from the 2026-08-01 device pass. Nothing that carries a TextMesh
+            // may hang off a non-uniformly scaled parent.
+            var console = new GameObject("CastOffConsole");
+            console.transform.position = pos;
+
+            // FACING. WorldLabelFacing is the one contract: +Z points AWAY from the reader, so the
+            // label reads instead of mirroring, and the button (built on the -Z face) ends up on the
+            // side you are standing on instead of round the back where it used to be.
+            console.transform.rotation = WorldLabelFacing.FaceViewer(pos, readerStandsAt);
+            _consoleAnchor = console.transform;
+
+            var pillar = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            pillar.name = "CastOffPillar";
+            pillar.transform.SetParent(console.transform, false);
+            pillar.transform.localPosition = new Vector3(0f, 0.55f, 0f);
+            pillar.transform.localScale = new Vector3(0.5f, 1.1f, 0.35f);
+            ItemFactory.ApplyURPColor(pillar, new Color(0.16f, 0.18f, 0.2f));
 
             var button = GameObject.CreatePrimitive(PrimitiveType.Cube);
             button.name = "Tile_PUNCH_IT";
-            button.transform.SetParent(pedestal.transform, false);
-            button.transform.localPosition = new Vector3(0f, 0.35f, -0.6f);
-            button.transform.localScale = new Vector3(0.72f, 0.22f, 0.5f);
+            button.transform.SetParent(console.transform, false);
+            button.transform.localPosition = ButtonLocalPos;
+            button.transform.localScale = new Vector3(0.36f, 0.12f, 0.06f);
             ItemFactory.ApplyURPColor(button, new Color(0.85f, 0.25f, 0.15f));
 
+            // The sign sits ABOVE the button on an unscaled parent, and slightly PROUD of the button
+            // face so the glyphs are never inside the plate. A TextMesh's world line height is
+            // roughly fontSize * characterSize / 10, so these are the numbers used everywhere else
+            // in the ship UI (48 / 0.016 ~ 7.7 cm a line) rather than a fresh guess.
             var label = new GameObject("Label_PUNCH_IT");
-            label.transform.SetParent(button.transform, false);
-            label.transform.localPosition = new Vector3(0f, 0f, -0.55f);
-            // Neutralize the button's non-uniform scale so glyphs don't stretch.
-            label.transform.localScale = new Vector3(1f / 0.72f, 1f / 0.22f, 1f / 0.5f) * 0.35f;
+            label.transform.SetParent(console.transform, false);   // unscaled parent: no glyph stretch
+            label.transform.localPosition = new Vector3(0f, 1.17f, -0.27f);
             var tm = label.AddComponent<TextMesh>();
-            tm.text = ArmedLabel;
-            tm.characterSize = 0.03f;
-            tm.fontSize = 64;
+            tm.characterSize = LabelCharacterSize;
+            tm.fontSize = 48;
             tm.anchor = TextAnchor.MiddleCenter;
             tm.alignment = TextAlignment.Center;
             tm.color = new Color(1f, 0.9f, 0.7f);
             _buttonLabel = tm;
+            RefreshLabel();
 
             var interactable = button.AddComponent<XRSimpleInteractable>();
             var mgr = FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             interactable.selectEntered.AddListener(_ => TryLaunch());
 
-            ObjectiveBeacon.Attach(pedestal, new Color(0.95f, 0.45f, 0.2f), 8f);
+            ObjectiveBeacon.Attach(console, new Color(0.95f, 0.45f, 0.2f), 8f);
+        }
+
+        /// <summary>
+        /// Where the helm tile docks. The first-destination tile used to be authored 3.4 m off the
+        /// PORT FLANK of the hull at hull-centre height, which is why the 2026-08-01 device pass
+        /// reported "a random toxic city button on the side of the ship". A destination selector
+        /// belongs beside the launch control, on the deck, or it is furniture.
+        /// </summary>
+        public Transform ConsoleAnchor => _consoleAnchor;
+
+        private Transform _consoleAnchor;
+
+        /// <summary>
+        /// The button says where it is going. Selecting a destination and pressing PUNCH IT were two
+        /// unconnected acts on device — seven destination selections in the log and not one launch —
+        /// because nothing on the launch control ever acknowledged the choice.
+        /// </summary>
+        private void RefreshLabel()
+        {
+            if (_buttonLabel == null || _hintRoutine != null) return;
+            _buttonLabel.text = ArmedLabel + "\n" + DestinationLabel(targetScene);
+            _buttonLabel.characterSize = LabelCharacterSize;
+        }
+
+        /// <summary>Scene name to something a pilot would read on a console.</summary>
+        public static string DestinationLabel(string scene)
+        {
+            if (string.Equals(scene, ZiptideConstants.SceneToxicCity, StringComparison.Ordinal))
+                return "-> W001 TOXIC CITY";
+            if (string.Equals(scene, ZiptideConstants.SceneSpaceLane, StringComparison.Ordinal))
+                return "-> SALVAGE LANE";
+            if (string.Equals(scene, ZiptideConstants.SceneW002, StringComparison.Ordinal))
+                return "-> W002 DRY CISTERN";
+            return string.IsNullOrEmpty(scene) ? "-> NO DESTINATION" : "-> " + scene.ToUpperInvariant();
         }
 
         private void TryLaunch()
@@ -237,11 +290,10 @@ namespace Ziptide.Gameplay
         private IEnumerator HintSequence(string text)
         {
             _buttonLabel.text = text;
-            _buttonLabel.characterSize = 0.018f;
+            _buttonLabel.characterSize = HintCharacterSize;
             yield return new WaitForSeconds(HintSeconds);
-            _buttonLabel.text = ArmedLabel;
-            _buttonLabel.characterSize = 0.03f;
             _hintRoutine = null;
+            RefreshLabel();
         }
 
         private IEnumerator LaunchSequence()

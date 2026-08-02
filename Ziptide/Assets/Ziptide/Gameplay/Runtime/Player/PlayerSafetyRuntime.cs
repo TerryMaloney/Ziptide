@@ -17,7 +17,14 @@ namespace Ziptide.Gameplay
     /// </summary>
     public static class TurnModeCore
     {
-        public const float DefaultSmoothTurnSpeed = 60f;
+        /// <summary>
+        /// Degrees per second for continuous turn. ⚖ Terry, 2026-08-01 device pass: *"turning is just
+        /// slightly too slow. just slightly."* — 60 was comfortable but sluggish to aim with, so this
+        /// is one notch up, not a jump. Comfort presets in LocomotionProfile still override per player;
+        /// this is the safety floor the rig is forced to when no profile has spoken.
+        /// M0SystemicDeviceRegressionTests pins it inside 45..75 so nobody can nudge it into nausea.
+        /// </summary>
+        public const float DefaultSmoothTurnSpeed = 75f;
 
         public static bool ApplySmoothOnlyWhenReady(Transform rigRoot)
         {

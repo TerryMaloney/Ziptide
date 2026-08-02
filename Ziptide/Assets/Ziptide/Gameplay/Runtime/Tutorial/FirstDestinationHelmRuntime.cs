@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Core;
@@ -24,8 +25,52 @@ namespace Ziptide.Gameplay
         private void Start()
         {
             if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();
+            StartCoroutine(BuildWhenTheConsoleExists());
+        }
+
+        /// <summary>
+        /// DOCK TO THE LAUNCH CONTROL, don't float beside the hull.
+        ///
+        /// The 2026-08-01 device pass called this "a random toxic city button on the side of the
+        /// ship", and it was: FirstHourSurfaceAuthor anchors this marker off the hull ROOT, 3.4 m to
+        /// port at hull-centre height, while the thing it drives — PUNCH IT — lives up on the cockpit
+        /// deck. So the player pressed a destination tile seven times (FIRST_HELM_SELECTED x7 in the
+        /// log) and nothing ever launched, because the launch button was somewhere else entirely.
+        ///
+        /// ShipCastOffRuntime builds its console in Start as well, so the order is not ours to
+        /// assume; wait a bounded number of frames for its anchor, then dock beside it. If there is
+        /// no console at all (test ships, non-boardable berths) build in place as before.
+        /// </summary>
+        private IEnumerator BuildWhenTheConsoleExists()
+        {
+            for (int frame = 0; frame < ConsoleWaitFrames; frame++)
+            {
+                if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();
+                if (_castOff != null && _castOff.ConsoleAnchor != null)
+                {
+                    Transform anchor = _castOff.ConsoleAnchor;
+                    transform.SetParent(anchor, false);
+                    transform.localPosition = HelmDockOffset;
+                    transform.localRotation = Quaternion.identity;
+                    Debug.Log("ZIPTIDE: FIRST_HELM_DOCKED anchor=console");
+                    BuildSurface();
+                    yield break;
+                }
+                yield return null;
+            }
+
+            Debug.LogWarning("ZIPTIDE: FIRST_HELM_DOCKED anchor=none reason=no_castoff_console");
             BuildSurface();
         }
+
+        private const int ConsoleWaitFrames = 8;
+
+        /// <summary>
+        /// One row BELOW the launch tile on the same console face: pick a destination, then punch it.
+        /// Derived from ShipCastOffRuntime.ButtonLocalPos so the two rows cannot drift apart.
+        /// </summary>
+        private static Vector3 HelmDockOffset =>
+            ShipCastOffRuntime.ButtonLocalPos - new Vector3(0f, 0.34f, 0f);
 
         public bool SelectW001()
         {
@@ -49,18 +94,14 @@ namespace Ziptide.Gameplay
             if (_built) return;
             _built = true;
 
-            var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            pedestal.name = "FirstHelmPedestal";
-            pedestal.transform.SetParent(transform, false);
-            pedestal.transform.localPosition = new Vector3(0f, 0.65f, 0f);
-            pedestal.transform.localScale = new Vector3(0.75f, 1.3f, 0.45f);
-            ItemFactory.ApplyURPColor(pedestal, new Color(0.12f, 0.18f, 0.24f));
-
+            // Everything hangs off THIS transform, which is unscaled. The old build parented the
+            // label to a (0.76, 0.28, 0.12) tile inside a (0.75, 1.3, 0.45) pedestal, so the glyphs
+            // came out stretched ~1.6:1 — half of the "glitchy looking text" on device.
             var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
             tile.name = "Tile_W001_TOXIC_CITY";
-            tile.transform.SetParent(pedestal.transform, false);
-            tile.transform.localPosition = new Vector3(0f, 0.25f, -0.58f);
-            tile.transform.localScale = new Vector3(0.76f, 0.28f, 0.12f);
+            tile.transform.SetParent(transform, false);
+            tile.transform.localPosition = Vector3.zero;
+            tile.transform.localScale = new Vector3(0.36f, 0.12f, 0.06f);
             ItemFactory.ApplyURPColor(tile, new Color(0.18f, 0.65f, 0.82f));
 
             var interactable = tile.AddComponent<XRSimpleInteractable>();
@@ -68,7 +109,9 @@ namespace Ziptide.Gameplay
             if (manager != null) interactable.interactionManager = manager;
             interactable.selectEntered.AddListener(_ => SelectW001());
 
-            AddLabel(tile.transform, "W001\nTOXIC CITY", new Vector3(0f, 0f, -0.56f), 0.024f);
+            // Same signage numbers as the launch tile above it (fontSize 48 / characterSize 0.014,
+            // ~6.7 cm a line), sitting proud of the plate so glyphs never render inside it.
+            AddLabel(transform, "W001\nTOXIC CITY", new Vector3(0f, 0.155f, -0.05f), 0.014f);
         }
 
         private static void AddLabel(Transform parent, string text, Vector3 localPosition, float size)
@@ -79,7 +122,7 @@ namespace Ziptide.Gameplay
             var tm = go.AddComponent<TextMesh>();
             tm.text = text;
             tm.characterSize = size;
-            tm.fontSize = 64;
+            tm.fontSize = 48;
             tm.anchor = TextAnchor.MiddleCenter;
             tm.alignment = TextAlignment.Center;
             tm.color = new Color(0.95f, 0.98f, 1f);

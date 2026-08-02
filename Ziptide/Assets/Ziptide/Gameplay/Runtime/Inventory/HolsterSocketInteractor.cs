@@ -120,10 +120,18 @@ namespace Ziptide.Gameplay
             target.position = desiredRootPosition + desiredRootRotation * localGripPosition;
             target.rotation = desiredRootRotation * localGripRotation;
 
-            Debug.Log("ZIPTIDE: HOLSTER_TARGET item=" + itemId + " socket=" + gameObject.name
-                + " desiredAxis=" + desiredAxis.ToString("F2")
-                + " localAxis=" + localAxis.ToString("F2"));
+            // ONCE PER ITEM, NOT ONCE PER FRAME. XRI calls GetAttachTransform every frame for as
+            // long as something is holstered, so this line was writing ~72 identical logs a second
+            // for the whole session. The 2026-08-01 capture came back with dropped=363/720 on the
+            // logcat and this was the loudest thing in it. The values are inputs, not a convergence
+            // loop, so a repeat carries no information.
+            if (_loggedPoseFor.Add(itemId))
+                Debug.Log("ZIPTIDE: HOLSTER_TARGET item=" + itemId + " socket=" + gameObject.name
+                    + " desiredAxis=" + desiredAxis.ToString("F2")
+                    + " localAxis=" + localAxis.ToString("F2"));
         }
+
+        private readonly HashSet<string> _loggedPoseFor = new HashSet<string>();
 
         private static Transform FindTip(Transform root)
         {
@@ -146,9 +154,15 @@ namespace Ziptide.Gameplay
             // WeaponCatalog is the source of truth. The old hardcoded five-id set is why four
             // authored weapons could not be belted even if the player found one; the serialized
             // list stays as a per-socket widening, never a narrowing.
-            return Ziptide.Core.WeaponCatalog.IsHolsterable(id)
+            bool holsterable = Ziptide.Core.WeaponCatalog.IsHolsterable(id)
                 || DefaultAllowedIds.Contains(id)
                 || (allowedItemIds != null && allowedItemIds.Contains(id));
+            if (!holsterable) return false;
+
+            // ⚖ Terry: the sword belongs on the LEFT hip so it is never in the way, and everything
+            // else shifts right. Enforced at the socket, because "wherever your hand happened to be"
+            // is not a placement rule (HolsterAssignmentCore owns the law and the no-trap escape).
+            return Ziptide.Core.HolsterAssignmentCore.SocketAccepts(gameObject.name, id);
         }
 
         private void OnHoverEnteredCallback(HoverEnterEventArgs args)

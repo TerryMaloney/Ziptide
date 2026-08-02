@@ -34,6 +34,7 @@ namespace Ziptide.Gameplay
         private static readonly Color LockedColor = new Color(0.30f, 0.10f, 0.10f);
 
         private Vector3 _berthReturnPos;
+        private Transform _cockpitDeck;
 
         /// <summary>Edit-time wiring (CityBuilder) — serialized fields only, no scene work here.</summary>
         public void Configure(List<WorldPackDefinition> packs, Vector3 cockpitPos, Vector3 doorPos)
@@ -77,7 +78,8 @@ namespace Ziptide.Gameplay
                 transform.TransformPoint(deckCenter + new Vector3(-1.2f, 0.6f, -1.55f)),
                 "QUARTERS", new Color(0.30f, 0.22f, 0.40f), () =>
                 {
-                    TeleportRig(transform.TransformPoint(roomLocal) + Vector3.up * 0.1f);
+                    if (!StepTo(transform.TransformPoint(roomLocal) + Vector3.up * ShipDeckCore.StandClearance,
+                            "quarters")) return;
                     var prof = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
                     if (prof != null) prof.SetFlag("QUARTERS_FIRST_VISIT"); // RILL's line, once per save
                     Debug.Log("ZIPTIDE: QUARTERS_ENTER");
@@ -88,8 +90,12 @@ namespace Ziptide.Gameplay
                 transform.TransformPoint(roomLocal + new Vector3(0f, 1.3f, -2.15f)),
                 "RETURN TO DECK", new Color(0.30f, 0.22f, 0.40f), () =>
                 {
-                    TeleportRig(transform.TransformPoint(deckCenter) + Vector3.up * 0.1f);
-                    Debug.Log("ZIPTIDE: QUARTERS_EXIT");
+                    if (TryResolveDeckStand(out Vector3 deckStand, out string deckSource))
+                    {
+                        TeleportRig(deckStand);
+                        Debug.Log("ZIPTIDE: QUARTERS_EXIT source=" + deckSource);
+                    }
+                    else Debug.LogWarning("ZIPTIDE: QUARTERS_EXIT_ABORT source=" + deckSource);
                 }, small: true);
             backToDeck.transform.SetParent(room.transform, true);
             backToDeck.transform.rotation = transform.rotation; // faces you as you enter the doorway
@@ -100,30 +106,116 @@ namespace Ziptide.Gameplay
         private void BuildBoardingPanel()
         {
             var panel = MakePanel("BoardPanel", transform.TransformPoint(doorLocalPos) + Vector3.up * 1.2f,
-                "BOARD SHIP", PanelColor, () =>
-                {
-                    _berthReturnPos = RigPosition() ?? (transform.TransformPoint(doorLocalPos) + Vector3.forward);
-                    // Re-evaluate story gating EVERY boarding — you may have just finished the contract
-                    // that unlocks the next world (locks were stale when computed once in Awake).
-                    RebuildHelmRows();
-                    TeleportRig(transform.TransformPoint(cockpitLocalPos) + Vector3.up * 0.1f);
-                    // RILL notices your first boarding (its FlagSet line fires once per save).
-                    var prof = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
-                    if (prof != null) prof.SetFlag("SHIP_FIRST_BOARD");
-                    Debug.Log("ZIPTIDE: SHIP_BOARD");
-                });
-            panel.transform.rotation = transform.rotation;
+                "BOARD SHIP", PanelColor, Board);
+
+            // THE MIRRORED LABEL (device pass 2026-08-01: "BOARD SHIP" read backwards). The panel
+            // stands on the PORT flank, so the reader approaches from -X, but this took the hull's
+            // rotation and pointed +Z down the bow. WorldLabelFacing is the one facing contract:
+            // +Z away from the reader. ShipBoardingPresentationGuard re-faces it live from there.
+            panel.transform.rotation = WorldLabelFacing.FaceViewer(
+                panel.transform.position,
+                panel.transform.position - transform.right * 2f);
         }
+
+        /// <summary>
+        /// BOARD SHIP. Separated out of the lambda because it now has a failure mode worth naming:
+        /// the deck must be PROVEN under your feet before the rig is moved (ShipDeckCore's law).
+        /// </summary>
+        private void Board()
+        {
+            if (!TryResolveDeckStand(out Vector3 stand, out string source))
+            {
+                // Refusing is the correct behaviour. On 2026-08-01 this teleported anyway and the
+                // player fell sixty metres into the fall-safety net. A button that does nothing is
+                // a bug you can see; a button that deletes you off the map wastes a headset session.
+                Debug.LogWarning("ZIPTIDE: SHIP_BOARD_ABORT reason=no_proven_deck source=" + source
+                    + " ship=" + gameObject.name);
+                return;
+            }
+
+            _berthReturnPos = RigPosition() ?? (transform.TransformPoint(doorLocalPos) + Vector3.forward);
+            // Re-evaluate story gating EVERY boarding — you may have just finished the contract
+            // that unlocks the next world (locks were stale when computed once in Awake).
+            RebuildHelmRows();
+            TeleportRig(stand);
+            // RILL notices your first boarding (its FlagSet line fires once per save).
+            var prof = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            if (prof != null) prof.SetFlag("SHIP_FIRST_BOARD");
+            Debug.Log("ZIPTIDE: SHIP_BOARD stand=" + stand.ToString("F2") + " source=" + source);
+        }
+
+        /// <summary>
+        /// Where the player's feet go when they board. Derived from the deck THAT EXISTS — the
+        /// collider's own bounds — and then proven with a downward probe, because the serialized
+        /// offset and the built deck were free to disagree and did. Falls back to the offset only
+        /// when there is no deck collider at all, and even then the probe still has to pass.
+        /// </summary>
+        private bool TryResolveDeckStand(out Vector3 stand, out string source)
+        {
+            Vector3 candidate;
+            if (_cockpitDeck != null && _cockpitDeck.TryGetComponent(out Collider deckCollider)
+                && deckCollider.enabled)
+            {
+                Bounds b = deckCollider.bounds;
+                candidate = new Vector3(b.center.x, ShipDeckCore.StandY(b.max.y), b.center.z);
+                source = "deck_collider";
+            }
+            else
+            {
+                candidate = transform.TransformPoint(cockpitLocalPos) + Vector3.up * ShipDeckCore.StandClearance;
+                source = "serialized_offset";
+            }
+
+            return TryProveStand(candidate, ref source, out stand);
+        }
+
+        /// <summary>
+        /// Shared proof for both ends of the trip. A stand point is only usable if something solid
+        /// is within ShipDeckCore.MaxStandDrop below it; if it is, we settle onto that surface
+        /// exactly rather than trusting the arithmetic that produced the candidate.
+        /// </summary>
+        private static bool TryProveStand(Vector3 candidate, ref string source, out Vector3 stand)
+        {
+            stand = candidate;
+            Vector3 from = candidate + Vector3.up * ShipDeckCore.StandProbeLift;
+            bool hit = Physics.Raycast(from, Vector3.down, out RaycastHit ground,
+                ShipDeckCore.StandProbeLength, Physics.DefaultRaycastLayers,
+                QueryTriggerInteraction.Ignore);
+
+            float drop = hit ? candidate.y - ground.point.y : float.MaxValue;
+            if (!ShipDeckCore.StandIsProven(hit, drop))
+            {
+                source += hit ? "+drop" + drop.ToString("F1") : "+no_ground";
+                return false;
+            }
+
+            stand = new Vector3(candidate.x, ShipDeckCore.StandY(ground.point.y), candidate.z);
+            return true;
+        }
+
+        private static readonly string[] RailNames = { "RailL", "RailR", "RailB", "RailF" };
 
         private void BuildCockpitDeck()
         {
-            // A walkable deck on the hull top at the cockpit: floor + low rail + seat + helm.
+            // A walkable deck on the hull top at the cockpit: floor + rails on all four sides +
+            // seat + helm. Every number comes from ShipDeckCore so the boarding teleport, the
+            // builder and the tests cannot drift apart again.
             Vector3 deckCenter = cockpitLocalPos;
-            var deck = MakeCube("CockpitDeck", deckCenter + new Vector3(0f, -0.1f, 0f),
-                new Vector3(3.4f, 0.2f, 3.4f), new Color(0.18f, 0.20f, 0.24f), collider: true);
-            MakeCube("RailL", deckCenter + new Vector3(-1.7f, 0.45f, 0f), new Vector3(0.1f, 0.9f, 3.4f), new Color(0.13f, 0.14f, 0.17f), true);
-            MakeCube("RailR", deckCenter + new Vector3(1.7f, 0.45f, 0f), new Vector3(0.1f, 0.9f, 3.4f), new Color(0.13f, 0.14f, 0.17f), true);
-            MakeCube("RailB", deckCenter + new Vector3(0f, 0.45f, -1.7f), new Vector3(3.4f, 0.9f, 0.1f), new Color(0.13f, 0.14f, 0.17f), true);
+            var deck = MakeCube("CockpitDeck", deckCenter + new Vector3(0f, ShipDeckCore.PlateCentreY, 0f),
+                new Vector3(ShipDeckCore.DeckSize, ShipDeckCore.DeckThickness, ShipDeckCore.DeckSize),
+                new Color(0.18f, 0.20f, 0.24f), collider: true);
+            _cockpitDeck = deck.transform;
+
+            // RailF is new. Until 2026-08-02 the bow side was OPEN: walking forward off the deck was
+            // a legal move with a long drop under it, and the fall-safety net was doing the catching.
+            ShipDeckCore.RailOffsets(out float[] railX, out float[] railZ);
+            for (int i = 0; i < RailNames.Length; i++)
+            {
+                ShipDeckCore.RailSize(i, out float sx, out float sy, out float sz);
+                MakeCube(RailNames[i],
+                    deckCenter + new Vector3(railX[i], ShipDeckCore.RailCentreY, railZ[i]),
+                    new Vector3(sx, sy, sz), new Color(0.13f, 0.14f, 0.17f), collider: true);
+            }
             MakeCube("PilotSeat", deckCenter + new Vector3(0f, 0.3f, -0.9f), new Vector3(0.6f, 0.6f, 0.6f), new Color(0.25f, 0.22f, 0.20f), true);
 
             // The helm console: destination rows, story-gated like the travel doors.
@@ -155,8 +247,17 @@ namespace Ziptide.Gameplay
                     Vector3 back = _berthReturnPos != Vector3.zero
                         ? _berthReturnPos
                         : transform.TransformPoint(doorLocalPos) + Vector3.forward;
-                    TeleportRig(back);
-                    Debug.Log("ZIPTIDE: SHIP_DISEMBARK verdict=" + verdict);
+                    // Same proof as boarding: the berth you remember may not be the berth that is
+                    // there (a respawn, a refit, a world reloaded under you). Never step off into
+                    // an unproven point — that is the trip that ends at FALL_SAFETY.
+                    string source = "berth_return";
+                    if (!TryProveStand(back, ref source, out Vector3 landing))
+                    {
+                        Debug.LogWarning("ZIPTIDE: SHIP_DISEMBARK_ABORT reason=no_proven_ground source=" + source);
+                        return;
+                    }
+                    TeleportRig(landing);
+                    Debug.Log("ZIPTIDE: SHIP_DISEMBARK verdict=" + verdict + " landing=" + landing.ToString("F2"));
                 }, small: true);
             off.transform.rotation = transform.rotation * Quaternion.Euler(0f, 180f, 0f);
         }
@@ -300,7 +401,11 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: SHIP_DEPART dest=" + sceneName);
 
             // Seat the pilot (a teleport, not parenting) so the streaks read from the right spot.
-            TeleportRig(transform.TransformPoint(cockpitLocalPos + new Vector3(0f, 0.1f, -0.9f)));
+            // Best-effort by design: a departure already committed must never be held up by a
+            // failed seat nudge, so this proves the point but does not abort on a miss.
+            string seatSource = "pilot_seat";
+            Vector3 seat = transform.TransformPoint(cockpitLocalPos + new Vector3(0f, 0.1f, -0.9f));
+            if (TryProveStand(seat, ref seatSource, out Vector3 seated)) TeleportRig(seated);
 
             // Star streaks: elongated unlit slivers racing PAST the deck, ramping with a launch rumble
             // feel — pure world motion, zero camera manipulation (VR comfort law).
@@ -387,6 +492,19 @@ namespace Ziptide.Gameplay
         {
             var rig = FindObjectOfType<PlayerRigPersistence>();
             return rig != null ? rig.transform.position : (Vector3?)null;
+        }
+
+        /// <summary>Proven teleport for the short in-ship hops. False = refused, player not moved.</summary>
+        private bool StepTo(Vector3 candidate, string label)
+        {
+            string source = label;
+            if (!TryProveStand(candidate, ref source, out Vector3 landing))
+            {
+                Debug.LogWarning("ZIPTIDE: SHIP_STEP_ABORT reason=no_proven_ground source=" + source);
+                return false;
+            }
+            TeleportRig(landing);
+            return true;
         }
 
         private static void TeleportRig(Vector3 worldPos)

@@ -37,6 +37,11 @@ namespace Ziptide.Gameplay
         private Transform _disembarkPanel;
         private Transform _quartersPanel;
         private Transform _hangarBay;
+
+        // BOARD SHIP is the one panel you read from OUTSIDE the ship, so it is never gated by the
+        // deck radius — but it was also never FACED, which is why it read mirrored on the headset
+        // (device pass 2026-08-01). It is faced every frame like the rest, just always visible.
+        private Transform _boardPanel;
         private Camera _viewer;
         private float _nextHierarchyRetryAt;
         private bool _hierarchyResolved;
@@ -72,6 +77,9 @@ namespace Ziptide.Gameplay
             SetActive(_deckUi, showDeck);
             SetActive(_quartersUi, showQuarters);
 
+            // Read from the berth, so never hidden and always faced.
+            FacePanel(_boardPanel, viewer.transform.position);
+
             if (showDeck)
             {
                 FacePanel(_disembarkPanel, viewer.transform.position);
@@ -95,6 +103,7 @@ namespace Ziptide.Gameplay
 
             AdoptLooseShipPanel("DisembarkPanel");
             AdoptLooseShipPanel("QuartersPanel");
+            AdoptLooseShipPanel("BoardPanel");
 
             Transform[] all = GetComponentsInChildren<Transform>(true);
             _cockpitDeck = FindByName(all, "CockpitDeck");
@@ -103,6 +112,7 @@ namespace Ziptide.Gameplay
             _disembarkPanel = FindByName(all, "DisembarkPanel");
             _quartersPanel = FindByName(all, "QuartersPanel");
             _hangarBay = FindByName(all, "HangarBay");
+            _boardPanel = FindByName(all, "BoardPanel");
 
             _deckUi.Clear();
             for (int i = 0; i < DeckUiNames.Length; i++)

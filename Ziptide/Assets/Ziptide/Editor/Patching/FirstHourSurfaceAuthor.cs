@@ -35,7 +35,22 @@ namespace Ziptide.Editor
                 throw new System.ArgumentException("A loaded scene is required.", nameof(scene));
 
             ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);
-            Transform anchor = castOff != null ? castOff.transform : null;
+
+            // THE OPENING HAPPENS IN THE BUNK BAY, NOT ON THE HULL.
+            //
+            // Until 2026-08-02 every one of these surfaces was anchored off the SHIP: the comfort
+            // console 2.2 m to port of the hull, the keepsake 0.9 m to starboard at hull-centre
+            // height, the porthole 2.6 m out the other side. W000's ship is berthed ~20 m away in
+            // the BerthBay, so the first hour's "wake up in your quarters" beat was authored as
+            // four objects floating around a parked hull in the next room. The 2026-08-01 device
+            // pass reported exactly that, in exactly those words.
+            //
+            // The spawn marker is where the player actually opens their eyes, so it is the anchor.
+            // The ship stays as the fallback for scenes with no marker (and the test scene, which
+            // has neither, still authors at the origin).
+            SpawnMarkerRuntime spawn = FindPlayerSpawn(scene);
+            Transform anchor = spawn != null ? spawn.transform
+                : castOff != null ? castOff.transform : null;
             Vector3 origin = anchor != null ? anchor.position : Vector3.zero;
             Vector3 right = anchor != null ? anchor.right : Vector3.right;
             Vector3 forward = anchor != null ? anchor.forward : Vector3.forward;
@@ -56,11 +71,13 @@ namespace Ziptide.Editor
             EnsureBunkVisual(bunk);
             EnsureComponent<FirstHourBunkObjectRuntime>(bunk);
 
-            GameObject helm = EnsureMarker(
-                scene,
-                HelmMarker,
-                origin - right * 3.4f - forward * 1.1f,
-                rotation);
+            // The helm marker's authored position is now only a fallback: at runtime the tile docks
+            // itself onto the cast-off console on the cockpit deck, beside PUNCH IT, which is the
+            // only place a destination selector means anything.
+            Vector3 helmFallback = castOff != null
+                ? castOff.transform.position - castOff.transform.right * 3.4f
+                : origin - right * 3.4f - forward * 1.1f;
+            GameObject helm = EnsureMarker(scene, HelmMarker, helmFallback, rotation);
             var helmRuntime = EnsureComponent<FirstDestinationHelmRuntime>(helm);
             if (castOff != null) helmRuntime.Configure(castOff);
 
@@ -76,6 +93,7 @@ namespace Ziptide.Editor
             EnsureComponent<PortholeRuntime>(porthole);
 
             Debug.Log("ZIPTIDE: FIRST_HOUR_SURFACES_AUTHORED scene=" + scene.name +
+                      " anchor=" + (spawn != null ? "spawn_marker" : castOff != null ? "hull" : "origin") +
                       " castoff=" + (castOff != null) + " porthole=true");
         }
 
@@ -115,6 +133,17 @@ namespace Ziptide.Editor
             // Fully qualified: this file sits in `Ziptide.Editor`, not `Ziptide.Editor.Patching` like
             // the rest of the folder, so the unqualified name does not resolve here.
             Patching.PatchMaterials.Paint(visual, new Color(0.72f, 0.48f, 0.16f));
+        }
+
+        /// <summary>The 'player' spawn marker in this scene, if it has one.</summary>
+        private static SpawnMarkerRuntime FindPlayerSpawn(Scene scene)
+        {
+            foreach (GameObject root in scene.GetRootGameObjects())
+            {
+                foreach (SpawnMarkerRuntime candidate in root.GetComponentsInChildren<SpawnMarkerRuntime>(true))
+                    if (candidate != null && candidate.markerId == "player") return candidate;
+            }
+            return null;
         }
 
         private static T FindInScene<T>(Scene scene) where T : Component

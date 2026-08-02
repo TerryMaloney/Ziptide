@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
+using Ziptide.Core;
 using Ziptide.Multiplayer;
 using Ziptide.Multiplayer.Augments;
 
@@ -91,11 +92,31 @@ namespace Ziptide.Gameplay
         private void Start()
         {
             ArenaWeaponDefinition def = Def;
-            if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null) return;
-            InstallSemanticHandGrip();
+            if (def == null || _grab == null) return;
+            if (def.kind != ArenaWeaponKind.BreakerBlade && def.kind != ArenaWeaponKind.TidePike) return;
+            InstallSemanticHandGrip(def.kind == ArenaWeaponKind.TidePike);
         }
 
-        private void InstallSemanticHandGrip()
+        /// <summary>
+        /// THE SWORD POSE. Two halves, and shipping only the first half is what made this wrong ten
+        /// times running:
+        ///
+        ///   1. SEMANTIC BASIS (was already here, and is correct): solve the handle-to-tip axis from
+        ///      the real Muzzle socket so a replacement mesh with different model axes still holds
+        ///      right. Aligning that axis with the controller's +Z is correct because XRI drives the
+        ///      controller from OpenXR's GRIP pose, whose forward axis is the direction a grasped
+        ///      cylinder points.
+        ///
+        ///   2. RAKE (was missing, and was actively DELETED here): a hand around a hilt carries the
+        ///      blade above the grip line, not along it. ItemFactory authored exactly that intent
+        ///      -- gripEuler (70,0,0), "rides ABOVE the fist - a raised blade, not an aimed barrel"
+        ///      -- and this method then overwrote it with the bare basis on the very next frame,
+        ///      every spawn. So the shipped pose was always the barrel one, no matter how many
+        ///      times the authored angle was corrected upstream.
+        ///
+        /// MeleeGripCore owns the angle and the reasoning; this is the translator.
+        /// </summary>
+        private void InstallSemanticHandGrip(bool thrustWeapon)
         {
             Transform previous = _grab.attachTransform;
             Transform grip = transform.Find(SemanticGripName);
@@ -108,15 +129,27 @@ namespace Ziptide.Gameplay
 
             Vector3 localGrip = previous != null && previous != transform
                 ? transform.InverseTransformPoint(previous.position) : Vector3.zero;
-            grip.localPosition = localGrip;
 
             Vector3 axisLocal = WeaponPoseCore.ResolveAxisLocal(transform, _tip, localGrip);
             Vector3 upLocal = WeaponPoseCore.ResolveUpHintLocal(axisLocal);
-            grip.localRotation = WeaponPoseCore.BuildLocalBasis(axisLocal, upLocal);
+
+            // Keep some haft behind the fist. Without this the hand can end up on the butt of the
+            // weapon (or, when no grip was authored, in the middle of the blade).
+            if (_tip != null && _tip != transform)
+            {
+                float halfLength = transform.InverseTransformPoint(_tip.position).magnitude;
+                float along = MeleeGripCore.GripOffsetAlongAxis(halfLength);
+                if (localGrip.sqrMagnitude < 1e-6f) localGrip = axisLocal * along;
+            }
+            grip.localPosition = localGrip;
+
+            float rake = MeleeGripCore.RakeFor(thrustWeapon);
+            grip.localRotation = MeleeGripCore.GripLocalRotation(axisLocal, upLocal, rake);
             _grab.attachTransform = grip;
 
-            Debug.Log("ZIPTIDE: MELEE_GRIP_SEMANTIC weapon=breaker_blade axisLocal="
-                + axisLocal.ToString("F3") + " upLocal=" + upLocal.ToString("F3")
+            Debug.Log("ZIPTIDE: MELEE_GRIP_SEMANTIC weapon=" + (thrustWeapon ? "tide_pike" : "breaker_blade")
+                + " axisLocal=" + axisLocal.ToString("F3") + " upLocal=" + upLocal.ToString("F3")
+                + " rake=" + rake.ToString("F0") + " grip=" + localGrip.ToString("F3")
                 + " tip=" + (_tip != null ? _tip.name : "NONE"));
         }
 
