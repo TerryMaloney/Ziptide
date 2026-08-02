@@ -146,8 +146,8 @@ namespace Ziptide.Tests.EditMode
             // the package reference. Reflection here verifies the installed package type and creates the
             // same component without widening the entire test assembly's reference surface.
             System.Type type = System.Type.GetType(
-                "UnityEngine.XR.Interaction.Toolkit.XRSimpleInteractable, Unity.XR.Interaction.Toolkit");
-            Assert.IsNotNull(type, "XRI 2.5.4 XRSimpleInteractable type must be installed");
+                "UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable, Unity.XR.Interaction.Toolkit");
+            Assert.IsNotNull(type, "XRI 3.x XRSimpleInteractable type must be installed");
             go.AddComponent(type);
         }
 

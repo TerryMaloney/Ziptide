@@ -34,7 +34,8 @@ namespace Ziptide.Tests.EditMode
             string source = Read("Gameplay", "Runtime", "Weapons", "GunLaserSight.cs");
 
             StringAssert.Contains("IsSelectedByControllerHand()", source);
-            StringAssert.Contains("interactor as XRBaseControllerInteractor", source);
+            StringAssert.Contains(
+                "interactor as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor", source);
             StringAssert.Contains("controller.isActiveAndEnabled", source);
             StringAssert.DoesNotContain("bool show = _grab != null && _grab.isSelected", source);
         }
@@ -84,7 +85,8 @@ namespace Ziptide.Tests.EditMode
         public void Taser_StopsVelocityBeforeBecomingKinematic()
         {
             string source = Read("Gameplay", "Runtime", "Weapons", "TaserDartProjectile.cs");
-            int velocity = source.IndexOf("rb.velocity = Vector3.zero;");
+            // Unity 6 deprecated Rigidbody.velocity in favor of linearVelocity.
+            int velocity = source.IndexOf("rb.linearVelocity = Vector3.zero;");
             int angular = source.IndexOf("rb.angularVelocity = Vector3.zero;");
             int kinematic = source.IndexOf("rb.isKinematic = true;");
 

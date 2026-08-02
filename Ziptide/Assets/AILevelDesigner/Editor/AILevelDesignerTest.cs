@@ -75,7 +75,14 @@ public class AILevelDesignerTests
         SceneBuilder.Build(layout, profile);
         var obj = GameObject.Find("Crate");
         Assert.IsNotNull(obj);
-        Object.DestroyImmediate(obj);
+
+        // SceneBuilder.Build also creates a persistent "AILevel" root (with a "Ground" plane, since
+        // generateGroundPlane defaults true) parented above Crate. Destroying only Crate left that
+        // root's ground collider in the shared EditMode scene, silently "supporting" every raycast in
+        // any physics-based test that ran afterward (e.g. RouteContinuityAuditRulesTests).
+        var root = GameObject.Find("AILevel");
+        if (root != null) Object.DestroyImmediate(root);
+        else Object.DestroyImmediate(obj);
     }
 
     [Test]

@@ -91,7 +91,10 @@ namespace Ziptide.Tests.EditMode
             // The point of this assertion is that restore goes through a REAL socket selection
             // rather than proximity ownership - not which overload spells it. The concrete-class
             // overload is a CS0619 hard error on Unity 6, so the call is now interface-typed.
-            StringAssert.Contains("manager.SelectEnter((IXRSelectInteractor)socket, (IXRSelectInteractable)grab);",
+            // XRI 3.x's IXRSelectInteractor/IXRSelectInteractable live in the Interactors/Interactables
+            // namespaces, and the fully-qualified names avoid an ambiguity with the deprecated ones.
+            StringAssert.Contains(
+                "manager.SelectEnter((UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)socket, (UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable)grab);",
                 source);
             StringAssert.Contains("HOLSTER_DOCK_BLOCKER", source);
             StringAssert.DoesNotContain("Vector3.Distance(item.transform.position, h.transform.position) <= 0.18f", source);
@@ -103,7 +106,9 @@ namespace Ziptide.Tests.EditMode
         {
             Assert.IsTrue(HolsterSocketInteractor.AllowsItemId("breaker_blade"));
             string source = Read("Gameplay", "Runtime", "Inventory", "HolsterSocketInteractor.cs");
-            StringAssert.Contains("override Transform GetAttachTransform(IXRInteractable interactable)", source);
+            StringAssert.Contains(
+                "override Transform GetAttachTransform(UnityEngine.XR.Interaction.Toolkit.Interactables.IXRInteractable interactable)",
+                source);
             StringAssert.Contains("HolsterPose_", source);
             StringAssert.Contains("WeaponPoseCore.MapLocalBasisToWorld", source);
             StringAssert.DoesNotContain("socketAnchor.rotation =", source);
@@ -125,7 +130,8 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("ResolveAxisLocal", source);
             StringAssert.DoesNotContain("new Vector3(82f, 180f, 0f)", source);
             StringAssert.DoesNotContain("MELEE_GRIP_POSE", source);
-            StringAssert.Contains("interactor is XRBaseControllerInteractor", source);
+            StringAssert.Contains(
+                "interactor is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor", source);
             StringAssert.DoesNotContain("bool held = _grab != null && _grab.isSelected;", source);
         }
 

@@ -62,7 +62,8 @@ namespace Ziptide.Tests.EditMode
             // The story is that Cal joins them. Two halves left lying next to each other must not do
             // it, or the beat happens off-screen in a corner of the hold.
             string join = Source("Gameplay", "Runtime", "Story", "ArtifactJoinRuntime.cs");
-            StringAssert.Contains("XRBaseControllerInteractor", join);
+            // XRI 3.x renamed XRBaseControllerInteractor -> XRBaseInputInteractor.
+            StringAssert.Contains("XRBaseInputInteractor", join);
             StringAssert.Contains("grab.isSelected", join);
             StringAssert.Contains("SendHapticImpulse", join);
         }
