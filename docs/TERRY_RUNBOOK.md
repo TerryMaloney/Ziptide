@@ -65,6 +65,27 @@ If ALL of the above pass, Phase 2 (item/holster/hammer poses + self-hit) begins 
 
 ## 0b. ⭐ TODAY'S SESSION (2026-08-01) — the whole Level 1 pass
 
+### 🟢 THE WHOLE MORNING, IN THREE COMMANDS
+
+```powershell
+# 1. pull, fetch CI's verified APK, install it, print what to look at
+powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\morning_test.ps1
+
+# 2. SECOND window, BEFORE the headset goes on — capture the log
+cd C:\Ziptide
+$stamp = Get-Date -Format 'yyyyMMdd_HHmmss'
+adb logcat -v threadtime -s Unity Ziptide | Tee-Object -FilePath ".\Ziptide\Builds\quest_${stamp}.log"
+
+# 3. after playing — Ctrl+C window 2, then grade the log automatically
+powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\morning_check.ps1
+```
+
+Then fill in **`docs/DEVICE_CHECK_2026-08-01.md`** — the look/feel half a log cannot answer — and paste
+it back with `Ziptide\Builds\morning_check_result.txt`.
+
+Variations: `morning_test.ps1 -Local` builds it yourself instead · `-ApkPath <file>` uses an APK you
+already downloaded.
+
 ### ⚡ FASTEST PATH: don't build. CI already did.
 
 The Golden Android job built and verified **the exact same method your script runs**
@@ -134,16 +155,26 @@ drift from two days ago should now sit in front of the real vista instead of a g
    them. Watch for `ZIPTIDE: WAYFINDING lanterns=… arrivalLegs=…`.
 5. **Then the contract loop as before** — Dispatch, the relay, the artifact halves.
 
-### 🔎 Logcat lines that say today's work ran
+### 🔎 ⚠️ CORRECTION — most of today's tags are BAKE-TIME, not logcat
+
+An earlier version of this section told you to look for `APPROACH_DRESSED`, `WAYFINDING` and
+`CITY_MATERIALS` in logcat. **That was wrong.** Those are `Debug.Log` calls in *editor* authors: they
+appear in a Unity **build** log and never reach a headset — and if you install CI's APK there is no
+local build log at all. Their absence from logcat proves nothing.
+
+**The geometry they describe is verified with your eyes**, which is what
+`docs/DEVICE_CHECK_2026-08-01.md` is for.
+
+What genuinely appears in logcat, and is worth grepping:
 
 ```
-ZIPTIDE: APPROACH_DRESSED pieces=9 crate=1 overhead=11 walkZ=-52..-40
-ZIPTIDE: WAYFINDING lanterns=… legs=5 arrivalLegs=… tripleSeparation=…
-ZIPTIDE: WORLD_ATMO applied=1 hazard=acid
+ZIPTIDE: WORLD_ATMO applied=1 vista=…      the acid haze bound (runtime)
+ZIPTIDE: ARMOURY_RACK  / ARMOURY_GATE      the ship's armoury (runtime)
+ZIPTIDE: ARMOR_READY / ARMOR_HUD           you can be hurt (runtime, new)
+ZIPTIDE: BOOT_HOLD / SPAWN_AT / TRAVEL_OK  boot and travel
 ```
 
-If `APPROACH_DRESSED` is missing, the ToxicCity patch did not run and nothing from today is in the
-build.
+`tools\morning_check.ps1` greps all of these for you and writes a paste-back summary.
 
 ### ⚡ Set your expectations on frame rate before you put it on
 
