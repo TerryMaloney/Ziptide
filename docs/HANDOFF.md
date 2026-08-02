@@ -32,6 +32,74 @@
 
 ## ENTRIES — newest first
 
+### 2026-08-02 (rb138) — 🔌 UNITY 6 + THE FIRST OPERATOR WHO CAN SEE
+
+**READ THIS FIRST IF YOU ARE THE CLAUDE CODE RUNNING ON TERRY'S PC WITH UNITY MCP ATTACHED.**
+You are the first operator on this project who can open a scene. Everything below was written by a
+cloud operator who cannot, and the difference is the whole point of this entry.
+
+#### 1 · The engine moved. 2022.3.62f3 → Unity 6 (6000.2.9f1)
+
+Terry upgraded mid-flight and hit Safe Mode. Unity's own API Updater fixed **76 files, 275
+insertions against 275 deletions** — perfectly symmetric, every change a 1-for-1 line swap, almost
+all of it `FindObjectsOfType(bool)` → `FindObjectsInactive`. That diff is mechanical and safe.
+
+What the updater could NOT map was two calls passing concrete XRI classes where the modern overload
+wants interfaces. They are deprecated with `error: true`, so they are silent warnings on 2022.3 and
+**CS0619 hard errors on Unity 6** — and those two lines were the entire thing holding a 137-file XRI
+codebase in Safe Mode:
+
+```
+InventoryState.cs:172  socket.CanSelect(grab)             -> now CanSelect((IXRSelectInteractable)grab)
+InventoryState.cs:178  manager.SelectEnter(socket, grab)  -> now SelectEnter((IXRSelectInteractor)socket, …)
+```
+
+Fixed in `2dd9382a`. The interface overloads exist in XRI 2.4.3 too, so **the tree compiles on both
+editors** — no fork, no `#if UNITY_6000`. `M0SystemicDeviceRegressionTests` pinned the old call by
+its literal source text and was updated with it.
+
+**Good news for whoever plans the rest of the migration:** the console said *"is obsolete"*, not
+*"type or namespace not found"*. That means 6.2 resolved **XRI 2.6.x, not 3.x** — so the ~180-site
+`ActionBased*Provider` rename is NOT due, and `LocomotionContractEnforcer` and the whole locomotion
+stack are untouched.
+
+⚠️ **Still open:** the project is on **6.2, which lost support when 6.3 LTS shipped.** Move to
+`6000.3.x` before pointing the six CI workflows and the Unity licence at it. All six still read
+`UNITY_VERSION: 2022.3.62f3`, and the Personal `.ulf` is version-tied — **until that is done there is
+no compile check, no EditMode run and no APK.** By CLAUDE.md's own rule that is a BROKEN WORKFLOW,
+and it outranks any feature.
+
+#### 2 · Level 1 fixes shipped blind that you can now actually verify
+
+`9719ec84` fixed six defects from the 2026-08-01 device pass. Every one was reasoned from source
+code and logcat text, because the operator could not look. **Check them with your eyes — that is the
+single highest-value thing you can do first.** In rough order of how much I distrust my own fix:
+
+| Check | Where | What "right" looks like |
+|---|---|---|
+| Boarding stand point | `ShipBoardingStation.TryResolveDeckStand` | Is there really a collider under the deck-collider centre? `SHIP_BOARD` used to be followed by `FALL_SAFETY y=-60.2` |
+| The 4th rail | `CockpitDeck/RailF` | It should now exist. The bow was open and I never saw it |
+| Sword rake | `MeleeGripCore.BladeRakeDegrees = 40` | **Grab it in Play mode.** 40° is researched, not measured. Terry has called this wrong ten times; I will not be surprised if it is eleven |
+| Label facing | `CastOffConsole`, `BoardPanel` | Read them from the deck. `WorldLabelFacing` says +Z points AWAY from the reader |
+| Label scale | `Label_PUNCH_IT` | I removed a compensating scale and re-derived size from `fontSize * characterSize / 10`. **Arithmetic, never seen.** If the text is enormous, that is why |
+| W000 crane | `BerthBay/GantryCrane` | Was 10 m × 2 m. Should now be a `LandmarkKind.Crane` at 10 × 3.2 with rungs, walkway, cab |
+
+#### 3 · The division of labour from here
+
+- **You (local, MCP):** anything needing eyes — scene hierarchy, transforms, colliders, the console,
+  prefabs, materials, Play mode. Stop deriving geometry from logs; read it.
+- **Cloud operator (phone/web/GitHub):** architecture, pure cores, EditMode tests, `tools/*_gate.py`,
+  CI, docs, migration planning.
+- The repo is the only channel between them. Append here; do not assume the other one saw anything.
+
+**A standing warning, learned the hard way today:** never let VS Code's autofix and Unity's API
+Updater edit the same tree. Unity's updater knows the real mappings; an autofix guesses. Commit
+before either one runs, so the result is a reviewable diff instead of a mystery.
+
+**Commits:** `9719ec84` (Level 1 device fixes), `2dd9382a` (XRI interface overloads / Unity 6 unblock).
+
+---
+
 ### 2026-08-01 (rb137) — 🔭 MEGA PASS ON LEVEL 1: the first level had no sky of its own
 
 Terry, heading for the headset: *"let's do one more mega pass on the whole first level."* One hour,
