@@ -152,6 +152,7 @@ namespace Ziptide.Tests.PlayMode
         internal static void AssertUiSpatial(Camera camera, string label, string stem)
         {
             RecoveryUiSpatialReport report = RecoveryUiSpatialAudit.Capture(camera, label);
+            RecoveryWorldCanvasTextAudit.Append(camera, report);
             RecoveryUiSpatialArtifactPaths paths = RecoveryUiSpatialAudit.WriteArtifacts(report, stem);
             Assert.IsTrue(File.Exists(paths.JsonPath), label + " UI JSON was not written.");
             Assert.IsTrue(File.Exists(paths.MarkdownPath), label + " UI Markdown was not written.");
