@@ -1,7 +1,7 @@
 # THE RATCHET — how a Unity AI pass makes the NEXT level better
 
-**Stage:** 5 — The Assembly Line *(runs during Stage 6 batches; its checkpoint closes at Stage 5)*  
-**Type:** law  
+**Stage:** 5 — The Assembly Line *(runs during Stage 6 batches; its checkpoint closes at Stage 5)*
+**Type:** law
 **Version 1.0 · created 2026-08-05 (Terry-approved)**
 
 This law does not reorder `docs/PIPELINE.md`. It is the loop that turns each Unity AI pass into

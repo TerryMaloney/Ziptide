@@ -87,7 +87,23 @@ Rules of thumb that came from the same work, and that apply to anything you buil
 - **Blend identity with theme, don't replace it** — `Color.Lerp(identity, themed, 0.25f)` — and keep a
   skip-list of canon marks (hazard striping, the cyan coupler port) that a livery may never repaint.
 
-## 6 · RUNTIME RULES YOU CANNOT BREAK
+## 6 · WHEN YOU RENAME OR DELETE PART NAMES, SEARCH THE WHOLE PROJECT
+
+A part-name vocabulary is almost always enforced in **more than one place**.
+
+The Scrapper rebuild deleted `Wing_L`, `Wing_R`, `TailFin`, `Exhaust_L` and `Exhaust_R`, and
+correctly updated `Tests/EditMode/HeroShipHullBuilderTests.cs`. But
+`Editor/Audit/FullSendPresentationAuditRules.cs` still *required* all five — **25 CI blockers, five
+parts across five scenes.** The EditMode tests went green and the world audit went red.
+
+So before you finish a rename or a deletion, search for the old names across **all** of:
+
+- `Assets/Ziptide/Editor/Audit/**` — the audit rules (these run at build time, and they BLOCK)
+- `Assets/Ziptide/Tests/**` — EditMode tests
+- `Assets/Ziptide/Editor/**` — patchers, authors, builders
+- runtime code that looks parts up by name (e.g. `ShipRefit`)
+
+## 7 · RUNTIME RULES YOU CANNOT BREAK
 
 - `TravelCoordinator.TravelTo(scene)` is the **only** way to change scenes. Never call
   `SceneManager.LoadScene` in gameplay code.
@@ -100,7 +116,7 @@ Rules of thumb that came from the same work, and that apply to anything you buil
   headset, so they prove nothing about the game.
 - Scene names, layers and asset paths live in `ZiptideConstants.cs`. No raw scene-name strings.
 
-## 7 · HOW TO WRITE THE PLAN
+## 8 · HOW TO WRITE THE PLAN
 
 Your plan format is good — keep it. It should always contain:
 

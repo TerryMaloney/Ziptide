@@ -38,11 +38,18 @@ namespace Ziptide.Editor.Audit
                         path + " has " + renderers.Length + " hull renderers; minimum hero fallback is "
                         + ShipHullBuilder.MinimumHeroRenderers + ".", path);
 
+                // The SLV-01 Scrapper's silhouette, NOT the winged fighter it replaced. This list
+                // must stay identical to refitAnchors in HeroShipHullBuilderTests: one vocabulary,
+                // two enforcement points (EditMode on the builder, this audit on the baked scene).
+                // Wing_L/Wing_R/TailFin/Exhaust_L/Exhaust_R were deleted with the old hull - they
+                // held this rule red across all five scenes until it was updated to match.
                 string[] required =
                 {
-                    "Fuselage_Aft", "Fuselage_Mid", "Fuselage_Bow", "Nose_Tip",
-                    "Wing_L", "Wing_R", "TailFin", "Exhaust_L", "Exhaust_R",
-                    "CargoPod", "BoardingDoor_Port", "BoardingStep_Port"
+                    "Fuselage_Aft", "Fuselage_Mid", "Fuselage_Bow", "Nose_Tip", "DorsalSpine",
+                    "Cab", "EngineDrum", "EngineCollar", "CargoPod",
+                    "Leg_FL", "Leg_FR", "Leg_RL", "Leg_RR",
+                    "ClawArm_Upper", "ClawArm_Fore", "CyanPort",
+                    "BoardingDoor_Port", "BoardingStep_Port"
                 };
                 foreach (string name in required)
                     if (ship.Find(name) == null)

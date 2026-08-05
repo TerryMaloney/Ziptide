@@ -1,7 +1,7 @@
 # HARVEST 001 — the ToxicCity ring city and the SLV-01 Scrapper
 
-**Stage:** 5 — The Assembly Line  
-**Type:** ledger  
+**Stage:** 5 — The Assembly Line
+**Type:** ledger
 **Protocol:** [`docs/THE_RATCHET.md`](../THE_RATCHET.md) · **Status:** 🟡 open — R4 partial, awaiting device evidence
 
 The first harvest, and the reference shape for every one after it. Source: an uncommitted Unity AI
@@ -109,6 +109,7 @@ Each is a sentence Terry could have said in the headset. Each is now a red test 
 | **A-001** | Re-bake **inlined ~1,464 material instances into the scene file** instead of sharing assets — the entire 474k-line diff. rb137 had just measured 333 materials against a **hard cap of 60** and got it to 111; this reopens it. | Material-count/perf audit run on the baked scene, BLOCK at the cap |
 | **A-002** | **Cross-domain edits rode in silently on a content bake** — a travel `sceneName` and a global physics setting, neither related to building a city. | R2 SORT catches it by hand today; a WorldPack `sceneName`-validity gate + a ProjectSettings-diff review would catch it in CI |
 | **A-003** | **Half-authored assets presented as done** — a `WorldProfile` with spawn `(0,0,0)` and the default 4×4 play area, in a ring city where the origin is probably inside geometry. | Authoring-completeness check: a profile whose spawn is untouched default is not authored |
+| **A-004** | **It updated the test it could see and missed the gate it couldn't.** The Scrapper rebuild deleted `Wing_L`, `Wing_R`, `TailFin`, `Exhaust_L`, `Exhaust_R`, and the AI correctly rewrote `Tests/EditMode/HeroShipHullBuilderTests.cs` — but `Editor/Audit/FullSendPresentationAuditRules.cs` still *required* those five parts. **25 CI blockers, 5 parts × 5 scenes.** EditMode went green; the world audit went red. | Already caught by CI — the value here is knowing **a vocabulary is usually enforced in more than one place.** When you rename or delete part names, grep the whole `Editor/Audit/` tree, not just `Tests/`. |
 
 ---
 
@@ -120,6 +121,7 @@ Each is a sentence Terry could have said in the headset. Each is now a red test 
 | T-005 | C3 | ✅ **CLOSED** — house rules §data-first |
 | T-007 | C3 | ✅ **CLOSED** — house rules §how to plan |
 | A-001 A-002 A-003 | C3 | ✅ **CLOSED as rules** — house rules; ⛔ **OPEN as gates** (C2) |
+| A-004 | C2 + C3 | ✅ **CLOSED** — audit rule realigned to the Scrapper vocabulary and pinned to the EditMode anchor list; house rule added |
 | T-002 T-003 T-004 T-006 | C1 | ⛔ **OPEN** — currently live only inside `ShipHullBuilder`. They must be lifted into a shared authoring core before another builder can use them. |
 
 **This harvest is OPEN.** Two named board rows close it:

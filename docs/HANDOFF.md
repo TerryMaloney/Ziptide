@@ -147,9 +147,32 @@ our builders, not the cleverness of our prompts.**
   checks out a clean tree. Everything else is green: all 16 fast-preflight gates pass, 244/244 gate
   tests OK, and `git diff --check` is clean across every file this session touched.
 
+#### 5 · What the first CI round then taught us — two more, both structural
+
+Pushing the KEEP bucket turned both workflows red, and **both reds were worth having.**
+
+**A-004 — it updated the test it could see and missed the gate it couldn't.** The Scrapper rebuild
+deleted `Wing_L`, `Wing_R`, `TailFin`, `Exhaust_L`, `Exhaust_R` and correctly rewrote
+`HeroShipHullBuilderTests.cs` — but `Editor/Audit/FullSendPresentationAuditRules.cs:44` still
+*required* all five. **EditMode went green (6m53s); the world audit went red with 25 blockers**, five
+parts × five scenes. The rule now carries the Scrapper vocabulary and a comment pinning it to the
+EditMode anchor list: one vocabulary, two enforcement points. Lesson, now a house rule: **a part-name
+vocabulary is usually enforced in more than one place — grep `Editor/Audit/` too, not just `Tests/`.**
+
+**The whitespace gate has been structurally hostile to Unity assets all along.** Fast Preflight's
+"Commit whitespace and conflict check" runs `git diff --check HEAD^ HEAD`, and Unity *always* writes a
+trailing space after an empty YAML field (`userData: `, `m_Name: `). `.gitattributes` set `-text` on
+Unity YAML but never `-whitespace`, and `git diff --check` honours the *whitespace* attribute — so
+**every commit that adds a Unity asset fails this gate.** Measured on history: `93cf8cd1` tripped it
+11,080 times, `1e5d1c8c` 96 times. Fixed by adding `-whitespace` to the Unity YAML patterns, plus
+`Assets/Plans/*.md` (AI plan artifacts we keep verbatim under R1, so we don't get to tidy them —
+`_ZIPTIDE_HOUSE_RULES.md` is explicitly re-enabled, it's ours and is held to the normal bar). Verified
+the check still catches trailing whitespace in hand-written `.cs`, which is its actual job.
+
 #### Commits
 
-`3b67aee9` fast-preflight tokens · `2cafb483` audit fixes · `1e5d1c8c` the KEEP bucket
+`3b67aee9` fast-preflight tokens · `2cafb483` audit fixes · `1e5d1c8c` the KEEP bucket ·
+`16f081d8` THE RATCHET · `+1` the two CI reds above
 
 ---
 

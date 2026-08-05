@@ -3,18 +3,31 @@
 # merge=unityyamlmerge uses Unity's Smart Merge tool (UnityYAMLMerge) to merge scenes/prefabs
 # safely instead of corrupting them. Configure the driver once per machine (see docs/AI_WORKFLOW.md):
 #   git config merge.unityyamlmerge.driver '"<UnityEditor>/Data/Tools/UnityYAMLMerge.exe" merge -p %O %B %A %A'
-*.unity   -text merge=unityyamlmerge
-*.prefab  -text merge=unityyamlmerge
-*.asset   -text merge=unityyamlmerge
-*.controller -text merge=unityyamlmerge
-*.anim    -text merge=unityyamlmerge
-*.mat     -text merge=unityyamlmerge
-*.meta    -text
-*.asmdef  -text
+#
+# -whitespace: Unity ALWAYS writes a trailing space after an empty YAML field ("userData: ",
+# "m_Name: ", "assetBundleName: "). git diff --check honours the `whitespace` attribute, and
+# `-text` alone does not disable it - so without this, EVERY commit that adds or edits a Unity
+# asset fails Fast Preflight's "Commit whitespace and conflict check". It is not a style problem
+# we can fix: stripping the spaces means fighting the editor forever, and it rewrites them on the
+# next save. Measured: the pre-API-updater snapshot 93cf8cd1 tripped it 11,080 times.
+# The check keeps its real job - catching trailing whitespace in HAND-written .cs/.md/.py/.ps1.
+*.unity   -text -whitespace merge=unityyamlmerge
+*.prefab  -text -whitespace merge=unityyamlmerge
+*.asset   -text -whitespace merge=unityyamlmerge
+*.controller -text -whitespace merge=unityyamlmerge
+*.anim    -text -whitespace merge=unityyamlmerge
+*.mat     -text -whitespace merge=unityyamlmerge
+*.meta    -text -whitespace
+*.asmdef  -text -whitespace
 
 # Normal text files
 *.cs   text eol=lf
 *.md   text eol=lf
+# ...except the AI's own plan artifacts, which THE_RATCHET.md R1 requires we keep VERBATIM as
+# evidence. We do not get to tidy them, so they do not get whitespace-checked either.
+# (_ZIPTIDE_HOUSE_RULES.md is ours and is deliberately NOT exempted - it is held to the normal bar.)
+Ziptide/Assets/Plans/*.md -whitespace
+Ziptide/Assets/Plans/_ZIPTIDE_HOUSE_RULES.md whitespace
 *.json text eol=lf
 *.ps1  text eol=crlf
 
