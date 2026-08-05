@@ -33,14 +33,15 @@ MonoBehaviour:
   machines:
   - machineId: signal_relay
     displayName: signal relay
-    localPosition: {x: -26, y: 0.1, z: 10}
+    localPosition: {x: -26, y: 0, z: 8}
     partItemId: relay_cell
-    partLocalPosition: {x: -24, y: 0.1, z: 7}
+    partLocalPosition: {x: -22.8, y: 0, z: 5.6}
   mines: []
   gardens: []
   sockets: []
-  deliberatelySilent: 0
+  beltFloors: []
   audioProfile: {fileID: 11400000, guid: 6fbda911a1633ed4eac94eed037a0781, type: 2}
+  deliberatelySilent: 0
   flagsRequired: []
   flagsGranted:
   - C1_W001_ARRIVED

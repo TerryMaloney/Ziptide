@@ -55,22 +55,32 @@ namespace Ziptide.Gameplay
                 var p = BasePosOf(t);
                 t.localPosition = new Vector3(p.x, p.y, p.z * c.FuselageLength);
             }
+            // The chassis knobs were authored against a winged fighter. The hull is now the SLV-01
+            // Scrapper (a salvage tug: cab + work hull + engine drum + claw + splayed legs), so each
+            // knob is remapped onto the mass that plays the same silhouette role.
             foreach (Transform t in root)
             {
-                if (t.name.StartsWith("Wing_") || t.name.StartsWith("WingTip_"))
+                string n = t.name;
+
+                // WingSpan → LANDING-LEG STANCE. Every part of one leg shares a single z and a
+                // proportional x, so scaling those moves the whole leg coherently; z follows
+                // FuselageLength so the feet stay under the hull when the body stretches.
+                if (n.StartsWith("Leg_"))
+                {
+                    var p = BasePosOf(t);
+                    t.localPosition = new Vector3(p.x * c.WingSpan, p.y, p.z * c.FuselageLength);
+                }
+
+                // FinHeight → ENGINE DRUM diameter. The drum is the Scrapper's dominant mass, so it
+                // is the biggest silhouette lever the chassis has (the old tail fin's job).
+                if (n == "EngineDrum" || n.StartsWith("DrumBand_") || n == "EngineCollar")
                 {
                     var s = BaseScaleOf(t);
-                    t.localScale = new Vector3(s.x * c.WingSpan, s.y, s.z);
-                    float side = t.localPosition.x >= 0f ? 1f : -1f;
-                    var e = BaseEulerOf(t);
-                    t.localEulerAngles = new Vector3(e.x, e.y - side * c.WingSweepDeg, e.z);
+                    t.localScale = new Vector3(s.x * c.FinHeight, s.y, s.z * c.FinHeight);
                 }
-                if (t.name == "TailFin")
-                {
-                    var s = BaseScaleOf(t);
-                    t.localScale = new Vector3(s.x, s.y * c.FinHeight, s.z);
-                }
-                if (t.name.StartsWith("Exhaust_"))
+
+                // The nozzle throats are the spec's "inner glow slot" — the chassis voice shows there.
+                if (n.StartsWith("NozzleThroat_"))
                 {
                     var r = t.GetComponent<Renderer>();
                     if (r != null)
@@ -81,6 +91,29 @@ namespace Ziptide.Gameplay
                         else mat.color = glow;
                     }
                 }
+            }
+
+            ApplyClawStow(root, c);
+        }
+
+        /// <summary>
+        /// WingSweepDeg → the claw's STOW ANGLE. The arm is authored from endpoints, so it swings as a
+        /// RIGID GROUP about the shoulder; rotating each segment on its own midpoint would pull the
+        /// elbow and wrist apart. Real articulation waits on authored pivots (visual spec §4 step ④).
+        /// </summary>
+        private static void ApplyClawStow(Transform root, ShipChassisPreset c)
+        {
+            var shoulder = root.Find("ClawArm_Shoulder");
+            if (shoulder == null) return;
+            Vector3 pivot = BasePosOf(shoulder);
+            Quaternion swing = Quaternion.Euler(0f, 0f, -Mathf.Clamp(c.WingSweepDeg, 0f, 48f) * 0.5f);
+            foreach (Transform t in root)
+            {
+                string n = t.name;
+                if (n == "ClawArm_Shoulder") continue;
+                if (!n.StartsWith("ClawArm_") && !n.StartsWith("ClawFinger_")) continue;
+                t.localPosition = pivot + swing * (BasePosOf(t) - pivot);
+                t.localRotation = swing * Quaternion.Euler(BaseEulerOf(t));
             }
         }
 
@@ -128,9 +161,13 @@ namespace Ziptide.Gameplay
             {
                 if (r == null) continue;
                 string n = r.gameObject.name;
-                // Body panels take bodyColor; trim/exhaust/canopy keep their identity.
-                bool body = n.StartsWith("Fuselage_") || n.StartsWith("Wing_") || n == "TailFin" || n == "CargoPod";
-                bool accent = n.StartsWith("WingTip_") || n == "DorsalSpine" || n == "Nose_Tip";
+                // Body panels take bodyColor; trim/glass/nozzles keep their identity. The hazard
+                // striping and THE cyan coupler port are canon marks, never repainted by a livery.
+                if (n.EndsWith("_Hazard") || n.StartsWith("HazardPatch") || n.StartsWith("NoseCheek")
+                    || n.StartsWith("CyanPort")) continue;
+                bool body = n.StartsWith("Fuselage_") || n == "Cab" || n == "EngineDrum" || n == "CargoPod";
+                bool accent = n == "Nose_Tip" || n == "DorsalSpine"
+                    || n.StartsWith("Leg_") || n.StartsWith("ClawArm_") || n.StartsWith("ClawFinger_");
                 if (!body && !accent) continue;
                 Color c = body ? cosmetic.bodyColor
                     : (cosmetic.accentColor.a > 0.01f ? cosmetic.accentColor : cosmetic.bodyColor);

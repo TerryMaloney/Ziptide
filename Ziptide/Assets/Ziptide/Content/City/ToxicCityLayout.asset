@@ -61,8 +61,8 @@ MonoBehaviour:
   rings:
     enabled: 1
     buildTidalFlat: 1
-    buildTowerIsland: 0
-    buildWedges: 0
+    buildTowerIsland: 1
+    buildWedges: 1
     buildCanalRing: 1
     buildSeaWall: 1
     buildHarbour: 1
@@ -98,6 +98,7 @@ MonoBehaviour:
   - id: Shipyard
     anchor: {x: 0, y: 0, z: -30}
     bounds: {x: 22, y: 18}
+    buildingStyleId: salvage_row
     heightTier: 1
     useOverride: 0
     paletteOverride:
@@ -129,6 +130,7 @@ MonoBehaviour:
   - id: Dispatch
     anchor: {x: 0, y: 0, z: -8}
     bounds: {x: 20, y: 18}
+    buildingStyleId: salvage_row
     heightTier: 1
     useOverride: 0
     paletteOverride:
@@ -155,6 +157,7 @@ MonoBehaviour:
   - id: Plaza
     anchor: {x: 0, y: 0, z: 28}
     bounds: {x: 24, y: 22}
+    buildingStyleId: toxic_tenement
     heightTier: 2
     useOverride: 0
     paletteOverride:
@@ -173,15 +176,18 @@ MonoBehaviour:
       localPos: {x: 9, y: 0, z: 6}
       height: 40
       width: 6
+      kind: 0
     - name: GardenTower
       localPos: {x: -9, y: 0, z: 6}
       height: 18
       width: 5
+      kind: 0
     heroBuildings: []
     props: []
   - id: Market
     anchor: {x: 26, y: 0, z: 8}
     bounds: {x: 22, y: 20}
+    buildingStyleId: toxic_tenement
     heightTier: 1
     useOverride: 0
     paletteOverride:
@@ -205,6 +211,7 @@ MonoBehaviour:
   - id: CanalRow
     anchor: {x: -26, y: 0, z: 8}
     bounds: {x: 16, y: 26}
+    buildingStyleId: toxic_tenement
     heightTier: 1
     useOverride: 0
     paletteOverride:
