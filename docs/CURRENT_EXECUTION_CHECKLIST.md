@@ -6,6 +6,41 @@
 > This is the CURRENT status layer, not a replacement for the deeper sources of truth. When detail is needed, follow the linked boards and historical plans below. When this file conflicts with an older unchecked row, prefer the newest implementation log, `HANDOFF.md`, and `CI_VERDICT.md`, then correct this file.
 
 
+## 2026-08-05 — CI is green on Unity 6, and Unity AI's ToxicCity pass has been harvested
+
+Read **`docs/HANDOFF.md` rb139** first. Short version:
+
+- ✅ **rb138's "the workflow is broken" is OUT OF DATE.** All six workflows read
+  `UNITY_VERSION: 6000.2.9f1` (`91829227`), the licence activated, and **CI run `30771260557` on
+  `15d94a29` passed in 13m6s** — compile and EditMode both run. `ProjectVersion.txt` is committed at
+  `6000.2.9f1`. We are not flying blind.
+- ✅ **Fast Preflight is un-blocked** (`3b67aee9`). It had been red on every commit of this branch:
+  Unity 6's API Updater fully-qualified the XRI type names in `HolsterSocketInteractor.cs`, so two
+  evidence tokens in `docs/first_hour/first_hour_bindings.json` no longer matched. The binding was
+  intact; the contract was stale. All 16 fast-preflight gates now pass locally, 244/244 gate tests OK.
+- ✅ **The build scripts were aimed at the wrong editor** (`2cafb483`). `dev_build_install.ps1` and
+  `level1_test.ps1` both defaulted `$UnityExe` to `2022.3.62f3`. Both now resolve from
+  `ProjectVersion.txt` and fail loudly listing installed editors, so an engine bump can't strand them
+  again.
+- ✅ **One real regression reverted** (`2cafb483`): `ToxicCityExit_WorldPack.sceneName` had been
+  changed `W000_DriftIn → MilestoneA_GrabCube` by the AI pass. Note it was **invisible on the golden
+  route** — `RecoveryBuildAndroid.PatchAndValidateGoldenRoute` force-pins that field before asserting
+  on it — but live on the FullDevelopment path Terry actually tests.
+- ✅ **NEW: `docs/THE_RATCHET.md`** (Stage 5, law; PIPELINE amended to v1.1) + harvest 001 in
+  `docs/ratchet/`, + **`Ziptide/Assets/Plans/_ZIPTIDE_HOUSE_RULES.md`**. The structural finding:
+  **`docs/` is outside `Assets/`, so Unity AI has never been able to read any of this project's
+  laws.** The house-rules file is the fix and the reason passes will now compound.
+- ⛔ **NEXT — Terry, headset.** `ToxicCity.unity` is deliberately **not committed**: the re-bake
+  inlined ~1,464 material instances into the scene (474k-line diff) against a hard cap of 60. It is
+  reproducible from the committed layout asset, so nothing is at risk. Build from the working tree,
+  report framerate, then the material fix lands with real numbers. Commands in `TERRY_RUNBOOK.md`
+  §0c.
+- ⚠️ **Held for Terry's call:** `DynamicsManager.asset` `m_AutoSyncTransforms 0 → 1` (a global physics
+  change that rode in on the Unity 6 migration) and `ToxicCity_WorldProfile` spawn `(0,0,0)` with the
+  default 4×4 play area (needs eyes in Unity).
+- 🕳️ **Three new gate gaps claimed** (EXCELLENCE_MAP queue 17–19): scene material-count blocker,
+  cross-domain-edit guard, `tools/ratchet_gate.py`.
+
 ## 2026-07-31 — the last PlayMode red has a real fix; the headset test has not happened yet
 
 Read **`docs/HANDOFF.md` rb133** first. Short version:

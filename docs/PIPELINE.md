@@ -1,5 +1,5 @@
 # THE PIPELINE — the one spine: story bible → shipped, living game
-### Version 1.0 · created 2026-07-20 (Terry-approved) · THE LAW: the pipeline changes ONLY through this document (§A)
+### Version 1.1 · created 2026-07-20 (Terry-approved) · THE LAW: the pipeline changes ONLY through this document (§A)
 
 **What this is:** the single ordered route through the whole project. Every system, plan, and
 doc in the repo serves exactly ONE stage below. When you don't know where something fits, or
@@ -64,7 +64,9 @@ world + the measured bar every later world must meet.
 ## STAGE 5 — THE ASSEMBLY LINE 🔵
 The conveyor: pieces become a pipeline.
 **Machines:** WC-2 kits + WC-3 compile pass (`FORGE_VI_WORLD_COMPILER.md`) · the assembly
-runbook (GAP F) · per-world GENERATED route tests (rb57 gap I) · review farm WC-7 + calibration.
+runbook (GAP F) · per-world GENERATED route tests (rb57 gap I) · review farm WC-7 + calibration
+· **`THE_RATCHET.md`** (v1.1) — harvest each large Unity AI pass into builders/gates so the line
+gets faster per world instead of the same speed; ledger in `docs/ratchet/`.
 **Gates:** determinism/no-op/hash tests; reviewer-vs-Terry divergence measured and low.
 **CHECKPOINT: One-Session World** — one session takes one standard world bible-row → gates
 green → review-farm pass in one sitting; Terry blind-compares it to the hand-built pilot.
@@ -129,6 +131,7 @@ retrofitting the existing corpus is a boarded boards-pass task, not a unilateral
 | Ver | Date | Change | Why | Approved |
 |---|---|---|---|---|
 | 1.0 | 2026-07-20 | Initial spine: 12 stages + checkpoints + amendment law | Terry: "clear steps from story bible to finish, with checkpoints — and pipeline changes documented in the pipeline" | Terry (chat, 2026-07-20) |
+| 1.1 | 2026-08-05 | **Stage 5 gains a recurring loop: `THE_RATCHET.md`** — after any large Unity AI pass, harvest its techniques (R1 freeze → R2 sort → R3 harvest → R4 encode → R5 re-bake ledger) into builders/gates before the next world is built. No stage is added, reordered or renamed; Stage 5's "One-Session World" checkpoint is unchanged. Ledger of harvests lives in `docs/ratchet/`. | Terry: "analyze what it did and reverse engineer it so we can apply the techniques to future levels… then go back through the previous levels and improve them." Also fixes a structural blind spot found in harvest 001: `docs/` sits outside `Assets/`, so Unity AI has never been able to read ANY of this project's laws — the loop needs a mirrored rules file inside the Unity project. | Terry (chat, 2026-08-05) |
 
 ## Current position, in one line
 **Stage 4 (vertical slice), blocked at the Stage-2 checkpoint: Terry's Golden Device

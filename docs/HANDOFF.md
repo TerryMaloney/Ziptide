@@ -32,6 +32,127 @@
 
 ## ENTRIES — newest first
 
+### 2026-08-05 (rb139) — 🔁 THE RATCHET: docs/ was never visible to the one operator that can see
+
+Terry: *"When Unity AI does a big change like this, I want to analyze what it did and reverse engineer
+it so we can apply the techniques to the future levels… and then the Unity AI does more on the next
+level on top of our additions and hypothetically gets better."*
+
+It will — but not the way it sounds, and the reason is the finding of this entry.
+
+#### 1 · The correction to rb138: we are not flying blind
+
+rb138 says CI is broken on Unity 6 and that by CLAUDE.md's own rule that outranks any feature. **That
+was true when it was written and is not true now.** All six workflows read `UNITY_VERSION: 6000.2.9f1`
+(`91829227`), the licence activated, and **CI run `30771260557` on `15d94a29` succeeded in 13m6s** —
+compile and EditMode both ran. `ProjectVersion.txt` is committed at `6000.2.9f1`.
+
+What *was* broken is Fast Preflight, red on **every** commit of this branch (green on
+`terry-local-wip` as late as run `30768311939`). Root cause, pinned: `first_hour_binding_gate
+--strict` failed with two `EVIDENCE_TOKEN_MISSING`. Unity 6's API Updater fully-qualified the XRI
+type names —
+
+```
+:15  public class HolsterSocketInteractor
+       : UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor
+:68  public override bool CanSelect(
+       UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable interactable)
+```
+
+— while `docs/first_hour/first_hour_bindings.json` still expected the short form. The binding surface
+was intact; the *contract* was stale. Two strings (`3b67aee9`). All 16 fast-preflight gates now pass
+locally; 244/244 gate tests OK.
+
+**The lesson worth keeping:** an engine bump doesn't just break code, it breaks every doc that quotes
+code. Evidence-token gates are load-bearing and they age.
+
+#### 2 · The structural finding — and it is the big one
+
+**`docs/` sits outside `Ziptide/Assets/`, so Unity AI's context has never included it.**
+
+THE LAWS, `EXCELLENCE_MAP.md`, `WORLD_RECIPE.md`, `CLAUDE.md`, every runbook and every one of these
+138 handoff entries — the one operator on this project that can actually open a scene has never read a
+word of any of it. That is why its passes have not been compounding, and why it occasionally reverts
+something load-bearing without malice.
+
+Fix: **`Ziptide/Assets/Plans/_ZIPTIDE_HOUSE_RULES.md`** — inside `Assets/`, therefore in context.
+Short, rules-only, appended to by each harvest.
+
+#### 3 · THE RATCHET
+
+New law `docs/THE_RATCHET.md` (Stage 5; PIPELINE amended to **v1.1**, §A row recorded). Five phases:
+**R1 freeze → R2 sort (KEEP/FIX/REVERT/NOISE, and *noise must be named*) → R3 harvest → R4 encode →
+R5 re-bake ledger.** Techniques are ranked by carrier: **C1 builder/pure core** > **C2 gate/test** >
+**C3 house rule**. A technique that stops at C3 has been written down, not harvested.
+
+R5 is the answer to Terry's "go back halfway and improve the earlier levels", against
+`GAME_PLAN.md`'s correct warning that *"retrofitting 80 worlds is how projects die"*:
+
+> **You do not retrofit worlds. You improve the builder and re-bake.**
+
+Worlds are generated from specs by deterministic builders, so a C1 technique improves every
+already-built world for ~zero cost. The retrofit budget is only ever the C3 remainder — and R5 makes
+that a visible number instead of an unbounded promise.
+
+#### 4 · Harvest 001 — `docs/ratchet/HARVEST_001_TOXIC_CITY_RING.md`
+
+Seven techniques, three anti-techniques. The one to steal immediately is **T-001: art direction
+compiled into EditMode assertions whose failure message is the sentence** — *"the claw is never
+mirrored"*, *"must plant outboard of the hull, not tucked under it"*, *"The truck cab sits ON TOP of
+the hull line."* That is LAW 3 applied to aesthetics, which we had never done.
+
+Also worth knowing: with **no access to LAW 1**, the AI independently chose to flip two booleans and
+five strings and call an existing menu command rather than hand-author 3,239 objects. Our
+architecture and this tool want the same thing, so **our leverage over its output is the quality of
+our builders, not the cleverness of our prompts.**
+
+#### Did
+
+1. `3b67aee9` — un-blocked Fast Preflight (stale XRI evidence tokens).
+2. `2cafb483` — reverted `ToxicCityExit_WorldPack.sceneName` `W000_DriftIn → MilestoneA_GrabCube`;
+   made both build scripts resolve the editor from `ProjectVersion.txt`; ignored the AI scratch cache
+   and Unity's crash-recovery dump.
+3. `1e5d1c8c` — kept the ring city layout, the SLV-01 Scrapper hull rebuild, Level 1's first
+   `VisualThemeProfile`, and the AI's own plan file as R1 evidence.
+4. `docs/THE_RATCHET.md`, `docs/ratchet/HARVEST_001_*`, `Assets/Plans/_ZIPTIDE_HOUSE_RULES.md`,
+   PIPELINE v1.1, EXCELLENCE_MAP row + gap queue 17–19, runbook §0c.
+
+#### Next
+
+1. **Terry, headset** — `TERRY_RUNBOOK.md` §0c, five blocks. Report framerate; that is the evidence
+   the material fix needs.
+2. **Close harvest 001's R4**: lift T-002/T-003/T-004/T-006 out of `ShipHullBuilder` into a shared
+   authoring core so `RingCityBuilder`, `BuildingBuilder` and the creature builders get them. Four of
+   seven techniques are currently trapped in one file.
+3. Build the A-001 material-count blocker (gap queue 17). It is the urgent one.
+
+#### Heads-up
+
+- **`ToxicCity.unity` is deliberately uncommitted.** The bake inlined ~1,464 material instances into
+  the scene file — a 474k-line diff, against a hard cap of 60 (rb137 had just measured 333 → 111).
+  It regenerates from the committed layout asset via `Ziptide/Worlds/Build Toxic City`, and
+  `BuildAndroid.cs:138` re-runs `PopulateActiveToxicCity` during every build, so nothing is at risk.
+- The exit-door regression was **invisible on the golden route**:
+  `RecoveryBuildAndroid.PatchAndValidateGoldenRoute` force-pins that field (`:86`) before asserting on
+  it (`:95`). It was live only on the FullDevelopment path — which is the path Terry tests. A bug can
+  hide behind a self-healing build step.
+- Held for Terry: `DynamicsManager` `m_AutoSyncTransforms 0 → 1`, and `ToxicCity_WorldProfile` spawn
+  `(0,0,0)` / default 4×4 play area.
+- `tools/dev_build_install.ps1` and `tools/level1_test.ps1` no longer take a hardcoded version. If you
+  add another build script, resolve from `ProjectVersion.txt` — that default has now gone stale once
+  per engine move.
+- **`dev_preflight.ps1` will fail LOCALLY until the scene is committed or reverted.** Its step 3 is
+  `git diff --check`, and Unity writes trailing spaces after empty YAML fields (`m_Name: `,
+  `m_LockedProperties: `), so the uncommitted `ToxicCity.unity` trips it. CI is unaffected — it
+  checks out a clean tree. Everything else is green: all 16 fast-preflight gates pass, 244/244 gate
+  tests OK, and `git diff --check` is clean across every file this session touched.
+
+#### Commits
+
+`3b67aee9` fast-preflight tokens · `2cafb483` audit fixes · `1e5d1c8c` the KEEP bucket
+
+---
+
 ### 2026-08-02 (rb138) — 🔌 UNITY 6 + THE FIRST OPERATOR WHO CAN SEE
 
 **READ THIS FIRST IF YOU ARE THE CLAUDE CODE RUNNING ON TERRY'S PC WITH UNITY MCP ATTACHED.**

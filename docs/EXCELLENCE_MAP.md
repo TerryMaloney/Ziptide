@@ -98,6 +98,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-20.)*
 | CI & verification | 💎 | Green per push; red stops code; 3-red breaker; recipe-only rounds trigger route and APK proof | operating laws + durable verdict + synchronized recovery workflow paths |
 | Generated-content currentness | 🟡 framework output protected; legacy authors still open | What ships is a pure function of current recipe + compiler; no stale committed asset can mask intent | `WorldImprovementHashCore` + `WorldImprovementAuditRules`; 🕳️ general `ASSET_STALE_VS_RECIPE` for old `*Author/*Library` set |
 | Runtime health | 🧱 v1 (vitals, census, janitor, async travel) | 1%-low ≥60; memory flat over travel soak; resources clean | health/resource tests + device soak |
+| AI-pass harvesting (THE RATCHET) | 🦴 protocol + harvest 001 written; 4 of 7 techniques still trapped in one builder | Every large Unity AI pass is sorted (KEEP/FIX/REVERT/NOISE), its techniques named, and each one **encoded in a builder (C1) or a gate (C2)** before the next world is built — prose-only capture doesn't count. Measured by: techniques at C1+C2 ÷ techniques harvested | `docs/THE_RATCHET.md` + `docs/ratchet/*`; 🕳️ GAP `tools/ratchet_gate.py` (an open harvest older than one world must go CI-red) — **claimed board row, harvest 001** |
 | Localization readiness | ⬜ decision needed | One text seam or explicitly English-only launch | 🕳️ Terry decision before M5 scale |
 | Docs & blackboard | 🧱→💎 in flight | Current checklist routes to detailed/history boards; every round emits machine-readable expected-output evidence | staleness/session-zero gates + `world_improvement_compile.json` + round runbook |
 | Onboarding/tutorial | 🧱 in flight (most adapters + W000 surfaces code-green; A01/S05/S08 remain; **review 2026-07-11: FH-GAP-1..4 added to `first_hour/ADAPTER_ENVELOPES.md` — veteran skip · runbook mirroring · gate promotion · map linkage**) | Cold player learns W000→W001 through moments; hesitation-only hints; veterans never nagged | first-hour contracts/tests + `first_hour_gate.py` in CI (report-only → BLOCKING at S08 close) |
@@ -152,6 +153,9 @@ its relevant rows have machine evidence and the human-only remainder is explicit
 14. ~~Accessibility design doc~~ — CLOSED 2026-07-10; non-preset controls remain implementation rows.
 15. ~~Creature behavior-count/readability check~~ — **CLOSED at structural code/CI maturity**; headset readability remains.
 16. ~~Plant/vehicle catalog breadth audit~~ — **CLOSED at structural audit maturity**; content breadth remains.
+17. **Scene material-count blocker** — harvest 001 A-001: a re-bake inlined ~1,464 material instances into `ToxicCity.unity` against a hard cap of 60, and nothing went red. The cap exists only in docs and in rb137's manual measurement.
+18. **Cross-domain-edit guard** — harvest 001 A-002: a content bake silently changed a travel `sceneName` and a global physics setting. Needs a WorldPack `sceneName`-validity rule plus a reviewed `ProjectSettings/**` diff.
+19. **`tools/ratchet_gate.py`** — an open harvest (techniques named but not encoded) older than one world should go CI-red, so THE RATCHET can't quietly become prose.
 
 ## THE UNIFORMITY REVIEW
 

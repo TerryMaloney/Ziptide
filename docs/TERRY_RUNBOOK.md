@@ -63,6 +63,111 @@ Per `docs/DEVICE_STABILIZATION_FORENSIC_PLAN.md` (rb25/rb26): multiplayer is pau
 
 If ALL of the above pass, Phase 2 (item/holster/hammer poses + self-hit) begins next session.
 
+## 0c. ⭐⭐ TODAY'S SESSION (2026-08-05) — first look at Unity AI's ring city, on Unity 6
+
+**Read this instead of §0b today.** §0b's `morning_test.ps1` downloads CI's APK — there is **no CI
+APK for `claude/unity6-migration`** (every Golden Android run is on `terry-local-wip`), so today is a
+local build. The `Ziptide.apk` sitting in `Builds\Android\` is from **Jul 14** — ignore it.
+
+**What you are testing:** the ring city Unity AI built (leaning tower, 5 shanty wedges, canal ring,
+sea wall, harbour) plus the rebuilt hero ship, on Unity 6. `ToxicCity.unity` is intentionally NOT
+committed yet — you are building it out of the working tree. It regenerates from the layout asset, so
+nothing can be lost.
+
+> ⚠️ **Close Unity before Block 2.** These scripts no longer force-kill an editor that has the
+> project open. If Unity is open, the batch build cannot open the project.
+
+#### BLOCK 1 — preflight (about a minute)
+
+```powershell
+cd C:\Ziptide
+git pull origin claude/unity6-migration
+git rev-parse --abbrev-ref HEAD
+Get-Content .\Ziptide\ProjectSettings\ProjectVersion.txt -TotalCount 1
+(Get-ChildItem "C:\Program Files\Unity\Hub\Editor").Name -join ', '
+adb devices
+```
+
+Expect: branch `claude/unity6-migration` · `m_EditorVersion: 6000.2.9f1` · `6000.2.9f1` present in
+the editor list · exactly one line under `List of devices attached` ending in `device` (not
+`unauthorized` — if unauthorized, put the headset on and accept the USB debugging prompt).
+
+#### BLOCK 2 — bake, build, install, launch (about 20 minutes, unattended)
+
+```powershell
+cd C:\Ziptide
+powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\level1_test.ps1
+```
+
+No `-UnityExe` needed any more — it reads the version out of `ProjectVersion.txt` and will stop with
+a clear message if that editor isn't installed. It bakes the Toxic City contract, runs the full patch
+and audit pipeline, builds the APK, installs it and launches it. Everything lands in
+`C:\Ziptide\Builds\session-<timestamp>\`.
+
+If install fails with `INSTALL_FAILED_UPDATE_INCOMPATIBLE`:
+
+```powershell
+adb uninstall com.terrymaloney.ziptide
+```
+
+then re-run Block 2.
+
+#### BLOCK 3 — start logging (SECOND PowerShell window, BEFORE the headset goes on)
+
+```powershell
+cd C:\Ziptide
+$stamp = Get-Date -Format 'yyyyMMdd_HHmmss'
+adb logcat -v threadtime -s Unity Ziptide | Tee-Object -FilePath ".\Ziptide\Builds\quest_${stamp}.log"
+```
+
+Leave this running the whole time you play. Ctrl+C when you take the headset off.
+
+#### BLOCK 4 — what to look at (headset)
+
+New this build — the ring city:
+
+- [ ] The **central tower leans** (about 12°) and has **three cranes** at its crown.
+- [ ] **Five shanty wedges** fill the gap between the canal ring and the sea wall, with **lit
+      windows** (fake interiors behind the glass).
+- [ ] The **sea wall** has breaches; there's a **harbour with two breakwaters**; beached wrecks and
+      stilt villages sit out on the mud.
+- [ ] The sky is **warm at the horizon, dark teal at the zenith** — Level 1's first real sky.
+
+New this build — the ship (it was a generic winged fighter, it's now a salvage tug):
+
+- [ ] The **claw arm is on the LEFT (port) side only** — if you see one on both sides, that's a bug.
+- [ ] The **legs plant outboard of the hull**, not tucked underneath.
+- [ ] The **cab sits on top of the hull line**, like a truck.
+- [ ] **One cyan glowing port**, recessed, mid-hull left.
+
+Still open from rb138 — check while you're in there:
+
+- [ ] Boarding doesn't drop you into empty space or trigger the y=-60 fall.
+- [ ] The **fourth cockpit rail** exists.
+- [ ] The Breaker Blade's 40° rake feels right in hand.
+- [ ] Cast-off / boarding labels **face you**; PUNCH IT text is the right size.
+- [ ] The W000 crane reads as a crane, not an oversized block.
+- [ ] The "Leave" door out of Toxic City goes to **W000 Drift In** (it had been repointed at a test
+      scene; that's reverted, this confirms it).
+
+**⚠️ The one number I most need back: how does the framerate feel?** The bake put ~1,464 material
+instances into that scene against a hard cap of 60. If it judders, stutters when you turn your head,
+or feels heavy in the dense wedge streets — say so. That measurement is what the fix gets aimed at,
+and it's the only part of this that can't be checked from a log.
+
+#### BLOCK 5 — grade the log
+
+Ctrl+C the Block 3 window first, then:
+
+```powershell
+cd C:\Ziptide
+powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\morning_check.ps1
+```
+
+Paste back its output plus your answers to Block 4. Remember `APPROACH_DRESSED`, `WAYFINDING`,
+`CITY_MATERIALS` and `WORLD_ATMO_AUTHOR` are **bake-time editor logs** — their absence from a headset
+log proves nothing.
+
 ## 0b. ⭐ TODAY'S SESSION (2026-08-01) — the whole Level 1 pass
 
 ### 🟢 THE WHOLE MORNING, IN THREE COMMANDS
