@@ -104,8 +104,16 @@ namespace Ziptide.Editor.Patching
             if (File.Exists(BakedRoot + ".meta"))
                 FileUtil.DeleteFileOrDirectory(BakedRoot + ".meta");
 
-            Directory.CreateDirectory(BakedRoot);
+            // Let the AssetDatabase settle the DELETION before we re-create the folder. The old
+            // order was create -> Refresh -> assert, and on Unity 6 that assert fails: the refresh
+            // lands on a folder that is empty and has no .meta yet, and the folder does not
+            // survive it. ForgeBaked/ is gitignored (it is a build product), so it is ALWAYS
+            // absent on a fresh clone, after a Library wipe, or on the first local build after an
+            // engine bump - which is exactly when this fires. Refreshing first also flushes any
+            // FileUtil delete still pending on Windows, so a late delete cannot eat the new folder.
             AssetDatabase.Refresh();
+
+            Directory.CreateDirectory(BakedRoot);
 
             if (!Directory.Exists(BakedRoot))
                 throw new DirectoryNotFoundException(

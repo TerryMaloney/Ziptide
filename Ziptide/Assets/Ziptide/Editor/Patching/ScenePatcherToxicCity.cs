@@ -516,16 +516,33 @@ namespace Ziptide.Editor.Patching
             return pack;
         }
 
+        /// <summary>
+        /// The Leave door's destination. It must NEVER resolve to MilestoneA_GrabCube: that is a
+        /// test room, it is absent from the Golden APK, and QuestRetryRouteRegressionTests pins
+        /// this field to W000 with the message "must not point at MilestoneA_GrabCube".
+        ///
+        /// The old rule was "first enabled scene that is not _Boot or ToxicCity" - and
+        /// MilestoneA_GrabCube is build index 1, so that rule returned it EVERY TIME. Each bake
+        /// silently re-broke the door and the fix had to be re-applied by hand afterwards, which
+        /// is exactly what happened twice on 2026-08-05. Prefer the story home scene, and never
+        /// fall back to the test room.
+        /// </summary>
         private static string FirstOtherBuildSceneName()
         {
+            string firstOther = null;
+            bool w000InBuild = false;
+
             foreach (var s in EditorBuildSettings.scenes)
             {
                 if (!s.enabled || string.IsNullOrEmpty(s.path)) continue;
                 string n = Path.GetFileNameWithoutExtension(s.path);
-                if (n == "_Boot" || n == SceneName) continue;
-                return n;
+                if (n == "_Boot" || n == SceneName || n == ZiptideConstants.SceneTestRoom) continue;
+                if (n == ZiptideConstants.SceneW000) w000InBuild = true;
+                if (firstOther == null) firstOther = n;
             }
-            return ZiptideConstants.SceneTestRoom;
+
+            if (w000InBuild) return ZiptideConstants.SceneW000;
+            return firstOther ?? ZiptideConstants.SceneW000;
         }
 
         private static DistrictDef FindDistrict(CityLayoutDefinition kit, string id)
