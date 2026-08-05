@@ -186,8 +186,8 @@
         {
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
           "tokens": [
-            "public class HolsterSocketInteractor : XRSocketInteractor",
-            "public override bool CanSelect(IXRSelectInteractable interactable)"
+            "public class HolsterSocketInteractor : UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor",
+            "public override bool CanSelect(UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable interactable)"
           ]
         },
         {
