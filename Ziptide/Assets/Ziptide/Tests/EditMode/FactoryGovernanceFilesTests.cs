@@ -13,8 +13,20 @@ namespace Ziptide.Tests.EditMode
         public void PipelineSpine_KeepsAllStagesCurrentPositionAndAmendmentLaw()
         {
             string pipeline = Read("docs/PIPELINE.md");
-            StringAssert.Contains("Version 1.0", pipeline);
+
+            // Assert the SHAPE of the version header, not a pinned number. This used to read
+            // Contains("Version 1.0"), which put the test in direct conflict with the law it
+            // guards: PIPELINE Section A REQUIRES the version to be bumped in the same commit as
+            // any amendment, so every LAWFUL amendment turned CI red. v1.1 (THE RATCHET) is the
+            // amendment that surfaced it.
+            Assert.That(Regex.IsMatch(pipeline, @"### Version \d+\.\d+"), Is.True,
+                "The spine must keep a '### Version <major>.<minor>' header - Section A bumps it per amendment.");
             StringAssert.Contains("THE AMENDMENT LAW", pipeline);
+
+            // Every amendment lands as a row in this table; the table itself must never vanish.
+            StringAssert.Contains("### Amendment log", pipeline);
+            Assert.That(Regex.IsMatch(pipeline, @"\|\s*Ver\s*\|\s*Date\s*\|\s*Change\s*\|\s*Why\s*\|\s*Approved\s*\|"),
+                Is.True, "The amendment log lost its | Ver | Date | Change | Why | Approved | header.");
             StringAssert.Contains("## Current position, in one line", pipeline);
             for (int i = 0; i <= 11; i++)
                 StringAssert.Contains("## STAGE " + i + " ", pipeline,

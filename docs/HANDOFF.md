@@ -169,10 +169,26 @@ Unity YAML but never `-whitespace`, and `git diff --check` honours the *whitespa
 `_ZIPTIDE_HOUSE_RULES.md` is explicitly re-enabled, it's ours and is held to the normal bar). Verified
 the check still catches trailing whitespace in hand-written `.cs`, which is its actual job.
 
+**And a third, from the round after that: a gate that forbade obeying its own law.**
+`FactoryGovernanceFilesTests.PipelineSpine_KeepsAllStagesCurrentPositionAndAmendmentLaw` asserted
+`Contains("Version 1.0")` on `docs/PIPELINE.md`. But PIPELINE §A **requires** the version to be
+bumped in the same commit as any amendment — so **every lawful amendment turns CI red.** The test
+now asserts the *shape* (`### Version <major>.<minor>`, plus the amendment-log table header) rather
+than a pinned number. v1.1 was simply the first amendment since the test was written.
+
+**All three reds this session were the same failure mode: a gate holding a constant that the thing
+it guards is expected to change.** Stale XRI tokens, a deleted part vocabulary, a pinned version
+number. Worth remembering when writing the next gate — assert the shape, pin only what must never move.
+
+Also noted, not fixed: this test reads only `docs/**`, so per HANDOFF Rule 6 it belongs in
+`tools/*_gate.py`. It cost a 9-minute Unity cycle to catch a one-character docs change. Moving it is
+a clean, small board row for whoever wants it.
+
 #### Commits
 
 `3b67aee9` fast-preflight tokens · `2cafb483` audit fixes · `1e5d1c8c` the KEEP bucket ·
-`16f081d8` THE RATCHET · `+1` the two CI reds above
+`16f081d8` THE RATCHET · `7f2763e5` audit vocabulary + whitespace attribute ·
+`+1` the pipeline-version test
 
 ---
 
