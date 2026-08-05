@@ -35,5 +35,15 @@ t.txt
 # FORGE II E1.4: baked forge assets are build products - regenerated deterministically from recipes
 Ziptide/Assets/Ziptide/Resources/ForgeBaked/
 Ziptide/Assets/Ziptide/Resources/ForgeBaked.meta
+
+# Unity AI Assistant scratch cache: content-addressed copies of every image attached to a chat
+# turn. ~10 MB per session and it regenerates itself - it is not evidence and must not ship.
+# Keep the AI's PLAN files (Ziptide/Assets/Plans/) - those ARE evidence, see docs/THE_RATCHET.md R1.
+Ziptide/Assets/AI Toolkit/
+Ziptide/Assets/AI Toolkit.meta
+
+# Unity's crash/scene-recovery dumps. Never authored, never wanted in a commit.
+Ziptide/Assets/_Recovery/
+Ziptide/Assets/_Recovery.meta
 __pycache__/
 *.pyc

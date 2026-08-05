@@ -29,7 +29,9 @@
     powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\level1_test.ps1 -NoBuild
 #>
 param(
-    [string]$UnityExe = "C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Unity.exe",
+    # Empty = resolve from Ziptide/ProjectSettings/ProjectVersion.txt. Do NOT hardcode a version
+    # here again: this default silently pointed at 2022.3.62f3 for the whole Unity 6 migration.
+    [string]$UnityExe = "",
     [string]$ProjectRoot = "",
     [switch]$SkipBake,
     [switch]$NoBuild
@@ -42,6 +44,24 @@ $repoRoot  = Split-Path -Parent $scriptDir
 if ($ProjectRoot -eq "") {
     $ps = Get-ChildItem $repoRoot -Directory -Recurse -Filter ProjectSettings -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($ps) { $ProjectRoot = Split-Path $ps.FullName -Parent } else { $ProjectRoot = Join-Path $repoRoot "Ziptide" }
+}
+
+# --- Resolve the editor from the project itself, so an engine bump can never leave this stale ---
+if ($UnityExe -eq "") {
+    $versionFile = Join-Path $ProjectRoot "ProjectSettings\ProjectVersion.txt"
+    if (-not (Test-Path $versionFile)) {
+        throw "Cannot resolve the Unity version: $versionFile is missing. Pass -UnityExe explicitly."
+    }
+    $line = Select-String -Path $versionFile -Pattern '^m_EditorVersion:\s*(\S+)' | Select-Object -First 1
+    if (-not $line) {
+        throw "Cannot parse m_EditorVersion from $versionFile. Pass -UnityExe explicitly."
+    }
+    $editorVersion = $line.Matches[0].Groups[1].Value
+    $UnityExe = "C:\Program Files\Unity\Hub\Editor\$editorVersion\Editor\Unity.exe"
+    Write-Host "Resolved Unity $editorVersion from ProjectVersion.txt"
+}
+if (-not (Test-Path $UnityExe)) {
+    throw "Unity editor not found at: $UnityExe`nInstalled editors: $((Get-ChildItem 'C:\Program Files\Unity\Hub\Editor' -ErrorAction SilentlyContinue).Name -join ', ')"
 }
 
 $stamp    = Get-Date -Format "yyyyMMdd-HHmmss"

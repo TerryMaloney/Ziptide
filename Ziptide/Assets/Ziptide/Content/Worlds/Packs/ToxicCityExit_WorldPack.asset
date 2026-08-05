@@ -25,7 +25,8 @@ MonoBehaviour:
   mines: []
   gardens: []
   sockets: []
-  deliberatelySilent: 0
+  beltFloors: []
   audioProfile: {fileID: 0}
+  deliberatelySilent: 0
   flagsRequired: []
   flagsGranted: []

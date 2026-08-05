@@ -1,5 +1,8 @@
 param(
-    [string]$UnityExe = "C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Unity.exe",
+    # Empty = resolve from Ziptide/ProjectSettings/ProjectVersion.txt. Do NOT hardcode a version
+    # here again: this default silently pointed at 2022.3.62f3 for the whole Unity 6 migration,
+    # so every documented build command was aimed at the wrong editor. Pass -UnityExe to override.
+    [string]$UnityExe = "",
     [string]$ProjectRoot = "",
     [ValidateSet("GoldenSlice", "FullDevelopment")]
     [string]$BuildProfile = "GoldenSlice",
@@ -14,6 +17,27 @@ if ($ProjectRoot -eq "") {
     } else {
         $ProjectRoot = "C:\Ziptide\Ziptide"
     }
+}
+
+# --- Resolve the editor from the project itself, so an engine bump can never leave this stale ---
+if ($UnityExe -eq "") {
+    $versionFile = Join-Path $ProjectRoot "ProjectSettings\ProjectVersion.txt"
+    if (-not (Test-Path $versionFile)) {
+        Write-Error "Cannot resolve the Unity version: $versionFile is missing. Pass -UnityExe explicitly."
+        exit 1
+    }
+    $line = Select-String -Path $versionFile -Pattern '^m_EditorVersion:\s*(\S+)' | Select-Object -First 1
+    if (-not $line) {
+        Write-Error "Cannot parse m_EditorVersion from $versionFile. Pass -UnityExe explicitly."
+        exit 1
+    }
+    $editorVersion = $line.Matches[0].Groups[1].Value
+    $UnityExe = "C:\Program Files\Unity\Hub\Editor\$editorVersion\Editor\Unity.exe"
+    Write-Host "Resolved Unity $editorVersion from ProjectVersion.txt"
+}
+if (-not (Test-Path $UnityExe)) {
+    Write-Error "Unity editor not found at: $UnityExe`nInstalled editors: $((Get-ChildItem 'C:\Program Files\Unity\Hub\Editor' -ErrorAction SilentlyContinue).Name -join ', ')"
+    exit 1
 }
 
 $buildMethod = if ($BuildProfile -eq "GoldenSlice") {
