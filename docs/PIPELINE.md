@@ -136,3 +136,11 @@ retrofitting the existing corpus is a boarded boards-pass task, not a unilateral
 ## Current position, in one line
 **Stage 4 (vertical slice), blocked at the Stage-2 checkpoint: Terry's Golden Device
 Checkpoint (rb38) — authorized, awaiting the headset PASS. Everything downstream queues on it.**
+
+### 2026-09-29 amendment - recovery before production scale
+
+Terry accepted the whole-project plan in `production/WHOLE_PROJECT_PLAN_20260928.md`.
+Base campaign is W000-W068 plus Earth Approach; W069-W080 remain DLC. Stage 2 requires
+current-engine build/device evidence again. Stages 3-5 retain the existing factory and must
+prove the full first experience, W002 reuse and W003-W005 batching before chapter scale.
+Current recovery commands: `QUEST_RECOVERY.md`. No historical checkpoint is re-certified.

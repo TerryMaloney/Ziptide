@@ -1,3 +1,12 @@
+## 2026-09-29 - Quest recovery tooling (Codex)
+
+- Goal authorized by Terry: clean up and prepare a repeatable Quest build/install path; preserve artistic direction and local work.
+- Shared-file announcement: append the existing ToxicCityContractBuilder.Build hook to BuildAndroid after WorldSpec compilation and before world generation. Suppress its menu dialog in batch mode. Full APK logs its profile after successful build. No runtime or scene YAML edits.
+- Operator scripts now share exact project/editor/module/device checks; never kill editors or delete locks. Fresh per-attempt outputs, APK SHA-256, dirty-source status and explicit build/install/boot stages replace ambiguous success.
+- Old Story sprint claims are paused for build recovery, not re-certified. Historical dates/device failures are retained. See QUEST_RECOVERY.md for current commands, uncertainty and next gates.
+- Verification: see recovery branch CI and tools/tests/quest_operator_tests.ps1. No current Android build or headset verdict yet.
+- Next: Windows preflight, Unity CI/generated audit, fresh APK, device boot, then full route and save/resume. Performance caps and campaign persistence remain open.
+
 # HANDOFF — session log (single operator ⇄ Terry)
 
 ## Required reading

@@ -1,3 +1,8 @@
+> **2026-09-29 recovery entry point:** [QUEST_RECOVERY.md](QUEST_RECOVERY.md).
+> Recovery branch: `claude/quest-recovery-20260929`, based on `claude/unity6-migration`.
+> Unity 6000.2.9f1. Earlier branch/build commands below are historical; preserve local changes
+> and use the recovery runbook. CI/device acceptance must be established for this candidate.
+
 # ZIPTIDE — CURRENT EXECUTION CHECKLIST
 
 **Status date:** 2026-07-11  

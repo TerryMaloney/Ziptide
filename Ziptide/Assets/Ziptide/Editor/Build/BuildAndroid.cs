@@ -81,6 +81,9 @@ namespace Ziptide.Build
                 Ziptide.Editor.Patching.WorldLayoutLibrary.EnsureAllAuthored);
             RunRequired("WorldSpecCompiler.CompileAll",
                 Ziptide.Editor.Spec.WorldSpecCompiler.CompileAll);
+            // Keep the six-step job identical for CI, Golden, and full local builds.
+            RunRequired("ToxicCityContractBuilder.Build",
+                Ziptide.Editor.Patching.ToxicCityContractBuilder.Build);
             RunRequired("WorldStubGenerator.EnsureGeneratedInBuildSettings",
                 Ziptide.Editor.Patching.WorldStubGenerator.EnsureGeneratedInBuildSettings);
 
@@ -265,6 +268,7 @@ namespace Ziptide.Build
             var report = BuildPipeline.BuildPlayer(options);
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
                 throw new Exception("Android build failed: " + report.summary.result);
+            Debug.Log("ZIPTIDE: BUILD_PROFILE profile=FullDevelopment");
             Debug.Log("Built APK: " + outPath);
         }
     }

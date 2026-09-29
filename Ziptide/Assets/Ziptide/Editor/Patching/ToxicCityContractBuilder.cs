@@ -84,7 +84,8 @@ namespace Ziptide.Editor.Patching
             AssetDatabase.Refresh();
             Debug.Log("[Ziptide] Built Toxic City contract: " + JobPath
                 + " (reward " + RewardAmount + " " + RewardResourceId + ", flag '" + CompletionFlag + "').");
-            EditorUtility.DisplayDialog("Toxic City Contract",
+            if (!Application.isBatchMode)
+                EditorUtility.DisplayDialog("Toxic City Contract",
                 "Authored ToxicCity_Contract (6 steps incl. the relay repair, the flats expedition, and the bounty reward) and attached it to the ToxicCity "
                 + "WorldPack as job 0.\n\nStill needed (T-Dog/runtime): JobDirector -> JobRewards.Grant on "
                 + "completion, and ObjectiveBoard/RILL text.", "OK");

@@ -375,8 +375,8 @@ def build_report(root: Path, *, source_sha: str | None = None) -> dict[str, Any]
             finding_count=0,
             findings=(),
             evidence=(
-                "artifact=recovery-golden-apk-c45b1a2… run=29786604008 "
-                "card=docs/testing/HEADSET_RETRY_C45B1A2.md"
+                "Current candidate APK/hash not yet device-verified; "
+                "runbook=docs/QUEST_RECOVERY.md"
             ),
         )
     )
@@ -420,9 +420,9 @@ def build_report(root: Path, *, source_sha: str | None = None) -> dict[str, Any]
         },
         "checks": [asdict(check) for check in checks],
         "backAtComputer": [
-            "Run tools/check_dev_capabilities.ps1",
-            "Install/test exact recovery-golden-apk-c45b1a2 artifact",
-            "Run docs/testing/HEADSET_RETRY_C45B1A2.md twice",
+            "Run tools/ziptide_snapshot.ps1 in the recovery checkout",
+            "Build FullDevelopment with tools/dev_build_install.ps1 -BuildOnly; retain manifest",
+            "Install the hash-matched session with tools/quest_install.ps1; follow docs/QUEST_RECOVERY.md",
             "Attach checkpoint/logcat evidence for any failure",
         ],
     }

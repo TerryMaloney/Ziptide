@@ -42,6 +42,11 @@ try {
     Write-Host '[2/3] Fast Python gate tests'
     Invoke-Python @('-m', 'unittest', 'discover', '-s', 'tools/tests', '-p', 'test_*_gate.py', '-v')
 
+    Write-Host 'Repository readiness gates (warnings and release holds remain visible)'
+    Invoke-Python @('tools/offline_readiness_report.py')
+    Write-Host 'Quest operator behavior checks'
+    & "$PSScriptRoot/tests/quest_operator_tests.ps1"
+
     Write-Host '[3/3] Git whitespace/conflict check'
     & git diff --check
     if ($LASTEXITCODE -ne 0) {

@@ -1,107 +1,13 @@
-<#
-.SYNOPSIS
-    Optional smoke test: build, install, capture logcat, then scan for exceptions/fatals. Exits non-zero if found.
-.DESCRIPTION
-    Calls dev_build_install.ps1 -Logcat with an explicit recovery build profile, then scans
-    Builds/quest_logcat.log for Exception, NullReferenceException, AndroidRuntime fatal.
-.EXAMPLE
-    powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\quest_smoke.ps1
-.EXAMPLE
-    powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\quest_smoke.ps1 -BuildProfile FullDevelopment
-#>
 param(
     [string]$ProjectRoot = "",
     [ValidateSet("GoldenSlice", "FullDevelopment")]
-    [string]$BuildProfile = "GoldenSlice"
+    [string]$BuildProfile = "GoldenSlice",
+    [string]$UnityExe = "",
+    [string]$AdbExe = "",
+    [string]$Serial = ""
 )
-
-$ErrorActionPreference = "Stop"
-
-if ($ProjectRoot -eq "") {
-    $ps = Get-ChildItem C:\Ziptide -Directory -Recurse -Filter ProjectSettings -ErrorAction SilentlyContinue | Select-Object -First 1
-    if ($ps) {
-        $ProjectRoot = Split-Path $ps.FullName -Parent
-    } else {
-        $ProjectRoot = "C:\Ziptide\Ziptide"
-    }
-}
-
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-& "$scriptDir\dev_build_install.ps1" -Logcat -ProjectRoot $ProjectRoot -BuildProfile $BuildProfile
-$installExit = $LASTEXITCODE
-if ($installExit -ne 0) {
-    exit $installExit
-}
-
-# -- Scan build log for audit failures (build-time, not device logcat) ------
-$buildLogFile = Join-Path $ProjectRoot "Builds\android_build.log"
-$buildBad = $false
-if (Test-Path $buildLogFile) {
-    $buildContent = Get-Content $buildLogFile -Raw -ErrorAction SilentlyContinue
-    if ($buildContent -match "ZIPTIDE: AUDIT_FAIL") {
-        Write-Host "quest_smoke: found 'ZIPTIDE: AUDIT_FAIL' in build log ($buildLogFile)"
-        $buildBad = $true
-    }
-    if ($buildContent -match "World audit FAILED") {
-        Write-Host "quest_smoke: found 'World audit FAILED' in build log ($buildLogFile)"
-        $buildBad = $true
-    }
-    if ($BuildProfile -eq "GoldenSlice" -and $buildContent -notmatch "ZIPTIDE: BUILD_PROFILE profile=GoldenSlice") {
-        Write-Host "quest_smoke: GoldenSlice was requested but the build-profile proof line is missing."
-        $buildBad = $true
-    }
-} else {
-    Write-Host "quest_smoke: build log not found at $buildLogFile (skipping audit check)"
-}
-if ($buildBad) {
-    Write-Host "quest_smoke: FAILED - build/audit/profile proof failed. See $buildLogFile and docs/AUDIT_REPORT.md."
-    exit 1
-}
-
-# -- Scan device logcat for runtime failures ----------------------------------
-$logcatFile = Join-Path $ProjectRoot "Builds\quest_logcat.log"
-if (-not (Test-Path $logcatFile)) {
-    Write-Host "quest_smoke: logcat file not found: $logcatFile"
-    exit 0
-}
-
-$content = Get-Content $logcatFile -Raw -ErrorAction SilentlyContinue
-if (-not $content) {
-    exit 0
-}
-
-$bad = $false
-if ($content -match "Exception") { Write-Host "quest_smoke: found 'Exception' in logcat"; $bad = $true }
-if ($content -match "NullReferenceException") { Write-Host "quest_smoke: found 'NullReferenceException' in logcat"; $bad = $true }
-if ($content -match "AndroidRuntime.*FATAL") { Write-Host "quest_smoke: found 'AndroidRuntime FATAL' in logcat"; $bad = $true }
-if ($content -match "ZIPTIDE: XRI_MISSING") { Write-Host "quest_smoke: found 'ZIPTIDE: XRI_MISSING' in logcat"; $bad = $true }
-if ($content -match "ZIPTIDE: NO_RAY_INTERACTORS") { Write-Host "quest_smoke: found 'ZIPTIDE: NO_RAY_INTERACTORS' in logcat"; $bad = $true }
-if ($content -match "ZIPTIDE: INPUT_ACTIONS_MISSING") { Write-Host "quest_smoke: found 'ZIPTIDE: INPUT_ACTIONS_MISSING' in logcat"; $bad = $true }
-if ($content -match "ZIPTIDE: DUP_SINGLETON") { Write-Host "quest_smoke: found 'ZIPTIDE: DUP_SINGLETON' in logcat"; $bad = $true }
-if ($content -match "ZIPTIDE: INVENTORY_RESTORE_FAIL") { Write-Host "quest_smoke: found 'ZIPTIDE: INVENTORY_RESTORE_FAIL' in logcat"; $bad = $true }
-if ($content -match "ZIPTIDE: ITEM_DEF_NOT_FOUND") { Write-Host "quest_smoke: found 'ZIPTIDE: ITEM_DEF_NOT_FOUND' in logcat"; $bad = $true }
-if ($content -match "ZIPTIDE: TRAVEL_FAIL") { Write-Host "quest_smoke: found 'ZIPTIDE: TRAVEL_FAIL' in logcat"; $bad = $true }
-if ($content -match "ZIPTIDE: XRI_NOT_READY") { Write-Host "quest_smoke: found 'ZIPTIDE: XRI_NOT_READY' in logcat"; $bad = $true }
-
-if ($BuildProfile -eq "GoldenSlice") {
-    if ($content -notmatch "ZIPTIDE: RECOVERY_EXPOSURE buildProfile=GoldenSlice profile=GoldenSlice") {
-        Write-Host "quest_smoke: GoldenSlice runtime exposure proof line is missing from logcat"
-        $bad = $true
-    }
-    if ($content -match "ZIPTIDE: RECOVERY_EXPOSURE .*ConquestMissionInjector") {
-        Write-Host "quest_smoke: GoldenSlice exposure unexpectedly includes ConquestMissionInjector"
-        $bad = $true
-    }
-    if ($content -match "ZIPTIDE: RECOVERY_EXPOSURE .*PvpProgression") {
-        Write-Host "quest_smoke: GoldenSlice exposure unexpectedly includes PvpProgression"
-        $bad = $true
-    }
-}
-
-if ($bad) {
-    Write-Host "quest_smoke: FAILED - exceptions/fatals/profile violations detected. Inspect: $logcatFile"
-    exit 1
-}
-
-Write-Host "quest_smoke: PASSED - $BuildProfile build has no detected exception/fatal/profile violation"
-exit 0
+# The canonical command requires fresh APK + install + launch + nonempty profile-proven log.
+# Golden proof: ZIPTIDE: BUILD_PROFILE profile=GoldenSlice
+# Runtime proof: ZIPTIDE: RECOVERY_EXPOSURE buildProfile=GoldenSlice profile=GoldenSlice
+& "$PSScriptRoot/dev_build_install.ps1" -ProjectRoot $ProjectRoot -UnityExe $UnityExe -BuildProfile $BuildProfile -AdbExe $AdbExe -Serial $Serial -Logcat
+exit $LASTEXITCODE

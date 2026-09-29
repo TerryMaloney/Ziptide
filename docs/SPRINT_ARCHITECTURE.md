@@ -1,3 +1,7 @@
+> **2026-09-29 recovery:** Terry authorized operator-path cleanup. Scope: tools/build plumbing,
+> fresh evidence, exact prerequisites; branch `claude/quest-recovery-20260929`. See
+> `QUEST_RECOVERY.md`. Current Unity/device proof remains pending; no gameplay ownership changes.
+
 # 🏗 ACTIVE SPRINT — ARCHITECTURE V2 (architect lane; opened 2026-07-03)
 
 > **Takeover prompt: "Read docs/SPRINT_ARCHITECTURE.md and continue."** Fourth track file, same rules

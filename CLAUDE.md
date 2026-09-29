@@ -1,3 +1,8 @@
+> **2026-09-29:** Current recovery workflow: `docs/QUEST_RECOVERY.md`.
+> Branch `claude/quest-recovery-20260929`; Unity 6000.2.9f1 / XRI 3.2.1.
+> The older branch/version instructions below are historical. Do not pull another branch into
+> a dirty user checkout or claim current headset proof from earlier test runs.
+
 # CLAUDE.md — ZIPTIDE project guide for AI sessions
 
 Read this first every session. It is the contract for how to work in this repo without breaking it.

@@ -1,148 +1,77 @@
 param(
-    # Empty = resolve from Ziptide/ProjectSettings/ProjectVersion.txt. Do NOT hardcode a version
-    # here again: this default silently pointed at 2022.3.62f3 for the whole Unity 6 migration,
-    # so every documented build command was aimed at the wrong editor. Pass -UnityExe to override.
     [string]$UnityExe = "",
     [string]$ProjectRoot = "",
     [ValidateSet("GoldenSlice", "FullDevelopment")]
     [string]$BuildProfile = "GoldenSlice",
+    [string]$AdbExe = "",
+    [string]$Serial = "",
     [switch]$Logcat,
-    [switch]$BuildOnly
+    [switch]$BuildOnly,
+    [switch]$PreflightOnly
 )
-
-if ($ProjectRoot -eq "") {
-    $ps = Get-ChildItem C:\Ziptide -Directory -Recurse -Filter ProjectSettings -ErrorAction SilentlyContinue | Select-Object -First 1
-    if ($ps) {
-        $ProjectRoot = Split-Path $ps.FullName -Parent
-    } else {
-        $ProjectRoot = "C:\Ziptide\Ziptide"
+. "$PSScriptRoot/quest_common.ps1"
+try {
+    if ($BuildOnly -and $Logcat) { throw '-BuildOnly and -Logcat are mutually exclusive.' }
+    $ProjectRoot = Resolve-QuestProject $ProjectRoot
+    $UnityExe = Resolve-QuestEditor $ProjectRoot $UnityExe
+    Assert-QuestProjectClosed $ProjectRoot
+    if (-not $BuildOnly) {
+        $AdbExe = Resolve-QuestAdb $AdbExe $UnityExe
+        $Serial = Select-QuestDevice $AdbExe $Serial
     }
-}
-
-# --- Resolve the editor from the project itself, so an engine bump can never leave this stale ---
-if ($UnityExe -eq "") {
-    $versionFile = Join-Path $ProjectRoot "ProjectSettings\ProjectVersion.txt"
-    if (-not (Test-Path $versionFile)) {
-        Write-Error "Cannot resolve the Unity version: $versionFile is missing. Pass -UnityExe explicitly."
-        exit 1
+    if ($PreflightOnly) { Write-Host 'PREFLIGHT PASS (no build or installation attempted)'; exit 0 }
+    $session = New-QuestSession $ProjectRoot
+    $log = Join-Path $session 'android_build.log'
+    $method = if ($BuildProfile -eq 'GoldenSlice') {
+        'Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK'
+    } else { 'Ziptide.Build.BuildAndroid.PatchScenesThenAPK' }
+    $manifest = [ordered]@{ schemaVersion=1; startedUtc=[DateTime]::UtcNow.ToString('o'); sourceBefore= (Get-QuestSource $ProjectRoot); profile=$BuildProfile; unity=$UnityExe; method=$method; stage='preflight'; device=$Serial }
+    $manifestPath = Join-Path $session 'manifest.json'
+    $manifest | ConvertTo-Json -Depth 8 | Set-Content $manifestPath -Encoding UTF8
+    & git -C $ProjectRoot diff --binary HEAD | Set-Content (Join-Path $session 'source-before.patch') -Encoding UTF8
+    if ($LASTEXITCODE -ne 0) { throw 'Cannot capture source diff.' }
+    Write-Host "Evidence: $session"
+    $apk = Join-Path $ProjectRoot 'Builds/Android/Ziptide.apk'
+    # Preserve the previous output but ensure it cannot satisfy this build.
+    if (Test-Path -LiteralPath $apk) { Move-Item -LiteralPath $apk -Destination (Join-Path $session 'previous.apk') }
+    $argsLine = "-batchmode -nographics -quit -projectPath `"$ProjectRoot`" -executeMethod $method -logFile `"$log`""
+    $process = Start-Process -FilePath $UnityExe -ArgumentList $argsLine -Wait -PassThru -NoNewWindow
+    if ($process.ExitCode -ne 0) { throw "Unity failed ($($process.ExitCode)). See $log" }
+    if (-not (Test-Path $apk) -or (Get-Item $apk).Length -eq 0) { throw 'Unity did not produce a fresh, nonempty APK.' }
+    if (-not (Test-Path $log)) { throw 'Unity build log is missing.' }
+    $buildText = Get-Content $log -Raw
+    if ($buildText -match 'ZIPTIDE: AUDIT_FAIL|World audit FAILED|ZIPTIDE: BUILD_HOOK_FAIL') { throw 'Build/audit failure recorded in log.' }
+    $profileProof = "ZIPTIDE: BUILD_PROFILE profile=$BuildProfile"
+    if ($buildText -notmatch [regex]::Escape($profileProof)) { throw "Build profile proof missing: $profileProof" }
+    $savedApk = Join-Path $session ("Ziptide-$BuildProfile.apk")
+    Copy-Item -LiteralPath $apk -Destination $savedApk
+    $manifest['apk'] = Split-Path $savedApk -Leaf
+    $manifest['apkSha256'] = (Get-FileHash -LiteralPath $savedApk -Algorithm SHA256).Hash
+    $manifest['sourceAfterGeneration'] = Get-QuestSource $ProjectRoot
+    $manifest['stage'] = 'built'
+    $manifest | ConvertTo-Json -Depth 8 | Set-Content $manifestPath -Encoding UTF8
+    if ($BuildOnly) { Write-Host "BUILT (not installed): $savedApk"; exit 0 }
+    Invoke-QuestAdb $AdbExe @('start-server') | Out-Null
+    $Serial = Select-QuestDevice $AdbExe $Serial
+    $install = Invoke-QuestAdb $AdbExe @('-s',$Serial,'install','-r',$savedApk)
+    if ($install -notmatch '(?m)^Success\s*$') { throw "Install did not confirm Success: $install" }
+    $manifest['stage'] = 'installed'
+    $manifest | ConvertTo-Json -Depth 8 | Set-Content $manifestPath -Encoding UTF8
+    if ($Logcat) {
+        Start-QuestApp $AdbExe $Serial
+        $manifest['stage'] = 'launched'
+        $manifest | ConvertTo-Json -Depth 8 | Set-Content $manifestPath -Encoding UTF8
+        Start-Sleep -Seconds 15
+        $logcatFile = Join-Path $session 'quest_logcat.log'
+        Save-QuestLog $AdbExe $Serial $logcatFile
+        Assert-QuestLog $logcatFile $BuildProfile
+        $manifest['stage'] = 'boot-smoke-passed'
+        $manifest | ConvertTo-Json -Depth 8 | Set-Content $manifestPath -Encoding UTF8
     }
-    $line = Select-String -Path $versionFile -Pattern '^m_EditorVersion:\s*(\S+)' | Select-Object -First 1
-    if (-not $line) {
-        Write-Error "Cannot parse m_EditorVersion from $versionFile. Pass -UnityExe explicitly."
-        exit 1
-    }
-    $editorVersion = $line.Matches[0].Groups[1].Value
-    $UnityExe = "C:\Program Files\Unity\Hub\Editor\$editorVersion\Editor\Unity.exe"
-    Write-Host "Resolved Unity $editorVersion from ProjectVersion.txt"
-}
-if (-not (Test-Path $UnityExe)) {
-    Write-Error "Unity editor not found at: $UnityExe`nInstalled editors: $((Get-ChildItem 'C:\Program Files\Unity\Hub\Editor' -ErrorAction SilentlyContinue).Name -join ', ')"
-    exit 1
-}
-
-$buildMethod = if ($BuildProfile -eq "GoldenSlice") {
-    "Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK"
-} else {
-    "Ziptide.Build.BuildAndroid.PatchScenesThenAPK"
-}
-
-Write-Host "ProjectRoot: $ProjectRoot"
-Write-Host "UnityExe: $UnityExe"
-Write-Host "BuildProfile: $BuildProfile"
-Write-Host "BuildMethod: $buildMethod"
-
-# --- Preflight: ensure no Unity instance holds the project so batch mode can open it ---
-$libraryEditorInstance = Join-Path $ProjectRoot "Library\EditorInstance.json"
-if (Test-Path $libraryEditorInstance) {
-    try {
-        $instance = Get-Content $libraryEditorInstance -Raw | ConvertFrom-Json
-        $pidToStop = $instance.process_id
-        if ($pidToStop) {
-            $proc = Get-Process -Id $pidToStop -ErrorAction SilentlyContinue
-            if ($proc) {
-                Write-Host "Preflight: stopping Unity process (PID $pidToStop) that had this project open."
-                Stop-Process -Id $pidToStop -Force -ErrorAction SilentlyContinue
-                Start-Sleep -Seconds 1
-            }
-        }
-    } catch { }
-    Remove-Item $libraryEditorInstance -Force -ErrorAction SilentlyContinue
-    Write-Host "Preflight: removed project lock file (EditorInstance.json)."
-}
-$unityProcs = Get-Process -Name "Unity" -ErrorAction SilentlyContinue
-if ($unityProcs) {
-    foreach ($p in $unityProcs) {
-        Write-Host "Preflight: stopping lingering Unity Editor (PID $($p.Id))."
-        Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue
-    }
-    Start-Sleep -Seconds 4
-}
-$lockRetry = Join-Path $ProjectRoot "Library\EditorInstance.json"
-if (Test-Path $lockRetry) {
-    Remove-Item $lockRetry -Force -ErrorAction SilentlyContinue
-    Write-Host "Preflight: removed lingering lock file after process cleanup."
-}
-
-adb devices
-
-$buildLogDir = Join-Path $ProjectRoot "Builds"
-$null = New-Item -ItemType Directory -Force -Path $buildLogDir
-$logFile = Join-Path $buildLogDir "android_build.log"
-
-Write-Host "Starting Unity batch build (this takes 1-5 minutes)..."
-$unityArgs = "-batchmode -nographics -quit -projectPath `"$ProjectRoot`" -executeMethod $buildMethod -logFile `"$logFile`""
-$proc = Start-Process -FilePath $UnityExe -ArgumentList $unityArgs -Wait -PassThru -NoNewWindow
-$unityExit = $proc.ExitCode
-Write-Host "Unity exited with code: $unityExit"
-if ($unityExit -ne 0) {
-    Write-Error "Unity build failed (exit $unityExit). Check log: $logFile"
-    exit $unityExit
-}
-
-$apk = Join-Path $ProjectRoot "Builds\Android\Ziptide.apk"
-if (-not (Test-Path $apk)) {
-    Write-Error "APK was not created. Close the Unity Editor completely and run this script again. Check build log: $logFile"
-    exit 1
-}
-
-if ($BuildOnly) {
-    Write-Host "BuildOnly: $BuildProfile APK built successfully. Skipping install and logcat. Output: $apk"
+    Write-Host "SUCCESS stage=$($manifest.stage) profile=$BuildProfile evidence=$session (gameplay not certified)"
     exit 0
-}
-
-# Unity batchmode kills the ADB server on shutdown; restart it and wait for device reconnection
-Write-Host "Restarting ADB server (Unity may have killed it)..."
-adb start-server | Out-Null
-Start-Sleep -Seconds 3
-Write-Host "Checking for device..."
-$devicesOut = adb devices 2>&1 | Out-String
-if ($devicesOut -notmatch "(?m)^\S+\s+device\s*$") {
-    Write-Host "No device connected. Build OK. APK: $apk" -ForegroundColor Yellow
-    Write-Host "To install + logcat: connect Quest (USB + USB debugging), then run this script again."
-    exit 0
-}
-
-adb install -r $apk
-if ($LASTEXITCODE -ne 0) {
-    Write-Error "APK install failed (exit code $LASTEXITCODE). Ensure device is connected and USB debugging is enabled."
+} catch {
+    # The last successful stage remains in the manifest; failed attempts cannot inherit old evidence.
+    Write-Error $_ -ErrorAction Continue
     exit 1
-}
-Write-Host "Installed: $apk"
-
-if ($Logcat) {
-    $pkg = "com.terrymaloney.ziptide"
-    $activity = "com.unity3d.player.UnityPlayerActivity"
-    Write-Host "Logcat: clearing buffer, launching app, waiting 5s..."
-    adb logcat -c 2>&1 | Out-Null
-    adb shell am start -n "${pkg}/${activity}" 2>&1 | Out-Null
-    if ($LASTEXITCODE -ne 0) {
-        Write-Warning "Failed to launch app via adb; capture logcat manually after launching on device."
-    }
-    Start-Sleep -Seconds 5
-    $logcatFile = Join-Path $buildLogDir "quest_logcat.log"
-    $logcatContent = adb logcat -d -s Unity -s Ziptide 2>&1
-    if ($logcatContent) { $logcatContent | Set-Content -Path $logcatFile -Encoding utf8 }
-    else { "" | Set-Content -Path $logcatFile -Encoding utf8 }
-    Write-Host "Logcat saved: $logcatFile"
-    if (Test-Path $logcatFile) { Get-Content $logcatFile }
 }
