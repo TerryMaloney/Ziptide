@@ -57,7 +57,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-20.)*
 | Hands & interaction | 💎 code / device calibration ongoing | Everything interactive answers within reach; collider before interactable | `InteractionReachAuditRules`; `VR_RIG_GOTCHAS.md`; wiring tests |
 | Weapons & combat feel | 🧱→💎 in flight (Round 1 recoil/haptics/audio/impact; device pending) | Every weapon distinct in hand, cadence, recoil, sound and tactile response; actual bounds and held axis valid | combat tests; `WeaponPerceptualAuditRules`; headset feel ledger |
 | Abilities/augments | 🧱 v1 (6 live) | Full set; visible state; bot/human symmetry where applicable | augment tests + WiringValidator |
-| Player progression/saves | 💎 (atomic profile + backups, overlays, one economy) | Nothing earned/built lost on quit or interrupted save | serializer/round-trip/crash recovery/economy gates |
+| Player progression/saves | 🧱 Profile/backup and overlays exist; mission checkpoints and receipts missing ([2026-09-29 audit](architecture/STATE_OWNERSHIP_AUDIT_20260929.md)) | Nothing earned/built lost on quit or interrupted save | serializer/round-trip/crash recovery/economy gates |
 | UI/UX & menus | 🧱 v1 code (Home Hub, boards, comfort, diegetic surfaces; bake/device pending) | Diegetic-first; readable at arm's length; usable target faces; consistent save presentation | `HomeHubFlowTests`; **`UiReadabilityAuditRules` + tests/build WARN processor**; device calibration pending; richer save slots remain |
 
 ## 4 · THE SHIP & VEHICLES
@@ -94,7 +94,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-20.)*
 | Performance budgets | 🧱 | Every new content type gets cap + audit; per-frame cost is budgeted too, not just static scene cost | `PerfBudgetAuditRules`; per-module manifest budgets; `tools/frame_cost_gate.py` (WARN-first, baseline 67) |
 | Art pipeline (Forge) | 💎 | All shipped look traced to Forge/registry; hero photo loop | Forge/audit/library/wiring tests |
 | Wiring integrity | 💎 | Producer + consumer + verifier + map row | `WiringValidatorTests` |
-| Save integrity | 💎 | Overlay idiom; neutral old-save defaults | per-system round trips |
+| Save integrity | 🧱 File recovery exists; mission/reward interruption consistency remains open | Overlay idiom; neutral old-save defaults | per-system round trips |
 | CI & verification | 💎 | Green per push; red stops code; 3-red breaker; recipe-only rounds trigger route and APK proof | operating laws + durable verdict + synchronized recovery workflow paths |
 | Generated-content currentness | 🟡 framework output protected; legacy authors still open | What ships is a pure function of current recipe + compiler; no stale committed asset can mask intent | `WorldImprovementHashCore` + `WorldImprovementAuditRules`; 🕳️ general `ASSET_STALE_VS_RECIPE` for old `*Author/*Library` set |
 | Runtime health | 🧱 v1 (vitals, census, janitor, async travel) | 1%-low ≥60; memory flat over travel soak; resources clean | health/resource tests + device soak |

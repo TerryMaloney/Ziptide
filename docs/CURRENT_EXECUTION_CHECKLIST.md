@@ -1,3 +1,5 @@
+> **2026-09-29 engineering start:** [State ownership audit](architecture/STATE_OWNERSHIP_AUDIT_20260929.md) and [mission persistence design](architecture/MISSION_PERSISTENCE_CONTRACT.md) recorded. ORG-02/SAVE-01 are partially audited, not closed. Numeric reward guards and 11 regression cases added; current candidate requires Unity CI. Next: finish identity/replay inventory and save-result failure contract.
+
 > **2026-09-29 active delivery backlog:** [PROJECT_TODO.md](PROJECT_TODO.md) — 138 tracked tasks, dependencies and acceptance evidence. Recovery Unity CI is green; Android and device gates remain open. Terry cannot test today; source/contract work continues.
 
 > **2026-09-29 recovery entry point:** [QUEST_RECOVERY.md](QUEST_RECOVERY.md).

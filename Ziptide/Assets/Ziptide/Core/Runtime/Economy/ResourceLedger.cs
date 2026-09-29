@@ -86,11 +86,15 @@ namespace Ziptide.Core
     /// </summary>
     public static class RewardRouter
     {
+        private static bool IsFinite(double value) => !double.IsNaN(value) && !double.IsInfinity(value);
+
         /// <summary>Grant a resource. Returns the new total (0 on invalid input).</summary>
         public static double Grant(PlayerProfile profile, string source, string resourceId, double amount,
             string reason = "", string relatedId = "", string worldId = "", long nowUnix = 0)
         {
-            if (profile == null || string.IsNullOrEmpty(resourceId) || amount <= 0) return 0;
+            if (profile == null || string.IsNullOrEmpty(resourceId) || !IsFinite(amount) || amount <= 0) return 0;
+            double balance = profile.GetResource(resourceId);
+            if (!IsFinite(balance) || balance < 0 || !IsFinite(balance + amount)) return 0;
             double total = profile.AddResource(resourceId, amount);
             ResourceLedger.Append(profile, new LedgerEntry
             {
@@ -101,12 +105,13 @@ namespace Ziptide.Core
         }
 
         /// <summary>Spend a resource — all-or-nothing per call. False (and no ledger entry) when
-        /// the profile can't afford it.</summary>
+        /// the profile can't afford it or the amount/balance is invalid.</summary>
         public static bool TrySpend(PlayerProfile profile, string source, string resourceId, double amount,
             string reason = "", string relatedId = "", string worldId = "", long nowUnix = 0)
         {
-            if (profile == null || string.IsNullOrEmpty(resourceId) || amount <= 0) return false;
-            if (profile.GetResource(resourceId) < amount) return false;
+            if (profile == null || string.IsNullOrEmpty(resourceId) || !IsFinite(amount) || amount <= 0) return false;
+            double balance = profile.GetResource(resourceId);
+            if (!IsFinite(balance) || balance < amount) return false;
             profile.AddResource(resourceId, -amount);
             ResourceLedger.Append(profile, new LedgerEntry
             {

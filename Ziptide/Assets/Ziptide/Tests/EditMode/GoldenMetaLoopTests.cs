@@ -15,6 +15,58 @@ namespace Ziptide.Tests.EditMode
     /// </summary>
     public class GoldenMetaLoopTests
     {
+        [TestCase(double.NaN)]
+        [TestCase(double.PositiveInfinity)]
+        [TestCase(double.NegativeInfinity)]
+        [TestCase(0d)]
+        [TestCase(-1d)]
+        public void Router_InvalidAmountsLeaveBalanceAndLedgerUnchanged(double amount)
+        {
+            var profile = ProfileSerializer.NewProfile();
+            RewardRouter.Grant(profile, LedgerSource.Debug, "credits", 10);
+            string before = ProfileSerializer.Serialize(profile);
+
+            Assert.AreEqual(0, RewardRouter.Grant(profile, LedgerSource.Campaign, "credits", amount));
+            Assert.IsFalse(RewardRouter.TrySpend(profile, LedgerSource.UpgradeCost, "credits", amount));
+            Assert.AreEqual(before, ProfileSerializer.Serialize(profile));
+        }
+
+        [Test]
+        public void Router_OverflowDoesNotMutateBalanceOrLedger()
+        {
+            var profile = ProfileSerializer.NewProfile();
+            RewardRouter.Grant(profile, LedgerSource.Debug, "credits", double.MaxValue);
+            Assert.AreEqual(0, RewardRouter.Grant(profile, LedgerSource.Campaign, "credits", double.MaxValue));
+            Assert.AreEqual(double.MaxValue, profile.GetResource("credits"));
+            Assert.AreEqual(1, profile.ledger.Count);
+        }
+
+        [TestCase(double.NaN)]
+        [TestCase(double.PositiveInfinity)]
+        [TestCase(double.NegativeInfinity)]
+        [TestCase(-1d)]
+        public void Router_InvalidExistingBalanceIsRejectedWithoutRewritingIt(double balance)
+        {
+            var profile = ProfileSerializer.NewProfile();
+            profile.resources.Add(new ResourceAmount { id = "credits", amount = balance });
+            Assert.AreEqual(0, RewardRouter.Grant(profile, LedgerSource.Campaign, "credits", 1));
+            Assert.IsFalse(RewardRouter.TrySpend(profile, LedgerSource.UpgradeCost, "credits", 1));
+            Assert.AreEqual(balance, profile.GetResource("credits"));
+            Assert.IsEmpty(profile.ledger);
+        }
+
+        [Test]
+        public void Router_FractionalGrantAndExactSpendRetainTheirLedgerEntries()
+        {
+            var profile = ProfileSerializer.NewProfile();
+            Assert.AreEqual(1.25d, RewardRouter.Grant(profile, LedgerSource.Campaign, "credits", 1.25d));
+            Assert.IsTrue(RewardRouter.TrySpend(profile, LedgerSource.UpgradeCost, "credits", 1.25d));
+            Assert.AreEqual(0, profile.GetResource("credits"));
+            Assert.AreEqual(2, profile.ledger.Count);
+            Assert.AreEqual(1.25d, profile.ledger[0].delta);
+            Assert.AreEqual(-1.25d, profile.ledger[1].delta);
+        }
+
         // Mirrors EconomyAuthor's registry — the test asserts every id the loop touches is here.
         private static readonly HashSet<string> Registered = new HashSet<string>
         {

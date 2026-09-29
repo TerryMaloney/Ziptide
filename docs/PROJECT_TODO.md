@@ -1,3 +1,5 @@
+> **2026-09-29 engineering start:** [State ownership audit](architecture/STATE_OWNERSHIP_AUDIT_20260929.md) and [mission persistence design](architecture/MISSION_PERSISTENCE_CONTRACT.md) recorded. ORG-02/SAVE-01 are partially audited, not closed. Numeric reward guards and 11 regression cases added; current candidate requires Unity CI. Next: finish identity/replay inventory and save-result failure contract.
+
 # Ziptide — comprehensive delivery checklist
 
 Updated September 29, 2026. Planning baseline: `production/WHOLE_PROJECT_PLAN_20260928.md`.
