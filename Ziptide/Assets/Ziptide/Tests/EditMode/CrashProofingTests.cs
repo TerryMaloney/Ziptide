@@ -36,6 +36,58 @@ namespace Ziptide.Tests.EditMode
         private static bool LooksUsable(string text) => text != null && text.StartsWith("GOOD");
 
         [Test]
+        public void TryWriteProfile_SuccessPersistsTheAcknowledgedTimestamp()
+        {
+            var profile = ProfileSerializer.NewProfile();
+            profile.lastSavedAtUnix = 10;
+            Assert.IsTrue(SaveFileStore.TryWriteProfile(P("profile.json"), profile, 20, out string error));
+            Assert.IsNull(error);
+            Assert.AreEqual(20, profile.lastSavedAtUnix);
+            Assert.IsTrue(ProfileSerializer.TryDeserialize(File.ReadAllText(P("profile.json")), out var saved));
+            Assert.AreEqual(profile.playerId, saved.playerId);
+            Assert.AreEqual(20, saved.lastSavedAtUnix);
+        }
+
+        [Test]
+        public void TryWriteProfile_FailedWriteThenRetryPreservesProgressWithoutRepaying()
+        {
+            string path = P("profile.json");
+            var profile = ProfileSerializer.NewProfile();
+            Assert.IsTrue(SaveFileStore.TryWriteProfile(path, profile, 10, out _));
+            string oldDisk = File.ReadAllText(path);
+            RewardRouter.Grant(profile, LedgerSource.Campaign, "credits", 7);
+            profile.SetFlag("TEST_COMPLETED");
+            // A directory at the temporary-file path causes a real deterministic IO failure.
+            Directory.CreateDirectory(SaveFileStore.TmpPath(path));
+
+            Assert.IsFalse(SaveFileStore.TryWriteProfile(path, profile, 20, out string error));
+            Assert.IsNotEmpty(error);
+            Assert.AreEqual(10, profile.lastSavedAtUnix);
+            Assert.AreEqual(oldDisk, File.ReadAllText(path));
+            Assert.AreEqual(7, profile.GetResource("credits"));
+            Assert.IsTrue(profile.HasFlag("TEST_COMPLETED"));
+            Assert.AreEqual(1, profile.ledger.Count);
+
+            Directory.Delete(SaveFileStore.TmpPath(path));
+            Assert.IsTrue(SaveFileStore.TryWriteProfile(path, profile, 30, out error));
+            Assert.IsNull(error);
+            Assert.AreEqual(oldDisk, File.ReadAllText(SaveFileStore.BakPath(path)));
+            Assert.IsTrue(ProfileSerializer.TryDeserialize(File.ReadAllText(path), out var saved));
+            Assert.AreEqual(30, saved.lastSavedAtUnix);
+            Assert.AreEqual(7, saved.GetResource("credits"));
+            Assert.AreEqual(1, saved.ledger.Count);
+            Assert.IsTrue(saved.HasFlag("TEST_COMPLETED"));
+        }
+
+        [Test]
+        public void TryWriteProfile_NullProfileFailsWithoutCreatingFiles()
+        {
+            Assert.IsFalse(SaveFileStore.TryWriteProfile(P("profile.json"), null, 20, out string error));
+            Assert.IsNotEmpty(error);
+            Assert.IsEmpty(Directory.GetFiles(_dir));
+        }
+
+        [Test]
         public void WriteAtomic_KeepsThePreviousVersionAsBackup()
         {
             string path = P("profile.json");

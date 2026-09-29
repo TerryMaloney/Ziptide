@@ -15,6 +15,7 @@ namespace Ziptide.Tests.EditMode
         {
             Assert.IsNull(SaveSystem.Instance, "EditMode should have no bootstrapped SaveSystem");
             Assert.DoesNotThrow(() => SaveSystem.AutosaveNow("travel"));
+            Assert.IsFalse(SaveSystem.TryAutosaveNow("travel"));
         }
     }
 }

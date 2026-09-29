@@ -26,7 +26,7 @@ Paths below are relative to `Ziptide/Assets/Ziptide/`.
 
 1. Saving a profile does not capture JobRuntime. Restored flags/resources and scene-memory objectives therefore have no common mission checkpoint.
 2. `JobRewards.Grant` permits repeated resource grants. Job IDs are unique only within a pack; there is no declared replay policy. A blanket one-time guard would silently change content behavior.
-3. `SaveSystem.Save()` catches write failures and returns void. `AutosaveNow` can subsequently emit `SAVE_AUTOSAVE` despite `SAVE_FAIL`. Fix the result contract before relying on that log as successful checkpoint evidence.
+3. Baseline defect: `SaveSystem.Save()` caught write failures and returned void; `AutosaveNow` could emit `SAVE_AUTOSAVE` despite `SAVE_FAIL`. The save-result follow-up adds TrySave/TryAutosaveNow and SaveFileStore.TryWriteProfile. Failure returns false and restores the prior timestamp; autosave success logs are conditional. Existing void callers remain compatible. This is not yet a mission checkpoint transaction.
 4. RewardRouter accepted NaN/infinite amounts and finite addition overflow. The accompanying bounded patch rejects invalid amounts, invalid existing balances and overflow before any balance/ledger mutation. It does not repair corrupt saves, make reward batches atomic, or close SAVE-05/07.
 5. Job step definitions have labels but no stable step IDs. Index-only snapshots become ambiguous after content reorder.
 
@@ -34,6 +34,6 @@ Paths below are relative to `Ziptide/Assets/Ziptide/`.
 
 1. Land numeric reward guards with 11 EditMode regression cases; verify in Unity CI.
 2. Finish remaining state-owner rows and content identity/replay inventory.
-3. Make save success/failure observable and test failure paths without changing existing public callers unnecessarily.
+3. Verify the save-result follow-up in Unity CI: three new disk-store tests cover success, failure/retry and null input. Existing no-instance autosave test now also checks false. NewProfile retains its legacy initial timestamp, so the timestamp alone is not proof that a new profile has ever reached disk.
 4. Implement the pure checkpoint/receipt model in `MISSION_PERSISTENCE_CONTRACT.md`, then the runtime adapters and interruption suite.
 5. Headset suspend/quit/re-entry acceptance stays queued for Terry. No testing is required from Terry today.

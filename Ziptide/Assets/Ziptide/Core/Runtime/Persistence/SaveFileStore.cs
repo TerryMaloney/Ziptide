@@ -20,6 +20,33 @@ namespace Ziptide.Core
         public static string TmpPath(string path) => path + ".tmp";
         public static string BakPath(string path) => path + ".bak";
 
+        /// <summary>Save one coherent profile through the existing atomic writer. A failed
+        /// serialization/write leaves the live profile available for retry and retains its prior
+        /// save timestamp. This does not roll back gameplay mutations.</summary>
+        public static bool TryWriteProfile(string path, PlayerProfile profile, long savedAtUnix, out string error)
+        {
+            error = null;
+            if (profile == null)
+            {
+                error = "No profile to save";
+                return false;
+            }
+
+            long previousSavedAtUnix = profile.lastSavedAtUnix;
+            try
+            {
+                profile.lastSavedAtUnix = savedAtUnix;
+                WriteAtomic(path, ProfileSerializer.Serialize(profile));
+                return true;
+            }
+            catch (Exception e)
+            {
+                profile.lastSavedAtUnix = previousSavedAtUnix;
+                error = e.Message;
+                return false;
+            }
+        }
+
         /// <summary>Atomically replace <paramref name="path"/> with <paramref name="contents"/>,
         /// keeping the previous version as .bak. Throws on IO failure (caller logs).</summary>
         public static void WriteAtomic(string path, string contents)

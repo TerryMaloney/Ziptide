@@ -99,18 +99,22 @@ namespace Ziptide.Gameplay
             return Profile;
         }
 
-        /// <summary>Stamp the save time and write the profile ATOMICALLY (tmp → swap, previous
-        /// version demoted to .bak) — the main file is never half-written, at any instant.</summary>
-        public void Save()
+        /// <summary>Compatibility entry point for existing pause, quit and gameplay callers.</summary>
+        public void Save() { TrySave(); }
+
+        /// <summary>True only after the profile writer completes successfully. Failure keeps
+        /// live progress available for retry and does not advance the last successful save time.</summary>
+        public bool TrySave()
         {
             if (Profile == null) Profile = ProfileSerializer.NewProfile();
-            Profile.lastSavedAtUnix = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-            try
+            if (SaveFileStore.TryWriteProfile(SavePath, Profile,
+                System.DateTimeOffset.UtcNow.ToUnixTimeSeconds(), out string error))
             {
-                SaveFileStore.WriteAtomic(SavePath, ProfileSerializer.Serialize(Profile));
                 Debug.Log("ZIPTIDE: SAVE_OK path=" + SavePath);
+                return true;
             }
-            catch (System.Exception e) { Debug.LogWarning("ZIPTIDE: SAVE_FAIL " + e.Message); }
+            Debug.LogWarning("ZIPTIDE: SAVE_FAIL " + error);
+            return false;
         }
 
         private void OnApplicationPause(bool paused) { if (paused) Save(); }
@@ -120,17 +124,23 @@ namespace Ziptide.Gameplay
         /// Guarded autosave for hot paths (scene travel). Never throws and no-ops without a live
         /// instance, so a save hiccup can never strand the caller (the boot-strand class of bug).
         /// </summary>
-        public static void AutosaveNow(string reason)
+        public static void AutosaveNow(string reason) { TryAutosaveNow(reason); }
+
+        /// <summary>Result-bearing autosave. False means no live saver or unsuccessful save;
+        /// SAVE_AUTOSAVE is emitted only after a successful write.</summary>
+        public static bool TryAutosaveNow(string reason)
         {
-            if (Instance == null) return;
+            if (Instance == null) return false;
             try
             {
-                Instance.Save();
+                if (!Instance.TrySave()) return false;
                 Debug.Log("ZIPTIDE: SAVE_AUTOSAVE reason=" + reason);
+                return true;
             }
             catch (System.Exception e)
             {
                 Debug.LogWarning("ZIPTIDE: SAVE_FAIL reason=" + reason + " " + e.Message);
+                return false;
             }
         }
     }

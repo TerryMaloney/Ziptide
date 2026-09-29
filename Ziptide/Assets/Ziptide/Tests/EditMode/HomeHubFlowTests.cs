@@ -152,7 +152,7 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("Save();", source);
             StringAssert.DoesNotContain("PlayerPrefs.Delete", source);
             StringAssert.DoesNotContain("File.Delete", source);
-            Assert.AreEqual(1, Count(source, "SaveFileStore.WriteAtomic("));
+            Assert.AreEqual(1, Count(source, "SaveFileStore.TryWriteProfile("));
         }
 
         [Test]
