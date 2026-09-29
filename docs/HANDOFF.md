@@ -4,7 +4,7 @@
 - Shared-file announcement: append the existing ToxicCityContractBuilder.Build hook to BuildAndroid after WorldSpec compilation and before world generation. Suppress its menu dialog in batch mode. Full APK logs its profile after successful build. No runtime or scene YAML edits.
 - Operator scripts now share exact project/editor/module/device checks; never kill editors or delete locks. Fresh per-attempt outputs, APK SHA-256, dirty-source status and explicit build/install/boot stages replace ambiguous success.
 - Old Story sprint claims are paused for build recovery, not re-certified. Historical dates/device failures are retained. See QUEST_RECOVERY.md for current commands, uncertainty and next gates.
-- Verification: see recovery branch CI and tools/tests/quest_operator_tests.ps1. No current Android build or headset verdict yet.
+- Verification: local 244 Python tests + 25 PowerShell checks pass. Push of local commit 86257ec1 was rejected by automatic approval review (remote write authorization required). No candidate CI, current Android build or headset verdict yet. Do not retry the push through another tool without authorization.
 - Next: Windows preflight, Unity CI/generated audit, fresh APK, device boot, then full route and save/resume. Performance caps and campaign persistence remain open.
 
 # HANDOFF — session log (single operator ⇄ Terry)

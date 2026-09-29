@@ -3,6 +3,11 @@
 Updated 2026-09-29. Candidate branch: `claude/quest-recovery-20260929`, based on migration
 `8fd80a8bc3b201cf0baac7484d7b2a2b09a3955a`. Engine stays **6000.2.9f1**.
 
+**Publication status:** changes are committed locally; automatic approval review rejected the
+GitHub push because it requires explicit authorization for this remote write. The candidate
+branch is not yet on GitHub, so the clone command below becomes usable only after that push.
+Unity CI has not run for this candidate.
+
 ## Goal and honest status
 
 Make the existing game repeatably buildable, installable, and observable before changing its

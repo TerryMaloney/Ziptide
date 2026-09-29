@@ -7,14 +7,14 @@
     One key per action, so it is usable with the headset on and one hand free:
 
         S  screenshot now
-        R  start / stop recording (Quest caps a single clip at ~3 min; this auto-restarts)
+        R  start / stop recording (each clip stops after 3 min; press R to save it)
         M  drop a MARK line into the log ("the thing I just saw happened HERE")
         Q  quit (stops any recording and pulls everything)
 
     Files land beside the session's log, so a defect report is one folder.
 
 .EXAMPLE
-    powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\quest_capture.ps1
+    powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\quest_capture.ps1 -OutDir C:\CaptureSession
 #>
 param(
     [Parameter(Mandatory=$true)][string]$OutDir,
@@ -34,6 +34,7 @@ $shots     = 0
 $clips     = 0
 
 & $AdbExe -s $Serial shell mkdir -p $devTmp 2>$null | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "ADB capture/transfer failed; device copy retained where possible." }
 
 function Stop-Recording {
     if (-not $script:recording) { return }
@@ -45,7 +46,9 @@ function Stop-Recording {
     }
     Write-Host "  pulling $script:recName ..." -ForegroundColor DarkGray
     & $AdbExe -s $Serial pull "$devTmp/$script:recName" (Join-Path $OutDir $script:recName) 2>$null | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "ADB capture/transfer failed; device copy retained where possible." }
     & $AdbExe -s $Serial shell rm "$devTmp/$script:recName" 2>$null | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "ADB capture/transfer failed; device copy retained where possible." }
     $script:recording = $false
     Write-Host "  RECORDING SAVED -> $script:recName" -ForegroundColor Green
 }
@@ -66,8 +69,11 @@ while ($true) {
             $shots++
             $name = "shot_{0:d2}_{1}.png" -f $shots, (Get-Date -Format "HHmmss")
             & $AdbExe -s $Serial shell screencap -p "$devTmp/$name" 2>$null | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "ADB capture/transfer failed; device copy retained where possible." }
             & $AdbExe -s $Serial pull "$devTmp/$name" (Join-Path $OutDir $name) 2>$null | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "ADB capture/transfer failed; device copy retained where possible." }
             & $AdbExe -s $Serial shell rm "$devTmp/$name" 2>$null | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "ADB capture/transfer failed; device copy retained where possible." }
             # Timestamp it in the log too, so a screenshot can be located in the logcat stream.
             & $AdbExe -s $Serial shell log -t ZIPTIDE_CAPTURE "SCREENSHOT $name" 2>$null | Out-Null
             Write-Host ("  [{0}] SHOT  -> {1}" -f (Get-Date -Format "HH:mm:ss"), $name) -ForegroundColor Green
