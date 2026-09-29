@@ -1,3 +1,5 @@
+> **2026-09-29 active delivery backlog:** [PROJECT_TODO.md](PROJECT_TODO.md) — 138 tracked tasks, dependencies and acceptance evidence. Recovery Unity CI is green; Android and device gates remain open. Terry cannot test today; source/contract work continues.
+
 > **2026-09-29 recovery entry point:** [QUEST_RECOVERY.md](QUEST_RECOVERY.md).
 > Recovery branch: `claude/quest-recovery-20260929`, based on `claude/unity6-migration`.
 > Unity 6000.2.9f1. Earlier branch/build commands below are historical; preserve local changes

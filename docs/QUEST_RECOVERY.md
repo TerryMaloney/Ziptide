@@ -3,10 +3,12 @@
 Updated 2026-09-29. Candidate branch: `claude/quest-recovery-20260929`, based on migration
 `8fd80a8bc3b201cf0baac7484d7b2a2b09a3955a`. Engine stays **6000.2.9f1**.
 
-**Publication status:** changes are committed locally; automatic approval review rejected the
-GitHub push because it requires explicit authorization for this remote write. The candidate
-branch is not yet on GitHub, so the clone command below becomes usable only after that push.
-Unity CI has not run for this candidate.
+**Publication status:** Terry authorized publication; branch published at
+`0f295f582a4e4da8956abd21326e427ecb2b19e4`. Both Git tree hashes match the approved local
+commits. GitHub Fast Preflight and Unity EditMode/generated-scene audit passed
+([CI run 36576938375](https://github.com/TerryMaloney/Ziptide/actions/runs/36576938375)).
+The APK job was skipped. Clone commands below are available. Current delivery backlog:
+[PROJECT_TODO.md](PROJECT_TODO.md).
 
 ## Goal and honest status
 
@@ -16,8 +18,7 @@ Terry owns artistic direction. The assistant owns mechanics, engineering and sup
 
 - Local verification: 244 Python gate tests and 25 PowerShell behavior checks passed;
   actual offline repository gates pass, with existing release holds and advisory findings retained.
-- PowerShell checks ran with 7.4.6 on Linux; Windows 5.1, Unity compilation/generated audit,
-  Android build, USB installation and headset performance need their own evidence.
+- PowerShell checks ran with 7.4.6 on Linux. Unity EditMode and generated-scene audit now passed in CI. Windows 5.1, current PlayMode, Android build, USB installation and headset performance still need their own evidence.
 - Historical blocker: Unity 6000.2.9f1 lacked Android Build Support on Terry's PC in August.
   This has not been rechecked on that machine.
 - No scenes, prefabs, rig/input/travel/save ownership, graphics or global physics settings
@@ -156,7 +157,7 @@ Official references checked 2026-09-29:
 
 ## Next acceptance gates
 
-1. Current candidate Unity compile/EditMode and generated scene audit green.
+1. Complete: candidate `0f295f58` Unity compile/EditMode and generated-scene audit green. Current PlayMode proof remains open.
 2. Windows prerequisites and full Android build succeed; hash and logs retained.
 3. Exact candidate installed and boot profile verified on the chosen headset.
 4. Route, repeated travel and save/resume tested; performance captured in dense scenes.

@@ -1,3 +1,5 @@
+> **2026-09-29 active delivery backlog:** [PROJECT_TODO.md](PROJECT_TODO.md) — 138 tracked tasks, dependencies and acceptance evidence. Recovery Unity CI is green; Android and device gates remain open. Terry cannot test today; source/contract work continues.
+
 > **2026-09-29 recovery:** Terry authorized operator-path cleanup. Scope: tools/build plumbing,
 > fresh evidence, exact prerequisites; branch `claude/quest-recovery-20260929`. See
 > `QUEST_RECOVERY.md`. Current Unity/device proof remains pending; no gameplay ownership changes.
