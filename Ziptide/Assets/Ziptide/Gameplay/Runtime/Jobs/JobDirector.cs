@@ -7,7 +7,7 @@ namespace Ziptide.Gameplay
     /// <summary>
     /// Scene-level owner of JobRuntime. References WorldPackDefinition, updates ObjectiveBoard, creates spawn markers, and wires DispatchKiosk and delivery/target callbacks.
     /// </summary>
-    public class JobDirector : MonoBehaviour
+    public partial class JobDirector : MonoBehaviour
     {
         [Tooltip("World pack for this scene (jobs + spawn markers).")]
         [SerializeField] private WorldPackDefinition worldPack;
@@ -46,6 +46,7 @@ namespace Ziptide.Gameplay
             if (missing != null)
                 Debug.Log("ZIPTIDE: WORLD_LOCKED world=" + worldPack.packId + " missingFlag=" + missing);
 
+            InitializeMissionCheckpoint();
             _playerTransform = GetPlayerTransform();
             CreateSpawnMarkers();
             CreateCollectibles();
@@ -66,6 +67,7 @@ namespace Ziptide.Gameplay
 
         private void OnDestroy()
         {
+            UnbindMissionCheckpoint();
             _runtime.StepChanged -= OnStepChanged;
             _runtime.JobCompleted -= OnJobCompleted;
             DroneRuntime.OnDroneDisabled -= OnDroneDisabled;
@@ -88,7 +90,13 @@ namespace Ziptide.Gameplay
         public void StartJobByIndex(int index)
         {
             if (worldPack == null || worldPack.jobs == null || index < 0 || index >= worldPack.jobs.Count) return;
-            _runtime.StartJob(worldPack.jobs[index]);
+            if (UsesMissionCheckpoints)
+            {
+                if (!MissionProfileIsCurrent()) return;
+                _mission.StartOrResume();
+                PersistMissionCheckpoint();
+            }
+            else _runtime.StartJob(worldPack.jobs[index]);
         }
 
         /// <summary>
@@ -96,7 +104,9 @@ namespace Ziptide.Gameplay
         /// </summary>
         public void ReportDeliver(string socketId, string itemId)
         {
+            if (UsesMissionCheckpoints && !MissionProfileIsCurrent()) return;
             _runtime.ReportDeliver(socketId, itemId);
+            PersistMissionCheckpoint();
         }
 
         /// <summary>
@@ -104,7 +114,9 @@ namespace Ziptide.Gameplay
         /// </summary>
         public void ReportTargetHit()
         {
+            if (UsesMissionCheckpoints && !MissionProfileIsCurrent()) return;
             _runtime.ReportTargetHit();
+            PersistMissionCheckpoint();
         }
 
         /// <summary>
@@ -112,6 +124,7 @@ namespace Ziptide.Gameplay
         /// </summary>
         public void ReportCollect(string itemId)
         {
+            if (UsesMissionCheckpoints) return; // persistent pickups report their placement identity
             _runtime.ReportCollect(itemId);
         }
 
@@ -124,12 +137,20 @@ namespace Ziptide.Gameplay
             // duplicate director/runtime pair is one of the candidate divergence causes.
             Debug.Log("ZIPTIDE: REPAIR_TRACE hop=director id=" + GetInstanceID()
                 + " machine=" + machineId + " scene=" + gameObject.scene.name);
-            _runtime.ReportRepair(machineId);
+            if (UsesMissionCheckpoints)
+            {
+                if (!MissionProfileIsCurrent()) return;
+                _mission.SetRepairStage(machineId, (int)RepairStage.Running);
+                PersistMissionCheckpoint();
+            }
+            else _runtime.ReportRepair(machineId);
         }
 
         private void OnDroneDisabled(DroneRuntime drone)
         {
+            if (UsesMissionCheckpoints && !MissionProfileIsCurrent()) return;
             _runtime.ReportDroneDisabled();
+            PersistMissionCheckpoint();
         }
 
         private void CreateSpawnMarkers()
@@ -216,7 +237,9 @@ namespace Ziptide.Gameplay
                 var go = new GameObject("Machine_" + m.machineId);
                 go.transform.SetParent(root.transform);
                 go.transform.localPosition = m.localPosition;
-                go.AddComponent<RepairableMachine>().Init(m, this);
+                var machine = go.AddComponent<RepairableMachine>();
+                machine.Init(m, this);
+                BindMissionMachine(machine);
             }
         }
 
@@ -246,10 +269,13 @@ namespace Ziptide.Gameplay
             foreach (var c in worldPack.collectibles)
             {
                 if (c == null) continue;
-                var go = new GameObject("Collectible_" + c.itemId);
-                go.transform.SetParent(root.transform);
-                go.transform.localPosition = c.localPosition + Vector3.up * 0.9f; // hover at grab height
-                go.AddComponent<CollectibleRuntime>().Init(c, this);
+                if (_mission == null || !_mission.IsConsumed(c.placementId))
+                {
+                    var go = new GameObject("Collectible_" + c.itemId);
+                    go.transform.SetParent(root.transform);
+                    go.transform.localPosition = c.localPosition + Vector3.up * 0.9f; // hover at grab height
+                    go.AddComponent<CollectibleRuntime>().Init(c, this);
+                }
 
                 // A fragment pickup gets a playback console beside it — the de-garble device lives
                 // where the recording was found. Re-visits show the message clearer as tiers rise.
@@ -273,7 +299,11 @@ namespace Ziptide.Gameplay
 
             float dist = Vector3.Distance(_playerTransform.position, marker.position);
             if (dist <= step.arriveDistance)
+            {
+                if (UsesMissionCheckpoints && !MissionProfileIsCurrent()) return;
                 _runtime.ReportGoToArrived(step.markerId);
+                PersistMissionCheckpoint();
+            }
         }
 
         /// <summary>
@@ -366,6 +396,8 @@ namespace Ziptide.Gameplay
         {
             if (objectiveBoard != null)
                 objectiveBoard.RefreshText();
+
+            if (UsesMissionCheckpoints) return; // commit once the full physical/logical event has settled
 
             // Pay the job's reward + set its completion flag into the live profile. Uses Architect's
             // JobRewards.Grant + the self-bootstrapping SaveSystem (so no _Boot edit needed). This is the

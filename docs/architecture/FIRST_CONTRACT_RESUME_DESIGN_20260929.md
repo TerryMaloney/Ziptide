@@ -1,3 +1,5 @@
+> **2026-09-30 implementation:** [W000 integration, verification and rollout limits](FIRST_CONTRACT_RESUME_20260930.md). The baseline/design below is historical.
+
 # First-contract resume integration — implementation specification
 
 This extends CHECKPOINT_FOUNDATION_20260929.md. It is a design, not shipped runtime behavior.

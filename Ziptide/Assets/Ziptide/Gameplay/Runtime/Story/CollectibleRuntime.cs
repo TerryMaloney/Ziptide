@@ -19,6 +19,7 @@ namespace Ziptide.Gameplay
         private static readonly Color DefaultAccent = new Color(0.35f, 0.9f, 1f);
 
         private string _itemId;
+        private string _placementId;
         private string _flagOnCollect;
         private JobDirector _director;
         private Transform _visual;
@@ -29,6 +30,7 @@ namespace Ziptide.Gameplay
         public void Init(CollectibleSpawnDefinition def, JobDirector director)
         {
             _itemId = def != null ? def.itemId : "sample";
+            _placementId = def != null ? def.placementId : "";
             _flagOnCollect = def != null ? def.flagOnCollect : "";
             _director = director;
 
@@ -113,10 +115,15 @@ namespace Ziptide.Gameplay
             _collected = true;
 
             if (_director == null) _director = FindObjectOfType<JobDirector>();
-            if (_director != null) _director.ReportCollect(_itemId);
+            bool checkpointOwned = _director != null && _director.UsesMissionCheckpoints;
+            if (checkpointOwned)
+            {
+                if (!_director.TryCollectPlacement(_placementId)) { _collected = false; return; }
+            }
+            else if (_director != null) _director.ReportCollect(_itemId);
 
             var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
-            if (profile != null && !string.IsNullOrEmpty(_flagOnCollect))
+            if (!checkpointOwned && profile != null && !string.IsNullOrEmpty(_flagOnCollect))
             {
                 profile.SetFlag(_flagOnCollect);
                 // A fragment pickup must raise the clarity tier immediately (not only at job end).

@@ -23,7 +23,7 @@ namespace Ziptide.Core
         /// <summary>Save one coherent profile through the existing atomic writer. A failed
         /// serialization/write leaves the live profile available for retry and retains its prior
         /// save timestamp. This does not roll back gameplay mutations.</summary>
-        public static bool TryWriteProfile(string path, PlayerProfile profile, long savedAtUnix, out string error)
+        public static bool TryWriteProfile(string path, PlayerProfile profile, long savedAtUnix, out string error, Action prepare = null)
         {
             error = null;
             if (profile == null)
@@ -35,6 +35,7 @@ namespace Ziptide.Core
             long previousSavedAtUnix = profile.lastSavedAtUnix;
             try
             {
+                prepare?.Invoke();
                 profile.lastSavedAtUnix = savedAtUnix;
                 WriteAtomic(path, ProfileSerializer.Serialize(profile));
                 return true;

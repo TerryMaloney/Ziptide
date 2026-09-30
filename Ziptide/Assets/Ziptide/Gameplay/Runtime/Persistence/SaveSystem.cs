@@ -23,6 +23,11 @@ namespace Ziptide.Gameplay
 
         public PlayerProfile Profile { get; private set; }
 
+        /// <summary>Participants capture pending state before every write, including pause/quit/travel.
+        /// Throwing aborts the write; participants must not recursively invoke Save.</summary>
+        public event System.Action BeforeSave;
+        private bool _saving;
+
         public static string SavePath => Path.Combine(Application.persistentDataPath, FileName);
 
         /// <summary>
@@ -106,15 +111,22 @@ namespace Ziptide.Gameplay
         /// live progress available for retry and does not advance the last successful save time.</summary>
         public bool TrySave()
         {
-            if (Profile == null) Profile = ProfileSerializer.NewProfile();
-            if (SaveFileStore.TryWriteProfile(SavePath, Profile,
-                System.DateTimeOffset.UtcNow.ToUnixTimeSeconds(), out string error))
+            if (_saving) return false;
+            _saving = true;
+            try
             {
-                Debug.Log("ZIPTIDE: SAVE_OK path=" + SavePath);
-                return true;
+                if (Profile == null) Profile = ProfileSerializer.NewProfile();
+                if (SaveFileStore.TryWriteProfile(SavePath, Profile,
+                    System.DateTimeOffset.UtcNow.ToUnixTimeSeconds(), out string error,
+                    () => BeforeSave?.Invoke()))
+                {
+                    Debug.Log("ZIPTIDE: SAVE_OK path=" + SavePath);
+                    return true;
+                }
+                Debug.LogWarning("ZIPTIDE: SAVE_FAIL " + error);
+                return false;
             }
-            Debug.LogWarning("ZIPTIDE: SAVE_FAIL " + error);
-            return false;
+            finally { _saving = false; }
         }
 
         private void OnApplicationPause(bool paused) { if (paused) Save(); }

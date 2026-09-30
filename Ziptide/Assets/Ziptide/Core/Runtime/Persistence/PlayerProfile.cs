@@ -13,7 +13,7 @@ namespace Ziptide.Core
     public class PlayerProfile
     {
         /// <summary>Bump when the shape changes; ProfileSerializer migrates older saves forward.</summary>
-        public const int CurrentSchemaVersion = 4; // v4: opt-in per-world job checkpoints (additive)
+        public const int CurrentSchemaVersion = 5; // v5: durable mission completion receipts (additive)
 
         public int schemaVersion = CurrentSchemaVersion;
         public string playerId = "";
@@ -136,6 +136,7 @@ namespace Ziptide.Core
 
         // Empty for legacy saves; runtime scene restoration is not enabled by this data field.
         public List<JobCheckpoint> jobCheckpoints = new List<JobCheckpoint>();
+        public List<MissionCompletionReceipt> missionReceipts = new List<MissionCompletionReceipt>();
 
         public List<MineState> mines = new List<MineState>();   // placed extractors (idle production)
         public List<PlotState> plots = new List<PlotState>();   // garden plots (time-based growth)

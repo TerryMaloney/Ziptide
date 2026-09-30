@@ -8,7 +8,7 @@ namespace Ziptide.Core
     [Serializable]
     public class JobCheckpoint
     {
-        public const int CurrentVersion = 1;
+        public const int CurrentVersion = 2;
         public int version = CurrentVersion;
         public string worldId = "";
         public string runId = "";
@@ -17,6 +17,8 @@ namespace Ziptide.Core
         public string currentStepId = "";
         public bool isComplete;
         public int progress;
+        public List<string> consumedPickupIds = new List<string>();
+        public List<JobCheckpointCount> repairStages = new List<JobCheckpointCount>(); // count is stage 0..3
         public List<JobCheckpointStep> steps = new List<JobCheckpointStep>();
         public List<JobCheckpointCount> collectBank = new List<JobCheckpointCount>();
         public List<JobCheckpointCount> repairBank = new List<JobCheckpointCount>();

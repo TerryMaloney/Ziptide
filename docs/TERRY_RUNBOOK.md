@@ -1,3 +1,13 @@
+> **2026-09-30 deferred W000 resume check — no action due today:** After exact-source Unity CI
+> passes and a newly generated APK is installed, use a disposable profile. Collect the manifest
+> before accepting; save/relaunch and enter W000 through the existing route. It should remain
+> collected and count when the collect step becomes current. Repeat save/relaunch after panel
+> removal, part seating and power-on: each stage should restore without replaying feedback.
+> Complete and revisit: no reset or duplicate completion receipt. Also check pause/resume,
+> tutorial continuity and New Game while leaving W000. Capture MISSION_* and SAVE_* diagnostics.
+> W000 pays zero credits; nonzero reward idempotence is covered in NUnit. This is not an APK or
+> headset verification claim. [Implementation](architecture/FIRST_CONTRACT_RESUME_20260930.md).
+
 > **2026-09-29 recovery entry point:** [QUEST_RECOVERY.md](QUEST_RECOVERY.md).
 > Recovery branch: `claude/quest-recovery-20260929`, based on `claude/unity6-migration`.
 > Unity 6000.2.9f1. Earlier branch/build commands below are historical; preserve local changes

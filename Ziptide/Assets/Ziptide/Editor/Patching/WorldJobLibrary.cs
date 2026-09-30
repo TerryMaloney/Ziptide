@@ -431,6 +431,24 @@ namespace Ziptide.Editor.Patching
                 }
             }
 
+            if (kit.sceneName == ZiptideConstants.SceneW000)
+            {
+                // Explicit semantic IDs, not generated indices. Fail authoring if the canonical
+                // contract changes shape so a reorder cannot silently reinterpret existing saves.
+                if (job.steps.Count != 3 || !(job.steps[0] is GoToMarkerStepDefinition helm) || helm.markerId != "helm" ||
+                    !(job.steps[1] is CollectItemIdCountStepDefinition manifest) || manifest.itemId != "guild_manifest" ||
+                    !(job.steps[2] is RepairMachineCountStepDefinition coupler) || coupler.machineId != "gate_coupler")
+                    throw new System.InvalidOperationException("W000 checkpoint contract needs an explicit migration");
+                helm.stepId = "reach_helm"; manifest.stepId = "collect_manifest"; coupler.stepId = "repair_coupler";
+                foreach (var step in job.steps) EditorUtility.SetDirty(step);
+                job.checkpointRevision = 1;
+                job.replayPolicy = MissionReplayPolicy.OneTime;
+                job.grantsWorldCompletion = true;
+                if (spec.pickups.Count != 1 || spec.pickups[0].def.itemId != "guild_manifest")
+                    throw new System.InvalidOperationException("W000 checkpoint placement needs an explicit migration");
+                spec.pickups[0].def.placementId = "guild_manifest_primary";
+            }
+
             // Physical pickups + machines + mines are PACK data (JobDirector spawns the runtimes at
             // scene start). AtPoi entries resolve to their POI's terrain pad here.
             pack.collectibles.Clear();

@@ -35,6 +35,7 @@ namespace Ziptide.Gameplay
         public ScanKind ScanKind => Ziptide.Gameplay.ScanKind.Objective;
         public bool ScanActive => _stage != RepairStage.Running;
 
+        private GameObject _panel;
         private Transform _part;
         private Transform _socket;
         private Renderer _socketRenderer;
@@ -59,6 +60,28 @@ namespace Ziptide.Gameplay
             _def = def ?? new MachineSpawnDefinition();
             _director = director;
             Build();
+        }
+
+        /// <summary>Apply a checkpoint only to a freshly built machine. No interaction signals,
+        /// haptics, audio or repair reports are replayed. Persistence belongs to the director.</summary>
+        public bool RestoreStage(RepairStage stage)
+        {
+            if (_def == null || _stage != RepairStage.Panel || (int)stage < (int)RepairStage.Panel || (int)stage > (int)RepairStage.Running) return false;
+            _stage = stage;
+            if (_panel != null) _panel.SetActive(stage == RepairStage.Panel);
+            if (_socket != null) _socket.gameObject.SetActive((int)stage >= (int)RepairStage.Part);
+            if ((int)stage >= (int)RepairStage.Power && _part != null)
+            {
+                _part.gameObject.SetActive(false);
+                if (Application.isPlaying) Destroy(_part.gameObject); else DestroyImmediate(_part.gameObject);
+                _part = null;
+            }
+            Tint(_socketRenderer, (int)stage >= (int)RepairStage.Power ? PartColor : SocketEmpty);
+            if (_powerSwitch != null) _powerSwitch.SetActive((int)stage >= (int)RepairStage.Power);
+            Tint(_switchRenderer, stage == RepairStage.Running ? RunningColor : SwitchReady);
+            Tint(_statusLamp, stage == RepairStage.Running ? RunningColor : SwitchOff);
+            UpdateLabel();
+            return true;
         }
 
         private void OnDisable()
@@ -130,6 +153,7 @@ namespace Ziptide.Gameplay
             socket.SetActive(false);
 
             var panel = new GameObject("Panel");
+            _panel = panel;
             panel.transform.SetParent(transform, false);
             panel.transform.localPosition = new Vector3(0f, 0.85f, -0.42f);
             var panelCol = panel.AddComponent<BoxCollider>();

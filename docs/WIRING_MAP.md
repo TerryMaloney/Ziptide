@@ -137,3 +137,17 @@ the verifier, or it's a latent gap:
 4. **Record it** — a row in this map + `HOW_TO_CHANGE_ANYTHING.md`.
 If you can't name all four, you're about to ship a one-sided seam. `WIRING_AUDIT_FINDINGS.md` is the
 running proof that every seam has all four.
+
+## 2026-09-30 — W000 checkpoint and completion receipt wiring
+
+| Producer | Consumer / ownership | Verification |
+|---|---|---|
+| WorldJobLibrary W000 semantic step/placement IDs, revision and replay policy | JobDirector opens MissionCheckpointSession before content spawning | Authoring shape guard; Unity scene generation/audit required |
+| CollectibleRuntime placement and RepairableMachine stage changes | Session logical banks + physical snapshot | MissionResumeTests early pickup and four-stage round trips |
+| Session completion | MissionRewards → RewardRouter + permanent WorldState receipt | Invalid/overflow batch, replay, legacy import and ledger-pruning cases |
+| JobDirector LateUpdate and SaveSystem.BeforeSave | SaveFileStore atomic profile write | Preparation failure, disk retry and backup cases |
+| Stored physical state | Pickup omission and silent RepairableMachine.RestoreStage | Presentation cases; XR/device gate still open |
+
+Diagnostics: MISSION_RESTORED, MISSION_RESTORE_BLOCKED, MISSION_PROFILE_REPLACED,
+MISSION_COMMIT_FAIL, MISSION_CHECKPOINT_SAVED, plus existing SAVE_OK/SAVE_FAIL tags.
+See architecture/FIRST_CONTRACT_RESUME_20260930.md for supported scope and evidence boundaries.

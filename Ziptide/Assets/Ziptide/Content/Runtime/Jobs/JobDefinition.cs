@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Ziptide.Core;
 
 namespace Ziptide.Content
 {
@@ -13,6 +14,9 @@ namespace Ziptide.Content
 
         [Tooltip("Checkpoint contract revision. Zero disables checkpoint capture until stable step IDs are authored.")]
         public int checkpointRevision;
+
+        public MissionReplayPolicy replayPolicy = MissionReplayPolicy.Unspecified;
+        public bool grantsWorldCompletion;
 
         [Tooltip("Display title (e.g. 'First delivery').")]
         public string title = "Job";

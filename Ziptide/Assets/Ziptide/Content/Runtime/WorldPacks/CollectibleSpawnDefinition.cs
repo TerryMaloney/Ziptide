@@ -12,6 +12,8 @@ namespace Ziptide.Content
     [Serializable]
     public class CollectibleSpawnDefinition
     {
+        public string placementId = "";
+
         [Tooltip("Item id — must match the job's CollectItemIdCountStepDefinition.itemId to count.")]
         public string itemId = "sample";
 

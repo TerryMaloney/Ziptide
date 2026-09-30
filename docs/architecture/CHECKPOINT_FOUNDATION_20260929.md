@@ -1,3 +1,5 @@
+> **2026-09-30 implementation:** [W000 integration, verification and rollout limits](FIRST_CONTRACT_RESUME_20260930.md). The baseline/design below is historical.
+
 # Logical checkpoint foundation — implemented API, runtime integration pending
 
 This is the first implementation stage of [MISSION_PERSISTENCE_CONTRACT.md](MISSION_PERSISTENCE_CONTRACT.md).

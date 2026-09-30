@@ -76,10 +76,14 @@ namespace Ziptide.Core
             }
             if (p.photos == null) p.photos = new System.Collections.Generic.List<CapturedPhoto>();
 
-            // v3 → v4: neutral checkpoint defaults, including partially populated world records.
+            // v3 → v4 adds checkpoints; v4 → v5 adds permanent completion receipts.
+            // Neutral defaults also repair partially populated world records.
             foreach (var world in p.worlds)
-                if (world != null && world.jobCheckpoints == null)
-                    world.jobCheckpoints = new System.Collections.Generic.List<JobCheckpoint>();
+                if (world != null)
+                {
+                    if (world.jobCheckpoints == null) world.jobCheckpoints = new System.Collections.Generic.List<JobCheckpoint>();
+                    if (world.missionReceipts == null) world.missionReceipts = new System.Collections.Generic.List<MissionCompletionReceipt>();
+                }
 
             if (p.schemaVersion < PlayerProfile.CurrentSchemaVersion)
                 p.schemaVersion = PlayerProfile.CurrentSchemaVersion;

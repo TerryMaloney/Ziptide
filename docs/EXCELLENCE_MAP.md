@@ -57,7 +57,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-20.)*
 | Hands & interaction | 💎 code / device calibration ongoing | Everything interactive answers within reach; collider before interactable | `InteractionReachAuditRules`; `VR_RIG_GOTCHAS.md`; wiring tests |
 | Weapons & combat feel | 🧱→💎 in flight (Round 1 recoil/haptics/audio/impact; device pending) | Every weapon distinct in hand, cadence, recoil, sound and tactile response; actual bounds and held axis valid | combat tests; `WeaponPerceptualAuditRules`; headset feel ledger |
 | Abilities/augments | 🧱 v1 (6 live) | Full set; visible state; bot/human symmetry where applicable | augment tests + WiringValidator |
-| Player progression/saves | 🧱 Profile/backup and overlays exist; mission checkpoints and receipts missing ([2026-09-29 audit](architecture/STATE_OWNERSHIP_AUDIT_20260929.md)) | Nothing earned/built lost on quit or interrupted save | serializer/round-trip/crash recovery/economy gates |
+| Player progression/saves | 🧱 Profile/backup and overlays exist; W000 checkpoint/receipt integration implemented, fresh CI/device proof pending; other worlds remain open ([2026-09-30 integration](architecture/FIRST_CONTRACT_RESUME_20260930.md)) | Nothing earned/built lost on quit or interrupted save | serializer/round-trip/crash recovery/economy gates |
 | UI/UX & menus | 🧱 v1 code (Home Hub, boards, comfort, diegetic surfaces; bake/device pending) | Diegetic-first; readable at arm's length; usable target faces; consistent save presentation | `HomeHubFlowTests`; **`UiReadabilityAuditRules` + tests/build WARN processor**; device calibration pending; richer save slots remain |
 
 ## 4 · THE SHIP & VEHICLES
