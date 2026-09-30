@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ziptide.Gameplay
 {
     public partial class JobDirector
     {
+        private readonly Dictionary<RepairableMachine, System.Action<RepairStage>> _missionMachineHandlers =
+            new Dictionary<RepairableMachine, System.Action<RepairStage>>();
         private MissionCheckpointSession _mission;
         private SaveSystem _missionSaveOwner;
         private bool _missionConfigured;
@@ -52,15 +55,17 @@ namespace Ziptide.Gameplay
 
         private void BindMissionMachine(RepairableMachine machine)
         {
-            if (!_missionConfigured || _mission == null) return;
+            if (!_missionConfigured || _mission == null || machine == null || _missionMachineHandlers.ContainsKey(machine)) return;
             if (!machine.RestoreStage((RepairStage)_mission.RepairStageFor(machine.MachineId)))
                 Debug.LogWarning("ZIPTIDE: MISSION_MACHINE_RESTORE_FAIL id=" + machine.MachineId);
-            machine.StageChanged += stage =>
+            System.Action<RepairStage> handler = stage =>
             {
                 if (!MissionProfileIsCurrent()) return;
                 _mission.SetRepairStage(machine.MachineId, (int)stage);
                 PersistMissionCheckpoint();
             };
+            _missionMachineHandlers.Add(machine, handler);
+            machine.StageChanged += handler;
         }
 
         // Queue after each interaction. LateUpdate runs after the repair/pickup event listeners,
@@ -103,6 +108,9 @@ namespace Ziptide.Gameplay
         private void UnbindMissionCheckpoint()
         {
             if (_missionSaveOwner != null) _missionSaveOwner.BeforeSave -= PrepareMissionForSave;
+            foreach (var binding in _missionMachineHandlers)
+                if (binding.Key != null) binding.Key.StageChanged -= binding.Value;
+            _missionMachineHandlers.Clear();
         }
     }
 }

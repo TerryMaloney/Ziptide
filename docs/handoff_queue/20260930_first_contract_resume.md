@@ -17,3 +17,14 @@ Baseline c34002db is green; this candidate is not yet Unity/Android/device verif
 work is requested today. Keep SAVE tasks open at campaign scope. Existing audio temporary file
 was left untouched and excluded from this change. Next operator: inspect candidate CI before
 expanding runtime scope, then follow deferred runbook gates.
+
+## CI correction — exact failure and bounded fix
+
+2b26c383 / CI 36708562947 / EditMode job 109864591041 compiled and ran 1,592 tests:
+1,591 passed. All 26 MissionResumeTests passed. Sole failure:
+EventHygieneTests.EveryStaticEventSubscriber_AlsoUnsubscribes named
+JobDirector.Checkpoints.cs / StageChanged (the regex reports the suffix Changed).
+The instance listener lived on a scene machine but had no explicit removal. Retain its delegate,
+prevent duplicate binding and unsubscribe in UnbindMissionCheckpoint; add behavioral teardown test.
+Do not weaken or suppress the hygiene gate. Fresh CI required. RUN-02 draft is locally stashed
+as 'Prepared RUN-02 tutorial lifecycle follow-up; wait for W000 green' and is not in this repair.

@@ -1,3 +1,9 @@
+> **CI result / correction:** Source 2b26c383, run 36708562947: C# compiled and all 26 mission
+> cases passed; total 1,591/1,592. EventHygieneTests flagged the machine-stage subscription's
+> missing explicit unsubscribe. The correction retains each handler, rejects duplicate binding and
+> detaches on director teardown. A 27th mission test exercises duplicate bind and repeated teardown.
+> Fresh Unity CI is required; the scene audit did not run on the failed candidate.
+
 # First-contract resume integration — 2026-09-30
 
 ## Scope and behavior

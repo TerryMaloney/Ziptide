@@ -279,6 +279,25 @@ namespace Ziptide.Tests.EditMode
             Assert.AreEqual((int)stage >= 1, socket.activeSelf); Assert.AreEqual((int)stage >= 2, power.activeSelf);
             Assert.AreEqual((int)stage >= 2, part == null);
         }
+        [Test]
+        public void DirectorMachineBinding_IsUniqueAndExplicitlyRemovedOnTeardown()
+        {
+            var director = Object("director").AddComponent<JobDirector>();
+            var machine = Object("machine").AddComponent<RepairableMachine>();
+            Set(machine, "_def", new MachineSpawnDefinition { machineId = "coupler" });
+            Set(director, "_missionConfigured", true);
+            Set(director, "_mission", Open(ProfileSerializer.NewProfile(), Pack()));
+            var bind = typeof(JobDirector).GetMethod("BindMissionMachine", BindingFlags.Instance | BindingFlags.NonPublic);
+            var unbind = typeof(JobDirector).GetMethod("UnbindMissionCheckpoint", BindingFlags.Instance | BindingFlags.NonPublic);
+            var signal = typeof(RepairableMachine).GetField("StageChanged", BindingFlags.Instance | BindingFlags.NonPublic);
+            bind.Invoke(director, new object[] { machine });
+            bind.Invoke(director, new object[] { machine });
+            Assert.AreEqual(1, ((Delegate)signal.GetValue(machine)).GetInvocationList().Length);
+            unbind.Invoke(director, null);
+            Assert.IsNull(signal.GetValue(machine));
+            Assert.DoesNotThrow(() => unbind.Invoke(director, null));
+        }
+
         private static void Set(object target, string name, object value)
         { target.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).SetValue(target, value); }
     }
