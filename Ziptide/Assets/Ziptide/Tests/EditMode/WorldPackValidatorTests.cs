@@ -26,6 +26,129 @@ namespace Ziptide.Tests.EditMode
             return j;
         }
 
+        [TestCase("job")]
+        [TestCase("machine")]
+        [TestCase("marker")]
+        public void DuplicateScopedIdentity_IsReported(string kind)
+        {
+            var pack = Pack();
+            var step = ScriptableObject.CreateInstance<GoToMarkerStepDefinition>();
+            step.markerId = "exit";
+            var first = JobWith(step);
+            var second = JobWith(step);
+            try
+            {
+                if (kind == "job") { pack.jobs.Add(first); pack.jobs.Add(second); }
+                if (kind == "machine")
+                {
+                    pack.machines.Add(new MachineSpawnDefinition { machineId = "pump" });
+                    pack.machines.Add(new MachineSpawnDefinition { machineId = "pump" });
+                }
+                if (kind == "marker")
+                {
+                    pack.spawnMarkers.Add(new SpawnMarkerDefinition { markerId = "exit" });
+                    pack.spawnMarkers.Add(new SpawnMarkerDefinition { markerId = "exit" });
+                }
+                var issues = WorldPackValidator.Validate(pack);
+                Assert.AreEqual(1, issues.Count, string.Join(" | ", issues));
+                StringAssert.Contains("duplicate " + kind + "Id", issues[0]);
+            }
+            finally
+            {
+                Object.DestroyImmediate(first); Object.DestroyImmediate(second);
+                Object.DestroyImmediate(step); Object.DestroyImmediate(pack);
+            }
+        }
+
+        [Test]
+        public void JobIdentity_CanBeReusedInDifferentPacks()
+        {
+            var firstPack = Pack("first", "FirstWorld");
+            var secondPack = Pack("second", "SecondWorld");
+            var step = ScriptableObject.CreateInstance<GoToMarkerStepDefinition>();
+            step.markerId = "exit";
+            var first = JobWith(step);
+            var second = JobWith(step);
+            try
+            {
+                firstPack.jobs.Add(first); secondPack.jobs.Add(second);
+                Assert.IsEmpty(WorldPackValidator.Validate(firstPack));
+                Assert.IsEmpty(WorldPackValidator.Validate(secondPack));
+            }
+            finally
+            {
+                Object.DestroyImmediate(first); Object.DestroyImmediate(second);
+                Object.DestroyImmediate(step); Object.DestroyImmediate(firstPack); Object.DestroyImmediate(secondPack);
+            }
+        }
+
+        [TestCase(1, 1, 1, false)]
+        [TestCase(1, 1, 2, true)]
+        [TestCase(int.MaxValue, int.MaxValue, 1, false)]
+        public void CollectDemand_IsSummedAcrossOrderedSteps(int firstCount, int secondCount, int supplied, bool valid)
+        {
+            var pack = Pack();
+            var first = ScriptableObject.CreateInstance<CollectItemIdCountStepDefinition>();
+            var second = ScriptableObject.CreateInstance<CollectItemIdCountStepDefinition>();
+            first.itemId = second.itemId = "sample";
+            first.count = firstCount; second.count = secondCount;
+            var job = JobWith(first, second);
+            try
+            {
+                pack.jobs.Add(job);
+                for (int i = 0; i < supplied; i++)
+                    pack.collectibles.Add(new CollectibleSpawnDefinition { itemId = "sample" });
+                var issues = WorldPackValidator.Validate(pack);
+                Assert.AreEqual(valid ? 0 : 1, issues.Count, string.Join(" | ", issues));
+                if (!valid) StringAssert.Contains("un-completable", issues[0]);
+            }
+            finally
+            {
+                Object.DestroyImmediate(job); Object.DestroyImmediate(first);
+                Object.DestroyImmediate(second); Object.DestroyImmediate(pack);
+            }
+        }
+
+        [Test]
+        public void CollectWithNullSpawnList_IsReported()
+        {
+            var pack = Pack();
+            var step = ScriptableObject.CreateInstance<CollectItemIdCountStepDefinition>();
+            step.itemId = "sample"; step.count = 1;
+            var job = JobWith(step);
+            try
+            {
+                pack.jobs.Add(job); pack.collectibles = null;
+                var issues = WorldPackValidator.Validate(pack);
+                Assert.AreEqual(1, issues.Count);
+                StringAssert.Contains("un-completable", issues[0]);
+            }
+            finally
+            {
+                Object.DestroyImmediate(job); Object.DestroyImmediate(step); Object.DestroyImmediate(pack);
+            }
+        }
+
+        [Test]
+        public void CollectDemand_IsNotSummedAcrossDifferentJobs()
+        {
+            var pack = Pack();
+            var step = ScriptableObject.CreateInstance<CollectItemIdCountStepDefinition>();
+            step.itemId = "sample"; step.count = 1;
+            var first = JobWith(step); var second = JobWith(step); second.jobId = "second";
+            try
+            {
+                pack.jobs.Add(first); pack.jobs.Add(second);
+                pack.collectibles.Add(new CollectibleSpawnDefinition { itemId = "sample" });
+                Assert.IsEmpty(WorldPackValidator.Validate(pack));
+            }
+            finally
+            {
+                Object.DestroyImmediate(first); Object.DestroyImmediate(second);
+                Object.DestroyImmediate(step); Object.DestroyImmediate(pack);
+            }
+        }
+
         [Test]
         public void WellFormedPack_PassesClean()
         {

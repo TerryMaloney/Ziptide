@@ -20,12 +20,14 @@ namespace Ziptide.Content
 
             if (pack.jobs != null)
             {
+                var jobIds = new HashSet<string>();
                 for (int j = 0; j < pack.jobs.Count; j++)
                 {
                     var job = pack.jobs[j];
                     if (job == null) { issues.Add("jobs[" + j + "] is null"); continue; }
                     string jid = string.IsNullOrEmpty(job.jobId) ? "jobs[" + j + "]" : job.jobId;
                     if (string.IsNullOrEmpty(job.jobId)) issues.Add(jid + " has empty jobId");
+                    else if (!jobIds.Add(job.jobId)) issues.Add(jid + " has duplicate jobId within pack");
                     if (job.steps == null || job.steps.Count == 0) { issues.Add(jid + " has no steps"); continue; }
 
                     for (int s = 0; s < job.steps.Count; s++)
@@ -63,12 +65,14 @@ namespace Ziptide.Content
                 }
             }
 
+            var markerIds = new HashSet<string>();
             if (pack.spawnMarkers != null)
                 for (int m = 0; m < pack.spawnMarkers.Count; m++)
                 {
                     var sm = pack.spawnMarkers[m];
                     if (sm == null) issues.Add("spawnMarkers[" + m + "] is null");
                     else if (string.IsNullOrEmpty(sm.markerId)) issues.Add("spawnMarkers[" + m + "] has empty markerId");
+                    else if (!markerIds.Add(sm.markerId)) issues.Add("spawnMarkers[" + m + "] has duplicate markerId: " + sm.markerId);
                 }
 
             if (pack.collectibles != null)
@@ -79,44 +83,52 @@ namespace Ziptide.Content
                     else if (string.IsNullOrEmpty(col.itemId)) issues.Add("collectibles[" + c + "] has empty itemId");
                 }
 
-            // THE un-completable-contract check: every Collect step must be satisfiable by the pack's
-            // physical pickups (they're the only source of collect credits in generated worlds). A step
-            // demanding more items than the pack spawns can never finish.
-            if (pack.jobs != null && pack.collectibles != null)
+            // Pickups are consumed once. Sum demand across each job's ordered steps, not across
+            // different jobs (their selection/replay policy is separate). Use long to avoid overflow
+            // when malformed content repeats a very large count.
+            if (pack.jobs != null)
             {
                 var available = new Dictionary<string, int>();
-                for (int c = 0; c < pack.collectibles.Count; c++)
-                {
-                    var col = pack.collectibles[c];
-                    if (col == null || string.IsNullOrEmpty(col.itemId)) continue;
-                    available.TryGetValue(col.itemId, out int n);
-                    available[col.itemId] = n + 1;
-                }
+                if (pack.collectibles != null)
+                    foreach (var col in pack.collectibles)
+                    {
+                        if (col == null || string.IsNullOrEmpty(col.itemId)) continue;
+                        available.TryGetValue(col.itemId, out int n);
+                        available[col.itemId] = n + 1;
+                    }
                 for (int j = 0; j < pack.jobs.Count; j++)
                 {
                     var job = pack.jobs[j];
                     if (job == null || job.steps == null) continue;
-                    for (int s = 0; s < job.steps.Count; s++)
+                    var needed = new Dictionary<string, long>();
+                    foreach (var step in job.steps)
                     {
-                        if (job.steps[s] is CollectItemIdCountStepDefinition ci &&
+                        if (step is CollectItemIdCountStepDefinition ci &&
                             !string.IsNullOrEmpty(ci.itemId) && ci.count > 0)
                         {
-                            available.TryGetValue(ci.itemId, out int have);
-                            if (have < ci.count)
-                                issues.Add((string.IsNullOrEmpty(job.jobId) ? "jobs[" + j + "]" : job.jobId) +
-                                           " Collect '" + ci.itemId + "' needs " + ci.count +
-                                           " but pack spawns " + have + " — likely un-completable");
+                            needed.TryGetValue(ci.itemId, out long n);
+                            needed[ci.itemId] = n + ci.count;
                         }
+                    }
+                    foreach (var demand in needed)
+                    {
+                        available.TryGetValue(demand.Key, out int have);
+                        if (have < demand.Value)
+                            issues.Add((string.IsNullOrEmpty(job.jobId) ? "jobs[" + j + "]" : job.jobId) +
+                                       " Collect '" + demand.Key + "' needs " + demand.Value +
+                                       " across job but pack spawns " + have + " — likely un-completable");
                     }
                 }
             }
 
+            var machineIds = new HashSet<string>();
             if (pack.machines != null)
                 for (int m = 0; m < pack.machines.Count; m++)
                 {
                     var mac = pack.machines[m];
                     if (mac == null) issues.Add("machines[" + m + "] is null");
                     else if (string.IsNullOrEmpty(mac.machineId)) issues.Add("machines[" + m + "] has empty machineId");
+                    else if (!machineIds.Add(mac.machineId)) issues.Add("machines[" + m + "] has duplicate machineId: " + mac.machineId);
                 }
 
             // A Repair step naming a machine the pack never spawns can't complete (same class of guard

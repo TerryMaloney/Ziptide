@@ -69,7 +69,10 @@ namespace Ziptide.Gameplay
                 if (CollectProgress >= collect.count)
                     AdvanceStep();
                 else
+                {
+                    RefreshStepText();
                     StepChanged?.Invoke();
+                }
             }
             else
             {
@@ -104,7 +107,10 @@ namespace Ziptide.Gameplay
                 if (advanced)
                     AdvanceStep();
                 else
+                {
+                    RefreshStepText();
                     StepChanged?.Invoke();
+                }
             }
             else
             {
@@ -129,7 +135,10 @@ namespace Ziptide.Gameplay
                 if (DeliverProgress >= deliver.count)
                     AdvanceStep();
                 else
+                {
+                    RefreshStepText();
                     StepChanged?.Invoke();
+                }
             }
         }
 
@@ -143,7 +152,10 @@ namespace Ziptide.Gameplay
                 if (ShootProgress >= shoot.count)
                     AdvanceStep();
                 else
+                {
+                    RefreshStepText();
                     StepChanged?.Invoke();
+                }
             }
         }
 
@@ -157,7 +169,10 @@ namespace Ziptide.Gameplay
                 if (DroneProgress >= drone.count)
                     AdvanceStep();
                 else
+                {
+                    RefreshStepText();
                     StepChanged?.Invoke();
+                }
             }
         }
 

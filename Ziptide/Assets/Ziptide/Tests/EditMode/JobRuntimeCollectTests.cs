@@ -36,6 +36,67 @@ namespace Ziptide.Tests.EditMode
             return j;
         }
 
+        [TestCase("collect")]
+        [TestCase("deliver")]
+        [TestCase("shoot")]
+        [TestCase("drone")]
+        [TestCase("repair")]
+        public void PartialProgress_EventSeesUpdatedText(string kind)
+        {
+            var rt = new JobRuntime();
+            JobStepDefinition step;
+            System.Action report;
+            switch (kind)
+            {
+                case "collect":
+                    step = Collect("sample", 2);
+                    report = () => rt.ReportCollect("sample");
+                    break;
+                case "deliver":
+                    var delivery = ScriptableObject.CreateInstance<DeliverToSocketStepDefinition>();
+                    delivery.itemId = "sample"; delivery.socketId = "dock"; delivery.count = 2;
+                    step = delivery;
+                    report = () => rt.ReportDeliver("dock", "sample");
+                    break;
+                case "shoot":
+                    var shoot = ScriptableObject.CreateInstance<ShootTargetsCountStepDefinition>();
+                    shoot.count = 2; step = shoot; report = rt.ReportTargetHit;
+                    break;
+                case "drone":
+                    var drone = ScriptableObject.CreateInstance<DisableDronesCountStepDefinition>();
+                    drone.count = 2; step = drone; report = rt.ReportDroneDisabled;
+                    break;
+                default:
+                    var repair = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();
+                    repair.machineId = "pump"; repair.count = 2; step = repair;
+                    report = () => rt.ReportRepair("pump");
+                    break;
+            }
+            var job = Job(step);
+            try
+            {
+                rt.StartJob(job);
+                string observedText = null;
+                int changes = 0, completions = 0;
+                rt.StepChanged += () => { changes++; observedText = rt.StepText; };
+                rt.JobCompleted += () => completions++;
+                report();
+                Assert.AreEqual(1, changes);
+                StringAssert.Contains("(1/2)", observedText);
+                Assert.IsFalse(rt.IsComplete);
+                report();
+                Assert.AreEqual(1, completions);
+                Assert.AreEqual("Complete!", rt.StepText);
+                report();
+                Assert.AreEqual(1, completions, "reports after completion must not replay completion");
+            }
+            finally
+            {
+                Object.DestroyImmediate(job);
+                Object.DestroyImmediate(step);
+            }
+        }
+
         [Test]
         public void Collect_InOrder_CountsAndAdvances()
         {
