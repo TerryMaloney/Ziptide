@@ -1,3 +1,5 @@
+> **2026-09-30 cutoff:** Source **91d837c2** passed Unity EditMode and generated-scene audit in CI **36709452926**. Android/USB/headset gates remain open. [Exact-revision commands and headset checklist](recovery/HEADSET_CUTOFF_20260930.md). Stop runtime expansion here; tutorial profile-lifecycle follow-up is preserved as an unapplied patch in `recovery/drafts/20260930_profile_lifecycle.patch`.
+
 > **2026-09-30 deferred W000 resume check — no action due today:** After exact-source Unity CI
 > passes and a newly generated APK is installed, use a disposable profile. Collect the manifest
 > before accepting; save/relaunch and enter W000 through the existing route. It should remain

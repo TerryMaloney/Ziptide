@@ -1,0 +1,405 @@
+diff --git a/Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs b/Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs
+index 471564cc..d7b1ab7f 100644
+--- a/Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs
++++ b/Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs
+@@ -41,6 +41,8 @@ namespace Ziptide.Gameplay
+ 
+         private FirstHourContractDefinition _contract;
+         private FirstHourProgressCore _core;
++        private PlayerProfile _profile;
++        private bool _bootReadyObserved;
+         private RillCompanion _rill;
+ 
+         private readonly List<RepairableMachine> _machines = new List<RepairableMachine>();
+@@ -78,7 +80,8 @@ namespace Ziptide.Gameplay
+                 return;
+             }
+ 
+-            _core = new FirstHourProgressCore(MapBeats(_contract), CompletedBeatIdsFromProfile());
++            _profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
++            _core = new FirstHourProgressCore(MapBeats(_contract), CompletedBeatIdsFromProfile(_profile));
+             if (!_core.IsEnabled)
+             {
+                 Disable(_core.DisabledReasonCode);
+@@ -87,6 +90,7 @@ namespace Ziptide.Gameplay
+ 
+             Debug.Log("ZIPTIDE: FIRST_HOUR_DIRECTOR ready beats=" + _contract.beats.Count
+                 + " resumedAt=" + (_core.CurrentBeatId ?? "complete"));
++            RestoreOutboundEvidence();
+             Subscribe();
+             OnBeatChanged();
+         }
+@@ -122,10 +126,9 @@ namespace Ziptide.Gameplay
+         /// A returning save must resume where it stopped, not replay the tutorial. Completed beats are
+         /// stored one flag each so the record survives any save-schema change that adds fields.
+         /// </summary>
+-        private static IEnumerable<string> CompletedBeatIdsFromProfile()
++        private static IEnumerable<string> CompletedBeatIdsFromProfile(PlayerProfile profile)
+         {
+             var done = new List<string>();
+-            PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+             if (profile == null || profile.flags == null) return done;
+ 
+             for (int i = 0; i < profile.flags.Count; i++)
+@@ -137,6 +140,34 @@ namespace Ziptide.Gameplay
+             return done;
+         }
+ 
++        // Profile identity, not playerId, is the lifecycle boundary: Load can replace the same
++        // player's object with a different saved point. Never retain that object's old core/latches.
++        private bool RefreshProfile()
++        {
++            PlayerProfile current = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
++            if (ReferenceEquals(_profile, current)) return false;
++            _profile = current;
++            UnbindSceneOwners();
++            FirstHourObservationAdapter.Instance?.CancelBeat();
++            _rill = null;
++            _outboundTravelDone = false;
++            _core = current != null && _contract != null
++                ? new FirstHourProgressCore(MapBeats(_contract), CompletedBeatIdsFromProfile(current)) : null;
++            RestoreOutboundEvidence();
++            _rebindAt = Time.unscaledTime + RebindDelaySeconds;
++            OnBeatChanged();
++            Debug.Log("ZIPTIDE: FIRST_HOUR_PROFILE_REBOUND beat=" + (_core?.CurrentBeatId ?? "none"));
++            return true;
++        }
++
++        private void RestoreOutboundEvidence()
++        {
++            if (_core == null || !_core.IsEnabled || _contract == null) return;
++            foreach (var beat in _contract.beats)
++                if (beat?.completionSignal?.id == "TRAVEL_W000_TO_W001_COMPLETE" && _core.IsBeatComplete(beat.id))
++                    _outboundTravelDone = true;
++        }
++
+         private void Disable(string reason)
+         {
+             _disabled = true;
+@@ -185,6 +216,7 @@ namespace Ziptide.Gameplay
+ 
+         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+         {
++            RefreshProfile();
+             // Runtime-created machines, ziplines and targets do not exist yet on the frame a scene
+             // finishes loading — JobDirector materialises them in its own Start. Rebind a moment later.
+             _rebindAt = Time.unscaledTime + RebindDelaySeconds;
+@@ -252,8 +284,22 @@ namespace Ziptide.Gameplay
+ 
+         // ── Signal translation ───────────────────────────────────────────────
+ 
+-        private void OnBootReady(bool canContinue) => Accept("BOOT_PRESENTATION_READY");
+-        private void OnNewGameProfile(PlayerProfile profile) => Accept("NEW_GAME_PROFILE_CREATED");
++        private void OnBootReady(bool canContinue)
++        {
++            _bootReadyObserved = true;
++            RefreshProfile();
++            Accept("BOOT_PRESENTATION_READY");
++        }
++
++        private void OnNewGameProfile(PlayerProfile profile)
++        {
++            if (profile == null || SaveSystem.Instance == null || !ReferenceEquals(profile, SaveSystem.Instance.Profile)) return;
++            RefreshProfile();
++            // The visible Home Hub precedes profile creation. Carry only that actually observed
++            // fact into the new profile; no gameplay/teaching beat is fabricated or replayed.
++            if (_bootReadyObserved) Accept("BOOT_PRESENTATION_READY");
++            Accept("NEW_GAME_PROFILE_CREATED");
++        }
+         private void OnComfortConfirmed(ComfortPreset preset) => Accept("COMFORT_PRESET_CONFIRMED");
+         private void OnBunkObjectGrabbed(string itemId) => Accept("NAMED_BUNK_OBJECT_GRABBED");
+         private void OnFirstDestinationSelected(string destination) => Accept("HELM_FIRST_DESTINATION_SELECTED");
+@@ -262,6 +308,7 @@ namespace Ziptide.Gameplay
+ 
+         private void OnTravelCompleted(string sceneName)
+         {
++            RefreshProfile();
+             if (string.IsNullOrEmpty(sceneName)) return;
+             if (sceneName == ZiptideConstants.SceneToxicCity)
+             {
+@@ -292,6 +339,7 @@ namespace Ziptide.Gameplay
+ 
+         private void OnJobStepChanged()
+         {
++            if (RefreshProfile()) return;
+             bool live = _job != null && _job.Definition != null;
+             if (live && !_jobWasLive) Accept("FIRST_JOB_ACCEPTED");
+             _jobWasLive = live;
+@@ -343,7 +391,9 @@ namespace Ziptide.Gameplay
+         /// </summary>
+         public void Accept(string signalId)
+         {
+-            if (_disabled || _core == null) return;
++            // If a departing owner discovers replacement, drop its in-flight signal. Explicit
++            // boot/New Game/travel handlers synchronize before delivering their authoritative event.
++            if (RefreshProfile() || _profile == null || _disabled || _core == null) return;
+ 
+             FirstHourSignalResult result = _core.AcceptSignal(signalId);
+             if (!result.Advanced) return;
+@@ -363,14 +413,13 @@ namespace Ziptide.Gameplay
+         private void PersistBeat(string beatId)
+         {
+             if (string.IsNullOrEmpty(beatId)) return;
+-            PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+-            profile?.SetFlag(BeatFlagPrefix + beatId);
++            _profile?.SetFlag(BeatFlagPrefix + beatId);
+         }
+ 
+         private void GrantFlags(IReadOnlyList<string> flags)
+         {
+             if (flags == null || flags.Count == 0) return;
+-            PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
++            PlayerProfile profile = _profile;
+             if (profile == null) return;
+ 
+             for (int i = 0; i < flags.Count; i++)
+@@ -392,13 +441,14 @@ namespace Ziptide.Gameplay
+ 
+             // Hand the observation beats to their adapter — it owns look/move/arrival measurement.
+             var adapter = FirstHourObservationAdapter.Instance;
+-            if (adapter == null || string.IsNullOrEmpty(_watchedBeatId)) return;
+-            if (!adapter.BeginBeat(_watchedBeatId)) adapter.CancelBeat();
++            if (adapter == null) return;
++            if (string.IsNullOrEmpty(_watchedBeatId) || !adapter.BeginBeat(_watchedBeatId)) adapter.CancelBeat();
+         }
+ 
+         private void Update()
+         {
+-            if (_disabled || _core == null) return;
++            RefreshProfile();
++            if (_profile == null || _disabled || _core == null) return;
+ 
+             if (_rebindAt > 0f && Time.unscaledTime >= _rebindAt)
+             {
+diff --git a/Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourProfileLifecycleTests.cs b/Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourProfileLifecycleTests.cs
+new file mode 100644
+index 00000000..ac7fe345
+--- /dev/null
++++ b/Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourProfileLifecycleTests.cs
+@@ -0,0 +1,184 @@
++using System;
++using System.Collections.Generic;
++using System.Reflection;
++using NUnit.Framework;
++using UnityEngine;
++using Ziptide.Content;
++using Ziptide.Core;
++using Ziptide.Gameplay;
++using Ziptide.Gameplay.Tutorial;
++
++namespace Ziptide.Tests.EditMode
++{
++    // Exercise the real translator and pure core without bootstrapping XR or touching a save file.
++    [NonParallelizable]
++    public sealed class FirstHourProfileLifecycleTests
++    {
++        private readonly List<UnityEngine.Object> _owned = new List<UnityEngine.Object>();
++        private SaveSystem _save;
++        private FirstHourDirector _director;
++        private FirstHourObservationAdapter _observation;
++        private FirstHourContractDefinition _contract;
++        private SaveSystem _previousSave;
++        private FirstHourObservationAdapter _previousObservation;
++
++        [SetUp]
++        public void Setup()
++        {
++            _previousSave = SaveSystem.Instance;
++            _previousObservation = FirstHourObservationAdapter.Instance;
++            _save = Component<SaveSystem>();
++            _director = Component<FirstHourDirector>();
++            _observation = Component<FirstHourObservationAdapter>();
++            Static(typeof(SaveSystem), "Instance", _save);
++            Static(typeof(FirstHourObservationAdapter), "Instance", _observation);
++            _contract = ScriptableObject.CreateInstance<FirstHourContractDefinition>(); _owned.Add(_contract);
++            AddBeat("boot", "BOOT_PRESENTATION_READY");
++            AddBeat("new", "NEW_GAME_PROFILE_CREATED");
++            AddBeat(FirstHourObservationAdapter.LookBeatId, "PLAYER_LOOKED_AT_RILL");
++            AddBeat("outbound", "TRAVEL_W000_TO_W001_COMPLETE");
++            AddBeat("return", "TRAVEL_W001_TO_W000_COMPLETE");
++            Set(_director, "_contract", _contract);
++            Profile(ProfileSerializer.NewProfile());
++            Call("RefreshProfile");
++        }
++
++        [TearDown]
++        public void Cleanup()
++        {
++            foreach (var item in _owned) if (item != null) UnityEngine.Object.DestroyImmediate(item);
++            _owned.Clear();
++            Static(typeof(SaveSystem), "Instance", _previousSave);
++            Static(typeof(FirstHourObservationAdapter), "Instance", _previousObservation);
++        }
++
++        [Test]
++        public void NewGameAfterCompletedProfile_RebuildsAndPersistsObservedBoot()
++        {
++            var completed = CompletedThrough(4); Profile(completed); Call("RefreshProfile");
++            Assert.IsTrue(Core.IsComplete);
++            Call("OnBootReady", true);
++            var fresh = ProfileSerializer.NewProfile(); Profile(fresh);
++            Call("OnNewGameProfile", fresh);
++            Assert.AreEqual(FirstHourObservationAdapter.LookBeatId, Core.CurrentBeatId);
++            Assert.IsTrue(fresh.HasFlag(FirstHourDirector.BeatFlagPrefix + "boot"));
++            Assert.IsTrue(fresh.HasFlag(FirstHourDirector.BeatFlagPrefix + "new"));
++            Assert.IsFalse(fresh.HasFlag(FirstHourDirector.BeatFlagPrefix + "outbound"));
++            Assert.IsFalse(Get<bool>("_outboundTravelDone"));
++            Assert.IsTrue(completed.HasFlag(FirstHourDirector.BeatFlagPrefix + "return"));
++        }
++
++        [Test]
++        public void NewGameWithoutObservedBoot_DoesNotInventPresentationEvidence()
++        {
++            var fresh = ProfileSerializer.NewProfile(); Profile(fresh);
++            Call("OnNewGameProfile", fresh);
++            Assert.AreEqual("boot", Core.CurrentBeatId); Assert.IsEmpty(fresh.flags);
++        }
++
++        [Test]
++        public void SecondNewGameInOneSession_RestartsObservationAndHintLatch()
++        {
++            Call("OnBootReady", false);
++            var first = ProfileSerializer.NewProfile(); Profile(first); Call("OnNewGameProfile", first);
++            Assert.IsTrue(Core.MarkHintDelivered());
++            _director.Accept("PLAYER_LOOKED_AT_RILL");
++            Assert.AreEqual("outbound", Core.CurrentBeatId);
++            var second = ProfileSerializer.NewProfile(); Profile(second); Call("OnNewGameProfile", second);
++            Assert.AreEqual(FirstHourObservationAdapter.LookBeatId, Core.CurrentBeatId);
++            Assert.IsTrue(Core.ShouldOfferHint(100));
++            Assert.IsTrue(_observation.IsTracking);
++            Assert.AreEqual(FirstHourObservationAdapter.LookBeatId, _observation.ActiveBeatId);
++        }
++
++        [Test]
++        public void Continue_RestoresOutboundEvidenceSoReturnCanComplete()
++        {
++            var loaded = CompletedThrough(3); Profile(loaded); Call("RefreshProfile");
++            Assert.AreEqual("return", Core.CurrentBeatId);
++            Assert.IsTrue(Get<bool>("_outboundTravelDone"));
++            Call("OnTravelCompleted", ZiptideConstants.SceneW000);
++            Assert.IsTrue(Core.IsComplete);
++            Assert.IsTrue(loaded.HasFlag(FirstHourDirector.BeatFlagPrefix + "return"));
++        }
++
++        [Test]
++        public void ReplacementDetectedDuringSignal_DropsDepartingProfilesCallback()
++        {
++            var fresh = ProfileSerializer.NewProfile(); Profile(fresh);
++            _director.Accept("BOOT_PRESENTATION_READY");
++            Assert.IsEmpty(fresh.flags); Assert.AreEqual("boot", Core.CurrentBeatId);
++            _director.Accept("BOOT_PRESENTATION_READY");
++            Assert.AreEqual("new", Core.CurrentBeatId);
++        }
++
++        [Test]
++        public void UnchangedProfile_PreservesCoreAndHintLatch()
++        {
++            Profile(CompletedThrough(1)); Call("RefreshProfile");
++            var core = Core; core.MarkHintDelivered();
++            Assert.AreEqual(false, Call("RefreshProfile"));
++            Assert.AreSame(core, Core); Assert.IsFalse(Core.ShouldOfferHint(100));
++        }
++
++        [Test]
++        public void CompletedOrMissingProfile_CancelsPriorObservation()
++        {
++            Profile(CompletedThrough(1)); Call("RefreshProfile");
++            Assert.IsTrue(_observation.IsTracking);
++            Profile(CompletedThrough(4)); Call("RefreshProfile");
++            Assert.IsFalse(_observation.IsTracking);
++            Profile(null); Call("RefreshProfile");
++            _director.Accept("BOOT_PRESENTATION_READY");
++            Assert.IsNull(Core); Assert.IsFalse(_observation.IsTracking);
++        }
++
++        [Test]
++        public void MismatchedNewGameNotification_DoesNotMutateCurrentProfile()
++        {
++            var current = _save.Profile;
++            Call("OnNewGameProfile", ProfileSerializer.NewProfile());
++            Assert.IsEmpty(current.flags); Assert.AreEqual("boot", Core.CurrentBeatId);
++        }
++
++        [Test]
++        public void Replacement_DetachesOldJobAndRearmsSceneBinding()
++        {
++            Set(_director, "_job", new JobRuntime()); Set(_director, "_jobWasLive", true);
++            Profile(CompletedThrough(1)); Call("RefreshProfile");
++            Assert.IsNull(Get<JobRuntime>("_job")); Assert.IsFalse(Get<bool>("_jobWasLive"));
++            Assert.Greater(Get<float>("_rebindAt"), Time.unscaledTime);
++        }
++
++        private FirstHourProgressCore Core => Get<FirstHourProgressCore>("_core");
++        private void Profile(PlayerProfile profile) => Set(_save, "<Profile>k__BackingField", profile);
++        private PlayerProfile CompletedThrough(int last)
++        {
++            var p = ProfileSerializer.NewProfile();
++            for (int i = 0; i <= last; i++) p.SetFlag(FirstHourDirector.BeatFlagPrefix + _contract.beats[i].id);
++            return p;
++        }
++        private void AddBeat(string id, string signal)
++        {
++            _contract.beats.Add(new FirstHourBeatDefinition
++            {
++                id = id, required = true, completionSignal = new FirstHourContractReference { id = signal },
++                prerequisites = _contract.beats.Count == 0 ? new List<string>() : new List<string> { _contract.beats[_contract.beats.Count - 1].id },
++                hesitationSeconds = 1, rillLine = new FirstHourContractReference { id = "hint_" + id },
++            });
++        }
++        private T Component<T>() where T : Component
++        {
++            var go = new GameObject(typeof(T).Name); go.SetActive(false); _owned.Add(go);
++            return go.AddComponent<T>();
++        }
++        private object Call(string name, params object[] args) => typeof(FirstHourDirector)
++            .GetMethod(name, BindingFlags.Instance | BindingFlags.NonPublic).Invoke(_director, args);
++        private T Get<T>(string name) => (T)typeof(FirstHourDirector)
++            .GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_director);
++        private static void Set(object target, string name, object value) => target.GetType()
++            .GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).SetValue(target, value);
++        private static void Static(Type type, string name, object value) => type
++            .GetField("<" + name + ">k__BackingField", BindingFlags.Static | BindingFlags.NonPublic).SetValue(null, value);
++    }
++}
+diff --git a/Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourProfileLifecycleTests.cs.meta b/Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourProfileLifecycleTests.cs.meta
+new file mode 100644
+index 00000000..9c1b5565
+--- /dev/null
++++ b/Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourProfileLifecycleTests.cs.meta
+@@ -0,0 +1,11 @@
++fileFormatVersion: 2
++guid: e1ac0227b5dc4fae9b419ac1a14229da
++MonoImporter:
++  externalObjects: {}
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData:
++  assetBundleName:
++  assetBundleVariant:
+diff --git a/docs/handoff_queue/20260930_profile_lifecycle.md b/docs/handoff_queue/20260930_profile_lifecycle.md
+new file mode 100644
+index 00000000..ae03c562
+--- /dev/null
++++ b/docs/handoff_queue/20260930_profile_lifecycle.md
+@@ -0,0 +1,19 @@
++# 2026-09-30 — Profile lifecycle follow-up (RUN-02)
++
++W000 integration source 2b26c383 is under Unity CI 36708562947. Fast Preflight passed.
++Before expanding persistence to more worlds, investigate first-hour profile replacement.
++
++Source evidence: FirstHourDirector constructs its core only in Awake; HomeHubRuntime replaces the
++profile in New Game and Continue. OnNewGameProfile merely accepts a signal into that old core.
++The outbound-travel latch is process memory and is not reconstructed from completed tutorial beats.
++Observation tracking also remains active when the current beat becomes null. These are lifecycle
++risks with concrete source mechanisms; device impact still needs verification.
++
++Bounded next edit, after W000 verification: rebuild the director's pure core from the current profile
++on reference replacement; reset hint/observation/scene subscriptions; restore outbound evidence from
++completed contract beats; preserve only the actually observed boot-presentation signal when New Game
++replaces its pre-choice profile. Add behavioral lifecycle regression cases. No profile schema,
++travel ownership, inventory, rig or input changes are needed.
++
++Other cached systems (RILL flag history/queued lines and W001 payoff latch) remain a separate audit;
++this bounded director repair will not close RUN-02 globally.

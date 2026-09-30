@@ -1,3 +1,5 @@
+> **2026-09-30 cutoff:** Source **91d837c2** passed Unity EditMode and generated-scene audit in CI **36709452926**. Android/USB/headset gates remain open. [Exact-revision commands and headset checklist](recovery/HEADSET_CUTOFF_20260930.md). Stop runtime expansion here; tutorial profile-lifecycle follow-up is preserved as an unapplied patch in `recovery/drafts/20260930_profile_lifecycle.patch`.
+
 # Quest recovery - current operator entry point
 
 Updated 2026-09-29. Candidate branch: `claude/quest-recovery-20260929`, based on migration

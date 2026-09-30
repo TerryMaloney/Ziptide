@@ -28,3 +28,13 @@ The instance listener lived on a scene machine but had no explicit removal. Reta
 prevent duplicate binding and unsubscribe in UnbindMissionCheckpoint; add behavioral teardown test.
 Do not weaken or suppress the hygiene gate. Fresh CI required. RUN-02 draft is locally stashed
 as 'Prepared RUN-02 tutorial lifecycle follow-up; wait for W000 green' and is not in this repair.
+
+## Final cutoff — verified source and next operator
+
+91d837c25ba09a9dee82d9c2f2ef7dad708bb6d8 passed CI 36709452926:
+EditMode job 109867470925 and scene patch/audit job 109869340514 both success. Android skipped.
+Headset handoff: ../recovery/HEADSET_CUTOFF_20260930.md. It pins this exact source for the build,
+uses FullDevelopment, preserves old PC work and app data on install, and captures each reload pass.
+Terry requested a cutoff, not further runtime changes. The RUN-02 draft and nine tests are preserved
+as ../recovery/drafts/20260930_profile_lifecycle.patch, unapplied and unverified. Original local
+stash retained as well. Review and verify it in a future work session; it is excluded from this APK.
