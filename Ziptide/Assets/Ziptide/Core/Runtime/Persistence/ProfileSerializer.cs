@@ -76,6 +76,11 @@ namespace Ziptide.Core
             }
             if (p.photos == null) p.photos = new System.Collections.Generic.List<CapturedPhoto>();
 
+            // v3 → v4: neutral checkpoint defaults, including partially populated world records.
+            foreach (var world in p.worlds)
+                if (world != null && world.jobCheckpoints == null)
+                    world.jobCheckpoints = new System.Collections.Generic.List<JobCheckpoint>();
+
             if (p.schemaVersion < PlayerProfile.CurrentSchemaVersion)
                 p.schemaVersion = PlayerProfile.CurrentSchemaVersion;
         }

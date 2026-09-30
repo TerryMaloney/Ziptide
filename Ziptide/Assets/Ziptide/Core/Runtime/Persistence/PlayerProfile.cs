@@ -13,7 +13,7 @@ namespace Ziptide.Core
     public class PlayerProfile
     {
         /// <summary>Bump when the shape changes; ProfileSerializer migrates older saves forward.</summary>
-        public const int CurrentSchemaVersion = 3; // v3: FIELD CAMERA — captured-photo album (additive)
+        public const int CurrentSchemaVersion = 4; // v4: opt-in per-world job checkpoints (additive)
 
         public int schemaVersion = CurrentSchemaVersion;
         public string playerId = "";
@@ -133,6 +133,9 @@ namespace Ziptide.Core
         public bool owned;
         public string ownerId = "";        // for future async planet-conquest
         public long lastResolvedAtUnix;     // idle-accrual anchor (advance mines/gardens since this)
+
+        // Empty for legacy saves; runtime scene restoration is not enabled by this data field.
+        public List<JobCheckpoint> jobCheckpoints = new List<JobCheckpoint>();
 
         public List<MineState> mines = new List<MineState>();   // placed extractors (idle production)
         public List<PlotState> plots = new List<PlotState>();   // garden plots (time-based growth)

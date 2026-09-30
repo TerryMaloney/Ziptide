@@ -8,7 +8,7 @@ namespace Ziptide.Gameplay
     /// <summary>
     /// State machine for a single job: current step, progress counters, completion. Not a MonoBehaviour.
     /// </summary>
-    public class JobRuntime
+    public partial class JobRuntime
     {
         public event Action StepChanged;
         public event Action JobCompleted;

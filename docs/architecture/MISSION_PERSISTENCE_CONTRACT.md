@@ -1,6 +1,6 @@
 # Mission persistence contract — proposed implementation sequence
 
-Status: design, not implemented. Based on the [source audit](STATE_OWNERSHIP_AUDIT_20260929.md). Tracks SAVE-02/03/04/05/07/08/09. Continue using PlayerProfile, ProfileSerializer, SaveFileStore, JobRuntime, JobDirector and RewardRouter.
+Status: [logical checkpoint foundation implemented](CHECKPOINT_FOUNDATION_20260929.md); automatic runtime resume, physical-state integration and completion receipts are not implemented. Based on the [source audit](STATE_OWNERSHIP_AUDIT_20260929.md). Tracks SAVE-02/03/04/05/07/08/09. Continue using PlayerProfile, ProfileSerializer, SaveFileStore, JobRuntime, JobDirector and RewardRouter.
 
 Source inventory and alias/replay findings: [2026-09-29 identity audit](MISSION_IDENTITY_REPLAY_AUDIT_20260929.md).
 

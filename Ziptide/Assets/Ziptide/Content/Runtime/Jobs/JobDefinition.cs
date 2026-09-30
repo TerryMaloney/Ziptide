@@ -11,6 +11,9 @@ namespace Ziptide.Content
         [Tooltip("Unique job id within the pack.")]
         public string jobId = "job_01";
 
+        [Tooltip("Checkpoint contract revision. Zero disables checkpoint capture until stable step IDs are authored.")]
+        public int checkpointRevision;
+
         [Tooltip("Display title (e.g. 'First delivery').")]
         public string title = "Job";
 
