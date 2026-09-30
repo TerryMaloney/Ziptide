@@ -145,6 +145,8 @@ jobs:
           projectPath: ${{ env.PROJECT_PATH }}
           unityVersion: ${{ env.UNITY_VERSION }}
           testMode: editmode
+          # Proven in run 36621171988; avoid a rate-limited latest-release API lookup.
+          cliVersion: v0.1.69
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           artifactsPath: test-results
 

@@ -84,13 +84,13 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void OldSave_WithoutPhotos_MigratesToEmptyAlbum_AtSchema3()
+        public void OldSave_WithoutPhotos_MigratesToEmptyAlbum_AtCurrentSchema()
         {
             var p = ProfileSerializer.Deserialize("{\"schemaVersion\":2,\"playerId\":\"p\"}");
             Assert.IsNotNull(p.photos, "pre-v3 saves get an empty album, never null");
             Assert.AreEqual(0, p.photos.Count);
-            Assert.AreEqual(PlayerProfile.CurrentSchemaVersion, p.schemaVersion, "migrated forward to v3");
-            Assert.AreEqual(3, PlayerProfile.CurrentSchemaVersion);
+            Assert.AreEqual(PlayerProfile.CurrentSchemaVersion, p.schemaVersion, "migrated forward to the current schema");
+            Assert.GreaterOrEqual(p.schemaVersion, 3, "photo support requires schema v3 or later");
         }
     }
 }
